@@ -5,7 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://musana.engineering" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
@@ -13,13 +13,13 @@ author: Jim Musana # add your name
 author-img: jim-musana.jpg # add your photo
 about-author: I am a Platform Engineer focusing on Kubernetes, Cloud and Networking.
 social-twitter: musana_eng
-social-facebook: # add your Facebook handle
+#social-facebook: # add your Facebook handle
 social-github: musana-engineering
-social-linkedin: # add your Linkedin handle
-social-email: # add your Email address
+social-linkedin: www.linkedin.com/in/jmusana
+social-email: musanajim@gmail.com
 
 # Disqus
-discus-identifier: mr-brown # add your discus identifier
+discus-identifier: musana.engineering
 
 # Tracker
 analytics: # Google Analytics
