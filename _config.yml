@@ -1,8 +1,6 @@
 title: musana.engineering
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Technical recipies curated by Jim Musana
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://musana.engineering" # the base hostname & protocol for your site, e.g. http://example.com
@@ -11,7 +9,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Jim Musana # add your name
 author-img: jim-musana.jpg # add your photo
-about-author: I am a Platform Engineer focusing on Kubernetes, Cloud and Networking.
+about-author: I am a Platform Engineer with a focus on Kubernetes, cloud infrastructure, and networking. With a proven track record of designing and implementing scalable, secure, and efficient platforms, I bring expertise in cloud services (AWS, Azure, GCP) and a commitment to continuous improvement and innovation in platform engineering.
 social-twitter: musana_eng
 #social-facebook: # add your Facebook handle
 social-github: musana-engineering
