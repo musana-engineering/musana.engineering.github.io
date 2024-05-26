@@ -7,12 +7,13 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
+## What is Platform Engineering?
 Platform engineering is about building and maintaining the tools, systems, and infrastructure that other software development teams use to create and deploy their applications efficiently.
 
 In practical terms, it involves:
 
 - Automation: Creating scripts and tools to automate repetitive tasks like code deployment, server provisioning, and monitoring.
-Standardization: Setting up standard practices and templates for how things like environments, code, and configurations should look and work.
+- Standardization: Setting up standard practices and templates for how things like environments, code, and configurations should look and work.
 - Scalability: Ensuring the infrastructure can handle increasing loads without breaking.
 - Developer Experience: Making sure that developers have the tools and processes they need to be productive, such as easy-to-use CI/CD pipelines, self-service environments, and robust logging and monitoring.
 
