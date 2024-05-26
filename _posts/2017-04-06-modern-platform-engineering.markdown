@@ -8,16 +8,9 @@ fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
 ## What is Platform Engineering?
-Platform engineering is about building and maintaining the tools, systems, and infrastructure that other software development teams use to create and deploy their applications efficiently.
+Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era. 
 
-In practical terms, it involves:
-
-- Automation: Creating scripts and tools to automate repetitive tasks like code deployment, server provisioning, and monitoring.
-- Standardization: Setting up standard practices and templates for how things like environments, code, and configurations should look and work.
-- Scalability: Ensuring the infrastructure can handle increasing loads without breaking.
-- Developer Experience: Making sure that developers have the tools and processes they need to be productive, such as easy-to-use CI/CD pipelines, self-service environments, and robust logging and monitoring.
-
-So, platform engineers work behind the scenes to make sure the development process is smooth, fast, and reliable, enabling developers to focus on writing code rather than worrying about the underlying infrastructure.
+Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” covering the operational necessities of the entire lifecycle of an application
 
 ## Plaid ramps kitsch woke pork belly
 90's yr crucifix, selvage 8-bit listicle forage cliche shoreditch hammock microdosing synth. Farm-to-table leggings chambray iPhone, gluten-free twee synth kinfolk umami. Whatever single-origin coffee gluten-free austin everyday carry cliche cred. Plaid ramps kitsch woke pork belly organic. Trust fund whatever coloring book kombucha brooklyn. Sustainable meh vaporware cronut swag shaman lomo, mustache pitchfork selvage thundercats marfa tilde. Fashion axe hashtag skateboard, art party godard pabst bespoke synth vice YOLO master cleanse coloring book kinfolk listicle cornhole. Try-hard mixtape umami fanny pack man bun gastropub franzen tbh. Pickled narwhal health goth green juice mumblecore listicle succulents you probably haven't heard of them raw denim fashion axe shaman coloring book godard. Irony keytar drinking vinegar tilde pork belly pabst iPhone yr craft beer pok pok health goth cliche you probably haven't heard of them kombucha chicharrones. Direct trade hella roof party chia. Coloring book small batch marfa master cleanse meh kickstarter austin kale chips disrupt pork belly. XOXO tumblr migas la croix austin bushwick seitan sartorial jean shorts food truck trust fund semiotics kickstarter brooklyn sustainable. Umami knausgaard mixtape marfa. Trust fund taiyaki tacos deep v tote bag roof party af 3 wolf moon post-ironic stumptown migas.
