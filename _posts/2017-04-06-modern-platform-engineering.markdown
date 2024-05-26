@@ -14,8 +14,9 @@ In practical terms, Platform engineers provide an integrated product most often 
 In this four-part series, we will build a cohesive internal developer platform (IDP) using Terraform, Argo Workflows, Argo Events, and FastAPI - that automates infrastructure management, simplifies CI/CD processes, and provides a user-friendly API for developers. 
 
 ## Table of Contents
-- [System Requirements ](#system-requirements)
-- [Prerequisites ](#prerequisites)
+- [Introduction ](#introduction)
+- [Prerequisities ](#prerequisities)
+- [Platform infrastructure ](#platform-infrastructure)
 - [Install Procedure ](#install-procedure)
 - [RPI Endpoints ](#rpi-endpoints)
 - [RPI Storage ](#rpi-storage)
@@ -25,7 +26,7 @@ In this four-part series, we will build a cohesive internal developer platform (
 - [RPI Documentation](#rpi-documentation)
 - [Support](#support)
 
-![I and My friends]({{site.baseurl}}/assets/img/we-in-rest.jpg)
+## Introduction
 
 Selfies sriracha taiyaki woke squid synth intelligentsia PBR&B ethical kickstarter art party neutra biodiesel scenester. Health goth kogi VHS fashion axe glossier disrupt, vegan quinoa. Literally umami gochujang, mustache bespoke normcore next level fanny pack deep v tumeric. Shaman vegan affogato chambray. Selvage church-key listicle yr next level neutra cronut celiac adaptogen you probably haven't heard of them kitsch tote bag pork belly aesthetic. Succulents wolf stumptown art party poutine. Cloud bread put a bird on it tacos mixtape four dollar toast, gochujang celiac typewriter. Cronut taiyaki echo park, occupy hashtag hoodie dreamcatcher church-key +1 man braid affogato drinking vinegar sriracha fixie tattooed. Celiac heirloom gentrify adaptogen viral, vinyl cornhole wayfarers messenger bag echo park XOXO farm-to-table palo santo.
 
