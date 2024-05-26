@@ -9,14 +9,9 @@ tags: [platformengineering, kubernetes]
 ---
 Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era. 
 
-In practical terms, this involves the following:
+In practical terms, Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” (IDP) that covers the operational necessities of the entire lifecycle of an application. 
 
-- Automation: Creating scripts and tools to automate repetitive tasks like code deployment, server provisioning, and monitoring.
-- Standardization: Setting up standard practices and templates for how things like environments, code, and configurations should look and work.
-- Scalability: Ensuring the infrastructure can handle increasing loads without breaking.
-- Developer Experience: Making sure that developers have the tools and processes they need to be productive, such as easy-to-use CI/CD pipelines, self-service environments, and robust logging and monitoring.
-
-In this four-part series, I will guide you through designing and implementing an integrated product commonly known as an “Internal Developer Platform,” using the familiar tools you already employ in your daily infrastructure operations.
+In this four-part series, we will build a cohesive internal developer platform (IDP) using Terraform, Argo Workflows, Argo Events, and FastAPI - that automates infrastructure management, simplifies CI/CD processes, and provides a user-friendly API for developers. 
 
 ## Table of Contents
 - [System Requirements ](#system-requirements)
