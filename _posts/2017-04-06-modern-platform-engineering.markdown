@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modern Platform Engineering. Building an Internal Developer Platform (IDP) powered by Terraform, Argo Events, Argo Workflows and FastAPI - Part 1
+title: Design and Implement an Internal Developer Platform (IDP) powered by Terraform, Argo Events, Argo Workflows and FastAPI - Part 1
 date: 2024-05-25 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
