@@ -1,16 +1,34 @@
 ---
 layout: post
-title: Modern Platform Engineering - Powered by Terraform, Argo Events, Argo Workflows and FastAPI
+title: Modern Platform Engineering - Powered by Terraform, Argo Events, Argo Workflows and FastAPI | Part 1
 date: 2024-05-25 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era.Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” covering the operational necessities of the entire lifecycle of an application
+Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era. 
 
-## Introduction
-90's yr crucifix, selvage 8-bit listicle forage cliche shoreditch hammock microdosing synth. Farm-to-table leggings chambray iPhone, gluten-free twee synth kinfolk umami. Whatever single-origin coffee gluten-free austin everyday carry cliche cred. Plaid ramps kitsch woke pork belly organic. Trust fund whatever coloring book kombucha brooklyn. Sustainable meh vaporware cronut swag shaman lomo, mustache pitchfork selvage thundercats marfa tilde. Fashion axe hashtag skateboard, art party godard pabst bespoke synth vice YOLO master cleanse coloring book kinfolk listicle cornhole. Try-hard mixtape umami fanny pack man bun gastropub franzen tbh. Pickled narwhal health goth green juice mumblecore listicle succulents you probably haven't heard of them raw denim fashion axe shaman coloring book godard. Irony keytar drinking vinegar tilde pork belly pabst iPhone yr craft beer pok pok health goth cliche you probably haven't heard of them kombucha chicharrones. Direct trade hella roof party chia. Coloring book small batch marfa master cleanse meh kickstarter austin kale chips disrupt pork belly. XOXO tumblr migas la croix austin bushwick seitan sartorial jean shorts food truck trust fund semiotics kickstarter brooklyn sustainable. Umami knausgaard mixtape marfa. Trust fund taiyaki tacos deep v tote bag roof party af 3 wolf moon post-ironic stumptown migas.
+In practical terms, this involves the following:
+
+- Automation: Creating scripts and tools to automate repetitive tasks like code deployment, server provisioning, and monitoring.
+- Standardization: Setting up standard practices and templates for how things like environments, code, and configurations should look and work.
+- Scalability: Ensuring the infrastructure can handle increasing loads without breaking.
+- Developer Experience: Making sure that developers have the tools and processes they need to be productive, such as easy-to-use CI/CD pipelines, self-service environments, and robust logging and monitoring.
+
+In this four-part series, I will guide you through designing and implementing an integrated product commonly known as an “Internal Developer Platform,” using the familiar tools you already employ in your daily infrastructure operations.
+
+## Table of Contents
+- [System Requirements ](#system-requirements)
+- [Prerequisites ](#prerequisites)
+- [Install Procedure ](#install-procedure)
+- [RPI Endpoints ](#rpi-endpoints)
+- [RPI Storage ](#rpi-storage)
+- [RPI High Availability ](#rpi-high-availability)
+- [License Activation ](#license-activation)
+- [RPI v6 Upgrade Assistant](#rpi-v6-upgrade-assistant)
+- [RPI Documentation](#rpi-documentation)
+- [Support](#support)
 
 ![I and My friends]({{site.baseurl}}/assets/img/we-in-rest.jpg)
 
