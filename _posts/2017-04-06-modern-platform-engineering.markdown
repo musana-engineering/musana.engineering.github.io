@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Practical Platform Engineering Powered by Terraform, Argo, and FastAPI - Part 1
+title: Design and Implement an Internal Developer Platform powered by Terraform, Argo Events, Argo Workflows and FastAPI - Part 1
 date: 2024-05-25 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 #img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
-![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/6cbc5491-074e-4169-a3df-3eb6bb048457)
 ---
+![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/6cbc5491-074e-4169-a3df-3eb6bb048457)
 Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era. 
 
 In practical terms, Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” (IDP) that covers the operational necessities of the entire lifecycle of an application. 
