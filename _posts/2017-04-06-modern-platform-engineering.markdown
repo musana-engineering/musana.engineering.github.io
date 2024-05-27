@@ -1,45 +1,24 @@
 ---
 layout: post
-title: Platform Engineering in Practice | Powered by Terraform, Argo and FastAPI - Part 1
+title: Practical Platform Engineering Powered by Terraform, Argo, and FastAPI | Part 1
 date: 2024-05-25 13:32:20 +0300
-description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/6cbc5491-074e-4169-a3df-3eb6bb048457)
-Platform engineering is the discipline of designing and building toolchains and workflows that enable self-service capabilities for software engineering organizations in the cloud-native era. 
+In today's fast-paced software development landscape, organizations are constantly seeking ways to streamline their processes, enhance collaboration, and accelerate time-to-market. Enter Platform Engineering, a discipline that focuses on building toolchains and workflows that enable self-service capabilties for software engineering organizations within the cloud-native era.
 
-In practical terms, Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” (IDP) that covers the operational necessities of the entire lifecycle of an application. 
-
-In this four-part series, we will build a cohesive internal developer platform (IDP) using Terraform, Argo Workflows, Argo Events, and FastAPI - that automates infrastructure management, simplifies CI/CD processes, and provides a user-friendly API for developers. 
+In this multi-part series, we'll explore the practical implementation of Platform Engineering by building an internal developer platform (IDP) using powerful tools like Terraform, Argo Events, Argo Workflows, and FastAPI.
 
 ## Table of Contents
-- [Introduction ](#introduction)
-- [Prerequisities ](#prerequisities)
-- [Platform infrastructure ](#platform-infrastructure)
-- [Install Procedure ](#install-procedure)
-- [RPI Endpoints ](#rpi-endpoints)
-- [RPI Storage ](#rpi-storage)
-- [RPI High Availability ](#rpi-high-availability)
-- [License Activation ](#license-activation)
-- [RPI v6 Upgrade Assistant](#rpi-v6-upgrade-assistant)
-- [RPI Documentation](#rpi-documentation)
-- [Support](#support)
+- [The Vision ](#the-vision)
+- [Building blocks ](#building-blocks)
+- [Implementation ](#implementation)
+- [Summary ](#summary)
 
-## Introduction
+## The Vision: A Unified Developer Experience
+Imagine a centralized platform where developers can seamlessly provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
+![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/6cbc5491-074e-4169-a3df-3eb6bb048457)
+## Building blocks
 
-Selfies sriracha taiyaki woke squid synth intelligentsia PBR&B ethical kickstarter art party neutra biodiesel scenester. Health goth kogi VHS fashion axe glossier disrupt, vegan quinoa. Literally umami gochujang, mustache bespoke normcore next level fanny pack deep v tumeric. Shaman vegan affogato chambray. Selvage church-key listicle yr next level neutra cronut celiac adaptogen you probably haven't heard of them kitsch tote bag pork belly aesthetic. Succulents wolf stumptown art party poutine. Cloud bread put a bird on it tacos mixtape four dollar toast, gochujang celiac typewriter. Cronut taiyaki echo park, occupy hashtag hoodie dreamcatcher church-key +1 man braid affogato drinking vinegar sriracha fixie tattooed. Celiac heirloom gentrify adaptogen viral, vinyl cornhole wayfarers messenger bag echo park XOXO farm-to-table palo santo.
-
->Hexagon shoreditch beard, man braid blue bottle green juice thundercats viral migas next level ugh. Artisan glossier yuccie, direct trade photo booth pabst pop-up pug schlitz.
-
-Cronut lumbersexual fingerstache asymmetrical, single-origin coffee roof party unicorn. Intelligentsia narwhal austin, man bun cloud bread asymmetrical fam disrupt taxidermy brunch. Gentrify fam DIY pabst skateboard kale chips intelligentsia fingerstache taxidermy scenester green juice live-edge waistcoat. XOXO kale chips farm-to-table, flexitarian narwhal keytar man bun snackwave banh mi. Semiotics pickled taiyaki cliche cold-pressed. Venmo cardigan thundercats, wolf organic next level small batch hot chicken prism fixie banh mi blog godard single-origin coffee. Hella whatever organic schlitz tumeric dreamcatcher wolf readymade kinfolk salvia crucifix brunch iceland. Literally meditation four loko trust fund. Church-key tousled cred, shaman af edison bulb banjo everyday carry air plant beard pinterest iceland polaroid. Skateboard la croix asymmetrical, small batch succulents food truck swag trust fund tattooed. Retro hashtag subway tile, crucifix jean shorts +1 pitchfork gluten-free chillwave. Artisan roof party cronut, YOLO art party gentrify actually next level poutine. Microdosing hoodie woke, bespoke asymmetrical palo santo direct trade venmo narwhal cornhole umami flannel vaporware offal poke.
-
-* Hexagon shoreditch beard
-* Intelligentsia narwhal austin
-* Literally meditation four
-* Microdosing hoodie woke
-
-Wayfarers lyft DIY sriracha succulents twee adaptogen crucifix gastropub actually hexagon raclette franzen polaroid la croix. Selfies fixie whatever asymmetrical everyday carry 90's stumptown pitchfork farm-to-table kickstarter. Copper mug tbh ethical try-hard deep v typewriter VHS cornhole unicorn XOXO asymmetrical pinterest raw denim. Skateboard small batch man bun polaroid neutra. Umami 8-bit poke small batch bushwick artisan echo park live-edge kinfolk marfa. Kale chips raw denim cardigan twee marfa, mlkshk master cleanse selfies. Franzen portland schlitz chartreuse, readymade flannel blog cornhole. Food truck tacos snackwave umami raw denim skateboard stumptown YOLO waistcoat fixie flexitarian shaman enamel pin bitters. Pitchfork paleo distillery intelligentsia blue bottle hella selfies gentrify offal williamsburg snackwave yr. Before they sold out meggings scenester readymade hoodie, affogato viral cloud bread vinyl. Thundercats man bun sriracha, neutra swag knausgaard jean shorts. Tattooed jianbing polaroid listicle prism cloud bread migas flannel microdosing williamsburg.
-
-Echo park try-hard irony tbh vegan pok pok. Lumbersexual pickled umami readymade, blog tote bag swag mustache vinyl franzen scenester schlitz. Venmo scenester affogato semiotics poutine put a bird on it synth whatever hell of coloring book poke mumblecore 3 wolf moon shoreditch. Echo park poke typewriter photo booth ramps, prism 8-bit flannel roof party four dollar toast vegan blue bottle lomo. Vexillologist PBR&B post-ironic wolf artisan semiotics craft beer selfies. Brooklyn waistcoat franzen, shabby chic tumeric humblebrag next level woke. Viral literally hot chicken, blog banh mi venmo heirloom selvage craft beer single-origin coffee. Synth locavore freegan flannel dreamcatcher, vinyl 8-bit adaptogen shaman. Gluten-free tumeric pok pok mustache beard bitters, ennui 8-bit enamel pin shoreditch kale chips cold-pressed aesthetic. Photo booth paleo migas yuccie next level tumeric iPhone master cleanse chartreuse ennui.
