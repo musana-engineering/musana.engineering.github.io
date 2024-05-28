@@ -19,6 +19,7 @@ In this multi-part series, we'll explore the practical implementation of Platfor
 
 ## The Vision: A Unified Developer Experience
 Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
+
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 ## Capabilities
 Our internal developer platform will provide a comprehensive set of capabilities to streamline the software development lifecycle. Developers will be able to interact with the platform through Fast API endpoints, enabling them to provision resources, orchestrate workflows, and deploy applications with ease.
