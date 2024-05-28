@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Practical Platform Engineering Powered by Terraform, Argo, and FastAPI | Part 1
+title: Practical Platform Engineering on Kubernetes. Powered by Terraform, Argo, and FastAPI | Part 1
 date: 2024-05-25 13:32:20 +0300
 description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
@@ -18,8 +18,8 @@ In this multi-part series, we'll explore the practical implementation of Platfor
 - [Summary ](#summary)
 
 ## The Vision: A Unified Developer Experience
-Imagine a centralized platform where developers can seamlessly provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
-![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/6cbc5491-074e-4169-a3df-3eb6bb048457)
+Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
+![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 ## The Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our Platform Engineering endeavor.
 
