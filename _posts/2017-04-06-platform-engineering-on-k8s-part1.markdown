@@ -15,6 +15,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ## Table of Contents
 - [What we are building ](#what-we-are-building)
+- [Platform Capabilities](#platform-capabilities)
 - [The Building blocks ](#the-building-blocks)
 - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
@@ -24,13 +25,20 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 **A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
 
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
-## Core Capabilities
-Our internal developer platform will provide a comprehensive set of capabilities to streamline the software development lifecycle. Developers will be able to interact with the platform through Fast API endpoints, enabling them to provision resources, orchestrate workflows, and deploy applications with ease.
+## Platform Capabilities
+Our internal developer platform will be built to include 5 core capabilities.
 
-- **Infrastructure provisioning:** A developer can create a virtual machine in Azure or spin up a Kubernetes cluster in GCP for testing purposes, all through a simple API call or via the self-service Swagger interface.
+- **Infrastructure provisioning:** Enable developers to create cloud infrastructure resources in alignment with the company's cloud governance policies while abstracting complexities such  as networking and security.  
 
-- **Application Deployment:** A developer can trigger deployments based on various events, such as code commits or manual triggers, and the platform will orchestrate the entire deployment process, including building, testing, and rolling out the application to the desired environment.
-- **Security and Compliance:** The platform ensures that developers easily provision cloud infrastructure and deploy business applications in alignment with the company's cloud governance policies
+- **Environment Deployment:** Enable developers to create new and fully provisioned environments whenever needed and also delete them when nolonger needed.
+
+- **Application Deployment:** Enable developers to deploy applications based on various events, such as code commits or manual triggers,
+
+- **Application Configuration:** Enable developers configure applications based on various events, such as code commits or manual triggers
+
+The platform will orchestrate the entire process, including building, testing, and rolling out the application to the desired environment.
+
+- **Access Control:** Manage who can do what in a scalable way.
 
 ## The Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
