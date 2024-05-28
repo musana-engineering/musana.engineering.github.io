@@ -24,6 +24,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 ## What we are building
 **A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
+
 ## Platform Capabilities
 Our internal developer platform will be built to include 5 core capabilities.
 
@@ -40,7 +41,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 ## The Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
-- **Kubernetes:** Kubernetes will serve as the underlying foundation upon which our internal developer platform will be built. Kubernetes provides a robust and scalable environment for deploying and managing the various components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI.
+- **Kubernetes:** Kubernetes will serve as the underlying foundation upon which our internal developer platform will be built. Kubernetes provides a strong and scalable environment for deploying and managing the various components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI.
 
 - **Terraform:** All cloud infrastructure resources created by developers using our IDP will be defined and created by Terraform. All this will be abstracted away from the developer and occur behind the scenes when a developer calls the applicable api endpoint. For example when creating a virtual machine. We chose Terraform for this task because it enables us ensure consistency, reproducibility, and version control. You can read more about terraform **[here](https://www.terraform.io/)**
 
