@@ -20,6 +20,13 @@ In this multi-part series, we'll explore the practical implementation of Platfor
 ## The Vision: A Unified Developer Experience
 Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
+## Platform Capabilities
+Our internal developer platform will provide a comprehensive set of capabilities to streamline the software development lifecycle. Developers will be able to interact with the platform through Fast API endpoints, enabling them to provision resources, orchestrate workflows, and deploy applications with ease.
+
+- **Infrastructure provisioning:** A developer can create a virtual machine in Azure or spin up a Kubernetes cluster in GCP for testing purposes, all through a simple API call or via the self-service Swagger interface.
+
+- **Application Deployments:** A developer can trigger deployments based on various events, such as code commits or manual triggers, and the platform will orchestrate the entire deployment process, including building, testing, and rolling out the application to the desired environment.
+
 ## The Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our Platform Engineering endeavor.
 
