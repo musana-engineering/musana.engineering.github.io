@@ -15,8 +15,8 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ## Table of Contents
 - [What we are building ](#what-we-are-building)
-- [Platform Capabilities](#platform-capabilities)
-- [The Building blocks ](#the-building-blocks)
+- [Capabilities](#capabilities)
+- [Building blocks ](#building-blocks)
 - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
 - [Summary ](#summary)
@@ -25,7 +25,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 **A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 
-## Platform Capabilities
+## Capabilities
 Our internal developer platform will be built to include 5 core capabilities.
 
 - **Infrastructure provisioning:** Enable developers to create cloud infrastructure resources in alignment with the company's cloud governance policies while abstracting complexities such  as networking and security.  
@@ -38,7 +38,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 
 - **Access Control:** Manage who can do what in a scalable way.
 
-## The Building blocks
+## Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
 - **Kubernetes:** Kubernetes will serve as the underlying foundation upon which our internal developer platform will be built. Kubernetes provides a strong and scalable environment for deploying and managing the various components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI.
@@ -61,4 +61,6 @@ To follow along with this multi-part series and implement the solution described
 - Have a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series.
 
 Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
-## Implementation
+## Implementation: Laying the Foundation
+In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
+
