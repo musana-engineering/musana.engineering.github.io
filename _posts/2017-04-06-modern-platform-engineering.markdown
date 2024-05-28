@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI | Part 1
+title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI - Part 1
 date: 2024-05-25 13:32:20 +0300
 description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
