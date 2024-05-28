@@ -1,0 +1,58 @@
+---
+layout: post
+title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI - Part 1
+date: 2024-05-25 13:32:20 +0300
+description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
+img: i-rest.jpg # Add image post (optional)
+fig-caption: # Add figcaption (optional)
+tags: [platformengineering, kubernetes]
+---
+The cloud-native landscape is constantly evolving, and new concepts often emerge, capturing the attention of the tech community. While some of these concepts appear to be new, they are often a repackaging of existing practices. However, some of these bring meaningful improvements. Platform Engineering is one of them, offering a transformative approach to empowering software engineering organizations in the cloud-native era. 
+
+In practical terms, Platform Engineering focuses on designing and building toolchains and workflows that enable self-service capabilities for software engineering teams. Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” covering the operational necessities of the entire lifecycle of an application.
+
+In this multi-part series, we'll dive deep into a practical implementation of Platform Engineering by building an internal developer platform (IDP) using powerful tools that platform and DevOps engineers are already familiar with, such as Terraform, Argo Events, Argo Workflows, and FastAPI.
+
+## Table of Contents
+- [What we are building ](#what-we-are-building)
+- [The Building blocks ](#the-building-blocks)
+- [Prerequisites ](#prerequisites)
+- [Implementation ](#implementation)
+- [Summary ](#summary)
+
+## What we are building
+**A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
+
+![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
+## Core Capabilities
+Our internal developer platform will provide a comprehensive set of capabilities to streamline the software development lifecycle. Developers will be able to interact with the platform through Fast API endpoints, enabling them to provision resources, orchestrate workflows, and deploy applications with ease.
+
+- **Infrastructure provisioning:** A developer can create a virtual machine in Azure or spin up a Kubernetes cluster in GCP for testing purposes, all through a simple API call or via the self-service Swagger interface.
+
+- **Application Deployment:** A developer can trigger deployments based on various events, such as code commits or manual triggers, and the platform will orchestrate the entire deployment process, including building, testing, and rolling out the application to the desired environment.
+- **Security and Compliance:** The platform ensures that developers easily provision cloud infrastructure and deploy business applications in alignment with the company's cloud governance policies
+
+## The Building blocks
+Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our Platform Engineering endeavor.
+
+- **Kubernetes:** Kubernetes will serve as the underlying platform upon which various tools and components are integrated to create a comprehensive internal developer platform. 
+- **Terraform:** Infrastructure as Code
+Terraform will serve as the deployment engine for all cloud infrastructure resources created by developers using our IDP. We chose Terraform for this task because it enables us ensure consistency, reproducibility, and version control. You can read more about terraform **[here](https://www.terraform.io/)**
+- **Argo Events:** Event-Driven Automation
+Argo Events is a lightweight and highly extensible event-driven automation framework that enables developers to build and deploy event-driven applications. It seamlessly integrates with various event sources, such as Kubernetes resources, cloud services, and custom sources, allowing for efficient and scalable event processing.
+- **Argo Workflows:** Orchestrating Complex Pipelines
+Argo Workflows is a powerful workflow engine for Kubernetes that enables developers to orchestrate and manage complex parallel workflows. With its intuitive user interface and rich set of features, Argo Workflows simplifies the management of multi-step pipelines, ensuring reliable and consistent execution.
+- **FastAPI:** Building Robust APIs
+FastAPI is a modern, high-performance web framework for building APIs with Python. Its intuitive design, automatic data validation, and asynchronous support make it an ideal choice for building robust and scalable APIs that power the internal developer platform.
+
+## Prerequisites
+To follow along with this multi-part series and implement the solution described above, we'll be using Microsoft Azure and Azure Kubernetes Service (AKS). To get started, you'll need the following prerequisites:
+
+- A Microsoft Azure account with an active subscription. If you don't have an Azure account, you can sign up for a free trial.
+- Ensure that you have the necessary permissions and access to create and manage resources within your Azure subscription.
+- While not strictly required, I recommend using a modern code editor or integrated development environment (IDE) like Visual Studio Code. This will make it easier to work with the code samples and configuration files provided throughout the series.
+
+- Have a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series.
+
+Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
+## Implementation
