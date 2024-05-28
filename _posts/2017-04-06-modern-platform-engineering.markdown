@@ -12,12 +12,13 @@ In today's fast-paced software development landscape, organizations are constant
 In this multi-part series, we'll explore the practical implementation of Platform Engineering by building an internal developer platform (IDP) using powerful tools like Terraform, Argo Events, Argo Workflows, and FastAPI.
 
 ## Table of Contents
-- [The Vision ](#the-vision-:-a-unified-developer-experience)
+- [The Vision ](#the-vision)
 - [The Building blocks ](#the-building-blocks)
 - [Implementation ](#implementation)
 - [Summary ](#summary)
 
-## The Vision: A Unified Developer Experience
+## The Vision
+**A Unified Developer Experience**
 Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 ## The Building blocks
