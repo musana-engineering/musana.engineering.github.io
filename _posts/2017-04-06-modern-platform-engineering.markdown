@@ -17,8 +17,8 @@ In this multi-part series, we'll explore the practical implementation of Platfor
 - [Implementation ](#implementation)
 - [Summary ](#summary)
 
-## The Vision: A Unified Developer Experience
-Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
+## The Vision
+**A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity.
 
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 ## Capabilities
@@ -26,14 +26,14 @@ Our internal developer platform will provide a comprehensive set of capabilities
 
 - **Infrastructure provisioning:** A developer can create a virtual machine in Azure or spin up a Kubernetes cluster in GCP for testing purposes, all through a simple API call or via the self-service Swagger interface.
 
-- **Application Deployments:** A developer can trigger deployments based on various events, such as code commits or manual triggers, and the platform will orchestrate the entire deployment process, including building, testing, and rolling out the application to the desired environment.
+- **Application Deployment:** A developer can trigger deployments based on various events, such as code commits or manual triggers, and the platform will orchestrate the entire deployment process, including building, testing, and rolling out the application to the desired environment.
 
 ## The Building blocks
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our Platform Engineering endeavor.
 
 - **Kubernetes:** Kubernetes will serve as the underlying platform upon which various tools and components are integrated to create a comprehensive internal developer platform. 
 - **Terraform:** Infrastructure as Code
-Terraform is an open-source infrastructure as code (IaC) tool that enables developers to provision and manage cloud resources across multiple providers, including AWS, Azure, and Google Cloud Platform. By defining infrastructure as code, Terraform ensures consistency, reproducibility, and version control, making it easier to collaborate and manage complex environments.
+Terraform will serve as the deployment engine for all cloud infrastructure resources created by developers using our IDP. We chose Terraform for this task because it enables us ensure consistency, reproducibility, and version control. You can read more about terraform **[here](https://www.terraform.io/)**
 - **Argo Events:** Event-Driven Automation
 Argo Events is a lightweight and highly extensible event-driven automation framework that enables developers to build and deploy event-driven applications. It seamlessly integrates with various event sources, such as Kubernetes resources, cloud services, and custom sources, allowing for efficient and scalable event processing.
 - **Argo Workflows:** Orchestrating Complex Pipelines
