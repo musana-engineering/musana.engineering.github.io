@@ -65,13 +65,4 @@ In this first part of the series, we'll focus on setting up the foundational inf
 
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
-Foundation Architecture
-
-Once everything has been created, you have successfuly deployed the following architecture.
-
-## Prerequisites
-To follow along with this multi-part series and implement the solution described above, we'll be using Microsoft Azure and Azure Kubernetes Service (AKS). To get started, you'll need the following prerequisites:
-
-- A Microsoft Azure account with an active subscription. If you don't have an Azure account, you can sign up for **[a free trial](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p)**
-- Ensure that you have the necessary permissions and access to create and manage resources within your Azure subscription.
-- While not strictly required, I recommend using a modern code editor like **Visual Studio Code.** This will make it easier to work with the code samples and configuration files provided throughout the series.
+- Architecture
