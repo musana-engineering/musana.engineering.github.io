@@ -65,10 +65,10 @@ In this first part of the series, we'll focus on setting up the foundational inf
 
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
-- Start by cloning the project repository
-```
-git clone https://github.com/musana-engineering/internaldevplatform.git
-```
+Foundation Architecture
+
+Once everything has been created, you have successfuly deployed the following architecture.
+
 ## Prerequisites
 To follow along with this multi-part series and implement the solution described above, we'll be using Microsoft Azure and Azure Kubernetes Service (AKS). To get started, you'll need the following prerequisites:
 
