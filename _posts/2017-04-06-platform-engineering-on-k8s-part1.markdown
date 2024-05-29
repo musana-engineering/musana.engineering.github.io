@@ -61,9 +61,9 @@ To follow along with this multi-part series and implement the solution described
 
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
 
-## Implementation
+## Implementation: Laying the foundation
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
 
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
-- Architecture
+- # Architecture
