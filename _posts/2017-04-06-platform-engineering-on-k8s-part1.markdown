@@ -84,7 +84,7 @@ az login
 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 
 // Create the service principal and store the output in a variable
-sp_output=$(az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID" --query "[appId, password, tenant]" -o json)
+export SERVICE_PRINCIPAL=$(az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID" --query "[appId, password, tenant]" -o json)
 
 // Extract and export the client ID, client secret, and tenant ID
 export ARM_CLIENT_ID=$(echo $sp_output | jq -r '.[0]')
