@@ -24,6 +24,8 @@ analytics: # Google Analytics
 
 # Build Settings
 markdown: kramdown
+highlighter: rouge
+    input: GFM
 plugins:
   - jekyll-sitemap
   - jekyll-paginate

@@ -93,3 +93,25 @@ terraform init
 terraform plan && terraform apply
 
 ```
+
+- ### Deployment steps
+To deploy our infrastructure, follow the steps below
+
+{% highlight javascript %}
+
+git clone https://github.com/musana-engineering/internaldevplatform.git
+
+az login
+
+sp_output=$(az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID" --query "[appId, password, tenant]" -o json)
+
+export CLIENT_ID=$(echo $sp_output | jq -r '.[0]')
+export CLIENT_SECRET=$(echo $sp_output | jq -r '.[1]')
+export TENANT_ID=$(echo $sp_output | jq -r '.[2]')
+
+cd internaldevplatform/platform/core
+
+infrastructure.
+terraform init
+terraform plan && terraform apply
+{% endhighlight %}
