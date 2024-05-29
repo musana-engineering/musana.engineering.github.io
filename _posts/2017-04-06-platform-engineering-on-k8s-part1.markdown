@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI - Part 1
-date: 2024-05-25 13:32:20 +0300
+date: 2024-05-29 13:32:20 +0300
 description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
@@ -65,6 +65,30 @@ To follow along with this multi-part series and implement the solution described
 ### Laying the foundation
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
 
-We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
+Our foundational infrastructure requirements have been defined using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage.
 
 ### Architecture
+
+### Deploy the foundation
+To deploy our infrastructure, follow the steps below
+```
+# Clone the project repository
+git clone https://github.com/musana-engineering/internaldevplatform.git
+
+# Navigate to the directory containing our terraform configuration
+cd internaldevplatform/platform/core
+# Store the subscription id as Environment Variables
+export SUBSCRIPTION_ID="< subscription id >"
+
+# Login to the Azure CLI
+az login
+# If you have more than one Subscription, specify the Subscription to use
+az set subscription -s $SUBSCRIPTION_ID
+# 
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID"
+# Store the credentials as Environment Variables
+export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+export ARM_CLIENT_SECRET="12345678-0000-0000-0000-000000000000"
+export ARM_TENANT_ID="10000000-0000-0000-0000-000000000000"
+export ARM_SUBSCRIPTION_ID="20000000-0000-0000-0000-000000000000"
+```
