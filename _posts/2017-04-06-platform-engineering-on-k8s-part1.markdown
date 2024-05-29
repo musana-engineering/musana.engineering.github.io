@@ -69,27 +69,29 @@ We'll start by defining our infrastructure requirements using Terraform's declar
 
 - ### Architecture
 
-- ### Deploy the foundation
+- ### Deployment steps
 To deploy our infrastructure, follow the steps below
+
 ```
-// Clone the project repository
+- Clone the project repository
 git clone https://github.com/musana-engineering/internaldevplatform.git
 
-// Login to Azure CLI
+- Login to Azure CLI
 az login
 
- // Create the service principal and store the output in a variable
+- Create the service principal and store the output in a variable
 sp_output=$(az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID" --query "[appId, password, tenant]" -o json)
 
-// Extract and export the client ID, client secret, and tenant ID
+- Extract and export the client ID, client secret, and tenant ID
 export CLIENT_ID=$(echo $sp_output | jq -r '.[0]')
 export CLIENT_SECRET=$(echo $sp_output | jq -r '.[1]')
 export TENANT_ID=$(echo $sp_output | jq -r '.[2]')
 
-// Navigate to the directory containing the terraform configuration for the foundation
+- Navigate to the directory containing the terraform configuration for the foundation
 cd internaldevplatform/platform/core
 
-// Generate and review an execution plan, then apply it to provision the infrastructure.
+- Generate and review an execution plan, then apply it to provision the infrastructure.
 terraform init
 terraform plan && terraform apply
+
 ```
