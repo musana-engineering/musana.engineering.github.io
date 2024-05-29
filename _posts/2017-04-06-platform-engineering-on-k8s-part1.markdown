@@ -66,6 +66,12 @@ In this first part of the series, we'll focus on setting up the foundational inf
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
 Start by cloning the project repository
+{% highlight ruby %}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}
+
 ```
 git clone https://github.com/musana-engineering/internaldevplatform.git
 ```
