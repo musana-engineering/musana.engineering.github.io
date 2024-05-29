@@ -60,8 +60,8 @@ To follow along with this multi-part series and implement the solution described
 - While not strictly required, I recommend using a modern code editor like **Visual Studio Code.** This will make it easier to work with the code samples and configuration files provided throughout the series.
 
 - Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
-## Implementation: Laying the Foundation
-In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
+## Implementation
+**Laying the Foundation:** In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
 
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
