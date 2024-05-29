@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI - Part 1
-date: 2024-05-29 13:32:20 +0300
+date: 2024-05-25 13:32:20 +0300
 description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
@@ -65,7 +65,6 @@ To follow along with this multi-part series and implement the solution described
 ### Laying the foundation
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
 
-Our foundational infrastructure requirements have been defined using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage.
+We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
-### Architecture
-
+- ### Architecture
