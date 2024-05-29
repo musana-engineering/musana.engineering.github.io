@@ -70,6 +70,8 @@ We'll start by defining our infrastructure requirements using Terraform's declar
 - ### Architecture
 
 - ### Deployment steps
+To deploy our infrastructure, follow the steps below
+
 ```
 - Clone the project repository
 git clone https://github.com/musana-engineering/internaldevplatform.git
