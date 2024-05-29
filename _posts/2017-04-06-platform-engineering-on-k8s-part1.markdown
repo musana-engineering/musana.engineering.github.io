@@ -69,26 +69,3 @@ Our foundational infrastructure requirements have been defined using Terraform's
 
 ### Architecture
 
-### Deploy the foundation
-To deploy our infrastructure, follow the steps below
-```
-# Clone the project repository
-git clone https://github.com/musana-engineering/internaldevplatform.git
-
-# Navigate to the directory containing our terraform configuration
-cd internaldevplatform/platform/core
-# Store the subscription id as Environment Variables
-export SUBSCRIPTION_ID="< subscription id >"
-
-# Login to the Azure CLI
-az login
-# If you have more than one Subscription, specify the Subscription to use
-az set subscription -s $SUBSCRIPTION_ID
-# 
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID"
-# Store the credentials as Environment Variables
-export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
-export ARM_CLIENT_SECRET="12345678-0000-0000-0000-000000000000"
-export ARM_TENANT_ID="10000000-0000-0000-0000-000000000000"
-export ARM_SUBSCRIPTION_ID="20000000-0000-0000-0000-000000000000"
-```
