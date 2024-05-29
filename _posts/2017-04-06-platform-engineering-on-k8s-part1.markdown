@@ -62,9 +62,33 @@ To follow along with this multi-part series and implement the solution described
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
 
 ## Implementation
-### Laying the foundation
+- ### Laying the foundation
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation.
 
 We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
 - ### Architecture
+
+- ### Deploy the foundation
+To deploy our infrastructure, follow the steps below
+```
+# Clone the project repository
+git clone https://github.com/musana-engineering/internaldevplatform.git
+
+# Navigate to the directory containing our terraform configuration
+cd internaldevplatform/platform/core
+# Store the subscription id as Environment Variables
+export SUBSCRIPTION_ID="< subscription id >"
+
+# Login to the Azure CLI
+az login
+# If you have more than one Subscription, specify the Subscription to use
+az set subscription -s $SUBSCRIPTION_ID
+# 
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID"
+# Store the credentials as Environment Variables
+export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+export ARM_CLIENT_SECRET="12345678-0000-0000-0000-000000000000"
+export ARM_TENANT_ID="10000000-0000-0000-0000-000000000000"
+export ARM_SUBSCRIPTION_ID="20000000-0000-0000-0000-000000000000"
+```
