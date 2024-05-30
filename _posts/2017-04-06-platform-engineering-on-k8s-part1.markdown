@@ -75,7 +75,7 @@ Let's begin by deploying the core network.
 // Clone the project repository
 git clone https://github.com/musana-engineering/idp.git
 
-// Navigate to the terrarorm configuration directory
+// Navigate to the network directory
 cd idp/core/network
 
 // Login to Azure CLI
@@ -104,3 +104,15 @@ terraform plan
 terraform apply
 {% endhighlight %}
 
+Next, lets create the Kubernetes cluster.
+{% highlight javascript %}
+// Navigate to the aks directory
+cd idp/core/aks
+
+// Generate and review the Terraform 
+terraform init
+terraform plan
+
+// Provision the infrastructure.
+terraform apply
+{% endhighlight %}
