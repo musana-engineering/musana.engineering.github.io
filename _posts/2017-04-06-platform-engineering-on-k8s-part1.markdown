@@ -68,8 +68,8 @@ In this first part of the series, we'll focus on setting up the foundational inf
 
 - ### Foundation Architecture
 ![Blank diagram (1)](https://github.com/musana-engineering/internaldevplatform/assets/151420844/30f02448-fdd3-4d08-a150-b03fc1a97c91)
-- ### Deployment steps
-Let's begin by deploying the core network.
+### Deployment steps
+- Let's begin by deploying the core network.
 
 {% highlight javascript %}
 // Clone the project repository
@@ -96,7 +96,7 @@ export ARM_CLIENT_ID=$(echo $sp_output | jq -r '.[0]')
 export ARM_CLIENT_SECRET=$(echo $sp_output | jq -r '.[1]')
 export ARM_TENANT_ID=$(echo $sp_output | jq -r '.[2]')
 
-// Generate and review the Terraform 
+// Generate and review the Terraform plan
 terraform init
 terraform plan
 
@@ -104,12 +104,12 @@ terraform plan
 terraform apply
 {% endhighlight %}
 
-Next, lets create the Kubernetes cluster.
+- Next, lets create the Kubernetes cluster.
 {% highlight javascript %}
 // Navigate to the aks directory
 cd idp/core/aks
 
-// Generate and review the Terraform 
+// Generate and review the Terraform plan
 terraform init
 terraform plan
 
