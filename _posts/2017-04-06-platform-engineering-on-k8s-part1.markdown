@@ -69,14 +69,14 @@ In this first part of the series, we'll focus on setting up the foundational inf
 - ### Foundation Architecture
 ![Blank diagram (1)](https://github.com/musana-engineering/internaldevplatform/assets/151420844/30f02448-fdd3-4d08-a150-b03fc1a97c91)
 - ### Deployment steps
-To deploy our infrastructure, follow the steps below
+Let's begin by deploying the core network.
 
 {% highlight javascript %}
 // Clone the project repository
-git clone https://github.com/musana-engineering/internaldevplatform.git
+git clone https://github.com/musana-engineering/idp.git
 
 // Navigate to the terrarorm configuration directory
-cd internaldevplatform/platform/core
+cd idp/core/network
 
 // Login to Azure CLI
 az login
