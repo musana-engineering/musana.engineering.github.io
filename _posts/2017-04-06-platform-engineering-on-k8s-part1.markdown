@@ -15,8 +15,8 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ## Table of Contents
 - [Introduction ](#introduction)
-- [Platform components](#platform-components)
-- [Platform tooling ](#platform-tooling)
+- [Platform Components](#platform-components)
+- [Platform Tooling ](#platform-tooling)
 - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
 - [Summary ](#summary)
@@ -26,7 +26,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ![image](https://github.com/musana-engineering/musana.engineering.github.io/assets/42842390/2db597b3-3db9-4d33-aa47-43de18dd7b84)
 
-## Capabilities
+## Platform Components
 Our internal developer platform will be built to include 5 core capabilities.
 
 - **Infrastructure provisioning:** Enable developers to create cloud infrastructure resources that adhere to security and performance best practices while abstracting complexities such  as networking and security.  
@@ -39,7 +39,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 
 - **Access Control:** Manage who can do what in a scalable way.
 
-## Building blocks
+## Platform Tools
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
 - **Kubernetes:** Kubernetes is the underlying foundation upon which our internal developer platform will be built. Kubernetes provides a strong and scalable environment for deploying and managing the various components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI.
