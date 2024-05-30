@@ -55,8 +55,9 @@ Before diving into the implementation details, let's familiarize ourselves with 
 ## Prerequisites
 To follow along with this multi-part series and implement the solution described above, we'll be using Microsoft Azure and Azure Kubernetes Service (AKS). To get started, you'll need the following prerequisites:
 
-- A Microsoft Azure account with an active subscription. If you don't have an Azure account, you can sign up for **[a free trial](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p)**
-- Ensure that you have the necessary permissions and access to create and manage resources within your Azure subscription.
+- A Microsoft Azure account with an active subscription. If you don't have an Azure account, you can sign up for **[a free trial](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p)**. Ensure that you have the necessary permissions and access to create and manage resources within your Azure subscription.
+- Install **kubectl**, a command-line tool for interacting with your Kubernetes cluster. Installation instructions can be found **[here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)**
+- Install jq, a lightweight and flexible command-line JSON processor. Installation instructions can be found **[here](https://jqlang.github.io/jq/)**
 - While not strictly required, I recommend using a modern code editor like **Visual Studio Code.** This will make it easier to work with the code samples and configuration files provided throughout the series.
 
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
