@@ -61,12 +61,11 @@ To follow along with this multi-part series and implement the solution described
 
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
 
-## Implementation
-- ### Laying the foundation
+## Implementation: Laying the foundation
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation. We'll start by defining our infrastructure requirements using Terraform's declarative language. This includes provisioning a Kubernetes cluster, configuring networking and security settings, and setting up any necessary storage or database resources.
 
 - ### Architecture
-![Blank diagram](https://github.com/musana-engineering/internaldevplatform/assets/151420844/aedf790c-04eb-4dd9-8f43-aa6e9e406db1)
+![Blank diagram (1)](https://github.com/musana-engineering/internaldevplatform/assets/151420844/30f02448-fdd3-4d08-a150-b03fc1a97c91)
 - ### Deployment steps
 To deploy our infrastructure, follow the steps below
 
