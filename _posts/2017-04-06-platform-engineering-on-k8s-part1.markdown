@@ -105,7 +105,7 @@ terraform apply
 {% endhighlight %}
 
 - Next, lets create the Kubernetes cluster.
-{% highlight javascript %}
+{% highlight bash %}
 // Navigate to the aks directory
 cd idp/core/aks
 
