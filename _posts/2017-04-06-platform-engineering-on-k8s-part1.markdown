@@ -104,7 +104,20 @@ terraform plan
 terraform apply
 {% endhighlight %}
 - ### Next, deploy the Kubernetes cluster.
-{% highlight bash %}
+{% highlight javascript %}
+// Register the following features in your subscription
+features=(
+  "Microsoft.Compute/EncryptionAtHost"
+  "Microsoft.ContainerService/EnableAPIServerVnetIntegrationPreview"
+  "Microsoft.ContainerService/KubeletDisk"
+  "Microsoft.ContainerService/EnableEphemeralOSDiskPreview"
+)
+
+for feature in "${features[@]}"
+do
+  az feature register --name "${feature##*/}" --namespace "${feature%%/*}"
+done
+
 // Navigate to the aks directory
 cd idp/core/aks
 
