@@ -103,9 +103,12 @@ terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
-
-- Next, lets create the Kubernetes cluster.
+- Next, lets create the Azure Kubernetes cluster.
 {% highlight bash %}
+// Register the following feature flags for your subscription
+az feature register --name EncryptionAtHost --namespace Microsoft.Compute
+az feature register --namespace "Microsoft.ContainerService" --name EnableAPIServerVnetIntegrationPreview
+
 // Navigate to the aks directory
 cd idp/core/aks
 
