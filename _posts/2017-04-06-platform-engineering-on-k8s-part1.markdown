@@ -69,7 +69,7 @@ In this first part of the series, we'll focus on setting up the foundational inf
 - ### Foundation Architecture
 ![Blank diagram (1)](https://github.com/musana-engineering/internaldevplatform/assets/151420844/30f02448-fdd3-4d08-a150-b03fc1a97c91)
 ### Deployment steps
-- Let's begin by deploying the core network.
+- ### Start by deploying the core network.
 
 {% highlight javascript %}
 // Clone the project repository
@@ -103,12 +103,8 @@ terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
-- Next, lets create the Azure Kubernetes cluster.
+- ### Next, create the Azure Kubernetes cluster.
 {% highlight bash %}
-// Register the following feature flags for your subscription
-az feature register --name EncryptionAtHost --namespace Microsoft.Compute
-az feature register --namespace "Microsoft.ContainerService" --name EnableAPIServerVnetIntegrationPreview
-
 // Navigate to the aks directory
 cd idp/core/aks
 
