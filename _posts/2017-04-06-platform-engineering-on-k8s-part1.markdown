@@ -129,6 +129,7 @@ terraform plan
 terraform apply
 {% endhighlight %}
 - ### Next, deploy the platform tools.
+![platform_tools](https://github.com/musana-engineering/musana.engineering.github.io/assets/151420844/8fd841f4-8d34-424f-a0e1-fa70ca76d1ab)
 {% highlight javascript %}
 // Navigate to the aks directory
 cd idp/core/tools
