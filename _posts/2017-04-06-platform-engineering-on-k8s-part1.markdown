@@ -103,7 +103,7 @@ terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
-- ### Next, create the Azure Kubernetes cluster.
+- ### Next, deploy the Kubernetes cluster.
 {% highlight bash %}
 // Navigate to the aks directory
 cd idp/core/aks
