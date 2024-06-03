@@ -128,3 +128,15 @@ terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
+- ### Next, deploy the platform tools.
+{% highlight javascript %}
+// Navigate to the aks directory
+cd idp/core/tools
+
+// Generate and review the Terraform plan
+terraform init
+terraform plan
+
+// Provision the infrastructure.
+terraform apply
+{% endhighlight %}
