@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Platform Engineering on Kubernetes powered by Terraform, Argo, and FastAPI - Part 1
-date: 2024-05-25 13:32:20 +0300
+date: 2024-06-2 13:32:20 +0300
 description: Explore the practical implementation of Platform Engineering using powerful tools like Terraform, Argo Events, Argo Workflows
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
@@ -44,7 +44,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 ## Platform Tools
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
-- **[Terraform](https://kubernetes.io/)**, an open source system for automating deployment, scaling, and management of containerized applications will be the underlying foundation upon which our internal developer platform will be built. All the components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI will be running on Kubernetes
+- **[Kubernetes](https://kubernetes.io/)**, an open source system for automating deployment, scaling, and management of containerized applications will be the underlying foundation upon which our internal developer platform will be built. All the components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI will be running on Kubernetes
 
 - **[Terraform](https://www.terraform.io/)**, an infrastructure as code tool will be used to define and manage all cloud infrastructure resources created through our platform. This process will be abstracted from the developer and occur seamlessly behind the scenes when an API endpoint is called, such as when creating a dev environment
 
