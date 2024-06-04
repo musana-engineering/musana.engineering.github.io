@@ -72,26 +72,25 @@ In this first part of the series, we’ll focus on setting up the foundational i
 ![idp-network](https://github.com/musana-engineering/musana.engineering.github.io/assets/151420844/8d782e25-1ebd-4370-bb0f-8081a8a02765)
 ### Deployment steps
 - ### Start by deploying the core network.
-Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** that will be used for the Terraform provider authentication
+Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication
 {% highlight javascript %}
+// Login to Azure CLI and set the subscription to use
+az login
+az account set -s "your_subscription_id_here"
+
+// Set the following Environment Variables for Terraform provider authentication
+export ARM_CLIENT_ID="your_client_id_here"
+export ARM_CLIENT_SECRET="your_client_secret_here"
+export ARM_TENANT_ID="your_tenant_id_here"
+
 // Clone the project repository
 git clone https://github.com/musana-engineering/idp.git
 
 // Navigate to the network directory
 cd idp/core/network
 
-// Login to Azure CLI
-az login
-
-// Set the following Environment Variables
-export SUBSCRIPTION_ID="your_subscription_id_here"
-export ARM_CLIENT_ID="your_client_id_here"
-export ARM_CLIENT_SECRET="your_client_secret_here"
-export ARM_TENANT_ID="your_tenant_id_here"
-
 // Generate and review the Terraform plan
-terraform init
-terraform plan
+terraform init && terraform plan
 
 // Provision the infrastructure.
 terraform apply
@@ -102,8 +101,7 @@ terraform apply
 cd idp/core/aks
 
 // Generate and review the Terraform plan
-terraform init
-terraform plan
+terraform init && terraform plan
 
 // Provision the infrastructure.
 terraform apply
@@ -115,8 +113,7 @@ terraform apply
 cd idp/core/tools
 
 // Generate and review the Terraform plan
-terraform init
-terraform plan
+terraform init && terraform plan
 
 // Provision the infrastructure.
 terraform apply
