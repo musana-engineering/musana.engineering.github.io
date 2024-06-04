@@ -15,8 +15,8 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ## Table of Contents
 - [Introduction ](#introduction)
-- [Platform Components](#platform-components)
-- [Platform Tools ](#platform-tools)
+  - [Platform Components](#platform-components)
+  - [Platform Tools ](#platform-tools)
 - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
 - [Summary ](#summary)
@@ -59,7 +59,7 @@ To follow along with this multi-part series and implement the solution described
 - **[Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)**, a command-line tool for interacting with your Kubernetes cluster.
 - **[jq](https://jqlang.github.io/jq/)**, a lightweight and flexible command-line JSON processor.
 - **[Helm](https://jqlang.github.io/jq/)**, a package manager for Kubernetes that simplifies the process of managing Kubernetes applications.
-- **[Visual Studio Code](https://code.visualstudio.com/)** tovmake it easier to work with the code samples and configuration files provided throughout the series.
+- **[Visual Studio Code](https://code.visualstudio.com/)** to make it easier to work with the code samples and configuration files provided throughout the series.
 
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
 
