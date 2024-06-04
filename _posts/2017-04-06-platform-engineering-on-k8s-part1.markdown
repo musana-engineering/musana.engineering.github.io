@@ -19,6 +19,8 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
   - [Platform Tools ](#platform-tools)
   - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
+  - [Foundation Architecture ](#foundation-architecture)
+  - [Deployment Steps ](#deployment-steps)
 - [Summary ](#summary)
 
 ## Introduction
@@ -42,7 +44,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 ## Platform Tools
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
-- **Kubernetes:** Kubernetes is the underlying foundation upon which our internal developer platform will be built. Kubernetes provides a strong and scalable environment for deploying and managing the various components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI.
+- **[Terraform](https://kubernetes.io/)**, an open source system for automating deployment, scaling, and management of containerized applications will be the underlying foundation upon which our internal developer platform will be built. All the components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI will be running on Kubernetes
 
 - **[Terraform](https://www.terraform.io/)**, an infrastructure as code tool will be used to define and manage all cloud infrastructure resources created through our platform. This process will be abstracted from the developer and occur seamlessly behind the scenes when an API endpoint is called, such as when creating a dev environment
 
