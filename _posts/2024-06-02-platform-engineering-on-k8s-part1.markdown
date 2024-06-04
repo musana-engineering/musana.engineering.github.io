@@ -83,20 +83,12 @@ cd idp/core/network
 // Login to Azure CLI
 az login
 
-// Specify the Subscription to use via the following command:
-export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+// Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and store Environment Variables for Terraform provide authentication.
 
-// Create the service principal and store the output in a variable
-export SERVICE_PRINCIPAL=$(az ad sp create-for-rbac \
---name sp-terraform \
---role="Owner" \
---scopes="/subscriptions/$SUBSCRIPTION_ID" \
---query "[appId, password, tenant]" -o json)
-
-// Extract and export the client ID, client secret, and tenant ID
-export ARM_CLIENT_ID=$(echo $sp_output | jq -r '.[0]')
-export ARM_CLIENT_SECRET=$(echo $sp_output | jq -r '.[1]')
-export ARM_TENANT_ID=$(echo $sp_output | jq -r '.[2]')
+export SUBSCRIPTION_ID="your_subscription_id_here"
+export ARM_CLIENT_ID="your_client_id_here"
+export ARM_CLIENT_SECRET="your_client_secret_here"
+export ARM_TENANT_ID="your_tenant_id_here"
 
 // Generate and review the Terraform plan
 terraform init
@@ -107,19 +99,6 @@ terraform apply
 {% endhighlight %}
 - ### Next, deploy the Kubernetes cluster.
 {% highlight javascript %}
-// Register the following features in your subscription
-features=(
-  "Microsoft.Compute/EncryptionAtHost"
-  "Microsoft.ContainerService/EnableAPIServerVnetIntegrationPreview"
-  "Microsoft.ContainerService/KubeletDisk"
-  "Microsoft.ContainerService/EnableEphemeralOSDiskPreview"
-)
-
-for feature in "${features[@]}"
-do
-  az feature register --name "${feature##*/}" --namespace "${feature%%/*}"
-done
-
 // Navigate to the aks directory
 cd idp/core/aks
 
