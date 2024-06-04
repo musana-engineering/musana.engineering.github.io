@@ -69,7 +69,7 @@ To follow along with this multi-part series and implement the solution described
 In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation in Microsoft Azure. We will define our infrastructure requirements using Terraform. This includes provisioning a Virtual Network, Azure Kubernetes cluster, configuring network security settings and setting up the necessary storage resources.
 
 - ### Foundation Architecture
-![Blank diagram (1)](https://github.com/musana-engineering/internaldevplatform/assets/151420844/30f02448-fdd3-4d08-a150-b03fc1a97c91)
+![idp-network](https://github.com/musana-engineering/musana.engineering.github.io/assets/151420844/8d782e25-1ebd-4370-bb0f-8081a8a02765)
 ### Deployment steps
 - ### Start by deploying the core network.
 
