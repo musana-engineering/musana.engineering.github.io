@@ -72,7 +72,7 @@ In this first part of the series, we’ll focus on setting up the foundational i
 ![idp-network](https://github.com/musana-engineering/musana.engineering.github.io/assets/151420844/8d782e25-1ebd-4370-bb0f-8081a8a02765)
 ### Deployment steps
 - ### Start by deploying the core network.
-
+Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** that will be used for the Terraform provider authentication
 {% highlight javascript %}
 // Clone the project repository
 git clone https://github.com/musana-engineering/idp.git
@@ -83,8 +83,7 @@ cd idp/core/network
 // Login to Azure CLI
 az login
 
-// Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and store Environment Variables for Terraform provide authentication.
-
+// Set the following Environment Variables
 export SUBSCRIPTION_ID="your_subscription_id_here"
 export ARM_CLIENT_ID="your_client_id_here"
 export ARM_CLIENT_SECRET="your_client_secret_here"
