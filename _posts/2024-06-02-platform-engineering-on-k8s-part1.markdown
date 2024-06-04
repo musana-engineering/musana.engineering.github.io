@@ -66,7 +66,7 @@ To follow along with this multi-part series and implement the solution described
 **Note:** Having a good understanding of Kubernetes concepts and architecture will be beneficial as we'll be deploying and interacting with Kubernetes throughout the series. Please note the principles and tools discussed in this series are transferable to other cloud providers and Kubernetes distributions, allowing you to adapt the solution to your preferred environment.
 
 ## Implementation: 
-In this first part of the series, we'll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation in Microsoft Azure. We will define our infrastructure requirements using Terraform. This includes provisioning a Virtual Network, Azure Kubernetes cluster, configuring network security settings and setting up the necessary storage resources.
+In this first part of the series, we’ll focus on setting up the foundational infrastructure and services required for our internal developer platform implementation in Microsoft Azure. We will define our infrastructure requirements using Terraform. This includes provisioning a Virtual Network, Azure Kubernetes cluster, configuring network security settings and setting up the necessary storage resources.
 
 - ### Foundation Architecture
 ![idp-network](https://github.com/musana-engineering/musana.engineering.github.io/assets/151420844/8d782e25-1ebd-4370-bb0f-8081a8a02765)
