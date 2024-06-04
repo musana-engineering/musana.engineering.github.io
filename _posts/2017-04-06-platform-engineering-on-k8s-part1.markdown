@@ -17,7 +17,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 - [Introduction ](#introduction)
   - [Platform Components](#platform-components)
   - [Platform Tools ](#platform-tools)
-- [Prerequisites ](#prerequisites)
+  - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
 - [Summary ](#summary)
 
