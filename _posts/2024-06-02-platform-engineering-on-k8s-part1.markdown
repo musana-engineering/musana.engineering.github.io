@@ -78,7 +78,7 @@ Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azur
 az login
 az account set -s "your_subscription_id_here"
 
-// Set the following Environment Variables for Terraform provider authentication
+// Set the following Environment Variables
 export ARM_CLIENT_ID="your_client_id_here"
 export ARM_CLIENT_SECRET="your_client_secret_here"
 export ARM_TENANT_ID="your_tenant_id_here"
