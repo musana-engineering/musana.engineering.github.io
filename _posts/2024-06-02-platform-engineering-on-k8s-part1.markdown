@@ -26,7 +26,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 ## Introduction
 **A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
 
-![idp-main (1)](https://github.com/musana-engineering/idp/assets/151420844/0230bd49-167b-463e-9e5e-eb576e666c8a)
+![main](https://github.com/musana-engineering/idp/assets/151420844/e164cc3b-c7e9-4289-a9fc-a85d41369da1)
 
 ## Platform Components
 Our internal developer platform will be built to include 5 core capabilities.
