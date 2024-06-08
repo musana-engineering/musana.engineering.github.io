@@ -118,3 +118,9 @@ terraform init && terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
+
+- ### SSL/TLS Certificate Management
+Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Cert Manager, a Kubernetes add-on, will automate the issuance, renewal, and management of SSL/TLS certificates from various certificate authorities. By integrating Cert Manager into our Platform Engineering pipeline, we can ensure that our applications are always served over secure connections, without the hassle of manual certificate management.
+
+- ### Routing and Load Balancing
+Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
