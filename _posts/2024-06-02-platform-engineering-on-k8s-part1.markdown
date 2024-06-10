@@ -23,6 +23,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
   - [Deployment Steps ](#deployment-steps)
   - [TLS Certificate Management ](#tls-certificate-management)
   - [Ingress Management ](#ingress-management)
+  - [Secret Management ](#ingress-management)
 - [Summary ](#summary)
 
 ## Introduction
@@ -121,8 +122,17 @@ terraform init && terraform plan
 terraform apply
 {% endhighlight %}
 
-- ### TLS Certificate Management
-Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Developers using the platform will be able to request certificates Using annotated ingress resources and cert-manager will facilitate creating the Certificate resources which includes the issuance, renewal, and management of SSL/TLS certificates from various certificate authorities. By integrating Cert Manager into our Platform, we will ensure that our applications are always served over secure connections, without the hassle of manual certificate management.
+ - ### TLS Certificate Management
+Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Cert-manager will facilitate creating the Certificate resources which includes the issuance, renewal, and management of SSL/TLS certificates from various certificate authorities. 
 
-- ### Ingress Management
+Upon obtaining the certificate from Letsencrypt, Cert Manager securely stores it as a Kubernetes secret within the Cert-Manager namespace. However, to meet the diverse needs of our platform, we require the certificate to be accessible across multiple namespaces. To achieve this, we will leverage the  **[Kubernetes Replicator](https://github.com/mittwald/kubernetes-replicator)**, enabling seamless replication of secrets throughout our Kubernetes environment.
+
+ - ### Secret Management
+Safeguarding sensitive data is crucial for our platform's security. We've chosen Azure Key Vault as our centralized repository for securely storing all secrets, leveraging industry-standard encryption and access control.
+
+To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize External Secrets. This solution bridges Kubernetes and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
+
+First, we'll set up a ClusterSecretStore for our Azure Key Vault within our Kubernetes environment, establishing a secure connection for retrieving secrets. Then, we'll create ExternalSecrets for the specific secrets required by our applications, ensuring sensitive data remains protected yet accessible within the appropriate namespaces.
+
+ - ### Ingress Management
 Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
