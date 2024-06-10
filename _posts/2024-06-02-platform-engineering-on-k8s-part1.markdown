@@ -7,11 +7,11 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-The DevOps landscape landscape is constantly evolving, and producing new concepts in its pursuit of automation, collaboration, and efficiency. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. 
+The DevOps landscape landscape is constantly evolving, and producing new concepts in its pursuit of automation, collaboration, and efficiency. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** is one of them.
 
-Platform Engineering is one of them, offering an innovative approach to empowering software engineering organizations in the cloud-native era.
+In practical terms, Platform Engineering focuses on designing and building toolchains and workflows that enable self-service capabilities for software engineering teams. As a Platform engineer, you will be required to provide an integrated product most often referred to as an **[Internal Developer Platform](https://internaldeveloperplatform.org/)** covering the operational necessities of the entire lifecycle of an application.
 
-In practical terms, Platform Engineering focuses on designing and building toolchains and workflows that enable self-service capabilities for software engineering teams. Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” covering the operational necessities of the entire lifecycle of an application.
+There are many off-the-shelf solutions available for internal developer platforms, but many of them come with significant complexities in setup, maintenance and a bloat of features that may not be relevant or necessary for your specific engineering teams. In many cases, building a custom internal developer platform tailored to your organization's unique needs and requirements can be a more reasonable and pragmatic approach.
 
 In this multi-part series, we'll dive deep into a practical implementation of Platform Engineering by building an internal developer platform (IDP) using common tools that platform and DevOps engineers are already familiar with, such as Terraform, Argo Events, Argo Workflows, and FastAPI.
 
