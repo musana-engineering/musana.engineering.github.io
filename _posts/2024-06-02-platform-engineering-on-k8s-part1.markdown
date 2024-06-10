@@ -117,7 +117,7 @@ terraform init && terraform plan
 terraform apply
 {% endhighlight %}
 
-- ### Core platform tools
+- ### Core Platform Tools
 ![platform_tools](https://github.com/musana-engineering/idp/assets/151420844/81dac169-b1b7-4ec7-80c0-a23b12962bb1)
   - ### Certificate Management
 Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Cert-manager will facilitate the issuance, renewal, and management of SSL/TLS certificates from Letsencrypt and securely store them as a Kubernetes secrets within the Cert-Manager namespace. To meet the diverse needs of our platform, we require the certificates to be accessible across multiple namespaces. To achieve this, we will leverage the  **[Kubernetes Replicator](https://github.com/mittwald/kubernetes-replicator)**, enabling seamless replication of secrets throughout our Kubernetes environment.
