@@ -7,7 +7,9 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-The cloud-native landscape is constantly evolving, and new concepts often emerge, capturing the attention of the tech community. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. Platform Engineering is one of them, offering an innovative approach to empowering software engineering organizations in the cloud-native era.
+The DevOps landscape landscape is constantly evolving, and producing new concepts in its pursuit of automation, collaboration, and efficiency. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. 
+
+Platform Engineering is one of them, offering an innovative approach to empowering software engineering organizations in the cloud-native era.
 
 In practical terms, Platform Engineering focuses on designing and building toolchains and workflows that enable self-service capabilities for software engineering teams. Platform engineers provide an integrated product most often referred to as an “Internal Developer Platform” covering the operational necessities of the entire lifecycle of an application.
 
