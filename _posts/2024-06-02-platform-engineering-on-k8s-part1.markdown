@@ -133,6 +133,64 @@ Safeguarding sensitive data is crucial for our platform's security. We've chosen
 To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize External Secrets. This solution bridges Kubernetes and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
 
 First, we'll set up a ClusterSecretStore for our Azure Key Vault within our Kubernetes environment, establishing a secure connection for retrieving secrets. Then, we'll create ExternalSecrets for the specific secrets required by our applications, ensuring sensitive data remains protected yet accessible within the appropriate namespaces.
+{% highlight javascript %}
+// External Secrets - Cluster Secret Store
+resource "null_resource" "cluster_secret_store" {
+  provisioner "local-exec" {
+    command = <<-EOT
+
+      kubectl apply -f - <<EOF
+      apiVersion: external-secrets.io/v1beta1
+      kind: ClusterSecretStore
+      metadata:
+        name: kv-idp-core
+      spec:
+        provider:
+          azurekv:
+            tenantId: "${local.tenant_id}"
+            vaultUrl: "${data.azurerm_key_vault.kv.vault_uri}"
+            authType: ManagedIdentity
+            identityId: "${data.azurerm_user_assigned_identity.mi.client_id}"
+      EOF
+    EOT
+  }
+}
+
+// External Secret
+resource "null_resource" "ingress_tls_secret" {
+  count = length(local.namespaces)
+  provisioner "local-exec" {
+    command = <<-EOT
+
+      kubectl apply -f - <<EOF
+      apiVersion: external-secrets.io/v1beta1
+      kind: ExternalSecret
+      metadata:
+        name: ingress-tls
+        namespace: ${local.namespaces[count.index]}
+      spec:
+        refreshInterval: 1h
+        secretStoreRef:
+          kind: ClusterSecretStore
+          name: kv-idp-core
+        target:
+          template:
+            type: kubernetes.io/tls
+            engineVersion: v2
+            data:
+              tls.crt: "{{ .tls | b64dec | pkcs12cert }}"
+              tls.key: "{{ .tls | b64dec | pkcs12key }}"
+        data:
+        - secretKey: tls
+          remoteRef:
+            # Azure Key Vault certificates must be fetched as secret/cert-name
+            key: secret/star-musana-eng
+      EOF
+
+    EOT
+  }
+}
+{% endhighlight %}
 
  - ### Ingress Management
 Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
