@@ -35,10 +35,9 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ![main](https://github.com/musana-engineering/idp/assets/151420844/e164cc3b-c7e9-4289-a9fc-a85d41369da1)
 
-**Flow**:
-- 1) Developers interact with the internal developer platform through the APIs exposed by FastAPI. These APIs serve as the entry point for developers to trigger various actions, such as provisioning infrastructure, deploying applications, or executing workflows.
-- 2) When a developer interacts with the FastAPI endpoints, it generates an event that is consumed by Argo Events.
-- 3) Based on the events received from FastAPI (via Argo Events), Argo Workflows is triggered to orchestrate and execute the desired actions or workflows.
+**1)** Developers interact with the internal developer platform through the APIs exposed by FastAPI. These APIs serve as the entry point for developers to trigger various actions, such as provisioning infrastructure, deploying applications, or executing workflows.
+**2)** When a developer interacts with the FastAPI endpoints, it generates an event that is consumed by Argo Events.
+**3)** Based on the events received from FastAPI (via Argo Events), Argo Workflows is triggered to orchestrate and execute the desired actions or workflows.
 
 ## Platform Capabilities
 Our internal developer platform will be built to include 5 core capabilities.
