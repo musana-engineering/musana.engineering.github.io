@@ -17,7 +17,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 
 ## Table of Contents
 - [Introduction ](#introduction)
-  - [Platform Components](#platform-components)
+  - [Platform Capabilities](#platform-capabilities)
   - [Platform Tools ](#platform-tools)
   - [Prerequisites ](#prerequisites)
 - [Implementation ](#implementation)
@@ -40,7 +40,7 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 - 2) When a developer interacts with the FastAPI endpoints, it generates an event that is consumed by Argo Events.
 - 3) Based on the events received from FastAPI (via Argo Events), Argo Workflows is triggered to orchestrate and execute the desired actions or workflows.
 
-## Platform Components
+## Platform Capabilities
 Our internal developer platform will be built to include 5 core capabilities.
 
 - **Infrastructure provisioning:** Enable developers to create cloud infrastructure resources that adhere to security and performance best practices while abstracting complexities such  as networking and security.  
@@ -53,7 +53,7 @@ Our internal developer platform will be built to include 5 core capabilities.
 
 - **Access Control:** Manage who can do what in a scalable way.
 
-## Platform Tools
+## Tools
 Before diving into the implementation details, let's familiarize ourselves with the key tools and technologies that will power our internal developer platform.
 
 - **[Kubernetes](https://kubernetes.io/)**, an open source system for automating deployment, scaling, and management of containerized applications will be the underlying foundation upon which our internal developer platform will be built. All the components of our solution, including Terraform, Argo Events, Argo Workflows, and FastAPI will be running on Kubernetes
