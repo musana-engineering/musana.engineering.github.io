@@ -7,11 +7,11 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-The DevOps landscape landscape is constantly evolving, and producing new concepts in its pursuit of automation, collaboration, and efficiency. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** is one of them.
+The DevOps landscape is constantly evolving, and producing new concepts in its pursuit of automation, collaboration, and efficiency. While some of these concepts are often a repackaging of existing practices, many of them bring meaningful improvements. **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** is one of them.
 
 In practical terms, Platform Engineering focuses on designing and building toolchains and workflows that enable self-service capabilities for software engineering teams. As a Platform engineer, you will be required to provide an integrated product most often referred to as an **[Internal Developer Platform](https://internaldeveloperplatform.org/)** covering the operational necessities of the entire lifecycle of an application.
 
-There are many off-the-shelf solutions available for internal developer platforms, but many of them come with significant complexities in setup, maintenance and a bloat of features that may not be relevant or necessary for your specific engineering teams. In many cases, building a custom internal developer platform tailored to your organization's unique needs and requirements can be a more reasonable and pragmatic approach.
+There are many off-the-shelf solutions available for internal developer platforms, but many of them come with significant complexities in setup, maintenance and a bloat of features that may not be relevant or necessary for your specific engineering teams. In many cases, building a custom internal developer platform tailored to your organization's unique needs and requirements is a more reasonable and pragmatic approach.
 
 In this multi-part series, we'll dive deep into a practical implementation of Platform Engineering by building an internal developer platform (IDP) using common tools that platform and DevOps engineers are already familiar with, such as Terraform, Argo Events, Argo Workflows, and FastAPI.
 
@@ -31,9 +31,14 @@ In this multi-part series, we'll dive deep into a practical implementation of Pl
 - [Summary ](#summary)
 
 ## Introduction
-**A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. The figure below provides a step-by-step illustration of what we will be building in this multi-part series.
+**A Unified Developer Experience:** Imagine a centralized platform where developers can call an api to provision and manage infrastructure, automate workflows, and build and deploy applications with ease. This platform would serve as a one-stop shop, eliminating the need for disparate tools and manual processes, ultimately reducing complexity and increasing productivity. To better illustrate what we will be building throughout this multi-part series, let's take a look at the following architectural diagram
 
 ![main](https://github.com/musana-engineering/idp/assets/151420844/e164cc3b-c7e9-4289-a9fc-a85d41369da1)
+
+**Flow**:
+- 1) Developers interact with the internal developer platform through the APIs exposed by FastAPI. These APIs serve as the entry point for developers to trigger various actions, such as provisioning infrastructure, deploying applications, or executing workflows.
+- 2) When a developer interacts with the FastAPI endpoints, it generates an event that is consumed by Argo Events.
+- 3) Based on the events received from FastAPI (via Argo Events), Argo Workflows is triggered to orchestrate and execute the desired actions or workflows.
 
 ## Platform Components
 Our internal developer platform will be built to include 5 core capabilities.
