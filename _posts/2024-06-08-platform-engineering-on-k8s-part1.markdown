@@ -138,6 +138,7 @@ You MUST replace packetdance.com with a domain that you own and have control ove
 Safeguarding sensitive data is crucial for our platform's security. We will use Azure Key Vault as our centralized repository for securely storing all secrets, leveraging industry-standard encryption and access control. To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize the **[Exetrnal Secrets Operator](https://external-secrets.io/latest/)** to bridge our Kubernetes cluster and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
 
  - ### Ingress Management
+ ![ingress](https://github.com/musana-engineering/idp/assets/151420844/3b49b81a-749a-42f4-8e50-167620fa10f3)
 Some of the core components like Argo Workflows, ArgoCD, Argo Rollouts, and other applications hosted on our platform provide web interfaces and dashboards that will need to be accessed by users outside the Kubernetes cluster. To make these available, we will implement the Nginx Ingress Controller to act as a reverse proxy and load balancer, routing incoming traffic to the appropriate services based on the requested URL. We will configure Nginx Ingress to handle host-based routing, allowing us to access different web UIs for different purposes. For example, we will  set up the following ingress endpoints:
 
 - **argoworkflows.packetdance.com** to access the Argo Workflows UI
