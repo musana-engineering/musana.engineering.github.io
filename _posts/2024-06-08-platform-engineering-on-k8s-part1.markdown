@@ -158,6 +158,34 @@ terraform init && terraform plan
 terraform apply
 {% endhighlight %}
 
+At this stage, we have deployed the foundational infrastructure, tools, and services for our internal developer platform. You can now check your Azure subscription to review all the resources created so far.
+
+{% highlight javascript %}
+// List all resource groups 
+az group list -o table
+
+Name              Location    Status
+----------------  ----------  ---------
+RG-core           westus      Succeeded
+RG-idp-net        westus3     Succeeded
+RG-idp-aks        westus3     Succeeded
+RG-idp-aks-nodes  westus3     Succeeded
+{% endhighlight %}
+
+Additionally, connect to your Kubernetes cluster to verify that the platform tools have been successfully installed
+
+{% highlight javascript %}
+// List all deployments in all namespaces
+kubectl get deployments --all-namespaces=true
+argo
+argo-events
+argo-rollouts
+argocd
+cert-manager
+external-dns
+external-secrets
+{% endhighlight %}
+
 ### Summary
 In this first part of the series, we laid the foundation for building an internal developer platform on Kubernetes. We defined the core components and tools that will power our platform, including Kubernetes as the underlying infrastructure, Terraform for provisioning cloud resources, Argo Events for event-driven automation, Argo Workflows for CI/CD pipelines, and FastAPI as the frontend API layer.
 
