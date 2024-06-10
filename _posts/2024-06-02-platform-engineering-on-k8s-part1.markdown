@@ -75,7 +75,6 @@ In this first part of the series, we’ll focus on setting up the foundational i
 
 - ### Foundation Architecture
 ![idp-network](https://github.com/musana-engineering/idp/assets/151420844/e448acb6-7001-4cba-a0a6-59ccb9af21c2)
-
 - ### Core network
 Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication
 
