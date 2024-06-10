@@ -115,6 +115,15 @@ terraform apply
 
 - ### Core platform tools
 ![platform_tools](https://github.com/musana-engineering/idp/assets/151420844/81dac169-b1b7-4ec7-80c0-a23b12962bb1)
+ - ### Certificate Management
+Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Cert-manager will facilitate the issuance, renewal, and management of SSL/TLS certificates from Letsencrypt and securely store them as a Kubernetes secrets within the Cert-Manager namespace. To meet the diverse needs of our platform, we require the certificates to be accessible across multiple namespaces. To achieve this, we will leverage the  **[Kubernetes Replicator](https://github.com/mittwald/kubernetes-replicator)**, enabling seamless replication of secrets throughout our Kubernetes environment.
+
+ - ### Secret Management
+Safeguarding sensitive data is crucial for our platform's security. We will use Azure Key Vault as our centralized repository for securely storing all secrets, leveraging industry-standard encryption and access control. To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize the **[Exetrnal Secrets Operator](https://external-secrets.io/latest/)** to bridge our Kubernetes cluster and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
+
+ - ### Ingress Management
+Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
+
 {% highlight javascript %}
 // Navigate to the aks directory
 cd idp/core/tools
@@ -125,15 +134,6 @@ terraform init && terraform plan
 // Provision the infrastructure.
 terraform apply
 {% endhighlight %}
-
- - ### Certificate Management
-Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. Cert-manager will facilitate the issuance, renewal, and management of SSL/TLS certificates from Letsencrypt and securely store them as a Kubernetes secrets within the Cert-Manager namespace. To meet the diverse needs of our platform, we require the certificates to be accessible across multiple namespaces. To achieve this, we will leverage the  **[Kubernetes Replicator](https://github.com/mittwald/kubernetes-replicator)**, enabling seamless replication of secrets throughout our Kubernetes environment.
-
- - ### Secret Management
-Safeguarding sensitive data is crucial for our platform's security. We will use Azure Key Vault as our centralized repository for securely storing all secrets, leveraging industry-standard encryption and access control. To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize the **[Exetrnal Secrets Operator](https://external-secrets.io/latest/)** to bridge our Kubernetes cluster and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
-
- - ### Ingress Management
-Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
 
 ### Summary
 In this first part of the series, we laid the foundation for building an internal developer platform on Kubernetes. We defined the core components and tools that will power our platform, including Kubernetes as the underlying infrastructure, Terraform for provisioning cloud resources, Argo Events for event-driven automation, Argo Workflows for CI/CD pipelines, and FastAPI as the frontend API layer.
