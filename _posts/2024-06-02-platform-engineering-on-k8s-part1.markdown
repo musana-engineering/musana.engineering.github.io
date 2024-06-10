@@ -76,6 +76,8 @@ In this first part of the series, we’ll focus on setting up the foundational i
 - ### Foundation Architecture
 ![idp-network](https://github.com/musana-engineering/idp/assets/151420844/e448acb6-7001-4cba-a0a6-59ccb9af21c2)
 - ### Core network
+Follow the steps below to deploy the core network.
+
 Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication
 
 {% highlight javascript %}
@@ -102,6 +104,8 @@ terraform apply
 {% endhighlight %}
 
 - ### Core Kubernetes
+Follow the steps below to deploy the Core Kubernetes cluster.
+
 {% highlight javascript %}
 // Navigate to the aks directory
 cd idp/core/aks
@@ -123,6 +127,8 @@ Safeguarding sensitive data is crucial for our platform's security. We will use 
 
  - ### Ingress Management
 Routing incoming traffic to the appropriate services within our Platform will be handled by Nginx Ingress, a popular ingress controller for Kubernetes. With its advanced features, such as SSL/TLS termination, path-based routing, and support for custom configurations, Nginx Ingress provides a robust and flexible solution for exposing our applications to the outside world.
+
+Follow the steps below to deploy the platform tools.
 
 {% highlight javascript %}
 // Navigate to the aks directory
