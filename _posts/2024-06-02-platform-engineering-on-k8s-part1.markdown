@@ -123,7 +123,7 @@ terraform apply
 Securing our applications with SSL/TLS certificates is a critical aspect of our Platform. We will use **[Cert Manager](https://cert-manager.io/)** to facilitate the issuance, renewal, and management of SSL/TLS certificates from **[Letsencrypt](https://letsencrypt.org/)** and securely store them as a Kubernetes secrets within the Cert-Manager namespace. To meet the diverse needs of our platform, we require the certificates to be accessible across multiple namespaces. To achieve this, we will leverage the  **[Kubernetes Replicator](https://github.com/mittwald/kubernetes-replicator)**, enabling seamless replication of secrets throughout our Kubernetes environment.
 
 {% highlight javascript %}
-For the examples in this series, I am using the packetdance.com DNS zone and requesting a wildcard certificate ```*.packetdance.com``` from Letsencrypt. This wildcard certificate will allow us to secure all subdomains under packetdance.com with a single SSL/TLS certificate, simplifying the management process.
+For the examples in this series, I am using the packetdance.com DNS zone and requesting a wildcard certificate *.packetdance.com from Letsencrypt. This wildcard certificate will allow us to secure all subdomains under packetdance.com with a single SSL/TLS certificate, simplifying the management process.
 
 You MUST replace packetdance.com with a domain that you own and have control over. Using a domain you don't own or control can lead to security issues and potential certificate issuance failures.
 {% endhighlight %}
@@ -132,7 +132,7 @@ You MUST replace packetdance.com with a domain that you own and have control ove
 Safeguarding sensitive data is crucial for our platform's security. We will use Azure Key Vault as our centralized repository for securely storing all secrets, leveraging industry-standard encryption and access control. To seamlessly integrate Azure Key Vault with our Kubernetes clusters, we'll utilize the **[Exetrnal Secrets Operator](https://external-secrets.io/latest/)** to bridge our Kubernetes cluster and Azure Key Vault, allowing us to securely retrieve secrets directly into the relevant namespaces without compromising security or increasing complexity.
 
  - ### Ingress Management
-To expose the core component web UIs like Argo Workflows, ArgoCD, Argo Rollouts, and other applications hosted on our platform, we will leverage the powerful Nginx Ingress Controller. This ingress controller will act as a reverse proxy and load balancer, routing incoming traffic to the appropriate services based on the requested URL. We will configure Nginx Ingress to handle host-based routing, allowing us to access different web UIs for different purposes. For example, we will  set up the following ingress endpoints:
+Some of the core components like Argo Workflows, ArgoCD, Argo Rollouts, and other applications hosted on our platform provide web interfaces and dashboards that will need to be accessed by users outside the Kubernetes cluster. To make these available, we will implement the Nginx Ingress Controller to act as a reverse proxy and load balancer, routing incoming traffic to the appropriate services based on the requested URL. We will configure Nginx Ingress to handle host-based routing, allowing us to access different web UIs for different purposes. For example, we will  set up the following ingress endpoints:
 
 - **argoworkflows.packetdance.com** to access the Argo Workflows UI
 - **argocd.packetdance.com** to access the ArgoCD UI
