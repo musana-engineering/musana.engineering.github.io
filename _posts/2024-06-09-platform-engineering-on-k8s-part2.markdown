@@ -125,7 +125,7 @@ spec:
   dependencies:
     - name: webhook
       eventSourceName: webhook
-      eventName: compute-provision
+      eventName: compute
   triggers:
     - template:
         name: compute-provision-workflow
