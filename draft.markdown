@@ -96,22 +96,7 @@ kubectl apply -f idp/core/tools/events/eventsource.yaml
 {% endhighlight %}
 
 By defining these endpoints, we have mapped specific API calls from FastAPI to corresponding events within Argo Events. These events will then be processed and used to trigger automated workflows, such as provisioning infrastructure, deploying applications, or configuring application settings, using Argo Workflows. This configuration seamlessly integrates our platform API with Argo Events, enabling event-driven automation.
-
-A **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)** defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers.
-
-{% highlight javascript %}
-
-{% endhighlight %}
-
-A Webhook sensor acts as an event listener. It waits for waiting for incoming HTTP requests and translating them into CloudEvents, a standardized format for describing event data. Once a CloudEvent is generated, Argo Events can trigger the corresponding workflow based on the event payload and predefined rules.
-Setting up the Webhook sensor involves the following steps:
-
-- **Define the Event Source:** We will create an EventSource resource in Kubernetes, specifying the type as webhook and configuring the necessary parameters, such as the port and route for receiving incoming requests.
-
-- **Configure the Sensor:** Next, we will define a Sensor resource that listens for events from the specified EventSource. The Sensor will define the rules and conditions for triggering the desired Argo Workflow based on the received event data. Integrate with Argo Workflows: Within the Sensor configuration, we will specify the Argo Workflow to be triggered, along with any required parameters or event payloads to be passed to the workflow.
-
-Based on the provided content, here are three examples of sensors we can create for this demonstration, representing three different things developers might order on our internal developer platform:
-
+ 
 ## Argo Workflows
 
 In this section, we’ll lay down the groundwork necessary for exploring Snowpark Container Services. We will use Docker to create an OCI-compliant image to deploy to Snowpark. We’ll start by creating Snowflake objects
