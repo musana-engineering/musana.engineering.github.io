@@ -39,7 +39,7 @@ spec:
 
 In this configuration:
 - We define an EventBus resource named eventbus in the argo-events namespace.
-- The spec.nats.native section specifies that we are using the NATS implementation of the EventBus.
+- The **spec.nats.native** section specifies that we are using the NATS implementation of the EventBus.
 - The replicas field is set to 3, which ensures high availability and fault tolerance by running three replicas of the NATS server.
 - The auth field is set to token, enabling token-based authentication for secure communication between EventSources, Sensors, and the EventBus.
 
@@ -86,9 +86,9 @@ In this configuration:
 - It is associated with the eventbus event bus, which acts as a central hub for processing and routing events.
 - The service section specifies that the Webhook event source will listen on port 12000.
 - The webhook section defines the specific endpoints that will trigger events:
-  - /environments: This endpoint will trigger an event when an HTTP POST request is received for provisioning a new environment.
-  - /applications: This endpoint will trigger an event when an HTTP POST request is received for deploying an application.
-  - /configuration: This endpoint will trigger an event when an HTTP POST request is received for configuring an application
+  - **/environments:** This endpoint will trigger an event when an HTTP POST request is received for provisioning a new environment.
+  - **/applications:** This endpoint will trigger an event when an HTTP POST request is received for deploying an application.
+  - **/configuration**: This endpoint will trigger an event when an HTTP POST request is received for configuring an application
 
 To create the EventSource resource, run:
 {% highlight javascript %}
