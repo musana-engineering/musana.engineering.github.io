@@ -98,4 +98,8 @@ kubectl apply -f idp/core/tools/events/eventsource.yaml
 
 - ## Sensor
 
+```html
+<div>this is some preformatted code</div>
+```
+
 ## More coming shortly...!
