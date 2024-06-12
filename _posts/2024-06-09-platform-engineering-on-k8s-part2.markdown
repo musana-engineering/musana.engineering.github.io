@@ -144,5 +144,9 @@ spec:
               value: "{{`{{event.payload.infra_config}}`}}"
 {% endhighlight %}
 
+- ### Storage Provisioning Sensor
+- ### Database Provisioning Sensor
+- ### Destack Provisioning Sensor
+- ### Appstack Provisioning Sensor
 
 ## More coming shortly...!
