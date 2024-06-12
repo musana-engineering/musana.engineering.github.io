@@ -7,4 +7,5 @@ img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes]
 ---
-## Part 2 is coming shortly... Let me cook!
+
+## Part 2 coming shortly...!
