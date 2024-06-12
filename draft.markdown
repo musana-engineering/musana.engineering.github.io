@@ -2,9 +2,9 @@ With the groundwork established in **[Part 1](https://musana.engineering/platfor
 
 ## Table of Contents
 - [Event-driven Automation ](#event-driven-automation)
-  - [Platform Capabilities](#platform-capabilities)
-  - [Platform Tools ](#platform-tools)
-  - [Prerequisites ](#prerequisites)
+  - [EventBus](#eventbus)
+  - [EventSource ](#eventsource)
+  - [Sensor ](#sensor)
 - [Implementation ](#implementation)
   - [Foundation Architecture ](#foundation-architecture)
   - [Core network ](#core-network)
