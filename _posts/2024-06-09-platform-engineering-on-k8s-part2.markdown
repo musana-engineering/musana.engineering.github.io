@@ -97,4 +97,4 @@ kubectl apply -f idp/core/tools/events/eventsource.yaml
 
 By defining these endpoints, we have mapped specific API calls from FastAPI to corresponding events within Argo Events. These events will then be processed and used to trigger automated workflows, such as provisioning infrastructure, deploying applications, or configuring application settings, using Argo Workflows. This configuration seamlessly integrates our platform API with Argo Events, enabling event-driven automation.
 
-## Part 2 coming shortly...!
+## More coming shortly...!
