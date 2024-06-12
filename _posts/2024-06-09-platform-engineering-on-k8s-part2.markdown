@@ -113,6 +113,8 @@ The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defin
 - ### Compute Provisioning Sensor
 This sensor listens for events from the infra-provision webhook endpoint and triggers an Argo Workflow named provision-infrastructure-workflow. The workflow can then use the infra-config parameter to provision the requested infrastructure resources using Terraform.
 
+This section defines the Sensor resource named compute-provision to be created in the argo-events namespace
+
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
@@ -141,6 +143,12 @@ spec:
             - name: infra-config
               value: "{{`{{event.payload.infra_config}}`}}"
 {% endhighlight %}
+
+- The serviceAccountName specifies the service account used by the Sensor for authentication and authorization.
+- The dependencies section specifies that this Sensor depends on events from the webhook EventSource, specifically the compute event.
+- The triggers section defines the action to be taken when the Sensor receives the specified event.In this case, it triggers an Argo Workflow named compute-provision-workflow.
+- The generateName parameter sets a prefix for the generated name of the Workflow instance.
+- The parameters section allows passing data from the event 
 
 - ### Storage Provisioning Sensor
 - ### Database Provisioning Sensor
