@@ -146,7 +146,7 @@ spec:
               value: "{{`{{event.payload.infra_config}}`}}"
 {% endhighlight %}
 
- To create the EventSource resource, run:
+ To create the Compute Provisioning Sensor, run:
 {% highlight javascript %}
 kubectl apply -f idp/core/tools/events/eventsource.yaml
 {% endhighlight %}
