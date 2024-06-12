@@ -121,11 +121,14 @@ metadata:
   namespace: argo-events
 spec:
   template:
+  // The serviceAccount used for authentication and authorization.
     serviceAccountName: argo-events-sa
+  // This Sensor depends on events from the compute webhook EventSource
   dependencies:
     - name: webhook
       eventSourceName: webhook
       eventName: compute
+  // Triggers defines the action to be taken when the Sensor receives the specified event. In this case, it triggers an Argo Workflow named compute-provision-workflow
   triggers:
     - template:
         name: compute-provision-workflow
@@ -136,17 +139,17 @@ spec:
               apiVersion: argoproj.io/v1alpha1
               kind: Workflow
               metadata:
+              // Generated name of the Workflow instance.
                 generateName: provision-infra-
           parameters:
             - name: infra-config
               value: "{{`{{event.payload.infra_config}}`}}"
 {% endhighlight %}
-In this configuration:
- - The serviceAccountName specifies the service account used by the Sensor for authentication and authorization.
- - The dependencies section specifies that this Sensor depends on events from the webhook EventSource, specifically the compute event.
- - The triggers section defines the action to be taken when the Sensor receives the specified event.In this case, it triggers an Argo Workflow named compute-provision-workflow.
- - The generateName parameter sets a prefix for the generated name of the Workflow instance.
- - The parameters section allows passing data from the event 
+
+ To create the EventSource resource, run:
+{% highlight javascript %}
+kubectl apply -f idp/core/tools/events/eventsource.yaml
+{% endhighlight %}
 
 - ### Storage Provisioning Sensor
 - ### Database Provisioning Sensor
