@@ -94,7 +94,7 @@ In this configuration:
 - It is associated with the eventbus event bus, which acts as a central hub for processing and routing events.
 - The service section specifies that the Webhook event source will listen on port 12000.
 - The webhook section defines the specific endpoints that will trigger events:
-  - **/storage endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision storage resource in Azure such as storage accounts and file shares
+  - **/storage endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure storage resources such as Blob storage accounts and File shares
   - **/compute endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure compute resources such as virtual machines, Kubernetes clusters.
   - **/database endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure database resources such as SQL databases, NoSQL databases, or caches.
   - **/devstack endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision a development environment.
