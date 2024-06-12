@@ -114,7 +114,7 @@ Follow the steps below to deploy the Core Kubernetes cluster.
 
 {% highlight javascript %}
 // Navigate to the aks directory
-cd idp/core/aks
+cd idp/core/aks/deploy
 
 // Generate and review the Terraform plan
 terraform init && terraform plan
@@ -153,7 +153,7 @@ Follow the steps below to deploy the platform tools.
 
 {% highlight javascript %}
 // Navigate to the aks directory
-cd idp/core/tools
+cd idp/core/bootstrap
 
 // Generate and review the Terraform plan
 terraform init && terraform plan
