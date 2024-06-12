@@ -112,14 +112,14 @@ The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defin
 
 Based on the platform capabilities we described in **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
 
-- ### Infrastructure Provisioning Sensor
+- ### Compute Provisioning Sensor
 This sensor listens for events from the infra-provision webhook endpoint and triggers an Argo Workflow named provision-infrastructure-workflow. The workflow can then use the infra-config parameter to provision the requested infrastructure resources using Terraform.
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
-  name: infra-provision
+  name: compute-provision
   namespace: argo-events
 spec:
   template:
@@ -127,10 +127,10 @@ spec:
   dependencies:
     - name: webhook
       eventSourceName: webhook
-      eventName: infra-provision
+      eventName: compute-provision
   triggers:
     - template:
-        name: provision-infrastructure-workflow
+        name: compute-provision-workflow
         argoWorkflow:
           operation: start
           source:
