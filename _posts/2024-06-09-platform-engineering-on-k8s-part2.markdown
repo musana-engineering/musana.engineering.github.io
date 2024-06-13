@@ -152,8 +152,134 @@ kubectl apply -f idp/core/tools/events/eventsource.yaml
 {% endhighlight %}
 
 - ### Storage Provisioning Sensor
+This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named storage-provision-workflow. The workflow executes a series of steps to provision the requested storage infrastructure resources using Terraform.
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: storage-provision
+  namespace: argo-events
+spec:
+  template:
+    serviceAccountName: argo-events-sa
+  dependencies:
+    - name: webhook
+      eventSourceName: webhook
+      eventEvent: storage
+  triggers:
+    - template:
+        name: storage-provision-workflow
+        argoWorkflow:
+          operation: start
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: provision-storage-
+          parameters:
+            - name: storage-config
+              value: "{{`{{event.payload.storage_config}}`}}"
+
+{% endhighlight %}
+
 - ### Database Provisioning Sensor
-- ### Destack Provisioning Sensor
+This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named database-provision-workflow when such an event is received. The workflow executes steps to provision the requested database infrastructure resources using the database_config payload from the event.
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: database-provision
+  namespace: argo-events
+spec:
+  template:
+    serviceAccountName: argo-events-sa
+  dependencies:
+    - name: webhook
+      eventSourceName: webhook
+      eventName: database
+  triggers:
+    - template:
+        name: database-provision-workflow
+        argoWorkflow:
+          operation: start
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: provision-database-
+              parameters:
+                - name: database-config
+                  value: "{{event.payload.database_config}}"
+{% endhighlight %}
+
+- ### Devstack Provisioning Sensor
+This Sensor listens for events from the **/devstack** webhook endpoint and triggers an Argo Workflow named destack-provision-workflow when such an event is received. The workflow executes steps to provision the requested development stack resources using Terraform
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor  
+metadata:
+  name: devstack-provision
+  namespace: argo-events
+spec:
+  template:
+    serviceAccountName: argo-events-sa
+  dependencies:
+    - name: webhook
+      eventSourceName: webhook
+      eventName: devstack
+  triggers:
+    - template:
+        name: destack-provision-workflow
+        argoWorkflow:
+          operation: start
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: provision-destack-
+              parameters:
+                - name: destack-config
+                  value: "{{event.payload.destack_config}}"
+
+{% endhighlight %}
+
 - ### Appstack Provisioning Sensor
+This Sensor listens for events from the **/appstack** webhook endpoint and triggers an Argo Workflow named appstack-provision-workflow when such an event is received. The workflow executes steps to provision the requested application stack resources using the appstack_config payload from the event.
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: appstack-provision
+  namespace: argo-events  
+spec:
+  template:
+    serviceAccountName: argo-events-sa
+  dependencies:
+    - name: webhook
+      eventSourceName: webhook
+      eventName: appstack
+  triggers:
+    - template:
+        name: appstack-provision-workflow
+        argoWorkflow:
+          operation: start
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: provision-appstack-
+              parameters:
+                - name: appstack-config
+                  value: "{{event.payload.appstack_config}}"
+
+{% endhighlight %}
 
 ## More coming shortly...!
