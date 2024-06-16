@@ -223,17 +223,16 @@ spec:
 {% endhighlight %}
 
 - ### Compute Provisioning Workflow
-The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. This workflow orchestrates the end-to-end process of provisioning cloud infrastructure resources requested by developers through the internal developer platform.
-Upon receiving the event from the sensor, the compute-provision-workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
+The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
 
-- Validate Input: The workflow first validates the input parameters received from the webhook event, ensuring that all required information is provided, such as the cloud provider, resource type, region etc.
-- Fetch Terraform Configuration: Based on the requested resource type and cloud provider, the workflow retrieves the appropriate Terraform configuration files or modules from a centralized repository.
+- The workflow first validates the input parameters received from the webhook event, ensuring that all required information is provided, such as the cloud provider, resource type, region etc.
+- Based on the requested resource type and cloud provider, the workflow retrieves the appropriate Terraform configuration files or modules from a centralized repository.
 - The workflow initializes the Terraform working directory by downloading the required provider plugins and setting up the necessary backend configuration.
 - Terraform performs a dry-run plan operation, generating an execution plan that outlines the changes required to provision the requested resources.
-- Approval (Optional): Depending on the configuration, the workflow may include an approval step where manual intervention or approval is required before proceeding with the actual resource provisioning.
-- Apply Terraform Changes: If the plan is approved (or if approval is not required), the workflow executes the Terraform apply command, provisioning the requested resources in the specified cloud environment.
-- Output and Notifications: Upon successful provisioning, the workflow generates output artifacts containing information about the provisioned resources, such as IP addresses, resource IDs, or connection details. Additionally, it can send notifications to the requesting developer or relevant stakeholders, informing them of the provisioning completion.
-- Clean Up: Finally, the workflow cleans up any temporary files or directories used during the provisioning process.
+- Depending on the configuration, the workflow may include an approval step where manual intervention or approval is required before proceeding with the actual resource provisioning.
+- If the plan is approved (or if approval is not required), the workflow executes the Terraform apply command, provisioning the requested resources in the specified cloud environment.
+- Upon successful provisioning, the workflow generates output artifacts containing information about the provisioned resources, such as IP addresses, resource IDs, or connection details. Additionally, it can send notifications to the requesting developer or relevant stakeholders, informing them of the provisioning completion.
+- Finally, the workflow cleans up any temporary files or directories used during the provisioning process.
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
