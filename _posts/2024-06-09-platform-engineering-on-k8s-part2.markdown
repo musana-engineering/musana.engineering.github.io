@@ -39,7 +39,7 @@ spec:
 In this configuration:
 - We define an EventBus resource named **eventbus-nats** in the argo-events namespace.
 - The **spec.nats.native** section specifies that we are using the NATS implementation of the EventBus.
-- The **spec.nats.replicas** field is set to 3, which ensures high availability and fault tolerance by running three replicas of the NATS server.
+- The **spec.nats.replicas** field is set to 3, which ensures high availability and fault tolerance.
 - The **spec.nats.auth** field is set to **token**, enabling token-based authentication for secure communication between EventSources, Sensors, and the EventBus.
 
 To create the EventBus resource, run:
