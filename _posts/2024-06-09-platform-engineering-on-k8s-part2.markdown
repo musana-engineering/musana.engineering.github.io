@@ -101,13 +101,13 @@ kubectl apply -f idp/core/tools/argo/events/sources/eventsource.yaml
 The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers. A dependency is an event the sensor is waiting to happen. Based on the platform capabilities we described in **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
 
 - ### Compute Provisioning Sensor
-This sensor listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision**. The workflow executes a series of steps to provision the requested infrastructure resources using Terraform.
+This **compute-provision-sensor** listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision-workflow**. The workflow executes a series of steps to provision the requested resources using Terraform.
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
-  name: sensor-compute
+  name: compute-provision-sensor
   namespace: argo-events
 spec:
   eventBusName: eventbus-main
@@ -220,11 +220,121 @@ spec:
                 dataKey: body.requester_email
               dest: spec.arguments.parameters.5.value
 {% endhighlight %}
+
+- ### Compute Provisioning Workflow
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: compute-provision-workflow
+  namespace: argo-events
+spec:
+  entrypoint: plan
+  templates: 
+    - name: plan
+      inputs:
+        parameters:   
+          - name: region
+            value: "default" 
+          - name: cloud_provider
+            value: "default"
+          - name: resource_type
+            value: "default"
+          - name: environment
+            value: "default"
+          - name: requester_name
+            value: "default"
+          - name: requester_email
+            value: "default"
+      script:
+        imagePullPolicy: "Always"
+        image: "musanaengineering/platformtools:terraform-v1.0.0"
+        command: [/bin/bash]
+        source: |
+          sudo chown devops:devops /home/devops -R 
+          sudo chmod 775 /home/devops -R 
+          sudo chmod 400 /home/devops/.ssh/id_rsa
+
+          # ... removed for brevity ...
+
+        env:
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ceplatform
+              key: CLIENT_SECRET 
+
+    - name: apply
+      inputs:
+        parameters:   
+          - name: region
+            value: "default" 
+          - name: cloud_provider
+            value: "default"
+          - name: resource_type
+            value: "default"
+          - name: environment
+            value: "default"
+          - name: requester_name
+            value: "default"
+          - name: requester_email
+            value: "default"
+      script:
+        imagePullPolicy: "Always"
+        image: "musanaengineering/platformtools:terraform-v1.0.0"
+        command: [/bin/bash]
+        source: |
+          sudo chown devops:devops /home/devops -R 
+          sudo chmod 775 /home/devops -R 
+          sudo chmod 400 /home/devops/.ssh/id_rsa
+
+          # ... removed for brevity ...
+
+        env:
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ceplatform
+              key: CLIENT_SECRET   
+
+
+    - name: approve
+      suspend: {}
+
+      parameters:
+        - src:
+            dependencyName: webhook
+            dataKey: body.region
+          dest: spec.arguments.parameters.0.value
+        - src:
+            dependencyName: webhook
+            dataKey: body.cloud_provider
+          dest: spec.arguments.parameters.1.value
+        - src:
+            dependencyName: webhook
+            dataKey: body.resource_type
+          dest: spec.arguments.parameters.2.value
+        - src:
+            dependencyName: webhook
+            dataKey: body.environment
+          dest: spec.arguments.parameters.3.value
+        - src:
+            dependencyName: webhook
+            dataKey: body.requester_name
+          dest: spec.arguments.parameters.4.value
+        - src:
+            dependencyName: webhook
+            dataKey: body.requester_email
+          dest: spec.arguments.parameters.5.value
+{% endhighlight %}
+
+In addition to the Compute Provisioning Sensor, we will create additional sensors as follows;
+
 - ### Storage Provisioning Sensor
-This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision**. The workflow executes a series of steps to provision the requested storage infrastructure resources using Terraform.
+This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision-workflow**. The workflow executes a series of steps to provision the requested storage resources using Terraform.
 
 - ### Database Provisioning Sensor
-This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision** when such an event is received. The workflow executes steps to provision the requested database infrastructure resources using the database_config payload from the event.
+This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision-workflow**. The workflow executes steps to provision the requested database resources using the database_config payload from the event.
 
 To create all the sensors described above, run:
 {% highlight javascript %}
