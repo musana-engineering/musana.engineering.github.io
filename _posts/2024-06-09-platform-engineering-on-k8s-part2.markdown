@@ -44,7 +44,7 @@ In this configuration:
 
 To create the EventBus resource, run:
 {% highlight javascript %}
-kubectl apply -f idp/core/tools/events/eventbus.yaml
+kubectl apply -f idp/core/tools/argo/events/sources/eventbus.yaml
 {% endhighlight %}
 
 By creating an EventBus, we have established a reliable and secure messaging system that facilitates the flow of events within our platform. EventSources, such as the Webhook we are going to create in the next section, will publish events to the EventBus. Sensors, which we will configure later, will subscribe to specific events and trigger the corresponding Argo Workflows.
@@ -78,14 +78,6 @@ spec:
       port: "12000"
       endpoint: /database
       method: POST
-    devstack:
-      port: "12000"
-      endpoint: /devstack
-      method: POST
-    appstack:
-      port: "12000"
-      endpoint: /appstack
-      method: POST
 {% endhighlight %}
 
 In this configuration:
@@ -97,189 +89,147 @@ In this configuration:
   - **/storage endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure storage resources such as Blob storage accounts and File shares
   - **/compute endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure compute resources such as virtual machines, Kubernetes clusters.
   - **/database endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure database resources such as SQL databases, NoSQL databases, or caches.
-  - **/devstack endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision a development environment.
-  - **/appstack endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision packaged applications for dev/test purposes.
 
 By defining these endpoints, we have mapped specific API calls from FastAPI to corresponding events within Argo Events. These events will then be processed and used to trigger automated workflows, such as provisioning infrastructure, deploying applications, or configuring application settings, using Argo Workflows. This configuration seamlessly integrates our platform API with Argo Events, enabling event-driven automation.
 
 To create the EventSource resource, run:
 {% highlight javascript %}
-kubectl apply -f idp/core/tools/events/eventsource.yaml
+kubectl apply -f idp/core/tools/argo/events/sources/eventsource.yaml
 {% endhighlight %}
 
 - ## Sensor
 The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers. A dependency is an event the sensor is waiting to happen.Based on the platform capabilities we described in **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
 
 - ### Compute Provisioning Sensor
-This sensor listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision-workflow**. The workflow executes a series of steps to provision the requested infrastructure resources using Terraform.
+This sensor listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision**. The workflow executes a series of steps to provision the requested infrastructure resources using Terraform.
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
-  name: compute-provision
+  name: sensor-compute
   namespace: argo-events
 spec:
+  eventBusName: eventbus-main
   template:
-  // The serviceAccount used for authentication and authorization.
-    serviceAccountName: argo-events-sa
-  // This Sensor depends on events from the compute webhook EventSource
+    serviceAccountName: sa-argo-workflow
   dependencies:
     - name: webhook
       eventSourceName: webhook
       eventName: compute
-  // Triggers defines the action to be taken when the Sensor receives the specified event. In this case, it triggers an Argo Workflow named compute-provision-workflow
+      eventBusName: eventbus-main
   triggers:
     - template:
-        name: compute-provision-workflow
-        argoWorkflow:
-          operation: start
+        name: terraform
+        k8s:
+          operation: create
           source:
             resource:
               apiVersion: argoproj.io/v1alpha1
               kind: Workflow
               metadata:
-              // Generated name of the Workflow instance.
-                generateName: provision-infra-
+                generateName: compute-provision-
+                namespace: argo-events
+              spec:
+                entrypoint: terraform
+                serviceAccountName: sa-argo-workflow
+                imagePullSecrets:
+                  - name: rpspeastus2acr
+                arguments:
+                  parameters:   
+                    - name: region
+                      value: "default" 
+                    - name: cloud_provider
+                      value: "default"
+                    - name: resource_type
+                      value: "default"
+                    - name: environment
+                      value: "default"
+                    - name: requester_name
+                      value: "default"
+                    - name: requester_email
+                      value: "default" 
+                templates:
+                - name: terraform
+                  dag: 
+                    tasks:
+                    - name: terraform-plan
+                      templateRef:
+                        name: compute-provision-workflow
+                        template: plan
+                      arguments:
+                          parameters:
+                            - name: region
+                              value: "{{workflow.parameters.region}}"
+                            - name: cloud_provider
+                              value: "{{workflow.parameters.cloud_provider}}"
+                            - name: resource_type
+                              value: "{{workflow.parameters.resource_type}}"
+                            - name: environment
+                              value: "{{workflow.parameters.environment}}"
+                            - name: requester_name
+                              value: "{{workflow.parameters.requester_name}}"
+                            - name: requester_email
+                              value: "{{workflow.parameters.requester_email}}"
+
+                    # ... removed for brevity ...
+
+                    - name: terraform-apply
+                      templateRef:
+                        name: compute-provision-workflow
+                        template: apply
+                      arguments:
+                          parameters:
+                            - name: region
+                              value: "{{workflow.parameters.region}}"
+                            - name: cloud_provider
+                              value: "{{workflow.parameters.cloud_provider}}"
+                            - name: resource_type
+                              value: "{{workflow.parameters.resource_type}}"
+                            - name: environment
+                              value: "{{workflow.parameters.environment}}"
+                            - name: requester_name
+                              value: "{{workflow.parameters.requester_name}}"
+                            - name: requester_email
+                              value: "{{workflow.parameters.requester_email}}"
+                      dependencies: ["terraform-plan"]
+
           parameters:
-            - name: infra-config
-              value: "{{`{{event.payload.infra_config}}`}}"
+            - src:
+                dependencyName: webhook
+                dataKey: body.region
+              dest: spec.arguments.parameters.0.value
+            - src:
+                dependencyName: webhook
+                dataKey: body.cloud_provider
+              dest: spec.arguments.parameters.1.value
+            - src:
+                dependencyName: webhook
+                dataKey: body.resource_type
+              dest: spec.arguments.parameters.2.value
+            - src:
+                dependencyName: webhook
+                dataKey: body.environment
+              dest: spec.arguments.parameters.3.value
+            - src:
+                dependencyName: webhook
+                dataKey: body.requester_name
+              dest: spec.arguments.parameters.4.value
+            - src:
+                dependencyName: webhook
+                dataKey: body.requester_email
+              dest: spec.arguments.parameters.5.value
 {% endhighlight %}
-
- To create the Compute Provisioning Sensor, run:
-{% highlight javascript %}
-kubectl apply -f idp/core/tools/events/eventsource.yaml
-{% endhighlight %}
-
 - ### Storage Provisioning Sensor
-This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named storage-provision-workflow. The workflow executes a series of steps to provision the requested storage infrastructure resources using Terraform.
-
-{% highlight javascript %}
-apiVersion: argoproj.io/v1alpha1
-kind: Sensor
-metadata:
-  name: storage-provision
-  namespace: argo-events
-spec:
-  template:
-    serviceAccountName: argo-events-sa
-  dependencies:
-    - name: webhook
-      eventSourceName: webhook
-      eventEvent: storage
-  triggers:
-    - template:
-        name: storage-provision-workflow
-        argoWorkflow:
-          operation: start
-          source:
-            resource:
-              apiVersion: argoproj.io/v1alpha1
-              kind: Workflow
-              metadata:
-                generateName: provision-storage-
-          parameters:
-            - name: storage-config
-              value: "{{`{{event.payload.storage_config}}`}}"
-
-{% endhighlight %}
+This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision**. The workflow executes a series of steps to provision the requested storage infrastructure resources using Terraform.
 
 - ### Database Provisioning Sensor
-This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named database-provision-workflow when such an event is received. The workflow executes steps to provision the requested database infrastructure resources using the database_config payload from the event.
+This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision** when such an event is received. The workflow executes steps to provision the requested database infrastructure resources using the database_config payload from the event.
 
+To create all the sensors described above, run:
 {% highlight javascript %}
-apiVersion: argoproj.io/v1alpha1
-kind: Sensor
-metadata:
-  name: database-provision
-  namespace: argo-events
-spec:
-  template:
-    serviceAccountName: argo-events-sa
-  dependencies:
-    - name: webhook
-      eventSourceName: webhook
-      eventName: database
-  triggers:
-    - template:
-        name: database-provision-workflow
-        argoWorkflow:
-          operation: start
-          source:
-            resource:
-              apiVersion: argoproj.io/v1alpha1
-              kind: Workflow
-              metadata:
-                generateName: provision-database-
-              parameters:
-                - name: database-config
-                  value: "{{event.payload.database_config}}"
+kubectl apply -f idp/core/tools/argo/events/sensors
 {% endhighlight %}
 
-- ### Devstack Provisioning Sensor
-This Sensor listens for events from the **/devstack** webhook endpoint and triggers an Argo Workflow named destack-provision-workflow when such an event is received. The workflow executes steps to provision the requested development stack resources using Terraform
-
-{% highlight javascript %}
-apiVersion: argoproj.io/v1alpha1
-kind: Sensor  
-metadata:
-  name: devstack-provision
-  namespace: argo-events
-spec:
-  template:
-    serviceAccountName: argo-events-sa
-  dependencies:
-    - name: webhook
-      eventSourceName: webhook
-      eventName: devstack
-  triggers:
-    - template:
-        name: destack-provision-workflow
-        argoWorkflow:
-          operation: start
-          source:
-            resource:
-              apiVersion: argoproj.io/v1alpha1
-              kind: Workflow
-              metadata:
-                generateName: provision-destack-
-              parameters:
-                - name: destack-config
-                  value: "{{event.payload.destack_config}}"
-
-{% endhighlight %}
-
-- ### Appstack Provisioning Sensor
-This Sensor listens for events from the **/appstack** webhook endpoint and triggers an Argo Workflow named appstack-provision-workflow when such an event is received. The workflow executes steps to provision the requested application stack resources using the appstack_config payload from the event.
-
-{% highlight javascript %}
-apiVersion: argoproj.io/v1alpha1
-kind: Sensor
-metadata:
-  name: appstack-provision
-  namespace: argo-events  
-spec:
-  template:
-    serviceAccountName: argo-events-sa
-  dependencies:
-    - name: webhook
-      eventSourceName: webhook
-      eventName: appstack
-  triggers:
-    - template:
-        name: appstack-provision-workflow
-        argoWorkflow:
-          operation: start
-          source:
-            resource:
-              apiVersion: argoproj.io/v1alpha1
-              kind: Workflow
-              metadata:
-                generateName: provision-appstack-
-              parameters:
-                - name: appstack-config
-                  value: "{{event.payload.appstack_config}}"
-
-{% endhighlight %}
 
 ## More coming shortly...!
