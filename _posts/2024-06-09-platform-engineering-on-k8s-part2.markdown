@@ -247,17 +247,17 @@ spec:
       inputs:
         parameters:   
           - name: region
-            value: "default" 
+            value: "eastus2" 
           - name: cloud_provider
-            value: "default"
+            value: "azure"
           - name: resource_type
-            value: "default"
+            value: "kubernetes"
           - name: environment
-            value: "default"
+            value: "dev"
           - name: requester_name
-            value: "default"
+            value: "Jim Musana"
           - name: requester_email
-            value: "default"
+            value: "musanajim@gmail.com"
       script:
         imagePullPolicy: "Always"
         image: "musanaengineering/platformtools:terraform-v1.0.0"
@@ -273,17 +273,17 @@ spec:
       inputs:
         parameters:   
           - name: region
-            value: "default" 
+            value: "eastus2" 
           - name: cloud_provider
-            value: "default"
+            value: "azure"
           - name: resource_type
-            value: "default"
+            value: "kubernetes"
           - name: environment
-            value: "default"
+            value: "dev"
           - name: requester_name
-            value: "default"
+            value: "Jim Musana"
           - name: requester_email
-            value: "default"
+            value: "musanajim@gmail.com"
       script:
         imagePullPolicy: "Always"
         image: "musanaengineering/platformtools:terraform-v1.0.0"
