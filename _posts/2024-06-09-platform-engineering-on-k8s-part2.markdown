@@ -171,7 +171,7 @@ spec:
                             - name: requester_email
                               value: "{{workflow.parameters.requester_email}}"
 
-                    # ... removed for brevity ...
+                    // ... removed for brevity ...
 
                     - name: terraform-apply
                       templateRef:
@@ -266,7 +266,7 @@ spec:
           sudo chmod 775 /home/devops -R 
           sudo chmod 400 /home/devops/.ssh/id_rsa
 
-          # ... removed for brevity ...
+          // ... removed for brevity ...
 
     - name: apply
       inputs:
@@ -292,7 +292,7 @@ spec:
           sudo chmod 775 /home/devops -R 
           sudo chmod 400 /home/devops/.ssh/id_rsa
 
-          # ... removed for brevity ...
+          // ... removed for brevity ...
 
     - name: approve
       suspend: {}
