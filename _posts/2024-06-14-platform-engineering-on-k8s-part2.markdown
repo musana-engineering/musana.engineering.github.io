@@ -98,7 +98,7 @@ kubectl apply -f idp/core/tools/argo/events/sources/eventsource.yaml
 {% endhighlight %}
 
 ## Sensor
-The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers. A dependency is an event the sensor is waiting to happen. Based on the platform capabilities we described in **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
+The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers. A dependency is an event the sensor is waiting to happen. Based on the platform capabilities we described in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
 
 - ### Compute Provisioning Sensor
 The **compute-provision-sensor** listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision-workflow**. The workflow executes a series of steps to provision the requested resources using Terraform.
@@ -115,12 +115,14 @@ spec:
   dependencies:
     - name: webhook
       eventSourceName: webhook
+      // Listen for events from the /compute webhook endpoint
       eventName: compute
       eventBusName: eventbus-main
   triggers:
     - template:
         name: terraform
         k8s:
+          // Trigger Argo workflow
           operation: create
           source:
             resource:
