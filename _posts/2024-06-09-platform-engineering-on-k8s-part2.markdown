@@ -135,19 +135,20 @@ spec:
                 imagePullSecrets:
                   - name: rpspeastus2acr
                 arguments:
+                // The default parameter values specified here will be overridden by the incoming webhook payload
                   parameters:   
                     - name: region
-                      value: "default" 
+                      value: "eastus2" 
                     - name: cloud_provider
-                      value: "default"
+                      value: "azure"
                     - name: resource_type
-                      value: "default"
+                      value: "kubernetes"
                     - name: environment
-                      value: "default"
+                      value: "dev"
                     - name: requester_name
-                      value: "default"
+                      value: "Jim Musana"
                     - name: requester_email
-                      value: "default" 
+                      value: "musanajim@gmail.com" 
                 templates:
                 - name: terraform
                   dag: 
