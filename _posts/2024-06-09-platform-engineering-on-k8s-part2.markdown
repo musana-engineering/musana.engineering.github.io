@@ -221,6 +221,17 @@ spec:
                 dataKey: body.requester_email
               dest: spec.arguments.parameters.5.value
 {% endhighlight %}
+The parameters section defines how the **compute-provision-workflow** receives and maps input data from the webhook event triggered by the **compute-provision-sensor**. These parameters allow the workflow to dynamically configure itself based on the request payload received from the webhook. Additionally, they map the values from the webhook payload to the input variables that Terraform expects for provisioning the requested resources.
+For example, the parameter:
+
+{% highlight javascript %}
+- src:
+    dependencyName: webhook
+    dataKey: body.region
+  dest: spec.arguments.parameters.0.value
+{% endhighlight %}
+
+maps the value from the region field in the webhook payload's body to the first input parameter that Terraform expects. This allows Terraform to provision the resources in the specified region based on the value provided by the developer through the webhook request.
 
 - ### Compute Provisioning Workflow
 The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
