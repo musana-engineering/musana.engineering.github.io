@@ -197,7 +197,8 @@ spec:
                               value: "{{workflow.parameters.requester_email}}"
                       dependencies: ["terraform-plan"]
 
-          # Extract data from the JSON payload of the incoming webhook HTTP POST
+          // Extract data from the JSON payload of the incoming webhook HTTP POST
+          
           parameters:
             - src:
                 dependencyName: webhook
@@ -314,7 +315,8 @@ spec:
     - name: approve
       suspend: {}
 
-       # Extract data from the JSON payload of the incoming webhook HTTP POST
+      // Extract data from the JSON payload of the incoming webhook HTTP POST
+
       parameters:
         - src:
             dependencyName: webhook
