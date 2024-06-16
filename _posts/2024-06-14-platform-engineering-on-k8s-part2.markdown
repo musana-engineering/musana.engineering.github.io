@@ -181,7 +181,6 @@ spec:
                         name: compute-provision-workflow
                         template: apply
                       arguments:
-                          // The default parameter values overridden by the incoming webhook payload
                           parameters:
                             - name: region
                               value: "{{workflow.parameters.region}}"
@@ -198,7 +197,6 @@ spec:
                       dependencies: ["terraform-plan"]
 
           // Extract data from the JSON payload of the incoming webhook HTTP POST
-          
           parameters:
             - src:
                 dependencyName: webhook
@@ -283,7 +281,7 @@ spec:
           sudo chmod 775 /home/devops -R 
           sudo chmod 400 /home/devops/.ssh/id_rsa
 
-          // ... removed for brevity ...
+      // ... removed for brevity ...
 
     - name: apply
       inputs:
@@ -310,13 +308,12 @@ spec:
           sudo chmod 775 /home/devops -R 
           sudo chmod 400 /home/devops/.ssh/id_rsa
 
-          // ... removed for brevity ...
+      // ... removed for brevity ...
 
     - name: approve
       suspend: {}
 
       // Extract data from the JSON payload of the incoming webhook HTTP POST
-
       parameters:
         - src:
             dependencyName: webhook
