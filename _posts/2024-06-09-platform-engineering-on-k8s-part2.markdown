@@ -340,11 +340,9 @@ spec:
 
 In addition to the Compute Provisioning Sensor, we will create additional sensors as follows;
 
-- ### Storage Provisioning Sensor
-This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision-workflow**. The workflow executes a series of steps to provision the requested storage resources using Terraform.
+**Storage Provisioning Sensor:** This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision-workflow**. The workflow executes a series of steps to provision the requested storage resources using Terraform.
 
-- ### Database Provisioning Sensor
-This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision-workflow**. The workflow executes steps to provision the requested database resources using the database_config payload from the event.
+**Database Provisioning Sensor:** This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision-workflow**. The workflow executes steps to provision the requested database resources using the database_config payload from the event.
 
 To create all the sensors described above, run:
 {% highlight javascript %}
