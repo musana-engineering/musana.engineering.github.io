@@ -135,7 +135,7 @@ spec:
                 imagePullSecrets:
                   - name: rpspeastus2acr
                 arguments:
-                // The default parameter values specified here will be overridden by the incoming webhook payload
+                  // The default parameter values overridden by the incoming webhook payload
                   parameters:   
                     - name: region
                       value: "eastus2" 
@@ -179,6 +179,7 @@ spec:
                         name: compute-provision-workflow
                         template: apply
                       arguments:
+                          // The default parameter values overridden by the incoming webhook payload
                           parameters:
                             - name: region
                               value: "{{workflow.parameters.region}}"
@@ -245,6 +246,7 @@ spec:
   templates: 
     - name: plan
       inputs:
+        // The default parameter values overridden by the incoming webhook payload
         parameters:   
           - name: region
             value: "eastus2" 
@@ -271,6 +273,7 @@ spec:
 
     - name: apply
       inputs:
+        // The default parameter values overridden by the incoming webhook payload
         parameters:   
           - name: region
             value: "eastus2" 
