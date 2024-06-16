@@ -25,7 +25,7 @@ The **[EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/)** re
 apiVersion: argoproj.io/v1alpha1
 kind: EventBus
 metadata:
-  name: eventbus
+  name: eventbus-nats
   namespace: argo-events
 spec:
   nats:
@@ -37,10 +37,10 @@ spec:
 {% endhighlight %}
 
 In this configuration:
-- We define an EventBus resource named eventbus in the argo-events namespace.
+- We define an EventBus resource named **eventbus-nats** in the argo-events namespace.
 - The **spec.nats.native** section specifies that we are using the NATS implementation of the EventBus.
-- The replicas field is set to 3, which ensures high availability and fault tolerance by running three replicas of the NATS server.
-- The auth field is set to token, enabling token-based authentication for secure communication between EventSources, Sensors, and the EventBus.
+- The **spec.nats.replicas** field is set to 3, which ensures high availability and fault tolerance by running three replicas of the NATS server.
+- The **spec.nats.auth** field is set to **token**, enabling token-based authentication for secure communication between EventSources, Sensors, and the EventBus.
 
 To create the EventBus resource, run:
 {% highlight javascript %}
@@ -59,7 +59,7 @@ metadata:
   name: webhook
   namespace: argo-events
 spec:
-  eventBusName: eventbus
+  eventBusName: eventbus-nats
   service:
     ports:
       - port: 12000
@@ -82,9 +82,9 @@ spec:
 
 In this configuration:
 
-- The EventSource is named webhook and resides in the argo-events namespace.
-- It is associated with the eventbus event bus, which acts as a central hub for processing and routing events.
-- The service section specifies that the Webhook event source will listen on port 12000.
+- The EventSource is named **webhook** and resides in the argo-events namespace.
+- It is associated with the **eventbus-nats** eventbus.
+- The Webhook event source will listen on port 12000.
 - The webhook section defines the specific endpoints that will trigger events:
   - **/storage:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure storage resources such as Blob storage accounts and File shares
   - **/compute:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure compute resources such as virtual machines, Kubernetes clusters.
@@ -101,8 +101,7 @@ kubectl apply -f idp/core/tools/argo/events/sources/eventsource.yaml
 The **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/)**  defines a set of event dependencies (inputs) and triggers (outputs). It listens to events on the eventbus and acts as an event dependency manager to resolve and execute the triggers. A dependency is an event the sensor is waiting to happen. Based on the platform capabilities we described in **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**, we are going to create the following Sensor resources in Argo Events.
 
 - ### Compute Provisioning Sensor
-This **compute-provision-sensor** listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision-workflow**. The workflow executes a series of steps to provision the requested resources using Terraform.
-
+The **compute-provision-sensor** listens for events from the **/compute** webhook endpoint and triggers an Argo Workflow named **compute-provision-workflow**. The workflow executes a series of steps to provision the requested resources using Terraform.
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
@@ -222,6 +221,18 @@ spec:
 {% endhighlight %}
 
 - ### Compute Provisioning Workflow
+The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. This workflow orchestrates the end-to-end process of provisioning cloud infrastructure resources requested by developers through the internal developer platform.
+Upon receiving the event from the sensor, the compute-provision-workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
+
+- Validate Input: The workflow first validates the input parameters received from the webhook event, ensuring that all required information is provided, such as the cloud provider, resource type, region etc.
+- Fetch Terraform Configuration: Based on the requested resource type and cloud provider, the workflow retrieves the appropriate Terraform configuration files or modules from a centralized repository.
+- The workflow initializes the Terraform working directory by downloading the required provider plugins and setting up the necessary backend configuration.
+- Terraform performs a dry-run plan operation, generating an execution plan that outlines the changes required to provision the requested resources.
+- Approval (Optional): Depending on the configuration, the workflow may include an approval step where manual intervention or approval is required before proceeding with the actual resource provisioning.
+- Apply Terraform Changes: If the plan is approved (or if approval is not required), the workflow executes the Terraform apply command, provisioning the requested resources in the specified cloud environment.
+- Output and Notifications: Upon successful provisioning, the workflow generates output artifacts containing information about the provisioned resources, such as IP addresses, resource IDs, or connection details. Additionally, it can send notifications to the requesting developer or relevant stakeholders, informing them of the provisioning completion.
+- Clean Up: Finally, the workflow cleans up any temporary files or directories used during the provisioning process.
+
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
@@ -257,13 +268,6 @@ spec:
 
           # ... removed for brevity ...
 
-        env:
-        - name: CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: ceplatform
-              key: CLIENT_SECRET 
-
     - name: apply
       inputs:
         parameters:   
@@ -289,14 +293,6 @@ spec:
           sudo chmod 400 /home/devops/.ssh/id_rsa
 
           # ... removed for brevity ...
-
-        env:
-        - name: CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: ceplatform
-              key: CLIENT_SECRET   
-
 
     - name: approve
       suspend: {}
