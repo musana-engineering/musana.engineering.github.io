@@ -231,7 +231,7 @@ For example, the parameter:
   dest: spec.arguments.parameters.0.value
 {% endhighlight %}
 
-maps the value from the region field in the webhook payload's body to the first input parameter that Terraform expects. This allows Terraform to provision the resources in the specified region based on the value provided by the developer through the webhook request.
+maps the value from the region field in the webhook payload's body to the first input parameter that Terraform expects for the **region** variable. This allows Terraform to provision the resources in the specified region based on the value provided by the developer through the webhook request.
 
 - ### Compute Provisioning Workflow
 The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
