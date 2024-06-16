@@ -86,9 +86,9 @@ In this configuration:
 - It is associated with the eventbus event bus, which acts as a central hub for processing and routing events.
 - The service section specifies that the Webhook event source will listen on port 12000.
 - The webhook section defines the specific endpoints that will trigger events:
-  - **/storage endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure storage resources such as Blob storage accounts and File shares
-  - **/compute endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure compute resources such as virtual machines, Kubernetes clusters.
-  - **/database endpoint:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure database resources such as SQL databases, NoSQL databases, or caches.
+  - **/storage:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure storage resources such as Blob storage accounts and File shares
+  - **/compute:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure compute resources such as virtual machines, Kubernetes clusters.
+  - **/database:** This endpoint will trigger an event when an HTTP POST request is received, to provision Azure database resources such as SQL databases, NoSQL databases, or caches.
 
 By defining these endpoints, we have mapped specific API calls from FastAPI to corresponding events within Argo Events. These events will then be processed and used to trigger automated workflows, such as provisioning infrastructure, deploying applications, or configuring application settings, using Argo Workflows. This configuration seamlessly integrates our platform API with Argo Events, enabling event-driven automation.
 
