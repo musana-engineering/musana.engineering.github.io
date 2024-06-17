@@ -302,7 +302,11 @@ USER devops
 
 You can use this custom image directly or adapt for your use case. Build the custom image and publish it to your container registry
 {% highlight javascript %}
+// Navigate to the directory containing the Dockerfile 
+cd idp/core/tools/argo
+// Build the image
 docker build -t musanaengineering/platformtools:terraform .
+// Push the image to your container registry
 docker push musanaengineering/platformtools:terraform
 {% endhighlight %}
 
