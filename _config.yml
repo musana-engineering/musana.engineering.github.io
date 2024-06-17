@@ -19,6 +19,17 @@ social-email: musanajim@gmail.com
 # Disqus
 discus-identifier: musana.engineering
 
+comments:
+  giscus:
+    enabled: true
+    repo: "musana-engineering/musana.engineering.github.io"
+    repo_id: "R_kgDOMAlDfA"
+    category: "blog-posts"
+    category_id: "DIC_kwDOMAlDfM4CgIr4"
+    mapping: "pathname"
+    reactions_enabled: "1"
+    theme: "light"
+
 # Tracker
 analytics: # Google Analytics
 
@@ -35,3 +46,4 @@ paginate: 8
 paginate_path: "/page/:num"
 
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
+

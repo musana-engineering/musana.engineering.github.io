@@ -450,3 +450,4 @@ The key implementations are:
 
 This integration enables event-driven automation, where developer requests received via the FastAPI frontend trigger corresponding Argo Workflows to provision and manage infrastructure and applications on Kubernetes using Terraform. Our platform now handles the intricate details of provisioning, deployment, and management in a streamlined manner.
 In the upcoming part of this series, we will dive deeper into the implementation of the FastAPI frontend API layer, providing developers with an intuitive interface to interact with the platform's capabilities.
+
