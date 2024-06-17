@@ -15,9 +15,12 @@ With the groundwork established in **[PART 1](https://musana.engineering/platfor
   - [EventSource ](#eventsource)
   - [Sensor ](#sensor)
 - [Workflow Orchestration ](#workflow-orchestration)
-  
+  - [Workflow Templates](#workflow-templates)
+  - [Artifact Repositories ](#artifact-repositories)
+  - [Workflow Volumes ](#workflow-volumes)
+
 ## Event-driven Automation
-To add event-driven automation capabilities within our platform, we configure Argo Events to integrate with an event source and trigger automated Argo workflows. Our aim is to trigger a Workflow upon receiving an HTTP POST request from FastAPI, such as when a developer initiates a request to provision a new environment or deploy an application. To achieve this, we need to create the following resources in Kubernetes.
+To add event-driven automation capabilities within our platform, we will configure Argo Events to integrate with an event source and trigger automated Argo workflows. Our aim is to trigger a Workflow upon receiving an HTTP POST request from FastAPI, such as when a developer initiates a request to provision a new environment or deploy an application. To achieve this, we need to create the following resources in Kubernetes.
 
 ## EventBus
 The **[EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/)** resource acts as the transport layer within Argo Events, facilitating the communication between EventSources and Sensors. It serves as a central hub where EventSources publish events, and Sensors subscribe to those events to execute triggers and automated workflows. Argo Events supports three implementations of the EventBus: **NATS, Jetstream, and Kafka**. In our case, we are using the NATS implementation, which provides a lightweight and efficient messaging system for event distribution.
@@ -354,5 +357,27 @@ kubectl apply -f idp/core/tools/argo/events/sensors
 {% endhighlight %}
 
 ##  Workflow Orchestration
+To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received through the FastAPI endpoints via Argo Events sensors. For example, when a developer calls the **/compute** FastAPI endpoint to provision a new compute resource, Argo Workflows will coordinate the necessary steps required to fulfill the request using Terraform. To achieve this, we need to create the following resources in Kubernetes:
+
+- ### Workflow Templates
+These are reusable templates that define the structure and steps of a workflow. For instance, we might have templates for provisioning infrastructure, deploying applications, or running configuration management tasks.
+
+- ### Artifact Repositories
+Some of the workflows executed on our Platform will use input and output artifacts. To enabled this, we must enable and configure an artifact repositories, such as S3, Git, or HTTP servers, for storing and retrieving workflow inputs, outputs, and other artifacts.
+Workflow Triggers: 
+
+- ### Workflow Volumes
+In our Platform Engineering solution, we leverage Kubernetes Secrets to securely store and manage sensitive information, such as credentials for infrastructure provisioners (e.g., cloud provider credentials), database server passwords and other confidential data. The secrets are retrieved from Azure Key Vault using the External Secrets solution we created in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**
+
+To inject these Secrets into our workflow, we mount them as Kubernetes Volumes within our workflow definition like this:
+
+{% highlight javascript %}
+volumes:
+  - name: platformsecrets
+    secret:
+      secretName: platformsecrets
+{% endhighlight %}
+
+By integrating Argo Workflows, our Platform is now capable of handling the intricate details of provisioning, deployment, and management of infrastructure and applications.
 
 ## More coming shortly...!
