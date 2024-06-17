@@ -257,7 +257,6 @@ To add CI/CD and Workflow Orchestration capabilities within our platform, we wil
 
 Argo Workflows provides different types of templates to define the steps within a workflow. Two commonly used templates are the **script** template and the **container** template. Both execute containers based on specified Docker images.
 
-To create all the sensors described above, run:
 {% highlight javascript %}
 // Script template
 name: example1
