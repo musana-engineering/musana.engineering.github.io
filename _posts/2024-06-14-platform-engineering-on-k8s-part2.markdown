@@ -18,6 +18,7 @@ With the groundwork established in **[PART 1](https://musana.engineering/platfor
   - [Workflow Templates](#workflow-templates)
   - [Artifact Repositories ](#artifact-repositories)
   - [Workflow Volumes ](#workflow-volumes)
+  - [Workflow Images ](#workflow-images)
 - [Summary ](#summary)
 
 ## Event-driven Automation
@@ -255,23 +256,54 @@ kubectl apply -f idp/core/tools/argo/events/sensors
 ##  Workflow Orchestration
 To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received via the Argo Events sensors. For example, when a developer calls the **/compute** endpoint in FastAPI, to provision a new compute resource, Argo Workflows will execute a series of steps required to fulfill the request using Terraform. 
 
-Argo Workflows provides different types of templates to define the steps within a workflow. Two commonly used templates are the **script** template and the **container** template. Both execute containers based on specified Docker images.
+- ### Workflow Images
+Argo Workflows provides different types of templates to define the steps within a workflow. Two commonly used templates are the **script** template and the **container** template. Both execute containers based on specified Docker images. This We need a Docker image that includes all the necessary packages, tools, and dependencies required to execute our workflows. This custom image should include Terraform for provisioning cloud infrastructure, the Azure CLI for interacting with Azure services, the Argo CLI for managing Argo Workflows, Ansible for configuration management, and any other utilities or libraries our workflows might require.
 
 {% highlight javascript %}
-// Script template
-name: example1
-script:
-  imagePullPolicy: "Always"
-  image: musanaengineering/platformtools:terraform-v1.0.0
-  command: [/bin/bash]
-  source: |
+FROM alpine:latest
 
-// Container template
-name: example2
-container:
-  image: musanaengineering/platformtools:terraform-v1.0.0
-  command: [echo]
-  args: ["{{inputs.parameters.message}}"]
+RUN apk update && apk add --no-cache \
+    sudo \
+    bash \
+    wget \
+    curl \
+    git \
+    ansible \
+    python3 \
+    py3-pip \
+    gcc \
+    python3-dev \
+    musl-dev \
+    linux-headers \
+    shadow \
+    && pip3 install --upgrade pip --break-system-packages \
+    && pip3 install azure-cli --break-system-packages \
+    && wget https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip \
+    && unzip terraform_1.8.5_linux_amd64.zip -d /usr/local/bin/ \
+    && rm terraform_1.8.5_linux_amd64.zip \
+    && curl -LO https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl \
+    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+    && rm kubectl \
+    && curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 \
+    && chmod +x /usr/local/bin/argocd \
+    && curl -sSL -o /usr/local/bin/kubelogin https://github.com/Azure/kubelogin/releases/latest/download/kubelogin-linux-amd64.zip \
+    && unzip /usr/local/bin/kubelogin -d /usr/local/bin/ \
+    && rm /usr/local/bin/kubelogin
+
+RUN adduser -D -h /home/devops devops \
+    && echo "devops ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+WORKDIR /home/devops
+
+RUN chown -R devops:devops /home/devops
+
+USER devops
+{% endhighlight %}
+
+You can use this custom image directly or adapt for your use case. Build the custom image and publish it to your container registry
+{% highlight javascript %}
+docker build -t musanaengineering/platformtools:terraform .
+docker push musanaengineering/platformtools:terraform
 {% endhighlight %}
 
 - ### Workflow Templates
