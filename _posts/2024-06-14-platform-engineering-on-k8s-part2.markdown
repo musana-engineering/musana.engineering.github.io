@@ -396,6 +396,11 @@ volumes:
       secretName: platformsecrets
 {% endhighlight %}
 
+To create all the workflow templates described above, run:
+{% highlight javascript %}
+kubectl apply -f idp/core/tools/argo/events/workflows
+{% endhighlight %}
+
 ## Summary
 In this second part of the series, we enhanced our internal developer platform by integrating Argo Events for event-driven automation and Argo Workflows for workflow orchestration. This enables developers to trigger automated provisioning of infrastructure and applications through a seamless API experience.
 
