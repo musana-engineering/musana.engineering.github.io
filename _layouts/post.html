@@ -33,7 +33,7 @@ layout: main
         </div>
       </div>
       {% include disqus.html %}
-      \{\{ if site.comments.giscus.enabled \}\}
+      {{ if site.comments.giscus.enabled }}
       <script src="https://giscus.app/client.js"
               data-repo="musana-engineering/musana.engineering.github.io"
               data-repo-id="R_kgDOMAlDfA"
@@ -51,7 +51,7 @@ layout: main
               async>
       </script>
       <noscript>Please enable JavaScript to view the comments.</noscript>
-      \{\{ end \}\}
+      {{ end }}
       <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="musanajimp" data-color="#FF5F5F" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
     </div> <!-- End Wrap Content -->
   </div> <!-- End Page Content -->
