@@ -294,9 +294,7 @@ RUN adduser -D -h /home/devops devops \
     && echo "devops ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 WORKDIR /home/devops
-
 RUN chown -R devops:devops /home/devops
-
 USER devops
 {% endhighlight %}
 
