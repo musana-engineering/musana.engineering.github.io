@@ -239,6 +239,40 @@ For example, the parameter:
 
 maps the value from the region field in the webhook payload's body to the first input parameter that Terraform expects for the **region** variable. This allows Terraform to provision the resources in the specified region based on the value provided by the developer through the webhook request.
 
+
+In addition to the Compute Provisioning Sensor, we will create additional sensors as follows;
+
+**Storage Provisioning Sensor:** This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision-workflow**. The workflow executes a series of steps to provision the requested storage resources using Terraform.
+
+**Database Provisioning Sensor:** This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision-workflow**. The workflow executes steps to provision the requested database resources using the database_config payload from the event.
+
+To create all the sensors described above, run:
+{% highlight javascript %}
+kubectl apply -f idp/core/tools/argo/events/sensors
+{% endhighlight %}
+
+##  Workflow Orchestration
+To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received through the FastAPI endpoints via Argo Events sensors. For example, when a developer calls the **/compute** FastAPI endpoint to provision a new compute resource, Argo Workflows will coordinate the necessary steps required to fulfill the request using Terraform. To achieve this, we need to create the following resources in Kubernetes:
+
+- ### Workflow Templates
+These are reusable templates that define the structure and steps of a workflow. For instance, we might have templates for provisioning infrastructure, deploying applications, or running configuration management tasks.
+
+- ### Artifact Repositories
+Some of the workflows executed on our Platform will use input and output artifacts. To enabled this, we must enable and configure an artifact repositories, such as S3, Git, or HTTP servers, for storing and retrieving workflow inputs, outputs, and other artifacts.
+Workflow Triggers: 
+
+- ### Workflow Volumes
+In our Platform Engineering solution, we leverage Kubernetes Secrets to securely store and manage sensitive information, such as credentials for infrastructure provisioners (e.g., cloud provider credentials), database server passwords and other confidential data. The secrets are retrieved from Azure Key Vault using the External Secrets solution we created in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**
+
+To inject these Secrets into our workflow, we mount them as Kubernetes Volumes within our workflow definition like this:
+
+{% highlight javascript %}
+volumes:
+  - name: platformsecrets
+    secret:
+      secretName: platformsecrets
+{% endhighlight %}
+
 - ### Compute Provisioning Workflow
 The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
 
@@ -343,39 +377,6 @@ spec:
             dependencyName: webhook
             dataKey: body.requester_email
           dest: spec.arguments.parameters.5.value
-{% endhighlight %}
-
-In addition to the Compute Provisioning Sensor, we will create additional sensors as follows;
-
-**Storage Provisioning Sensor:** This sensor listens for events from the **/storage** webhook endpoint and triggers an Argo Workflow named **storage-provision-workflow**. The workflow executes a series of steps to provision the requested storage resources using Terraform.
-
-**Database Provisioning Sensor:** This Sensor listens for events from the **/database** webhook endpoint and triggers an Argo Workflow named **database-provision-workflow**. The workflow executes steps to provision the requested database resources using the database_config payload from the event.
-
-To create all the sensors described above, run:
-{% highlight javascript %}
-kubectl apply -f idp/core/tools/argo/events/sensors
-{% endhighlight %}
-
-##  Workflow Orchestration
-To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received through the FastAPI endpoints via Argo Events sensors. For example, when a developer calls the **/compute** FastAPI endpoint to provision a new compute resource, Argo Workflows will coordinate the necessary steps required to fulfill the request using Terraform. To achieve this, we need to create the following resources in Kubernetes:
-
-- ### Workflow Templates
-These are reusable templates that define the structure and steps of a workflow. For instance, we might have templates for provisioning infrastructure, deploying applications, or running configuration management tasks.
-
-- ### Artifact Repositories
-Some of the workflows executed on our Platform will use input and output artifacts. To enabled this, we must enable and configure an artifact repositories, such as S3, Git, or HTTP servers, for storing and retrieving workflow inputs, outputs, and other artifacts.
-Workflow Triggers: 
-
-- ### Workflow Volumes
-In our Platform Engineering solution, we leverage Kubernetes Secrets to securely store and manage sensitive information, such as credentials for infrastructure provisioners (e.g., cloud provider credentials), database server passwords and other confidential data. The secrets are retrieved from Azure Key Vault using the External Secrets solution we created in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**
-
-To inject these Secrets into our workflow, we mount them as Kubernetes Volumes within our workflow definition like this:
-
-{% highlight javascript %}
-volumes:
-  - name: platformsecrets
-    secret:
-      secretName: platformsecrets
 {% endhighlight %}
 
 By integrating Argo Workflows, our Platform is now capable of handling the intricate details of provisioning, deployment, and management of infrastructure and applications.
