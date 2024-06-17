@@ -255,26 +255,9 @@ kubectl apply -f idp/core/tools/argo/events/sensors
 To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received through the FastAPI endpoints via Argo Events sensors. For example, when a developer calls the **/compute** FastAPI endpoint to provision a new compute resource, Argo Workflows will coordinate the necessary steps required to fulfill the request using Terraform. To achieve this, we need to create the following resources in Kubernetes:
 
 - ### Workflow Templates
-These are reusable templates that define the structure and steps of a workflow. For instance, we might have templates for provisioning infrastructure, deploying applications, or running configuration management tasks.
+The **compute-provision-workflow** template is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. 
 
-- ### Artifact Repositories
-Some of the workflows executed on our Platform will use input and output artifacts. To enabled this, we must enable and configure an artifact repositories, such as S3, Git, or HTTP servers, for storing and retrieving workflow inputs, outputs, and other artifacts.
-Workflow Triggers: 
-
-- ### Workflow Volumes
-In our Platform Engineering solution, we leverage Kubernetes Secrets to securely store and manage sensitive information, such as credentials for infrastructure provisioners (e.g., cloud provider credentials), database server passwords and other confidential data. The secrets are retrieved from Azure Key Vault using the External Secrets solution we created in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**
-
-To inject these Secrets into our workflow, we mount them as Kubernetes Volumes within our workflow definition like this:
-
-{% highlight javascript %}
-volumes:
-  - name: platformsecrets
-    secret:
-      secretName: platformsecrets
-{% endhighlight %}
-
-- ### Compute Provisioning Workflow
-The **compute-provision-workflow** is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. The workflow follows these general stages:
+The workflow follows these general stages:
 
   - The workflow first validates the input parameters received from the webhook event, ensuring that all required information is provided, such as the cloud provider, resource type, region etc.
   - Based on the requested resource type and cloud provider, the workflow retrieves the appropriate Terraform configuration files or modules from a centralized repository.
@@ -313,7 +296,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "musanaengineering/platformtools:terraform-v1.0.0"
-        command: [/bin/bash]
+        command: ["/bin/bash"]
         source: |
           sudo chown devops:devops /home/devops -R 
           sudo chmod 775 /home/devops -R 
@@ -377,6 +360,19 @@ spec:
             dependencyName: webhook
             dataKey: body.requester_email
           dest: spec.arguments.parameters.5.value
+{% endhighlight %}
+
+- ### Artifact Repositories
+Some of the workflows executed on our Platform will use input and output artifacts. To enable this, we will configure an Azure Storage Account as our artifacts store.
+
+- ### Workflow Volumes
+We leverage Kubernetes Secrets to securely store and manage sensitive information, such as credentials for infrastructure provisioners (e.g., cloud provider credentials), database server passwords and other confidential data. The secrets are retrieved from Azure Key Vault using the External Secrets solution we created in **[PART 1](https://musana.engineering/platform-engineering-on-k8s-part1/)**. To inject these Secrets into our workflow, we mount them as Kubernetes Volumes within our workflow definition like this:
+
+{% highlight javascript %}
+volumes:
+  - name: platformsecrets
+    secret:
+      secretName: platformsecrets
 {% endhighlight %}
 
 By integrating Argo Workflows, our Platform is now capable of handling the intricate details of provisioning, deployment, and management of infrastructure and applications.
