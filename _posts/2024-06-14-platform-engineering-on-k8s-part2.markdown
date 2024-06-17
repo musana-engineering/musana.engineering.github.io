@@ -18,6 +18,7 @@ With the groundwork established in **[PART 1](https://musana.engineering/platfor
   - [Workflow Templates](#workflow-templates)
   - [Artifact Repositories ](#artifact-repositories)
   - [Workflow Volumes ](#workflow-volumes)
+- [Summary ](#summary)
 
 ## Event-driven Automation
 To add event-driven automation capabilities within our platform, we will configure Argo Events to integrate with an event source and trigger automated Argo workflows. Our aim is to trigger a Workflow upon receiving an HTTP POST request from FastAPI, such as when a developer initiates a request to provision a new environment or deploy an application. To achieve this, we need to create the following resources in Kubernetes.
