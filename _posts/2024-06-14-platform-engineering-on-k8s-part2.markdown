@@ -252,7 +252,27 @@ kubectl apply -f idp/core/tools/argo/events/sensors
 {% endhighlight %}
 
 ##  Workflow Orchestration
-To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received through the FastAPI endpoints via Argo Events sensors. For example, when a developer calls the **/compute** FastAPI endpoint to provision a new compute resource, Argo Workflows will coordinate the necessary steps required to fulfill the request using Terraform. To achieve this, we need to create the following resources in Kubernetes:
+To add CI/CD and Workflow Orchestration capabilities within our platform, we will configure Argo Workflows to orchestrate the end-to-end processes triggered by developer requests received via the Argo Events sensors. For example, when a developer calls the **/compute** endpoint in FastAPI, to provision a new compute resource, Argo Workflows will execute a series of steps required to fulfill the request using Terraform. 
+
+Argo Workflows provides different types of templates to define the steps within a workflow. Two commonly used templates are the **script** template and the **container** template. Both execute containers based on specified Docker images.
+
+To create all the sensors described above, run:
+{% highlight javascript %}
+// Script template
+name: example1
+script:
+  imagePullPolicy: "Always"
+  image: musanaengineering/platformtools:terraform-v1.0.0
+  command: [/bin/bash]
+  source: |
+
+// Container template
+name: example2
+container:
+  image: musanaengineering/platformtools:terraform-v1.0.0
+  command: [echo]
+  args: ["{{inputs.parameters.message}}"]
+{% endhighlight %}
 
 - ### Workflow Templates
 The **compute-provision-workflow** template is triggered by the **compute-provision-sensor** in response to events received from the **/compute** webhook endpoint. Upon receiving the event from the sensor, the workflow executes a series of steps to provision the requested resources using Terraform. 
