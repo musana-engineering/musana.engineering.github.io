@@ -395,6 +395,19 @@ volumes:
       secretName: platformsecrets
 {% endhighlight %}
 
-By integrating Argo Workflows, our Platform is now capable of handling the intricate details of provisioning, deployment, and management of infrastructure and applications.
+## Summary
+In this second part of the series, we enhanced our internal developer platform by integrating Argo Events for event-driven automation and Argo Workflows for workflow orchestration. This enables developers to trigger automated provisioning of infrastructure and applications through a seamless API experience.
 
-## More coming shortly...!
+The key implementations are:
+
+- **EventBus:** A NATS-based central messaging hub for efficient event distribution between EventSources and Sensors.
+- **EventSource:** A Webhook EventSource configured to listen for HTTP POST requests from FastAPI.
+- **Sensors:** 
+  - Compute Provisioning Sensor listens for /compute events to trigger compute-provision-workflow for provisioning compute resources like VMs and Kubernetes clusters using Terraform.
+  - Storage Provisioning Sensor listens for /storage events to trigger storage-provision-workflow for provisioning storage resources like Blob Storage and File Shares.
+  - Database Provisioning Sensor listens for /database events to trigger database-provision-workflow for provisioning database resources like SQL and NoSQL databases.
+- **Workflow Templates:** Defining stages for provisioning requested resources using Terraform based on dynamic parameters
+- **Artifact Repositories and Volumes:** An Azure Storage Account configured as an artifact store, and Kubernetes Secrets used to securely manage sensitive data like cloud provider credentials.
+
+This integration enables event-driven automation, where developer requests received via the FastAPI frontend trigger corresponding Argo Workflows to provision and manage infrastructure and applications on Kubernetes using Terraform. Our platform now handles the intricate details of provisioning, deployment, and management in a streamlined manner.
+In the upcoming part of this series, we will dive deeper into the implementation of the FastAPI frontend API layer, providing developers with an intuitive interface to interact with the platform's capabilities.
