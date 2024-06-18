@@ -31,7 +31,8 @@ comments:
     theme: "light"
 
 # Tracker
-analytics: # Google Analytics
+analytics: G-64FMGRY5TN # Google Analytics
+#google_analytics: G-64FMGRY5TN
 
 # Build Settings
 markdown: kramdown
