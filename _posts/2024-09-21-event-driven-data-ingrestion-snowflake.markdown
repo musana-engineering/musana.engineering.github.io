@@ -42,9 +42,9 @@ The production factories owned by JavaSips form a dense network, a mesh of coffe
 To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new files uploaded by each factory.
 
 - ### Ingestion Architecture Overview
+![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
   - **Data Upload:** At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
   - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
-![event-model](https://github.com/user-attachments/assets/3a96ec52-e63f-4376-85cf-e0c3e86da95d)
   - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
 
