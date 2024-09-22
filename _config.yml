@@ -9,7 +9,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Jim Musana # add your name
 author-img: jim-musana.jpg # add your photo
-about-author: Student at SNHU. Passionate about the cloud-native ecosystem , with a strong emphasis on Kubernetes, infrastructure, and networking
+about-author: Curating Technical recipies on cloud-native technologies. Passionate about Platform Engineering, Kubernetes and the Cloud
 social-twitter: musana_eng
 #social-facebook: # add your Facebook handle
 social-github: musana-engineering
