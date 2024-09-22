@@ -12,7 +12,7 @@ Loading and processing data are crucial for any effective data analytics platfor
 Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events.
 
 In this article, I’ll walk you through setting up automated data ingestion whenever a new file is uploaded to a Microsoft Azure Blob storage account, which will serve as our named external stage for Snowflake. This method boosts efficiency and gives us access to the latest data in near real-time.
-![main](https://github.com/user-attachments/assets/8eeaf7ca-40e2-4dc0-a42f-bb79261a316b)
+![architecture](https://github.com/user-attachments/assets/c37fd0af-aa9a-432c-9add-da76e24cb7a1)
 ## Table of Contents
 - [Prerequisites ](#prerequisites)
 - [Introducing JavaSips ](#introducing-java-sips)
