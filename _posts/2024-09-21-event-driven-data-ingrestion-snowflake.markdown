@@ -45,7 +45,7 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
   - **Data Upload:** At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
   - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
 ![event-model](https://github.com/user-attachments/assets/3a96ec52-e63f-4376-85cf-e0c3e86da95d)
-  - **Event Handling:** CafeJaba utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
+  - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is sent to Argo Events, which triggers an Argo workflow. Within the workflow steps, we extract the file URL from the incoming event, load the file into a Snowflake internal stage and then execute a COPY command to transfer the data from the internal stage into the factory specific Snowflake table.
 
 Now that we have an example to work with, let’s see how we design this architecture for the JavaSips data platform.
@@ -54,5 +54,5 @@ Now that we have an example to work with, let’s see how we design this archite
 
 
 ## Summary
-With this automated ingestion process, CafeJaba can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
+With this automated ingestion process, JavaSips can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
 
