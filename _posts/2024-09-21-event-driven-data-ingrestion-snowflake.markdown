@@ -57,6 +57,31 @@ To setup the foundation for our data ingestion platform, we'll start by deployin
 - Azure Event Hubs Namespace
 - Azure Event Hub
 
+If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the ```Contributor``` role on your Azure subscription.
+
+{% highlight javascript %}
+// Login to Azure CLI and set the subscription to use
+az login
+az account set -s "your_subscription_id_here"
+
+// Set the following Environment Variables
+export ARM_CLIENT_ID="your_client_id_here"
+export ARM_CLIENT_SECRET="your_client_secret_here"
+export ARM_TENANT_ID="your_tenant_id_here"
+
+// Clone the project repository
+git clone https://github.com/musana-engineering/snowflake.git
+
+// Navigate to the network directory
+cd snowflake/azure
+
+// Generate and review the Terraform plan
+terraform init && terraform plan
+
+// Provision the resources.
+terraform apply
+{% endhighlight %}
+
 ## Create the Snowflake componets
 
 
