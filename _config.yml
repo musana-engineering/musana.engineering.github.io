@@ -9,7 +9,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Jim Musana # add your name
 author-img: jim-musana.jpg # add your photo
-about-author: Curating technical recipes on cloud-native technologies with a passion for platform engineering, Kubernetes, and cloud solutions
+about-author: Technical recipes on cloud-native technologies with a passion for platform engineering, Kubernetes, and cloud solutions
 social-twitter: musana_eng
 #social-facebook: # add your Facebook handle
 social-github: musana-engineering
