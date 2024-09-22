@@ -57,7 +57,7 @@ To setup the foundation for our data ingestion platform, we'll start by deployin
 - Azure Event Hubs Namespace
 - Azure Event Hub
 
-If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the ```Contributor``` role on your Azure subscription.
+If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the **Contributor** role on your Azure subscription.
 
 {% highlight javascript %}
 // Login to Azure CLI and set the subscription to use
