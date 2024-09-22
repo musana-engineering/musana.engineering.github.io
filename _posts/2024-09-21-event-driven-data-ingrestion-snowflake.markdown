@@ -48,9 +48,10 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
   - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
 
-Now that we have an example to work with, let’s see how we design this architecture for the JavaSips data platform.
+Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
 
-## Next Section
+## Create the Azure components
+## Create the Snowflake componets
 
 
 ## Summary
