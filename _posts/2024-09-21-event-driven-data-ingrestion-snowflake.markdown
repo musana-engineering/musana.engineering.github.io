@@ -7,7 +7,7 @@ img: snowflake.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes, snowflake, datapipelines]
 ---
-
+![architecture](https://github.com/user-attachments/assets/6b7d2ba9-aa6c-4ae8-a761-0ecac22a3fec)
 Loading and processing data are crucial for any effective data analytics platform. Snowflake provides various methods for data ingestion, including bulk loading and continuous processing. In this article, I’ll dive into the practical implementation of the event-driven method.
 
 Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events.
