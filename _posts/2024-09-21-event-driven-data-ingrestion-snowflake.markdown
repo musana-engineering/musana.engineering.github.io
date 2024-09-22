@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Event-Driven Data Ingestion into Snowflake - Powered by Azure Event Hub, Argo Events, and Argo Workflows
+title: Event-Driven Data Ingestion into Snowflake on Kubernetes - Leveraging Azure Event Hubs, Argo Events, and Argo Workflows
 date: 2024-09-20 13:32:20 +0300
 description: Exploring the practical implementation of an event-driven architecture for seamless data ingestion into Snowflake, utilizing Microsoft Azure External Stages, Event Hubs, Argo Events, and Argo Workflows.
 img: snowflake.jpg # Add image post (optional)
@@ -51,6 +51,12 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
 Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
 
 ## Create the Azure components
+To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. We will define and provision these resources using Terraform, which include:
+
+- Azure Storage Account
+- Azure Event Hubs Namespace
+- Azure Event Hub
+
 ## Create the Snowflake componets
 
 
