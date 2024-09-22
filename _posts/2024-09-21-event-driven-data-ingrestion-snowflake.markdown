@@ -16,7 +16,7 @@ In this article, I’ll walk you through setting up automated data ingestion whe
 ## Table of Contents
 - [Prerequisites ](#prerequisites)
 - [Introducing JavaSips ](#introducing-java-sips)
-- [Ingestion Architecture Overview ](#Ingestion-architecture-overview)
+  - [Ingestion Architecture Overview ](#ingestion-architecture-overview)
   - [Data Upload](#data-upload)
   - [Event Handling ](#event-handling)
   - [Workflow Execution ](#workflow-execution)
