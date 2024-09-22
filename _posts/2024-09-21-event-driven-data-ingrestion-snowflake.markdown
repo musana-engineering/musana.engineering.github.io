@@ -54,6 +54,7 @@ Now that we have an example to work with, let’s see how we implement this arch
 To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform and include the following; 
 
 {% highlight javascript %}
+- Azure Virtual Network
 - Azure Storage Account
 - Azure Blob Container
 - Azure Event Hubs Namespace
