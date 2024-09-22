@@ -8,9 +8,11 @@ fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes, snowflake, datapipelines]
 ---
 
-Loading and processing data is essential for any effective data analytics system. Event-driven data ingestion is a method for loading data into a target system in response to specific events or triggers. It's a more efficient way to process data than traditional batch processing because it responds to events in real time.
+Loading and processing data are crucial for any effective data analytics platform. Snowflake provides various methods for data ingestion, including bulk loading and continuous processing. In this article, I’ll dive into the practical implementation of the event-driven method.
 
-Snowflake offers multiple methods for data ingestion, including bulk loading and continuous processing. In this article, I’ll guide you through the event-driven approach, which automates data ingestion from a storage location in Microsoft Azure each time a new data file is uploaded. This approach enhances efficiency and allows us to have access to the latest data in near-realtime.
+Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events.
+
+I’ll walk you through setting up automated data ingestion whenever a new file is uploaded to a Microsoft Azure Blob storage account, which will serve as our external stage for Snowflake. This method boosts efficiency and gives us access to the latest data in near real-time.
 
 ## Table of Contents
 - [Prerequisites ](#prerequisites)
@@ -23,6 +25,13 @@ Snowflake offers multiple methods for data ingestion, including bulk loading and
 - [Summary ](#summary)
 
 ## Prerequisites
+Before you get started, please ensure you have the following:
+
+- A Snowflake account with the necessary roles to create resources. This is where we will set up the Snowflake resources such as data warehouses, databases and tables to support the data ingestion processes discussed here. Sign up for a **[trial account](https://signup.snowflake.com/?utm_source=google&utm_medium=paidsearch&utm_campaign=na-us-en-brand-trial-exact&utm_content=go-eta-evg-ss-free-trial&utm_term=c-g-snowflake%20trial%20account-e&_bt=579123129595&_bk=snowflake%20trial%20account&_bm=e&_bn=g&_bg=136172947348&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQjw3bm3BhDJARIsAKnHoVWVpbV2-xagFD0LBmC-kxgnMcg0cH1afvWSLIko69Y0DtP6mnHRUCYaAjUREALw_wcB)**.
+- An Azure account with a subscription and permissions to create resources. This is where we will set up the cloud infrastructure needed to support the data ingestion processes discussed here. Sign up for **[trial account](https://azure.microsoft.com/en-gb/pricing/offers/ms-azr-0044p/)**
+- **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)** installed on your local machine. You will need this when we get to the steps to provision the resources that we need to support the data ingestion processes discussed here. These will be provisioned in the Snowflake and Azure accounts.
+- **[Kubectl](https://kubernetes.io/docs/tasks/tools/)** installed on your local machine. You'll need this to interact with a Kubernetes cluster when we get to the steps for setting up Argo Events and Argo Workflows.
+- Access to a running Kubernetes cluster. Ensure that Argo Events and Argo Workflows are installed and configured on that cluster. If you haven’t set them up yet, you can refer to my earlier article on this topic: **[Platform Engineering on Kubernetes](https://musana.engineering/platform-engineering-on-k8s-part1/)**
 
 ## Introducing JavaSips
 JavaSips is a fictitious company dedicated to providing a range of coffee-derived products, including beverages and pastries. Their mission is to deliver the best coffee in the world on demand, ensuring swift service no matter where or when customers place their orders.
