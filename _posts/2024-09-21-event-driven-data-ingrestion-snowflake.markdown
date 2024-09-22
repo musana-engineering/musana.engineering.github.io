@@ -51,11 +51,14 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
 Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
 
 ## Create the Azure components
-To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. We will define and provision these resources using Terraform, which include:
+To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform and include the following; 
 
+{% highlight javascript %}
 - Azure Storage Account
+- Azure Blob Container
 - Azure Event Hubs Namespace
 - Azure Event Hub
+{% endhighlight %}
 
 If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the **Contributor** role on your Azure subscription.
 
