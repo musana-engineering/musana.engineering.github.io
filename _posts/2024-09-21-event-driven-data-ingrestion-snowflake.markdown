@@ -40,10 +40,10 @@ The production factories owned by JavaSips form a dense network, a mesh of coffe
 To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new files uploaded by each factory.
 
 - ### Ingestion Architecture Overview
-- **Data Upload:** At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
-- **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage.
-- **Event Handling:** CafeJaba utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
-- **Workflow Execution:** The BlobCreated event is sent to Argo Events, which triggers an Argo workflow. Within the workflow steps, we extract the file URL from the incoming event, load the file into a Snowflake internal stage and then execute a COPY command to transfer the data from the internal stage into the factory specific Snowflake table.
+ - **Data Upload:** At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
+ - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage.
+ - **Event Handling:** CafeJaba utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
+ - **Workflow Execution:** The BlobCreated event is sent to Argo Events, which triggers an Argo workflow. Within the workflow steps, we extract the file URL from the incoming event, load the file into a Snowflake internal stage and then execute a COPY command to transfer the data from the internal stage into the factory specific Snowflake table.
 
 Now that we have an example to work with, let’s see how we design this architecture for the JavaSips data platform.
 
