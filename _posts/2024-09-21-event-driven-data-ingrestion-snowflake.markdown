@@ -40,8 +40,6 @@ The production factories owned by JavaSips form a dense network, a mesh of coffe
 To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new files uploaded by each factory.
 
 ## Architecture
-![architecture](https://github.com/user-attachments/assets/6b7d2ba9-aa6c-4ae8-a761-0ecac22a3fec)
-
 Data Upload: At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
 
 Event Generation: Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage.
