@@ -81,7 +81,7 @@ terraform apply
 {% endhighlight %}
 
 Here’s a breakdown of what gets created:
-- ** Dedicated Resource group** is created to organize and manage all related resources.
+- **Dedicated Resource group** is created to organize and manage all related resources.
 - **Azure Event Hub namespace** 
     - Trusted service access is enabled, and default action is set to "Deny," ensuring a secure environment. 
     - Specific IP rules are established to allow access from designated IP addresses.
