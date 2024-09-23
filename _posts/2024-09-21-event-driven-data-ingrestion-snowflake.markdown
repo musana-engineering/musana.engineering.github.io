@@ -100,7 +100,7 @@ Here’s a breakdown of what gets created:
     - A system-assigned identity is also configured for secure interactions.
     - A role assignment is made, granting the "Azure Event Hubs Data Sender" role to the Event Grid system topic.
 - **Event subscription** is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
-- **Private Link Access** for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
+- **Private Link Access** is configured for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
 
 ## Create the Snowflake componets
 
