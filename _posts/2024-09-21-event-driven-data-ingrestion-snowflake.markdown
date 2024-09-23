@@ -20,9 +20,9 @@ In this article, we’ll explore a practical setup in which data ingestion is tr
 - [Introducing JavaSips ](#introducing-java-sips)
   - [Ingestion Architecture Overview ](#ingestion-architecture-overview)
   - [Data Upload](#data-upload)
+  - [Event Generation ](#event-generation)
   - [Event Handling ](#event-handling)
   - [Workflow Execution ](#workflow-execution)
-  - [Data Loading ](#data-loading)
 - [Summary ](#summary)
 
 ## Prerequisites
