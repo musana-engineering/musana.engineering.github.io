@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Event-Driven Data Ingestion into Snowflake on Kubernetes - Leveraging Azure Event Hubs, Argo Events, and Argo Workflows
+title: Event-Driven Data Pipeline to Snowflake on Kubernetes with Azure Event Hubs and Argo
 date: 2024-09-20 13:32:20 +0300
 description: Exploring the practical implementation of an event-driven architecture for seamless data ingestion into Snowflake, utilizing Microsoft Azure External Stages, Event Hubs, Argo Events, and Argo Workflows.
 img: snowflake.jpg # Add image post (optional)
