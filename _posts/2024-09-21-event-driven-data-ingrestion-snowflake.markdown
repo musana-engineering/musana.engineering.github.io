@@ -51,13 +51,14 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
   - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
 
-Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
-
 - ### Differences from Snowpipe
 While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
 - Snowpipe: While effective, Snowpipe can become expensive, especially at high data volumes due to its pricing model based on the amount of data processed and the frequency of loading.
 - By leveraging existing Kubernetes clusters, we can take advantage of built-in mechanisms for cost savings. 
 - Additionally, since Argo Events and Argo Workflows are open-source, our solution avoids the ongoing costs associated with Snowpipe, making it a more budget-friendly option for organizations with high ingestion needs.
+
+Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
+
 ## Create the Azure components
 To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform. 
 
