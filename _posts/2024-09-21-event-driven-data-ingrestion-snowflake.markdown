@@ -82,6 +82,10 @@ terraform apply
 
 Here’s a breakdown of what gets created:
 - **Dedicated Resource group** is created to organize and manage all related resources.
+- **Virtual Network** 
+    - Established with a defined address space specified
+    - A core subnet is created within the virtual network
+    - Service endpoints are configured for both Azure Storage and Azure Event Hubs, for secure access.
 - **Azure Event Hub namespace** 
     - Trusted service access is enabled, and default action is set to "Deny," ensuring a secure environment. 
     - Specific IP rules are established to allow access from designated IP addresses.
@@ -96,6 +100,8 @@ Here’s a breakdown of what gets created:
     - A system-assigned identity is also configured for secure interactions.
     - A role assignment is made, granting the "Azure Event Hubs Data Sender" role to the Event Grid system topic.
 - **Event subscription** is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
+- **Private Link Access** for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
+
 ## Create the Snowflake componets
 
 
