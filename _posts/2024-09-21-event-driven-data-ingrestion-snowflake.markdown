@@ -81,7 +81,7 @@ terraform apply
 {% endhighlight %}
 
 Here’s a breakdown of what gets created:
-- An Azure Event Hub namespace is created with the specified name and location. 
+- **Azure Event Hub namespace** 
     - Trusted service access is enabled, and default action is set to "Deny," ensuring a secure environment. 
     - Specific IP rules are established to allow access from designated IP addresses.
     - A virtual network rule is configured to enable access from the specified subnet.
@@ -89,12 +89,12 @@ Here’s a breakdown of what gets created:
     - A Private endpoint is created, linking the namespace to a specific subnet, isolating it from the public internet
     - A private DNS zone group is configured, ensuring that DNS resolution for the private endpoint works seamlessly.
     - An Event Hub named "snowflake" is created within the namespace.
-- An Event Grid system topic is set up to connect the Azure Storage account.
+- **Event Grid system topic** is set up to connect the Azure Storage account.
     - This topic is where BlobCreated events will originate. 
     - This topic facilitates event routing from the storage account to the Event Hub.
     - A system-assigned identity is also configured for secure interactions.
     - A role assignment is made, granting the "Azure Event Hubs Data Sender" role to the Event Grid system topic.
-    - An event subscription is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
+- **Event subscription** is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
 ## Create the Snowflake componets
 
 
