@@ -51,17 +51,11 @@ To improve operational efficiency, JavaSips aims to implement an event-driven ar
 Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
 
 ## Create the Azure components
-To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform and include the following; 
-
-{% highlight javascript %}
-- Azure Virtual Network
-- Azure Storage Account
-- Azure Blob Container
-- Azure Event Hubs Namespace
-- Azure Event Hub
-{% endhighlight %}
+To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform. 
 
 If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the **Contributor** role on your Azure subscription.
+
+Next, Apply the terraform configuration to provision the resources.
 
 {% highlight javascript %}
 // Login to Azure CLI and set the subscription to use
@@ -86,6 +80,21 @@ terraform init && terraform plan
 terraform apply
 {% endhighlight %}
 
+Here’s a breakdown of what gets created:
+- An Azure Event Hub namespace is created with the specified name and location. 
+    - Trusted service access is enabled, and default action is set to "Deny," ensuring a secure environment. 
+    - Specific IP rules are established to allow access from designated IP addresses.
+    - A virtual network rule is configured to enable access from the specified subnet.
+    - A system-assigned identity is created for secure access management.
+    - A Private endpoint is created, linking the namespace to a specific subnet, isolating it from the public internet
+    - A private DNS zone group is configured, ensuring that DNS resolution for the private endpoint works seamlessly.
+    - An Event Hub named "snowflake" is created within the namespace.
+- An Event Grid system topic is set up to connect the Azure Storage account.
+    - This topic is where BlobCreated events will originate. 
+    - This topic facilitates event routing from the storage account to the Event Hub.
+    - A system-assigned identity is also configured for secure interactions.
+    - A role assignment is made, granting the "Azure Event Hubs Data Sender" role to the Event Grid system topic.
+    - An event subscription is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
 ## Create the Snowflake componets
 
 
