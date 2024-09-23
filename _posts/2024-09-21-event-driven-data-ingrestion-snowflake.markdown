@@ -7,9 +7,11 @@ img: snowflake.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes, snowflake, datapipelines]
 ---
-Loading and processing data are crucial for any effective data analytics platform. Snowflake provides various methods for data ingestion, including bulk loading and continuous processing. 
+Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events. **Snowflake** provides various methods for data ingestion including bulk loading and continuous processing. It allows the loading of data from the following cloud services:
 
-Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events. 
+- Amazon S3
+- Google Cloud Storage
+- Microsoft Azure Blob Storage.
 
 ![architecture](https://github.com/user-attachments/assets/c37fd0af-aa9a-432c-9add-da76e24cb7a1)
 
