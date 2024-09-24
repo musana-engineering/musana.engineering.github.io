@@ -63,7 +63,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `quantity`         | INTEGER   | Number of items sold                            |
 | `total_price`      | FLOAT     | Total price of the transaction                  |
 | `transaction_date` | TIMESTAMP | Date and time of the transaction                |
-| `payment_method`   | STRING    | Method of payment used (e.g., credit card)     |
+| `payment_method`   | STRING    | Method of payment used (e.g., credit card)      |
 
 - Products
 
@@ -71,26 +71,26 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 |------------------|-----------|---------------------------------------------------|
 | `product_id`     | STRING    | Unique identifier for each product                |
 | `product_name`   | STRING    | Name of the product                               |
-| `category`       | STRING    | Category of the product (e.g., beverage, pastry) |
+| `category`       | STRING    | Category of the product (e.g., beverage, pastry)  |
 | `price`          | FLOAT     | Price of the product                              |
 | `stock_quantity` | INTEGER   | Number of items available in stock                |
 
 - Customers
 
-| Column Name      | Data Type | Description                                     |
-|------------------|-----------|-------------------------------------------------|
-| `customer_id`    | STRING    | Unique identifier for each customer             |
-| `customer_name`  | STRING    | Name of the customer                            |
-| `email`          | STRING    | Email address of the customer                   |
-| `location`       | STRING    | Geographical location of the customer           |
+| Column Name      | Data Type | Description                                       |
+|------------------|-----------|-------------------------------------------------  |
+| `customer_id`    | STRING    | Unique identifier for each customer               |
+| `customer_name`  | STRING    | Name of the customer                              |
+| `email`          | STRING    | Email address of the customer                     |
+| `location`       | STRING    | Geographical location of the customer             |
 
 - Business_Units
 
-| Column Name        | Data Type | Description                             |
-|--------------------|-----------|-----------------------------------------|
-| `business_unit_id` | STRING    | Unique identifier for each business unit|
-| `country`          | STRING    | Country where the business unit operates|
-| `unit_name`       | STRING    | Name of the business unit               |
+| Column Name        | Data Type | Description                                     |
+|--------------------|-----------|-----------------------------------------        |
+| `business_unit_id` | STRING    | Unique identifier for each business unit        |
+| `country`          | STRING    | Country where the business unit operates        |
+| `unit_name`       | STRING    | Name of the business unit                        |
 {% endhighlight %}
 
 - ### Ingestion architecture overview
