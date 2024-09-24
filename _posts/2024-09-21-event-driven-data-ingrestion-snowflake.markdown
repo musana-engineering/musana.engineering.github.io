@@ -59,7 +59,7 @@ While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, 
 
 Now that we have an example to work with, let’s see how we implement this architecture for the GloboLatte data platform.
 
-## Create the Azure components
+### Create the Azure components
 To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform. 
 
 If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the **Contributor** role on your Azure subscription.
@@ -111,10 +111,10 @@ Here’s a breakdown of what gets created:
 - **Event subscription** is created for the Event Grid system topic, specifically configured to handle "BlobCreated" events. This subscription routes these events to the Event Hub, enabling real-time processing of new data files uploaded to Azure Blob Storage
 - **Private Link Access** is configured for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
 
-## Create the Snowflake componets
+### Create the Snowflake componets
 Next we will deploying the necessary resources in Snowflake. These resources are also defined and provisioned by Terraform.
 
-## Summary
+### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
 
-## NOTE: This article is NOT finished and still under development.......
+### NOTE: This article is NOT finished and still under development.......
