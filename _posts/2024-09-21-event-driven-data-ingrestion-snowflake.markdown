@@ -223,7 +223,7 @@ With the necessary resources for our data ingestion pipeline established in Azur
 
 To accomplish this, we will set up the following resources:
 
-- **EventSource:** An EventSource defines the configurations required to consume events from various external sources, such as AWS SNS, SQS, GCP Pub/Sub, and webhooks. It transforms incoming events into CloudEvents and dispatches them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
+- **[EventSource](https://argoproj.github.io/argo-events/concepts/event_source/):** The EventSource will define the configurations required to consume events from various external sources, transform them into CloudEvents and dispatch them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
@@ -248,7 +248,7 @@ spec:
       jsonBody: true
 {% endhighlight %}
 
-- **EventBus:** The EventBus serves as the transport layer for Argo Events, connecting EventSources and Sensors. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the EventBus
+- **[EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/):** The EventBus will serve as the transport layer for Argo Events, connecting our EventSource and Sensor. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the Argo Events EventBus
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
@@ -261,11 +261,11 @@ spec:
     version: 2.8.1
 {% endhighlight %}
 
-- **Sensor:** A Sensor defines a set of event dependencies (inputs) and triggers (outputs). It listens for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor will listen for events from the EventBus and trigger workflows in Argo Workflows 
+- **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/):** The Sensor wil define a set of event dependencies (inputs) and triggers (outputs). It will listen for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor leverages the EventSource and EventBus as its dependencies.
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
-{% highlight ruby %}
+{% highlight javascript %}
 // Connect to your Kubernetes Cluster
 export CLUSTER_NAME="your_snowflake_account"
 export CLUSTER_RESOURCE_GROUP="your_snowflake_username"
@@ -287,7 +287,7 @@ kubectl apply -f sensor.yaml
 
 After deploying the resources, verify that they have been successfully created by running the following commands:
 
-{% highlight ruby %}
+{% highlight javascript %}
 kubectl get EventBus && \
 kubectl get EventSource && \
 kubectl get Sensor \
