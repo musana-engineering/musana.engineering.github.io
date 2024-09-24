@@ -222,9 +222,39 @@ With the necessary resources for our data ingestion pipeline established in Azur
 To accomplish this, we will set up the following resources:
 
 - EventSource: An EventSource defines the configurations required to consume events from various external sources, such as AWS SNS, SQS, GCP Pub/Sub, and webhooks. It transforms incoming events into CloudEvents and dispatches them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
-
+{% highlight ruby %}
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: azure-events-hub
+  namespace: argo-events
+spec:
+  eventBusName: eventbus-main
+  azureEventsHub:
+    ceplatform:
+      # FQDN of the EventsHub namespace you created
+      fqdn: evhn-gblatte.servicebus.windows.net
+      sharedAccessKeyName:
+        name: secret_containing_shared_access_key_name
+        key: key_within_the_secret_which_holds_the_value_of_shared_access_key_name
+      sharedAccessKey:
+        name: secret_containing_shared_access_key
+        key: key_within_the_secret_which_holds_the_value_of_shared_access_key
+      # Event Hub path/name
+      hubName: salesdata
+      jsonBody: true
+{% endhighlight %}
 - EventBus: The EventBus serves as the transport layer for Argo Events, connecting EventSources and Sensors. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the EventBus
-
+{% highlight ruby %}
+apiVersion: argoproj.io/v1alpha1
+kind: EventBus
+metadata:
+  name: azure-eventhub
+  namespace: argo-events
+spec:
+  jetstream:
+    version: 2.8.1
+{% endhighlight %}
 - Sensor: A Sensor defines a set of event dependencies (inputs) and triggers (outputs). It listens for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor will listen for events from the EventBus and trigger workflows in Argo Workflows 
 
 {% highlight ruby %}
