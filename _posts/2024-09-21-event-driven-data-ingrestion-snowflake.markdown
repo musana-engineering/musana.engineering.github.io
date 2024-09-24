@@ -254,14 +254,40 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: EventBus
 metadata:
-  name: azure-eventhub
+  name: eventbus
   namespace: argo-events
 spec:
-  jetstream:
-    version: 2.8.1
+  nats:
+    native:
+      // Optional, defaults to 3. If it is < 3, set it to 3, that is the minimal requirement.
+      replicas: 3
+      // Optional, authen strategy, "none" or "token", defaults to "none"
+      auth: token
 {% endhighlight %}
 
 - **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/):** The Sensor wil define a set of event dependencies (inputs) and triggers (outputs). It will listen for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor leverages the EventSource and EventBus as its dependencies.
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: azure-events-hub
+  namespace: argo-events
+spec:
+  eventBusName: eventbus
+  template:
+    serviceAccountName: sa-argo-workflow
+  dependencies:
+    - name: azure-events-hub
+      // The EventSource this Sensor listens to
+      eventSourceName: azure-events-hub
+      // The EventBus to which the EventSource publishes events
+      eventBusName: eventbus
+      // The specific event name to listen for
+      eventName: snowflake
+  ---
+// Rest of the parts removed for Brevity //
+{% endhighlight %}
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
