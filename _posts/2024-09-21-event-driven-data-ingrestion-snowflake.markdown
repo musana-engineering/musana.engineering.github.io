@@ -44,6 +44,49 @@ GloboLatte operates business units across several countries in America, South Am
 
 To improve operational efficiency, GloboLatte aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new sales data uploaded by each business unit.
 
+To design an effective Snowflake database for GloboLatte, we’ll establish a structured schema that accommodates their sales data and optimizes for event-driven data ingestion. Below is a proposed design including database, schema, tables, and warehouses.
+
+### Snowflake Database Design
+- **Database: GloboLatte_DB**
+   - Schema: Sales_Data: This schema will house tables related to sales transactions, products, and customer information.
+- **Tables:**
+   - Table: Sales_Transactions
+{% highlight javascript %}
+      Columns:
+        transaction_id (STRING, PRIMARY KEY)
+        business_unit (STRING)
+        product_id (STRING)
+        customer_id (STRING)
+        quantity (INTEGER)
+        total_price (FLOAT)
+        transaction_date (TIMESTAMP)
+        payment_method (STRING)
+{% endhighlight %}
+   - Table: Products
+{% highlight javascript %}
+      Columns:
+        product_id (STRING, PRIMARY KEY)
+        product_name (STRING)
+        category (STRING)
+        price (FLOAT)
+        stock_quantity (INTEGER)
+{% endhighlight %}
+   - Table: Customers
+{% highlight javascript %}
+      Columns:
+        customer_id (STRING, PRIMARY KEY)
+        customer_name (STRING)
+        email (STRING)
+        location (STRING)
+{% endhighlight %}
+   - Table: Business_Units
+{% highlight javascript %}
+      Columns:
+        business_unit_id (STRING, PRIMARY KEY)
+        country (STRING)
+        unit_name (STRING)
+{% endhighlight %}
+
 - ### Ingestion Architecture Overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
   - **Data Upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
