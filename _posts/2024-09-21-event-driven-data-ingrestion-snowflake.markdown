@@ -195,6 +195,26 @@ Schema: SALES_DATA
    - Business units table to hold records of different business units
 - **File format** named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
 
+You can verify that all componets have been created using the SnowSQL CLI commands below
+{% highlight ruby %}
+// Set the following Environment Variables
+export SNOWFLAKE_ACCOUNT="your_snowflake_account"
+export SNOWFLAKE_USERNAME="your_snowflake_username"
+export SNOWFLAKE_PASSWORD="your_snowflake_password"
+
+// Login to Snowflake using SnowSQL
+snowsql -a "$SNOWFLAKE_ACCOUNT" -u "$SNOWFLAKE_USERNAME" -P
+
+// List Databases
+SHOW DATABASES;
+// List Warehouses
+SHOW WAREHOUSES;
+// List Tables
+SHOW TABLES;
+// List Table formats
+SHOW FILE FORMATS;
+{% endhighlight %}
+
 ### Create the Argo componets
 
 ### Summary
