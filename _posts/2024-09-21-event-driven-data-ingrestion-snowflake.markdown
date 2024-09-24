@@ -289,6 +289,8 @@ spec:
 // Rest of the parts removed for Brevity //
 {% endhighlight %}
 
+- **[Workflow](https://argoproj.github.io/argo-events/concepts/event_source/):** The EventSource will define the configurations required to consume events from various external sources, transform them into CloudEvents and dispatch them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
+
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
 {% highlight javascript %}
@@ -314,8 +316,11 @@ kubectl apply -f sensor.yaml
 After deploying the resources, verify that they have been successfully created by running the following commands:
 
 {% highlight javascript %}
+// Set the current context to the argo-events namespace
 kubectl config set-context --current --namespace=argo-events
-kubectl get EventBus && kubectl get EventSource && kubectl get Sensor 
+
+// Retrieve and display the EventBus, EventSource, and Sensor resources
+kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 {% endhighlight %}
 
 ### Summary
