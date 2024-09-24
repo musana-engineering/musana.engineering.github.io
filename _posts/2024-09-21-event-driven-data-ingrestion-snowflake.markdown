@@ -184,6 +184,7 @@ terraform init && terraform plan
 // Provision the resources.
 terraform apply
 {% endhighlight %}
+
 Here’s a breakdown of what gets created:
 - **Database** named GLOBO_LATTE_DB. This serves as the primary container for all data objects, including schemas, tables, and file formats related to GloboLatte's operations.
 Schema: SALES_DATA
@@ -197,6 +198,7 @@ Schema: SALES_DATA
 - **File format** named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
 
 You can verify that all componets have been created using the SnowSQL CLI commands below
+
 {% highlight ruby %}
 // Set the following Environment Variables
 export SNOWFLAKE_ACCOUNT="your_snowflake_account"
@@ -222,7 +224,8 @@ With the necessary resources for our data ingestion pipeline established in Azur
 To accomplish this, we will set up the following resources:
 
 - EventSource: An EventSource defines the configurations required to consume events from various external sources, such as AWS SNS, SQS, GCP Pub/Sub, and webhooks. It transforms incoming events into CloudEvents and dispatches them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
-{% highlight ruby %}
+
+{% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
@@ -244,8 +247,10 @@ spec:
       hubName: salesdata
       jsonBody: true
 {% endhighlight %}
+
 - EventBus: The EventBus serves as the transport layer for Argo Events, connecting EventSources and Sensors. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the EventBus
-{% highlight ruby %}
+
+{% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
 kind: EventBus
 metadata:
@@ -285,6 +290,7 @@ kubectl get EventSource && \
 kubectl get Sensor \
 --namespace argo-events
 {% endhighlight %}
+
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
 
