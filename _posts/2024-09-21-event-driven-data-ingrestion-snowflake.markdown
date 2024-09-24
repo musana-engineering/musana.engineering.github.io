@@ -71,22 +71,22 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 
 - Products table
 
-| Column Name      | Data Type | Description                                       |
-|------------------|-----------|---------------------------------------------------|
-| `product_id`     | STRING    | Unique identifier for each product                |
-| `product_name`   | STRING    | Name of the product                               |
-| `category`       | STRING    | Category of the product (e.g., beverage, pastry)  |
-| `price`          | FLOAT     | Price of the product                              |
-| `stock_quantity` | INTEGER   | Number of items available in stock                |
+| Column Name        | Data Type | Description                                     |
+|------------------|-----------  |-------------------------------------------------|
+| `product_id`       | STRING    | Unique identifier for each product              |
+| `product_name`     | STRING    | Name of the product                             |
+| `category`         | STRING    | Category of the product (e.g., beverage, pastry)|
+| `price`            | FLOAT     | Price of the product                            |
+| `stock_quantity`   | INTEGER   | Number of items available in stock              |
 
 - Customers table
 
-| Column Name      | Data Type | Description                                       |
-|------------------|-----------|-------------------------------------------------  |
-| `customer_id`    | STRING    | Unique identifier for each customer               |
-| `customer_name`  | STRING    | Name of the customer                              |
-| `email`          | STRING    | Email address of the customer                     |
-| `location`       | STRING    | Geographical location of the customer             |
+| Column Name        | Data Type | Description                                     |
+|-----------------  -|-----------|-------------------------------------------------|
+| `customer_id`      | STRING    | Unique identifier for each customer             |
+| `customer_name`    | STRING    | Name of the customer                            |
+| `email`            | STRING    | Email address of the customer                   |
+| `location`         | STRING    | Geographical location of the customer           |
 
 - Business_Units table
 
@@ -94,7 +94,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 |--------------------|-----------|-----------------------------------------        |
 | `business_unit_id` | STRING    | Unique identifier for each business unit        |
 | `country`          | STRING    | Country where the business unit operates        |
-| `unit_name`       | STRING    | Name of the business unit                        |
+| `unit_name`        | STRING    | Name of the business unit                       |
 {% endhighlight %}
 
 - ### Ingestion architecture overview
