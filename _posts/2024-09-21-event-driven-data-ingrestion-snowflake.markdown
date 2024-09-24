@@ -27,6 +27,9 @@ In this article, we’ll explore a practical setup in which data ingestion is tr
      - [Event handling ](#event-handling)
      - [Workflow execution ](#workflow-execution)
    - [Differences from Snowpipe ](#differences-from-snowpipe)
+- [Create the Azure components ](#create-the-azure-components)
+- [Create the Snowflake components ](#create-the-snowflake-components)
+- [Create the Argo components ](#create-the-argo-components)
 - [Summary ](#summary)
 
 ### Prerequisites
@@ -187,6 +190,8 @@ Schema: SALES_DATA
    - Customer table to store information about customers
    - Business units table to hold records of different business units
 - **File format** named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
+
+### Create the Argo componets
 
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
