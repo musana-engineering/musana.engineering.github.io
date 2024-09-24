@@ -50,6 +50,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 - ### Snowflake database design
   - **Database:** GloboLatte_DB
   - **Schema:** Sales_Data: 
+      - This will house tables related to sales transactions, products, and customer information.
 {% highlight ruby %}
 - Sales_Transactions table
 
