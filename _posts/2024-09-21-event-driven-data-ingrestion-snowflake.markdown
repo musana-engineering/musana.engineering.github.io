@@ -47,8 +47,9 @@ To improve operational efficiency, GloboLatte aims to implement an event-driven 
 To design an effective Snowflake database for GloboLatte, we’ll establish a structured schema that accommodates their sales data and optimizes for event-driven data ingestion. Below is a proposed design including database, schema, tables, and warehouses.
 
 ### Snowflake Database Design
-- **Database: GloboLatte_DB**
-   - Schema: Sales_Data: This schema will house tables related to sales transactions, products, and customer information.
+- **Database:** GloboLatte_DB
+- **Schema:** Sales_Data: 
+The Sales_Data schema will house tables related to sales transactions, products, and customer information.
 - **Tables:**
    - Sales_Transactions
 {% highlight javascript %}
