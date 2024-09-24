@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Snowflake Data Ingestion Pipelines on Kubernetes- An Event-Driven Approach Powered by Argo Events and Argo Workflows
+title: Snowflake Data Pipelines on Kubernetes- An Event-Driven Approach Powered by Argo Events and Argo Workflows
 date: 2024-09-20 13:32:20 +0300
-description: Exploring the practical implementation of an event-driven architecture for seamless data ingestion into Snowflake, utilizing Microsoft Azure External Stages, Event Hubs, Argo Events, and Argo Workflows.
+description: A practical implementation of an event-driven architecture for seamless data ingestion into Snowflake, utilizing Microsoft Azure External Stages, Event Hubs, Argo Events, and Argo Workflows.
 img: snowflake.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [platformengineering, kubernetes, snowflake, datapipelines]
