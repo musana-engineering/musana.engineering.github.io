@@ -38,15 +38,15 @@ Before you get started, please ensure you have the following:
 - **Kubernetes cluster**. Ensure that Argo Events and Argo Workflows are installed and configured on that cluster. If you haven’t set them up yet, you can refer to my earlier article on this topic: **[Platform Engineering on Kubernetes](https://musana.engineering/platform-engineering-on-k8s-part1/)**
 
 ## Introducing JavaSips
-**JavaSips** is a fictitious company dedicated to providing a range of coffee-derived products, including beverages and pastries. Their mission is to deliver the best coffee in the world on demand, ensuring swift service no matter where or when customers place their orders.
+**JavaSips**, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee globally, offering swift service regardless of when and where customers place their orders.
 
-The production factories owned by JavaSips form a dense network, a mesh of coffee production units that spans several countries. At the end of each day, the operations team at each factory uploads inventory and order data files to an Azure Blob Storage account.
+JavaSips operates business units across several countries in America, South America, and Africa. At the end of each day, the operations team at each business unit uploads sales data files to an Azure Blob Storage account
 
-To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new files uploaded by each factory.
+To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new sales data uploaded by each business unit.
 
 - ### Ingestion Architecture Overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
-  - **Data Upload:** At the end of each day, each factory’s operations team uploads inventory and order data files to Azure Blob Storage, ensuring that all relevant data is centralized.
+  - **Data Upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
   - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
   - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
