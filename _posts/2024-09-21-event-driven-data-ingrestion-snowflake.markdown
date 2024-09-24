@@ -64,7 +64,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `transaction_date` | TIMESTAMP | Date and time of the transaction                |
 | `payment_method`   | STRING    | Method of payment used (e.g., credit card)     |
 {% endhighlight %}
-     - Products
+      - Products
 {% highlight ruby %}
 | Column Name      | Data Type | Description                                       |
 |------------------|-----------|---------------------------------------------------|
@@ -74,7 +74,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `price`          | FLOAT     | Price of the product                              |
 | `stock_quantity` | INTEGER   | Number of items available in stock                |
 {% endhighlight %}
-     - Customers
+      - Customers
 {% highlight ruby %}
 | Column Name      | Data Type | Description                                     |
 |------------------|-----------|-------------------------------------------------|
@@ -83,7 +83,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `email`          | STRING    | Email address of the customer                   |
 | `location`       | STRING    | Geographical location of the customer           |
 {% endhighlight %}
-     - Business_Units
+      - Business_Units
 {% highlight ruby %}
 | Column Name        | Data Type | Description                             |
 |--------------------|-----------|-----------------------------------------|
