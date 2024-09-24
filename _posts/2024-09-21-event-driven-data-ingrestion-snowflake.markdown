@@ -177,16 +177,16 @@ terraform init && terraform plan
 terraform apply
 {% endhighlight %}
 Here’s a breakdown of what gets created:
-- A new database named GLOBO_LATTE_DB is created. This serves as the primary container for all data objects, including schemas, tables, and file formats related to GloboLatte's operations.
+- **Database** named GLOBO_LATTE_DB. This serves as the primary container for all data objects, including schemas, tables, and file formats related to GloboLatte's operations.
 Schema: SALES_DATA
-- Within the GLOBO_LATTE_DB, a schema called SALES_DATA is established. Schemas help organize and group related tables logically, providing a clear structure for managing data assets associated with sales transactions and other related information.
-- A compute warehouse named GLOBO_LATTE_WH is provisioned with a size set to small. This warehouse will be utilized for processing queries, loading data, and running analytics. The small size is suitable for initial workloads, with the ability to scale as needed.
-- Tables:
+- **Schema** schema called SALES_DATA within the GLOBO_LATTE_DB databse. Schemas help organize and group related tables logically, providing a clear structure for managing data assets associated with sales transactions and other related information.
+- **Warehouse** named GLOBO_LATTE_WH with a size set to small. This warehouse will be utilized for processing queries, loading data, and running analytics. The small size is suitable for initial workloads, with the ability to scale as needed.
+- **Tables:**
    - Sales transactions table to store transaction records.
    - Products table to hold product details
    - Customer table to store information about customers
    - Business units table to hold records of different business units
-- A file format named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
+- **File format** named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
 
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
