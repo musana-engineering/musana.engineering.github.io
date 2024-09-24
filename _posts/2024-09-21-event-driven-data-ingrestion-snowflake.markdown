@@ -19,7 +19,7 @@ In this article, we’ll explore a practical setup in which data ingestion is tr
 
 ## Table of Contents
 - [Prerequisites ](#prerequisites)
-- [Introducing JavaSips ](#introducing-java-sips)
+- [Introducing GloboLatte ](#introducing-globo-latte)
   - [Ingestion Architecture Overview ](#ingestion-architecture-overview)
   - [Differences from Snowpipe ](#differences-from-snowpipe)
   - [Data Upload](#data-upload)
@@ -37,18 +37,18 @@ Before you get started, please ensure you have the following:
 - **[Kubectl](https://kubernetes.io/docs/tasks/tools/)** installed on your local machine. You'll need this to interact with a Kubernetes cluster when we get to the steps for setting up Argo Events and Argo Workflows.
 - **Kubernetes cluster**. Ensure that Argo Events and Argo Workflows are installed and configured on that cluster. If you haven’t set them up yet, you can refer to my earlier article on this topic: **[Platform Engineering on Kubernetes](https://musana.engineering/platform-engineering-on-k8s-part1/)**
 
-## Introducing JavaSips
-**JavaSips**, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee globally, offering swift service regardless of when and where customers place their orders.
+## Introducing GloboLatte
+**GloboLatte**, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee globally, offering swift service regardless of when and where customers place their orders.
 
-JavaSips operates business units across several countries in America, South America, and Africa. At the end of each day, the operations team at each business unit uploads sales data files to an Azure Blob Storage account
+GloboLatte operates business units across several countries in America, South America, and Africa. At the end of each day, the operations team at each business unit uploads sales data files to an Azure Blob Storage account
 
-To improve operational efficiency, JavaSips aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new sales data uploaded by each business unit.
+To improve operational efficiency, GloboLatte aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new sales data uploaded by each business unit.
 
 - ### Ingestion Architecture Overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
   - **Data Upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
   - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
-  - **Event Handling:** JavaSips utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
+  - **Event Handling:** GloboLatte utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
   - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
 
 - ### Differences from Snowpipe
@@ -57,7 +57,7 @@ While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, 
   - By leveraging existing Kubernetes clusters, we can take advantage of built-in mechanisms for cost savings. 
   - Additionally, since Argo Events and Argo Workflows are open-source, our solution avoids the ongoing costs associated with Snowpipe, making it a more budget-friendly option for organizations with high ingestion needs.
 
-Now that we have an example to work with, let’s see how we implement this architecture for the JavaSips data platform.
+Now that we have an example to work with, let’s see how we implement this architecture for the GloboLatte data platform.
 
 ## Create the Azure components
 To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform. 
@@ -115,6 +115,6 @@ Here’s a breakdown of what gets created:
 
 
 ## Summary
-With this automated ingestion process, JavaSips can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
+With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
 
 ## NOTE: This article is NOT finished and still under development.......
