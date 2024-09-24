@@ -112,7 +112,7 @@ Here’s a breakdown of what gets created:
 - **Private Link Access** is configured for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
 
 ## Create the Snowflake componets
-
+Next we will deploying the necessary resources in Snowflake. These resources are also defined and provisioned by Terraform.
 
 ## Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
