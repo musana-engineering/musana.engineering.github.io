@@ -110,13 +110,14 @@ While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, 
 Now that we have an example to work with, let’s see how we implement this architecture for the GloboLatte data platform.
 
 ### Create the Azure components
+
 To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. The resources are defined and provisioned by Terraform. 
 
 If you havent already done so, create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** to be used for Terraform provider authentication. Ensure the service principal has been assigned atleast the **Contributor** role on your Azure subscription.
 
 Next, Apply the terraform configuration to provision the resources.
 
-{% highlight javascript %}
+{% highlight ruby %}
 // Login to Azure CLI and set the subscription to use
 az login
 az account set -s "your_subscription_id_here"
@@ -129,7 +130,7 @@ export ARM_TENANT_ID="your_tenant_id_here"
 // Clone the project repository
 git clone https://github.com/musana-engineering/snowflake.git
 
-// Navigate to the network directory
+// Navigate to the azure directory
 cd snowflake/azure
 
 // Generate and review the Terraform plan
@@ -162,7 +163,30 @@ Here’s a breakdown of what gets created:
 - **Private Link Access** is configured for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
 
 ### Create the Snowflake componets
-Next we will deploying the necessary resources in Snowflake. These resources are also defined and provisioned by Terraform.
+
+To establish the necessary infrastructure in Snowflake for GloboLatte’s data ingestion and analysis, let's execute our Terraform code for the same.
+
+{% highlight ruby %}
+// Navigate to the snowflakes directory
+cd snowflake/snowflake
+
+// Generate and review the Terraform plan
+terraform init && terraform plan
+
+// Provision the resources.
+terraform apply
+{% endhighlight %}
+Here’s a breakdown of what gets created:
+- A new database named GLOBO_LATTE_DB is created. This serves as the primary container for all data objects, including schemas, tables, and file formats related to GloboLatte's operations.
+Schema: SALES_DATA
+- Within the GLOBO_LATTE_DB, a schema called SALES_DATA is established. Schemas help organize and group related tables logically, providing a clear structure for managing data assets associated with sales transactions and other related information.
+- A compute warehouse named GLOBO_LATTE_WH is provisioned with a size set to small. This warehouse will be utilized for processing queries, loading data, and running analytics. The small size is suitable for initial workloads, with the ability to scale as needed.
+- Tables:
+   - Sales transactions table to store transaction records.
+   - Products table to hold product details
+   - Customer table to store information about customers
+   - Business units table to hold records of different business units
+- A file format named CSV_FORMAT which specifies how CSV files will be handled when loaded into Snowflake. The format configuration includes settings such as field delimiters, skipping headers, handling blank lines, and compression settings. This prepares the environment for seamless data ingestion from CSV files.
 
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
