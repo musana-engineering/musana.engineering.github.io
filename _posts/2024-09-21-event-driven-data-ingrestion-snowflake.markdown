@@ -115,6 +115,6 @@ Here’s a breakdown of what gets created:
 Next we will deploying the necessary resources in Snowflake. These resources are also defined and provisioned by Terraform.
 
 ## Summary
-With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction.
+With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
 
 ## NOTE: This article is NOT finished and still under development.......
