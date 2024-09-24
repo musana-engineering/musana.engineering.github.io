@@ -51,8 +51,9 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Database:** GloboLatte_DB
   - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
   - **Tables:**
-    - Sales_Transactions
 {% highlight ruby %}
+- Sales_Transactions
+
 | Column Name        | Data Type | Description                                     |
 |--------------------|-----------|-------------------------------------------------|
 | `transaction_id`   | STRING    | Unique identifier for each transaction          |
@@ -63,9 +64,9 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `total_price`      | FLOAT     | Total price of the transaction                  |
 | `transaction_date` | TIMESTAMP | Date and time of the transaction                |
 | `payment_method`   | STRING    | Method of payment used (e.g., credit card)     |
-{% endhighlight %}
-      - Products
-{% highlight ruby %}
+
+- Products
+
 | Column Name      | Data Type | Description                                       |
 |------------------|-----------|---------------------------------------------------|
 | `product_id`     | STRING    | Unique identifier for each product                |
@@ -73,18 +74,18 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `category`       | STRING    | Category of the product (e.g., beverage, pastry) |
 | `price`          | FLOAT     | Price of the product                              |
 | `stock_quantity` | INTEGER   | Number of items available in stock                |
-{% endhighlight %}
-      - Customers
-{% highlight ruby %}
+
+- Customers
+
 | Column Name      | Data Type | Description                                     |
 |------------------|-----------|-------------------------------------------------|
 | `customer_id`    | STRING    | Unique identifier for each customer             |
 | `customer_name`  | STRING    | Name of the customer                            |
 | `email`          | STRING    | Email address of the customer                   |
 | `location`       | STRING    | Geographical location of the customer           |
-{% endhighlight %}
-      - Business_Units
-{% highlight ruby %}
+
+- Business_Units
+
 | Column Name        | Data Type | Description                             |
 |--------------------|-----------|-----------------------------------------|
 | `business_unit_id` | STRING    | Unique identifier for each business unit|
