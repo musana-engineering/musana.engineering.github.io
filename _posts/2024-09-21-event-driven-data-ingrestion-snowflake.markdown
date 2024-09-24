@@ -19,13 +19,14 @@ In this article, we’ll explore a practical setup in which data ingestion is tr
 
 ### Table of Contents
 - [Prerequisites ](#prerequisites)
-- [Introducing GloboLatte ](#introducing-globo-latte)
-  - [Ingestion Architecture Overview ](#ingestion-architecture-overview)
-  - [Differences from Snowpipe ](#differences-from-snowpipe)
-  - [Data Upload](#data-upload)
-  - [Event Generation ](#event-generation)
-  - [Event Handling ](#event-handling)
-  - [Workflow Execution ](#workflow-execution)
+- [Introducing GloboLatte ](#introducing-globolatte)
+   - [Snowflake database design ](#snowflake-database-design)
+   - [Ingestion architecture overview ](#ingestion-architecture-overview)
+     - [Data upload](#data-upload)
+     - [Event generation ](#event-generation)
+     - [Event handling ](#event-handling)
+     - [Workflow execution ](#workflow-execution)
+   - [Differences from Snowpipe ](#differences-from-snowpipe)
 - [Summary ](#summary)
 
 ### Prerequisites
@@ -46,53 +47,53 @@ To improve operational efficiency, GloboLatte aims to implement an event-driven 
 
 To design an effective Snowflake database for GloboLatte, we’ll establish a structured schema that accommodates their sales data and optimizes for event-driven data ingestion. Below is a proposed design including database, schema, tables, and warehouses.
 
-### Snowflake Database Design
-- **Database:** GloboLatte_DB
-- **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
-- **Tables:**
-   - Sales_Transactions
-{% highlight javascript %}
-      Columns:
-        transaction_id (STRING, PRIMARY KEY)
-        business_unit (STRING)
-        product_id (STRING)
-        customer_id (STRING)
-        quantity (INTEGER)
-        total_price (FLOAT)
-        transaction_date (TIMESTAMP)
-        payment_method (STRING)
-{% endhighlight %}
-   - Products
-{% highlight javascript %}
-      Columns:
-        product_id (STRING, PRIMARY KEY)
-        product_name (STRING)
-        category (STRING)
-        price (FLOAT)
-        stock_quantity (INTEGER)
-{% endhighlight %}
-   - Customers
-{% highlight javascript %}
-      Columns:
-        customer_id (STRING, PRIMARY KEY)
-        customer_name (STRING)
-        email (STRING)
-        location (STRING)
-{% endhighlight %}
-   - Business_Units
-{% highlight javascript %}
-      Columns:
-        business_unit_id (STRING, PRIMARY KEY)
-        country (STRING)
-        unit_name (STRING)
-{% endhighlight %}
+- ### Snowflake database design
+  - **Database:** GloboLatte_DB
+  - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
+  - **Tables:**
+    - Sales_Transactions
+  {% highlight javascript %}
+        Columns:
+          transaction_id (STRING, PRIMARY KEY)
+          business_unit (STRING)
+          product_id (STRING)
+          customer_id (STRING)
+          quantity (INTEGER)
+          total_price (FLOAT)
+          transaction_date (TIMESTAMP)
+          payment_method (STRING)
+  {% endhighlight %}
+    - Products
+  {% highlight javascript %}
+        Columns:
+          product_id (STRING, PRIMARY KEY)
+          product_name (STRING)
+          category (STRING)
+          price (FLOAT)
+          stock_quantity (INTEGER)
+  {% endhighlight %}
+    - Customers
+  {% highlight javascript %}
+        Columns:
+          customer_id (STRING, PRIMARY KEY)
+          customer_name (STRING)
+          email (STRING)
+          location (STRING)
+  {% endhighlight %}
+    - Business_Units
+  {% highlight javascript %}
+        Columns:
+          business_unit_id (STRING, PRIMARY KEY)
+          country (STRING)
+          unit_name (STRING)
+  {% endhighlight %}
 
-- ### Ingestion Architecture Overview
+- ### Ingestion architecture overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
-  - **Data Upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
-  - **Event Generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
-  - **Event Handling:** GloboLatte utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
-  - **Workflow Execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
+  - **Data upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
+  - **Event generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers. The image below illustrates the relationship between event publishers, event subscriptions, and event handlers.
+  - **Event handling:** GloboLatte utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
+  - **Workflow execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
 
 - ### Differences from Snowpipe
 While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
