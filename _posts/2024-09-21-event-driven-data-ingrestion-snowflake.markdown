@@ -289,7 +289,12 @@ spec:
 // Rest of the parts removed for Brevity //
 {% endhighlight %}
 
-- **[Workflow](https://argoproj.github.io/argo-events/concepts/event_source/):** The EventSource will define the configurations required to consume events from various external sources, transform them into CloudEvents and dispatch them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
+- **[Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
+
+- Create a Named External Stage called SALES_TRANSACTIONS
+- Load the Data from the named external stage into the SALES_TRANSACTIONS table
+- Validate the Load by verifying that the rows were successfully loaded into the table 
+- Cleanup the Stage after confirming the successful data load
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
