@@ -51,7 +51,8 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Database:** GloboLatte_DB
   - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
   - **Tables:**
-   - Sales_Transactions
+     - Sales_Transactions
+{% highlight ruby %}
 | Column Name        | Data Type | Description                                     |
 |--------------------|-----------|-------------------------------------------------|
 | `transaction_id`   | STRING    | Unique identifier for each transaction          |
@@ -62,8 +63,8 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 | `total_price`      | FLOAT     | Total price of the transaction                  |
 | `transaction_date` | TIMESTAMP | Date and time of the transaction                |
 | `payment_method`   | STRING    | Method of payment used (e.g., credit card)     |
-    
-   - Products
+{% endhighlight %}
+     - Products
 | Column Name      | Data Type | Description                                       |
 |------------------|-----------|---------------------------------------------------|
 | `product_id`     | STRING    | Unique identifier for each product                |
