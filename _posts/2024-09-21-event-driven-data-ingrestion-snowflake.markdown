@@ -75,7 +75,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
 |------------------|-----------  |-------------------------------------------------|
 | `product_id`       | STRING    | Unique identifier for each product              |
 | `product_name`     | STRING    | Name of the product                             |
-| `category`         | STRING    | Category of the product (e.g., beverage, pastry)|
+| `category`         | STRING    | Category of the product                         |
 | `price`            | FLOAT     | Price of the product                            |
 | `stock_quantity`   | INTEGER   | Number of items available in stock              |
 
