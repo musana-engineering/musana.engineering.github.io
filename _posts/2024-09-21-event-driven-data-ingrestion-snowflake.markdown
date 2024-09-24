@@ -217,7 +217,44 @@ SHOW FILE FORMATS;
 {% endhighlight %}
 
 ### Create the Argo componets
+With the necessary resources for our data ingestion pipeline established in Azure and Snowflake, let's now enhance our system by integrating event-driven capabilities through Argo Events and Argo Workflows. The goal is to listen for messages in Azure Event Hubs and trigger workflows in Argo based on these events, which will execute data ingestion commands using the SnowSQL CLI.
 
+To accomplish this, we will set up the following resources:
+
+- EventSource: An EventSource defines the configurations required to consume events from various external sources, such as AWS SNS, SQS, GCP Pub/Sub, and webhooks. It transforms incoming events into CloudEvents and dispatches them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
+
+- EventBus: The EventBus serves as the transport layer for Argo Events, connecting EventSources and Sensors. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the EventBus
+
+- Sensor: A Sensor defines a set of event dependencies (inputs) and triggers (outputs). It listens for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor will listen for events from the EventBus and trigger workflows in Argo Workflows 
+
+{% highlight ruby %}
+// Connect to your Kubernetes Cluster
+export CLUSTER_NAME="your_snowflake_account"
+export CLUSTER_RESOURCE_GROUP="your_snowflake_username"
+
+az aks get-credentials -n $CLUSTER_NAME -g $CLUSTER_RESOURCE_GROUP
+
+// Navigate to the snowflakes directory
+cd snowflake/snowflake
+
+// Create the EventBus
+kubectl apply -f eventbus.yaml
+
+// Create the EventSource
+kubectl apply -f eventsource.yaml
+
+// Create the Sensor
+kubectl apply -f sensor.yaml
+{% endhighlight %}
+
+After deploying the resources, verify that they have been successfully created by running the following commands:
+
+{% highlight ruby %}
+kubectl get EventBus && \
+kubectl get EventSource && \
+kubectl get Sensor \
+--namespace argo-events
+{% endhighlight %}
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
 
