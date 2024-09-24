@@ -63,7 +63,15 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           transaction_date (TIMESTAMP)
           payment_method (STRING)
 {% endhighlight %}
-
+    - Products
+{% highlight javascript %}
+        Columns:
+          product_id (STRING, PRIMARY KEY)
+          product_name (STRING)
+          category (STRING)
+          price (FLOAT)
+          stock_quantity (INTEGER)
+{% endhighlight %}
 - ### Ingestion architecture overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
   - **Data upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
