@@ -52,27 +52,26 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
   - **Tables:**
    - Sales_Transactions
-    {% highlight javascript %}
-        Columns:
-          transaction_id (STRING, PRIMARY KEY)
-          business_unit (STRING)
-          product_id (STRING)
-          customer_id (STRING)
-          quantity (INTEGER)
-          total_price (FLOAT)
-          transaction_date (TIMESTAMP)
-          payment_method (STRING)
-    {% endhighlight %}
+| Column Name        | Data Type | Description                                     |
+|--------------------|-----------|-------------------------------------------------|
+| `transaction_id`   | STRING    | Unique identifier for each transaction          |
+| `business_unit`    | STRING    | Identifier for the business unit                |
+| `product_id`       | STRING    | Identifier for the product sold                 |
+| `customer_id`      | STRING    | Identifier for the customer                     |
+| `quantity`         | INTEGER   | Number of items sold                            |
+| `total_price`      | FLOAT     | Total price of the transaction                  |
+| `transaction_date` | TIMESTAMP | Date and time of the transaction                |
+| `payment_method`   | STRING    | Method of payment used (e.g., credit card)     |
     
    - Products
-    {% highlight javascript %}
-        Columns:
-          product_id (STRING, PRIMARY KEY)
-          product_name (STRING)
-          category (STRING)
-          price (FLOAT)
-          stock_quantity (INTEGER)
-    {% endhighlight %}
+| Column Name      | Data Type | Description                                       |
+|------------------|-----------|---------------------------------------------------|
+| `product_id`     | STRING    | Unique identifier for each product                |
+| `product_name`   | STRING    | Name of the product                               |
+| `category`       | STRING    | Category of the product (e.g., beverage, pastry) |
+| `price`          | FLOAT     | Price of the product                              |
+| `stock_quantity` | INTEGER   | Number of items available in stock                |
+
 - ### Ingestion architecture overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
   - **Data upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
