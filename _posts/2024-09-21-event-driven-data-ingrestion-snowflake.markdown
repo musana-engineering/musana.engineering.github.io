@@ -51,8 +51,8 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Database:** GloboLatte_DB
   - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
   - **Tables:**
-    - Sales_Transactions
-  {% highlight javascript %}
+     - Sales_Transactions
+     {% highlight javascript %}
         Columns:
           transaction_id (STRING, PRIMARY KEY)
           business_unit (STRING)
@@ -62,8 +62,8 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           total_price (FLOAT)
           transaction_date (TIMESTAMP)
           payment_method (STRING)
-  {% endhighlight %}
-    - Products
+     {% endhighlight %}
+     - Products
   {% highlight javascript %}
         Columns:
           product_id (STRING, PRIMARY KEY)
@@ -72,7 +72,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           price (FLOAT)
           stock_quantity (INTEGER)
   {% endhighlight %}
-    - Customers
+     - Customers
   {% highlight javascript %}
         Columns:
           customer_id (STRING, PRIMARY KEY)
@@ -80,7 +80,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           email (STRING)
           location (STRING)
   {% endhighlight %}
-    - Business_Units
+     - Business_Units
   {% highlight javascript %}
         Columns:
           business_unit_id (STRING, PRIMARY KEY)
