@@ -63,30 +63,6 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           transaction_date (TIMESTAMP)
           payment_method (STRING)
 {% endhighlight %}
-    - Products
-{% highlight javascript %}
-        Columns:
-          product_id (STRING, PRIMARY KEY)
-          product_name (STRING)
-          category (STRING)
-          price (FLOAT)
-          stock_quantity (INTEGER)
-{% endhighlight %}
-    - Customers
-{% highlight javascript %}
-        Columns:
-          customer_id (STRING, PRIMARY KEY)
-          customer_name (STRING)
-          email (STRING)
-          location (STRING)
-{% endhighlight %}
-    - Business_Units
-{% highlight javascript %}
-        Columns:
-          business_unit_id (STRING, PRIMARY KEY)
-          country (STRING)
-          unit_name (STRING)
-{% endhighlight %}
 
 - ### Ingestion architecture overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
