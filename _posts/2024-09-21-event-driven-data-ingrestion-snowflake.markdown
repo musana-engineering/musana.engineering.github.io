@@ -170,6 +170,11 @@ Here’s a breakdown of what gets created:
 To establish the necessary infrastructure in Snowflake for GloboLatte’s data ingestion and analysis, let's execute our Terraform code for the same.
 
 {% highlight ruby %}
+// Set the following Environment Variables
+export TF_VAR_account_name="your_snowflake_account_name"
+export TF_VAR_account_username="your_snowflake_username"
+export TF_VAR_account_password="your_snowflake_password"
+
 // Navigate to the snowflakes directory
 cd snowflake/snowflake
 
