@@ -5,7 +5,7 @@ date: 2024-09-20 13:32:20 +0300
 description: A practical implementation of an event-driven architecture for seamless data ingestion into Snowflake, utilizing Microsoft Azure External Stages, Event Hubs, Argo Events, and Argo Workflows.
 img: snowflake.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [platformengineering, kubernetes, snowflake, datapipelines]
+tags: [platformengineering, kubernetes, snowflake, datapipelines, argo, argo-events]
 ---
 Event-driven data ingestion loads data into a target system in response to specific events or triggers. This approach is generally more efficient than traditional batch processing since it allows for real-time responses to events. **Snowflake** provides various methods for data ingestion including bulk loading and continuous processing. It allows the loading of data from the following cloud services:
 
