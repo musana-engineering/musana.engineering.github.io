@@ -52,7 +52,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Schema:** Sales_Data: This will house tables related to sales transactions, products, and customer information.
   - **Tables:**
     - Sales_Transactions
-  {% highlight javascript %}
+{% highlight javascript %}
         Columns:
           transaction_id (STRING, PRIMARY KEY)
           business_unit (STRING)
@@ -62,31 +62,31 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
           total_price (FLOAT)
           transaction_date (TIMESTAMP)
           payment_method (STRING)
-  {% endhighlight %}
+{% endhighlight %}
     - Products
-  {% highlight javascript %}
+{% highlight javascript %}
         Columns:
           product_id (STRING, PRIMARY KEY)
           product_name (STRING)
           category (STRING)
           price (FLOAT)
           stock_quantity (INTEGER)
-  {% endhighlight %}
+{% endhighlight %}
     - Customers
-  {% highlight javascript %}
+{% highlight javascript %}
         Columns:
           customer_id (STRING, PRIMARY KEY)
           customer_name (STRING)
           email (STRING)
           location (STRING)
-  {% endhighlight %}
+{% endhighlight %}
     - Business_Units
-  {% highlight javascript %}
+{% highlight javascript %}
         Columns:
           business_unit_id (STRING, PRIMARY KEY)
           country (STRING)
           unit_name (STRING)
-  {% endhighlight %}
+{% endhighlight %}
 
 - ### Ingestion architecture overview
 ![eventModel](https://github.com/user-attachments/assets/765f405d-37f5-405c-83bd-796bae4193cf)
