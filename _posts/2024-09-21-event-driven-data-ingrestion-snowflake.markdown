@@ -314,10 +314,8 @@ kubectl apply -f sensor.yaml
 After deploying the resources, verify that they have been successfully created by running the following commands:
 
 {% highlight javascript %}
-kubectl get EventBus && \
-kubectl get EventSource && \
-kubectl get Sensor \
---namespace argo-events
+kubectl config set-context --current --namespace=argo-events
+kubectl get EventBus && kubectl get EventSource && kubectl get Sensor 
 {% endhighlight %}
 
 ### Summary
