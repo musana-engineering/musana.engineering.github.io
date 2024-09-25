@@ -197,7 +197,7 @@ Schema: SALES_DATA
 
 You can verify that all componets have been created using the SnowSQL CLI commands below
 
-{% highlight javascript %}
+{% highlight shell %}
 // Set the following Environment Variables
 export SNOWFLAKE_ACCOUNT="your_snowflake_account"
 export SNOWFLAKE_USERNAME="your_snowflake_username"
@@ -223,7 +223,7 @@ To accomplish this, we will set up the following resources:
 
 - **[EventSource](https://argoproj.github.io/argo-events/concepts/event_source/):** The EventSource will define the configurations required to consume events from various external sources, transform them into CloudEvents and dispatch them to the EventBus. In our setup, the EventSource will be configured to consume events from Azure Event Hub.
 
-{% highlight javascript %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
@@ -265,7 +265,7 @@ spec:
 
 - **[Sensor](https://argoproj.github.io/argo-events/concepts/sensor/):** The Sensor wil define a set of event dependencies (inputs) and triggers (outputs). It will listen for events on the EventBus and acts as an event dependency manager, resolving and executing triggers as events are received. In our setup, the Sensor leverages the EventSource and EventBus as its dependencies.
 
-{% highlight javascript %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
@@ -289,7 +289,7 @@ spec:
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
-{% highlight javascript %}
+{% highlight shell %}
 // Navigate to the folder containing the argo configuration
 cd snowflake/argo
 
@@ -305,7 +305,7 @@ kubectl apply -f sensor.yaml
 
 After deploying the resources, verify that they have been successfully created by running the following commands:
 
-{% highlight javascript %}
+{% highlight shell %}
 // Set the current context to the argo-events namespace
 kubectl config set-context --current --namespace=argo-events
 
@@ -325,7 +325,7 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 - **Setup Cloud Storage via External Stage**
 Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
 
-{% highlight javascript %}
+{% highlight sql %}
 // Step 1: Create a Cloud Storage Integration in Snowflake
 
 CREATE STORAGE INTEGRATION azure_sagloballatter
@@ -353,7 +353,7 @@ CREATE OR REPLACE FILE FORMAT CSV_With_Headers
 
 With that out of the way, lets define the worflow components
 
-{% highlight javascript %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
@@ -455,7 +455,7 @@ spec:
 {% endhighlight %}
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
-{% highlight javascript %}
+{% highlight shell %}
 // Navigate to the folder containing the argo configuration
 cd snowflake/argo
 
