@@ -334,17 +334,20 @@ CREATE STORAGE INTEGRATION azure_sagloballatter
   ENABLED = TRUE
   AZURE_TENANT_ID = 'your_azure_tenant_id>
   STORAGE_ALLOWED_LOCATIONS = 'azure://sagloballatte.blob.core.windows.net/';
+{% endhighlight %}
 
 // Step 2: Grant Snowflake Access to the Storage Locations
-
+{% highlight sql %}
 DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
+{% endhighlight %}
 
 // Step 3: validate the configuration for your storage integration
-
-SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", 'azure://sagloballatte.blob.core.windows.net/', 'sales_transactions.csv', 'read');
+{% highlight sql %}
+SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION('AZURE_SAGLOBALLATTE', 'azure://sagloballatte.blob.core.windows.net/america/sales_transaction/', 'vehicles.csv', 'read');
+{% endhighlight %}
 
 // Step 4: Create File Format to match the data file structure.
-
+{% highlight sql %}
 CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   type = 'CSV'
   field_delimiter = ','
