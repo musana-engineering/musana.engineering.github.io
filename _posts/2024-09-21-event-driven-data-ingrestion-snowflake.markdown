@@ -120,25 +120,25 @@ This implementation will leverage a variety of cloud components, including Azure
 Apply the terraform configuration to provision the resources.
 
 {% highlight shell %}
-// Clone the git repository containing the terraform files for this project
+# Clone the git repository containing the terraform files for this project
 git clone https://github.com/musana-engineering/snowflake.git
 
-// Navigate to the azure directory
+# Navigate to the azure directory
 cd snowflake/azure
 
-// Login to Azure CLI and set the subscription to use
+# Login to Azure CLI and set the subscription to use
 az login
 az account set -s "your_subscription_id_here"
 
-// Set the following Environment Variables
+# Set the following Environment Variables
 export ARM_CLIENT_ID="your_client_id_here"
 export ARM_CLIENT_SECRET="your_client_secret_here"
 export ARM_TENANT_ID="your_tenant_id_here"
 
-// Generate and review the Terraform plan
+# Generate and review the Terraform plan
 terraform init && terraform plan
 
-// Provision the resources.
+# Provision the resources.
 terraform apply
 {% endhighlight %}
 
@@ -168,18 +168,18 @@ Here’s a breakdown of what gets created:
 To establish the necessary infrastructure in Snowflake for GloboLatte’s data ingestion and analysis, let's execute our Terraform code for the same.
 
 {% highlight shell %}
-// Set the following Environment Variables
+# Set the following Environment Variables
 export TF_VAR_account_name="your_snowflake_account_name"
 export TF_VAR_account_username="your_snowflake_username"
 export TF_VAR_account_password="your_snowflake_password"
 
-// Navigate to the snowflakes directory
+# Navigate to the snowflakes directory
 cd snowflake/snowflake
 
-// Generate and review the Terraform plan
+# Generate and review the Terraform plan
 terraform init && terraform plan
 
-// Provision the resources.
+# Provision the resources.
 terraform apply
 {% endhighlight %}
 
@@ -198,21 +198,21 @@ Schema: SALES_DATA
 You can verify that all componets have been created using the SnowSQL CLI commands below
 
 {% highlight shell %}
-// Set the following Environment Variables
+# Set the following Environment Variables
 export SNOWFLAKE_ACCOUNT="your_snowflake_account"
 export SNOWFLAKE_USERNAME="your_snowflake_username"
 export SNOWFLAKE_PASSWORD="your_snowflake_password"
 
-// Login to Snowflake using SnowSQL
+# Login to Snowflake using SnowSQL
 snowsql -a "$SNOWFLAKE_ACCOUNT" -u "$SNOWFLAKE_USERNAME" -P
 
-// List Databases
+# List Databases
 SHOW DATABASES;
-// List Warehouses
+# List Warehouses
 SHOW WAREHOUSES;
-// List Tables
+# List Tables
 SHOW TABLES;
-// List Table formats
+# List Table formats
 SHOW FILE FORMATS;
 {% endhighlight %}
 
@@ -284,32 +284,32 @@ spec:
       # The specific event name to listen for
       eventName: snowflake
   ---
-// Rest of the parts removed for Brevity //
+# Rest of the parts removed for Brevity
 {% endhighlight %}
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
 {% highlight shell %}
-// Navigate to the folder containing the argo configuration
+# Navigate to the folder containing the argo configuration
 cd snowflake/argo
 
-// Create the EventBus
+# Create the EventBus
 kubectl apply -f eventbus.yaml
 
-// Create the EventSource
+# Create the EventSource
 kubectl apply -f eventsource.yaml
 
-// Create the Sensor
+# Create the Sensor
 kubectl apply -f sensor.yaml
 {% endhighlight %}
 
 After deploying the resources, verify that they have been successfully created by running the following commands:
 
 {% highlight shell %}
-// Set the current context to the argo-events namespace
+# Set the current context to the argo-events namespace
 kubectl config set-context --current --namespace=argo-events
 
-// Retrieve and display the EventBus, EventSource, and Sensor resources
+# Retrieve and display the EventBus, EventSource, and Sensor resources
 kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 {% endhighlight %}
 
@@ -457,10 +457,10 @@ spec:
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
 {% highlight shell %}
-// Navigate to the folder containing the argo configuration
+# Navigate to the folder containing the argo configuration
 cd snowflake/argo
 
-// Create the Workflow
+# Create the Workflow
 kubectl apply -f workflow.yaml
 {% endhighlight %}
 
