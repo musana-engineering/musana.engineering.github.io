@@ -314,7 +314,6 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 {% endhighlight %}
 
 ### Create the Argo Worklow componets
-- **Setup Cloud Storage via External Stage**
 Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure a Snowflake storage integration to allow Snowflake to read data from and write data to an Azure container referenced in an external (Azure) stage. 
 
 Integrations are named, first-class Snowflake objects that avoid the need for passing explicit cloud provider credentials such as secret keys or access tokens. Integration objects store an Azure identity and access management (IAM) user ID called the app registration. You need to grant the app the necessary permissions in the Azure account.
@@ -345,7 +344,7 @@ CREATE OR REPLACE FILE FORMAT CSV_With_Headers
 
 {% endhighlight %}
 
-- **[Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
+- **[Define the Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
 
   - Create a Named External Stage
   - Load the Data from the named external stage into a target table
