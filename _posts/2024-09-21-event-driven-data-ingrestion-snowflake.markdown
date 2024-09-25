@@ -15,7 +15,7 @@ Event-driven data ingestion loads data into a target system in response to speci
 
 In this article, we’ll explore a practical setup in which data ingestion is triggered by new file uploads to a Microsoft Azure Blob Storage account, which will function as our external stage for Snowflake. The diagram below illustrates the architecture we’ll be building:
 
-![architecture](https://github.com/user-attachments/assets/c37fd0af-aa9a-432c-9add-da76e24cb7a1)
+![image](https://github.com/user-attachments/assets/c2c624ed-cb22-48d5-bc38-f8c6487b0f38)
 
 ### Table of Contents
 - [Prerequisites ](#prerequisites)
