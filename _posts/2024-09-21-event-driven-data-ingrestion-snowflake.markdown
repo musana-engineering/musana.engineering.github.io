@@ -289,14 +289,8 @@ spec:
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
 {% highlight javascript %}
-// Connect to your Kubernetes Cluster
-export CLUSTER_NAME="your_snowflake_account"
-export CLUSTER_RESOURCE_GROUP="your_snowflake_username"
-
-az aks get-credentials -n $CLUSTER_NAME -g $CLUSTER_RESOURCE_GROUP
-
-// Navigate to the snowflakes directory
-cd snowflake/snowflake
+// Navigate to the folder containing the argo configuration
+cd snowflake/argo
 
 // Create the EventBus
 kubectl apply -f eventbus.yaml
@@ -464,6 +458,14 @@ spec:
           SHOW TABLES;"
 {% endhighlight %}
 
+Connect to your Kubernetes cluster and create the resources following the steps below:
+{% highlight javascript %}
+// Navigate to the folder containing the argo configuration
+cd snowflake/argo
+
+// Create the Workflow
+kubectl apply -f workflow.yaml
+{% endhighlight %}
 
 
 ### Summary
