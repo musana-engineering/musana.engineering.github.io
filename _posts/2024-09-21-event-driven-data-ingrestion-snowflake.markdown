@@ -106,11 +106,11 @@ The image below illustrates the relationship between event publishers, event sub
 
 - ### Differences from Snowpipe
 While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
-  - While effective, Snowpipe can be expensive at high data volumes due to its pricing model based on the amount of data processed and the frequency of loading.
-  - By leveraging existing Kubernetes clusters, we take advantage of built-in mechanisms for cost savings. 
-  - Since Argo Events and Argo Workflows are open-source, our solution avoids the ongoing costs associated with Snowpipe, making it a more budget-friendly option for organizations with high ingestion needs.
+  - **Cost Considerations:** Snowpipe can be expensive at high data volumes due to its pricing model based on the amount of data processed and the frequency of loading.
+  - **Kubernetes Integration:** By leveraging existing Kubernetes clusters, we take advantage of built-in mechanisms for cost savings. 
+  - **Open-Source Flexibility:** Our solution employs Argo Events and Argo Workflows, both of which are open-source tools - hence eliminates ongoing licensing fees associated with Snowpipe, making our approach more budget-friendly for organizations with high ingestion needs.
 
-Now that we have an example to work with, let’s see how we implement this architecture for the GloboLatte data platform.
+Now that we have an example scenario to work with and the benefits outlined above, let’s explore how we can implement this architecture for the GloboLatte data platform.
 
 ### Create the Azure components
 
