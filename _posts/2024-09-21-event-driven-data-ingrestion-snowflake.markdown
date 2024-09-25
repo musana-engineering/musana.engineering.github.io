@@ -416,7 +416,7 @@ spec:
           echo "Creating named external stage SALES_TRANSACTIONS..."
           snowsql -q "SHOW DATABASES;"
 
-          #snowsql -q "
+          snowsql -q "
           USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
           CREATE STAGE sales_transactions
             STORAGE_INTEGRATION = azure_blob_storage
@@ -430,23 +430,16 @@ spec:
         image: musanaengineering/platformtools:snowsql:1.0.0
         command: [/bin/bash]
         source: |
-          
-          export DATA={{workflow.parameters.body}}
-          export DECODED_DATA=$(echo "$DATA" | base64 --decode)
-
-          echo "****************************** PRINT THE FILE URL ******************************"
-          FILE_URL=$(echo "$DECODED_DATA" | jq -r '.[0].data.url')
-          echo "The FILE URL IS $FILE_URL"
 
           echo "Creating named external stage SALES_TRANSACTIONS..."
           snowsql -q "SHOW DATABASES;"
 
-          #snowsql -q "
-          #USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
-          #CREATE STAGE sales_transactions
-          #  STORAGE_INTEGRATION = azure_blob_storage
-          #  URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
-          #  FILE_FORMAT = CSV_FORMAT;"
+          snowsql -q "
+          USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
+          CREATE STAGE sales_transactions
+            STORAGE_INTEGRATION = azure_blob_storage
+            URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
+            FILE_FORMAT = CSV_FORMAT;"
 
     - name: validate-load
       serviceAccountName: sa-argo-workflow   
