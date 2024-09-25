@@ -30,6 +30,7 @@ In this article, we’ll explore a practical setup in which data ingestion is tr
 - [Create the Azure components ](#create-the-azure-components)
 - [Create the Snowflake components ](#create-the-snowflake-components)
 - [Create the Argo components ](#create-the-argo-components)
+- [Putting It to the Test](#putting-it-to-the-test)
 - [Summary ](#summary)
 
 ### Prerequisites
@@ -463,7 +464,7 @@ cd snowflake/argo
 kubectl apply -f workflow.yaml
 {% endhighlight %}
 
-### Putting it to Test
+### Putting It to the Test
 Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. By checking the workflow logs, we can monitor the completion of each step and the responses from SnowSQL for each operation.
 
 - Step 1: Creating the Internal Stage
