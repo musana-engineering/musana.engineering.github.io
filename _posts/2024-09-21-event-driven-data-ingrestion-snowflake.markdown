@@ -41,7 +41,7 @@ Before you get started, please ensure you have the following:
 - **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):** You will need this to provision the Cloud and Snowflake resources we need to support the data ingestion processes discussed here.
 - **[SnowSQL](https://developers.snowflake.com/snowsql/):** This is the command line client for connecting to Snowflake to execute SQL queries and perform all DDL and DML operations.
 - **[Kubectl](https://kubernetes.io/docs/tasks/tools/):** You'll need this to interact with a Kubernetes cluster to create the Argo components.
-- **Kubernetes**. Kubernetes cluster with Argo Events and Argo Workflows installed. If you haven’t set them up yet, you can refer to my earlier article on this topic: **[Platform Engineering on Kubernetes](https://musana.engineering/platform-engineering-on-k8s-part1/)**
+- **Kubernetes**. Kubernetes cluster with Argo Events and Argo Workflows installed. Checkout **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)** and **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part2/)** of my series on this topic
 
 ### Introducing GloboLatte
 **GloboLatte**, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee, offering swift service regardless of when and where customers place their orders.
