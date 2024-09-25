@@ -407,14 +407,13 @@ spec:
         command: [/bin/bash]
         source: |
 
-          echo "Creating named external stage SALES_TRANSACTIONS..."
-          snowsql -q "SHOW DATABASES;"
-
+          echo "Creating internal stage for sales transactions"
           snowsql -q "
-          USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
-          CREATE STAGE sales_transactions
-            STORAGE_INTEGRATION = azure_blob_storage
-            URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
+          CREATE SCHEMA IF NOT EXISTS GLOBO_LATTE_DB.SALES_DATA;
+
+          CREATE STAGE IF NOT EXISTS GLOBO_LATTE_DB.SALES_DATA.SALES_TRANSACTIONS_STAGE
+            STORAGE_INTEGRATION = AZURE_SAGLOBALLATTE
+            URL = 'azure://sagblatte.blob.core.windows.net/america/sales_transactions/'
             FILE_FORMAT = GLOBO_LATTE_CSV;"
 
     - name: load-data
@@ -425,15 +424,10 @@ spec:
         command: [/bin/bash]
         source: |
 
-          echo "Creating named external stage SALES_TRANSACTIONS..."
-          snowsql -q "SHOW DATABASES;"
-
+          echo "Loading data into table"
           snowsql -q "
-          USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
-          CREATE STAGE sales_transactions
-            STORAGE_INTEGRATION = azure_blob_storage
-            URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
-            FILE_FORMAT = CSV_FORMAT;"
+          COPY INTO GLOBO_LATTE_DB.SALES_DATA.SALES_TRANSACTIONS
+          FROM @GLOBO_LATTE_DB.SALES_DATA.SALES_TRANSACTIONS_STAGE;"
 
     - name: validate-load
       serviceAccountName: sa-argo-workflow   
@@ -443,8 +437,8 @@ spec:
         command: [/bin/bash]
         source: |
           
-          echo "Creating named external stage SALES_TRANSACTIONS..."
-          snowsql -q "SHOW DATABASES;"
+          echo "Validate that rows were successfully loaded."
+          snowsql -q "SELECT * FROM GLOBO_LATTE_DB.SALES_DATA.SALES_TRANSACTIONS;"
 
     - name: cleanup-stage
       serviceAccountName: sa-argo-workflow   
@@ -454,11 +448,10 @@ spec:
         command: [/bin/bash]
         source: |
           
-          echo "Show tables in the global database"
+          echo "Dropping stage to cleanup..."
           snowsql -q "
-          USE DATABASE GLOBO_LATTE_DB;
-          USE SCHEMA SALES_DATA;
-          SHOW TABLES;"
+          DROP STAGE IF EXISTS GLOBO_LATTE_DB.SALES_DATA.SALES_DATA_STAGE;
+          "
 {% endhighlight %}
 
 Connect to your Kubernetes cluster and create the resources following the steps below:
