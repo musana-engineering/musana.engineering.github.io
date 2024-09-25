@@ -327,27 +327,22 @@ Before creating the Workflow component which is the final piece of our ingestion
 {% highlight javascript %}
 // Step 1: Create a Cloud Storage Integration in Snowflake
 
-export TENANT_ID='your_azure_tenant_id>
-export STORAGE_ACCOUNT_LOCATION=azure://sagloballatte.blob.core.windows.net/america/sales_transaction/
-export STORAGE_PROVIDER=AZURE
-export STORAGE_INTEGRATION_NAME=AZURE_SAGLOBALLATTE
-export FILE_NAME=sales_transactions.csv
-
-CREATE STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME
+CREATE STORAGE INTEGRATION azure_sagloballatter
   TYPE = EXTERNAL_STAGE
-  STORAGE_PROVIDER = $STORAGE_PROVIDER
+  STORAGE_PROVIDER = 'AZURE'
   ENABLED = TRUE
-  AZURE_TENANT_ID = $TENANT_ID
-  STORAGE_ALLOWED_LOCATIONS = ("$STORAGE_ACCOUNT_LOCATION")
+  AZURE_TENANT_ID = 'your_azure_tenant_id>
+  STORAGE_ALLOWED_LOCATIONS = 'azure://sagloballatte.blob.core.windows.net/';
 
 // Step 2: Grant Snowflake Access to the Storage Locations
+
 DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
 
 // Step 3: validate the configuration for your storage integration
 
-SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", "$STORAGE_ACCOUNT_LOCATION", "$FILE_NAME", 'read');
+SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", 'azure://sagloballatte.blob.core.windows.net/', 'sales_transactions.csv', 'read');
 
-// Step 4: Create File Format to match the Sales Transactions CSV file structure.
+// Step 4: Create File Format to match the data file structure.
 CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   type = 'CSV'
   field_delimiter = ','
