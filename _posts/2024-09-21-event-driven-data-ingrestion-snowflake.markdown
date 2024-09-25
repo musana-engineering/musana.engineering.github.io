@@ -55,6 +55,8 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Warehouse:** GLOBO_LATTE_WH
   - **Schema:**    SALES_DATA
   - **File Format** CSV
+  
+![image](https://github.com/user-attachments/assets/47d72ac5-a3bb-4160-83fd-536058ec5081)
 {% highlight ruby %}
 - Sales_Transactions table
 
@@ -341,11 +343,13 @@ SELECT SYSTEM\$VALIDATE_STORAGE_INTEGRATION('integration_name', 'azure://account
 
 -- Step 4: Create File Format to match the data file structure
 
-CREATE OR REPLACE FILE FORMAT CSV_With_Headers
-  TYPE = 'CSV'
-  FIELD_DELIMITER = ','
-  SKIP_HEADER = 1;"
-
+CREATE OR REPLACE FILE FORMAT GLOBO_LATTE_CSV
+TYPE = 'CSV'
+FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+SKIP_HEADER = 1
+NULL_IF = ('NULL', 'null', '')
+FIELD_DELIMITER = ','
+TRIM_SPACE = TRUE;
 {% endhighlight %}
 
 - **[Define the ingestion Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
@@ -410,7 +414,7 @@ spec:
           CREATE STAGE sales_transactions
             STORAGE_INTEGRATION = azure_blob_storage
             URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
-            FILE_FORMAT = CSV_FORMAT;"
+            FILE_FORMAT = GLOBO_LATTE_CSV;"
 
     - name: load-data
       serviceAccountName: sa-argo-workflow   
