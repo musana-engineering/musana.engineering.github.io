@@ -164,7 +164,6 @@ Here’s a breakdown of what gets created:
 - **Private Link Access** is configured for direct access to system topics and domains within the Event Grid, ensuring that events can be sent securely without exposing data to the public internet
 
 ### Create the Snowflake componets
-
 To establish the necessary infrastructure in Snowflake for GloboLatte’s data ingestion and analysis, let's execute our Terraform code for the same.
 
 {% highlight ruby %}
