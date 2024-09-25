@@ -341,7 +341,7 @@ DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
 
 # Step 3: validate the configuration for your storage integration
 
-SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION('AZURE_SAGLOBALLATTE', 'azure://sagloballatte.blob.core.windows.net/america/sales_transaction/', 'vehicles.csv', 'read');
+SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION('azure_sagloballatter', 'azure://sagloballatte.blob.core.windows.net/america/sales_transaction/', 'vehicles.csv', 'read');
 
 # Step 4: Create File Format to match the data file structure.
 
@@ -349,7 +349,7 @@ CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   type = 'CSV'
   field_delimiter = ','
   skip_header = 1;
-  
+
 {% endhighlight %}
 
 With that out of the way, lets define the worflow components
