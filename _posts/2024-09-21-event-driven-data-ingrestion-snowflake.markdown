@@ -102,7 +102,7 @@ The image below illustrates the relationship between event publishers, event sub
   - **Data upload:** At the end of each day, the sales operations team from each business unit uploads their sales data files to Azure Blob Storage for centralized access and analysis.
   - **Event generation:** Each time a new data file is uploaded, a BlobCreated event is triggered in Azure Blob Storage. This event is then pushed using Azure Event Grid to an Event Hub subscriber. Event Grid uses event subscriptions to route event messages to subscribers.
   - **Event handling:** GloboLatte utilizes Azure Event Hubs to capture these BlobCreated events in real time, tracking every file upload efficiently across their global network.
-  - **Workflow execution:** The BlobCreated event is routed to Argo Events, triggering an Argo workflow. Within this workflow, we first extract the file URL from the incoming event, then load the file into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into the specific Snowflake table for each factory.
+  - **Workflow execution:** The BlobCreated event are routed to Argo Events, triggering an Argo workflow. Within this workflow, we load the files into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into Snowflake tables
 
 - ### Differences from Snowpipe
 While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
