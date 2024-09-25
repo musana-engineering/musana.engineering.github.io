@@ -465,9 +465,18 @@ kubectl apply -f workflow.yaml
 {% endhighlight %}
 
 ### Putting It to the Test
-Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. By checking the workflow logs, we can monitor the completion of each step and the responses from SnowSQL for each operation.
+Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. 
+
+The following log entry from the Argo events sensor indicates that the workflow was successfully triggered:
+
+{% highlight shell %}
+namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
+{% endhighlight %}
+
+This log confirms that the sensor detected the uploaded file and triggered the associated workflow, setting off the entire data ingestion process. Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each event's status as you can see below.
+
 ![image](https://github.com/user-attachments/assets/95af6649-6292-4d8c-ab23-8da6396052d3)
-- Step 1: Creating the Internal Stage
+- **Step 1: Creating the Internal Stage**
 {% highlight shell %}
 +-------------------------------------------------+
 | status                                          |
@@ -488,7 +497,7 @@ Now that we have deployed and configured all components, it's time to test our e
 +---------------------------------------------------+
 {% endhighlight %}
 
-- Step 2: Loading Data into the Table
+- **Step 2: Loading Data into the Table**
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
@@ -501,7 +510,7 @@ Type SQL statements or !help
 1 Row(s) produced. Time Elapsed: 0.385s
 {% endhighlight %}
 
-- Step 3: Validating Loaded Rows
+- **Step 3: Validating Loaded Rows**
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
@@ -517,7 +526,7 @@ Type SQL statements or !help
 5 Row(s) produced. Time Elapsed: 0.965s
 {% endhighlight %}
 
-- Step 4: Cleaning Up by Dropping the Stage
+- **Step 4: Cleaning Up by Dropping the Stage**
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
@@ -529,7 +538,12 @@ Type SQL statements or !help
 1 Row(s) produced. Time Elapsed: 0.056s
 {% endhighlight %}
 
-### Summary
-With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
+### Conclusion
+In conclusion, the event-driven architecture we have implemented for GloboLatte marks a significant leap toward achieving their operational excellence. By seamlessly integrating sales data uploads from their business units in America, Canada, and Mexico into a centralized Snowflake database, GloboLatte can now react swiftly to real-time data insights.
 
-### NOTE: This article is NOT finished and still under development.......
+This architecture also enhances the GloboLatte's ability to analyze sales trends, manage inventory efficiently, and ultimately provide exceptional service to their customers. The structured schema we designed optimally supports their data needs, ensuring that as new sales data flows in, it can be processed and utilized effectively.
+
+As GloboLatte continues to evolve, this implementation will empower them to adapt quickly to market demands, improving both customer satisfaction and business performance. 
+
+I’d love to hear your thoughts! If you found this article helpful, please leave a comment below and share it with your network. Your insights and feedback are invaluable as I continue to explore how cloud-native technologies can drive business efficiency.
+
