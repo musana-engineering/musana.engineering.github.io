@@ -326,22 +326,17 @@ Before creating the Workflow component which is the final piece of our ingestion
 
 {% highlight javascript %}
 // Step 1: Create a Cloud Storage Integration in Snowflake
-
-{% highlight javascript %}
 CREATE STORAGE INTEGRATION azure_sagloballatter
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'AZURE'
   ENABLED = TRUE
   AZURE_TENANT_ID = 'your_azure_tenant_id>
   STORAGE_ALLOWED_LOCATIONS = 'azure://sagloballatte.blob.core.windows.net/';
-{% endhighlight %}
 
 // Step 2: Grant Snowflake Access to the Storage Locations
-
 DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
 
 // Step 3: validate the configuration for your storage integration
-
 SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", 'azure://sagloballatte.blob.core.windows.net/', 'sales_transactions.csv', 'read');
 
 // Step 4: Create File Format to match the data file structure.
