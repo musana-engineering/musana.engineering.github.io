@@ -463,6 +463,70 @@ cd snowflake/argo
 kubectl apply -f workflow.yaml
 {% endhighlight %}
 
+### Putting it to Test
+Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. By checking the workflow logs, we can monitor the completion of each step and the responses from SnowSQL for each operation.
+
+- Step 1: Creating internal stage
+{% highlight shell %}
++-------------------------------------------------+
+| status                                          |
+|-------------------------------------------------|
+| SALES_DATA already exists, statement succeeded. |
++-------------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.045s
++---------------------------------------------------+
+| status                                            |
+|---------------------------------------------------|
+| File format CSV_FILE_FORMAT successfully created. |
++---------------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.132s
++---------------------------------------------------+
+| status                                            |
+|---------------------------------------------------|
+| Stage area SALES_DATA_STAGE successfully created. |
++---------------------------------------------------+
+{% endhighlight %}
+
+- Step 2: Loading data into table
+{% highlight shell %}
+* SnowSQL * v1.3.2
+Type SQL statements or !help
++-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
+| file                                                                          | status | rows_parsed | rows_loaded | error_limit | errors_seen | first_error | first_error_line | first_error_character | first_error_column_name |
+|-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------|
+| azure://saceplatform.blob.core.windows.net/sfingestion/Sales_Transactions.csv | LOADED |           5 |           5 |           1 |           0 | NULL        |             NULL |                  NULL | NULL                    |
++-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
+1 Row(s) produced. Time Elapsed: 2.649s
+1 Row(s) produced. Time Elapsed: 0.385s
+{% endhighlight %}
+
+- Step 3: Validating that rows were successfully loaded....
+{% highlight shell %}
+* SnowSQL * v1.3.2
+Type SQL statements or !help
++----------------+---------------+------------+-------------+----------+-------------+-------------------------+----------------+
+| TRANSACTION_ID | BUSINESS_UNIT | PRODUCT_ID | CUSTOMER_ID | QUANTITY | TOTAL_PRICE | TRANSACTION_DATE        | PAYMENT_METHOD |
+|----------------+---------------+------------+-------------+----------+-------------+-------------------------+----------------|
+| T001           | BU_US         | P001       | C001        |        2 |         5   | 2024-09-22 08:30:00.000 | credit_card    |
+| T002           | BU_CA         | P002       | C002        |        1 |         3.5 | 2024-09-22 09:15:00.000 | debit_card     |
+| T003           | BU_MX         | P003       | C001        |        4 |        12   | 2024-09-22 10:00:00.000 | cash           |
+| T004           | BU_BR         | P001       | C003        |        3 |         7.5 | 2024-09-22 11:45:00.000 | credit_card    |
+| T005           | BU_US         | P002       | C002        |        5 |        17.5 | 2024-09-22 13:00:00.000 | credit_card    |
++----------------+---------------+------------+-------------+----------+-------------+-------------------------+----------------+
+5 Row(s) produced. Time Elapsed: 0.965s
+{% endhighlight %}
+
+- Step 4: Dropping stage to cleanup...
+{% highlight shell %}
+* SnowSQL * v1.3.2
+Type SQL statements or !help
++----------------------------------------+
+| status                                 |
+|----------------------------------------|
+| SALES_DATA_STAGE successfully dropped. |
++----------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.056s
+{% endhighlight %}
 
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
