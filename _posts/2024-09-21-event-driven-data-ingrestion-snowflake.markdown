@@ -248,7 +248,7 @@ spec:
 
 - **[EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/):** The EventBus will serve as the transport layer for Argo Events, connecting our EventSource and Sensor. EventSources publish events, while Sensors subscribe to these events to execute corresponding triggers. In our setup, the Azure Event Hub EventSource will publish messages to the Argo Events EventBus
 
-{% highlight javascript %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: EventBus
 metadata:
@@ -257,9 +257,9 @@ metadata:
 spec:
   nats:
     native:
-      // Optional, defaults to 3. If it is < 3, set it to 3, that is the minimal requirement.
+      // Optional, defaults to 3. requirement.
       replicas: 3
-      // Optional, authen strategy, "none" or "token", defaults to "none"
+      // authen strategy, "none" or "token", defaults to "none"
       auth: token
 {% endhighlight %}
 
