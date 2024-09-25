@@ -53,6 +53,7 @@ To design an effective Snowflake database for GloboLatte, we’ll establish a st
   - **Database:**  GLOBO_LATTE_DB
   - **Warehouse:** GLOBO_LATTE_WH
   - **Schema:**    SALES_DATA
+  - **File Format** CSV
 {% highlight ruby %}
 - Sales_Transactions table
 
