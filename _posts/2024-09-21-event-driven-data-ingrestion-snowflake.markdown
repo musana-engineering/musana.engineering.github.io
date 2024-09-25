@@ -257,9 +257,9 @@ metadata:
 spec:
   nats:
     native:
-      // Optional, defaults to 3. requirement.
+      # Optional, defaults to 3. requirement.
       replicas: 3
-      // authen strategy, "none" or "token", defaults to "none"
+      # authen strategy, "none" or "token", defaults to "none"
       auth: token
 {% endhighlight %}
 
@@ -277,11 +277,11 @@ spec:
     serviceAccountName: sa-argo-workflow
   dependencies:
     - name: azure-events-hub
-      // The EventSource this Sensor listens to
+      # The EventSource this Sensor listens to
       eventSourceName: azure-events-hub
-      // The EventBus to which the EventSource publishes events
+      # The EventBus to which the EventSource publishes events
       eventBusName: eventbus
-      // The specific event name to listen for
+      # The specific event name to listen for
       eventName: snowflake
   ---
 // Rest of the parts removed for Brevity //
@@ -326,7 +326,7 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
 
 {% highlight shell %}
-// Step 1: Create a Cloud Storage Integration in Snowflake
+# Step 1: Create a Cloud Storage Integration in Snowflake
 
 CREATE STORAGE INTEGRATION azure_sagloballatter
   TYPE = EXTERNAL_STAGE
@@ -335,20 +335,21 @@ CREATE STORAGE INTEGRATION azure_sagloballatter
   AZURE_TENANT_ID = 'your_azure_tenant_id>
   STORAGE_ALLOWED_LOCATIONS = 'azure://sagloballatte.blob.core.windows.net/';
 
-// Step 2: Grant Snowflake Access to the Storage Locations
+# Step 2: Grant Snowflake Access to the Storage Locations
 
 DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
 
-// Step 3: validate the configuration for your storage integration
+# Step 3: validate the configuration for your storage integration
 
 SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION('AZURE_SAGLOBALLATTE', 'azure://sagloballatte.blob.core.windows.net/america/sales_transaction/', 'vehicles.csv', 'read');
 
-// Step 4: Create File Format to match the data file structure.
+# Step 4: Create File Format to match the data file structure.
 
 CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   type = 'CSV'
   field_delimiter = ','
   skip_header = 1;
+  
 {% endhighlight %}
 
 With that out of the way, lets define the worflow components
