@@ -233,15 +233,15 @@ spec:
   eventBusName: eventbus-main
   azureEventsHub:
     ceplatform:
-      // FQDN of the EventsHub namespace you created
-      fqdn: evhn-gblatte.servicebus.windows.net
+      # FQDN of the EventsHub namespace you created
+      fqdn: "evhn-gblatte.servicebus.windows.net"
       sharedAccessKeyName:
         name: secret_containing_shared_access_key_name
         key: key_within_the_secret_which_holds_the_value_of_shared_access_key_name
       sharedAccessKey:
         name: secret_containing_shared_access_key
         key: key_within_the_secret_which_holds_the_value_of_shared_access_key
-      // Event Hub path/name
+      # Event Hub path/name
       hubName: salesdata
       jsonBody: true
 {% endhighlight %}
