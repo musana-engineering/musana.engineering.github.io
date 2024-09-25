@@ -119,6 +119,12 @@ This implementation will leverage a variety of cloud components, including Azure
 Apply the terraform configuration to provision the resources.
 
 {% highlight ruby %}
+// Clone the git repository containing the terraform files for this project
+git clone https://github.com/musana-engineering/snowflake.git
+
+// Navigate to the azure directory
+cd snowflake/azure
+
 // Login to Azure CLI and set the subscription to use
 az login
 az account set -s "your_subscription_id_here"
@@ -127,12 +133,6 @@ az account set -s "your_subscription_id_here"
 export ARM_CLIENT_ID="your_client_id_here"
 export ARM_CLIENT_SECRET="your_client_secret_here"
 export ARM_TENANT_ID="your_tenant_id_here"
-
-// Clone the project repository
-git clone https://github.com/musana-engineering/snowflake.git
-
-// Navigate to the azure directory
-cd snowflake/azure
 
 // Generate and review the Terraform plan
 terraform init && terraform plan
