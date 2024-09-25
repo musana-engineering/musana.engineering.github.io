@@ -323,6 +323,7 @@ Let's configure the integration in **[three simple steps](https://docs.snowflake
 {% highlight sql %}
 snowsql -q "
 -- Step 1: Create a Cloud Storage Integration in Snowflake
+
 CREATE STORAGE INTEGRATION 'integration_name'
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'AZURE'
@@ -331,12 +332,15 @@ CREATE STORAGE INTEGRATION 'integration_name'
   STORAGE_ALLOWED_LOCATIONS = ('azure://account.blob.core.windows.net/container/');
 
 -- Step 2: Grant Snowflake Access to the Storage Locations
+
 DESC STORAGE INTEGRATION 'integration_name';
 
 -- Step 3: Validate the configuration for your storage integration
+
 SELECT SYSTEM\$VALIDATE_STORAGE_INTEGRATION('integration_name', 'azure://account.blob.core.windows.net/container/path/', 'test_file_name', 'read');
 
 -- Step 4: Create File Format to match the data file structure
+
 CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   TYPE = 'CSV'
   FIELD_DELIMITER = ','
