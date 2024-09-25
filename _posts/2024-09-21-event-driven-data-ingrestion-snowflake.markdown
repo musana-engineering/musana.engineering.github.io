@@ -37,9 +37,9 @@ Before you get started, please ensure you have the following:
 
 - **Snowflake account:** This is where we will set up the Snowflake resources such as data warehouses, databases and tables to support the data ingestion processes discussed here. Sign up for a **[trial account](https://signup.snowflake.com/?utm_source=google&utm_medium=paidsearch&utm_campaign=na-us-en-brand-trial-exact&utm_content=go-eta-evg-ss-free-trial&utm_term=c-g-snowflake%20trial%20account-e&_bt=579123129595&_bk=snowflake%20trial%20account&_bm=e&_bn=g&_bg=136172947348&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQjw3bm3BhDJARIsAKnHoVWVpbV2-xagFD0LBmC-kxgnMcg0cH1afvWSLIko69Y0DtP6mnHRUCYaAjUREALw_wcB)**.
 - **Azure account:** This is where we will set up the cloud infrastructure needed to support the data ingestion processes discussed here. Sign up for **[trial account](https://azure.microsoft.com/en-gb/pricing/offers/ms-azr-0044p/)**
-- **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):** You will need this when we get to the steps to provision the resources that we need to support the data ingestion processes discussed here. These will be provisioned in the Snowflake and Azure accounts.
+- **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):** You will need this to provision the Cloud and Snowflake resources we need to support the data ingestion processes discussed here.
 - **[SnowSQL](https://developers.snowflake.com/snowsql/):** This is the command line client for connecting to Snowflake to execute SQL queries and perform all DDL and DML operations.
-- **[Kubectl](https://kubernetes.io/docs/tasks/tools/):** You'll need this to interact with a Kubernetes cluster when we get to the steps for setting up Argo Events and Argo Workflows.
+- **[Kubectl](https://kubernetes.io/docs/tasks/tools/):** You'll need this to interact with a Kubernetes cluster to create the Argo components.
 - **Kubernetes**. Kubernetes cluster with Argo Events and Argo Workflows installed. If you haven’t set them up yet, you can refer to my earlier article on this topic: **[Platform Engineering on Kubernetes](https://musana.engineering/platform-engineering-on-k8s-part1/)**
 
 ### Introducing GloboLatte
