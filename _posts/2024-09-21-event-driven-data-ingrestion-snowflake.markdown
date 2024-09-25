@@ -323,7 +323,7 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
   - Cleanup the Stage after confirming the successful data load
   
 - **Setup Cloud Storage via External Stage**
-Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
+Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in **[three simple steps](https://docs.snowflake.com/en/user-guide/data-load-azure-config):**
 
 {% highlight sql %}
 snowsql -q "
