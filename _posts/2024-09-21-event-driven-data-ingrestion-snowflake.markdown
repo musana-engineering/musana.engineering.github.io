@@ -218,7 +218,7 @@ SHOW TABLES;
 SHOW FILE FORMATS;
 {% endhighlight %}
 
-### Create the Argo componets
+### Create the Argo Events componets
 With the necessary resources for our data ingestion pipeline established in Azure and Snowflake, let's now enhance our system by integrating event-driven capabilities through Argo Events and Argo Workflows. The goal is to listen for messages in Azure Event Hubs and trigger workflows in Argo based on these events, which will execute data ingestion commands using the SnowSQL CLI.
 
 To accomplish this, we will set up the following resources:
@@ -289,13 +289,6 @@ spec:
 // Rest of the parts removed for Brevity //
 {% endhighlight %}
 
-- **[Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
-
- - Create a Named External Stage called SALES_TRANSACTIONS
- - Load the Data from the named external stage into the SALES_TRANSACTIONS table
- - Validate the Load by verifying that the rows were successfully loaded into the table 
- - Cleanup the Stage after confirming the successful data load
-
 Connect to your Kubernetes cluster and create the resources following the steps below:
 
 {% highlight javascript %}
@@ -327,6 +320,161 @@ kubectl config set-context --current --namespace=argo-events
 // Retrieve and display the EventBus, EventSource, and Sensor resources
 kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 {% endhighlight %}
+
+### Create the Argo Worklow componets
+
+- **[Workflow](https://argo-workflows.readthedocs.io/en/release-3.5/workflow-concepts/):** The Workflow defines the SnowSQL steps needed to transfer files from the named external stage (in this case, our Azure Blob storage account) into our Snowflake internal stage, and subsequently copy them into the tables. The Workflow is structured as a Directed Acyclic Graph (DAG) with the following steps for data ingestion:
+
+  - Create a Named External Stage
+  - Load the Data from the named external stage into a target table
+  - Validate the Load by verifying that the rows were successfully loaded into the table 
+  - Cleanup the Stage after confirming the successful data load
+  
+- **Setup Cloud Storage via External Stage**
+Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
+
+{% highlight javascript %}
+ - Step 1: Create a Cloud Storage Integration in Snowflake
+
+export TENANT_ID='your_azure_tenant_id>
+export STORAGE_ACCOUNT_LOCATION=azure://sagloballatte.blob.core.windows.net/america/sales_transaction/
+export STORAGE_PROVIDER=AZURE
+export STORAGE_INTEGRATION_NAME=AZURE_SAGLOBALLATTE
+export FILE_NAME=sales_transactions.csv
+
+CREATE STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME
+  TYPE = EXTERNAL_STAGE
+  STORAGE_PROVIDER = $STORAGE_PROVIDER
+  ENABLED = TRUE
+  AZURE_TENANT_ID = $TENANT_ID
+  STORAGE_ALLOWED_LOCATIONS = ("$STORAGE_ACCOUNT_LOCATION")
+
+ - Step 2: Grant Snowflake Access to the Storage Locations
+DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
+
+ - Step 3: validate the configuration for your storage integration
+
+SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", "$STORAGE_ACCOUNT_LOCATION", "$FILE_NAME", 'read');
+
+- Step 4: Create File Format to match the Sales Transactions CSV file structure.
+CREATE OR REPLACE FILE FORMAT CSV_With_Headers
+  type = 'CSV'
+  field_delimiter = ','
+  skip_header = 1;
+
+{% endhighlight %}
+
+With that out of the way, lets creat the worflow components
+
+{% highlight javascript %}
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: snowflake-data-ingestion-
+  namespace: argo-events
+spec:
+  entrypoint: pipeline
+  serviceAccountName: sa-argo-workflow
+  arguments:
+    parameters:
+      - name: body
+        value: "placeholder"       
+  templates:
+    - name: pipeline
+      dag: 
+        tasks:  
+          - name: create-external-stage
+            template: create-external-stage
+            arguments:
+              parameters:
+                - name: body
+                  value: "{{workflow.parameters.body}}"
+        
+          - name: load-data
+            template: load-data
+            dependencies:
+              - create-external-stage
+          
+          - name: validate-load
+            template: validate-load
+            dependencies:
+              - load-data
+
+          - name: cleanup-stage
+            template: cleanup-stage
+            dependencies:
+              - validate-load
+
+    - name: create-external-stage
+      serviceAccountName: sa-argo-workflow   
+      script:
+        imagePullPolicy: "Always"
+        image: musanaengineering/platformtools:snowsql:1.0.0
+        command: [/bin/bash]
+        source: |
+
+          echo "Creating named external stage SALES_TRANSACTIONS..."
+          snowsql -q "SHOW DATABASES;"
+
+          #snowsql -q "
+          USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
+          CREATE STAGE sales_transactions
+            STORAGE_INTEGRATION = azure_blob_storage
+            URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
+            FILE_FORMAT = CSV_FORMAT;"
+
+    - name: load-data
+      serviceAccountName: sa-argo-workflow   
+      script:
+        imagePullPolicy: "Always"
+        image: musanaengineering/platformtools:snowsql:1.0.0
+        command: [/bin/bash]
+        source: |
+          
+          export DATA={{workflow.parameters.body}}
+          export DECODED_DATA=$(echo "$DATA" | base64 --decode)
+
+          echo "****************************** PRINT THE FILE URL ******************************"
+          FILE_URL=$(echo "$DECODED_DATA" | jq -r '.[0].data.url')
+          echo "The FILE URL IS $FILE_URL"
+
+          echo "Creating named external stage SALES_TRANSACTIONS..."
+          snowsql -q "SHOW DATABASES;"
+
+          #snowsql -q "
+          #USE SCHEMA GLOBO_LATTE_DB.SALES_DATA;
+          #CREATE STAGE sales_transactions
+          #  STORAGE_INTEGRATION = azure_blob_storage
+          #  URL = 'azure://sagblatte.blob.core.windows.net/sfingestion/'
+          #  FILE_FORMAT = CSV_FORMAT;"
+
+    - name: validate-load
+      serviceAccountName: sa-argo-workflow   
+      script:
+        imagePullPolicy: "Always"
+        image: musanaengineering/platformtools:snowsql:1.0.0
+        command: [/bin/bash]
+        source: |
+          
+          echo "Creating named external stage SALES_TRANSACTIONS..."
+          snowsql -q "SHOW DATABASES;"
+
+    - name: cleanup-stage
+      serviceAccountName: sa-argo-workflow   
+      script:
+        imagePullPolicy: "Always"
+        image: musanaengineering/platformtools:snowsql:1.0.0
+        command: [/bin/bash]
+        source: |
+          
+          echo "Show tables in the global database"
+          snowsql -q "
+          USE DATABASE GLOBO_LATTE_DB;
+          USE SCHEMA SALES_DATA;
+          SHOW TABLES;"
+{% endhighlight %}
+
+
 
 ### Summary
 With this automated ingestion process, GloboLatte can analyze order trends and manage inventory in real time, allowing for rapid responses to customer demands. This enhances operational efficiency and elevates customer satisfaction..
