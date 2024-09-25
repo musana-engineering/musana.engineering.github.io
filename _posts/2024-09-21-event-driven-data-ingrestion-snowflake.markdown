@@ -119,7 +119,7 @@ This implementation will leverage a variety of cloud components, including Azure
 
 Apply the terraform configuration to provision the resources.
 
-{% highlight javascript %}
+{% highlight raw %}
 // Clone the git repository containing the terraform files for this project
 git clone https://github.com/musana-engineering/snowflake.git
 
