@@ -325,7 +325,7 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
 
 {% highlight javascript %}
- - Step 1: Create a Cloud Storage Integration in Snowflake
+// Step 1: Create a Cloud Storage Integration in Snowflake
 
 export TENANT_ID='your_azure_tenant_id>
 export STORAGE_ACCOUNT_LOCATION=azure://sagloballatte.blob.core.windows.net/america/sales_transaction/
@@ -340,22 +340,21 @@ CREATE STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME
   AZURE_TENANT_ID = $TENANT_ID
   STORAGE_ALLOWED_LOCATIONS = ("$STORAGE_ACCOUNT_LOCATION")
 
- - Step 2: Grant Snowflake Access to the Storage Locations
+// Step 2: Grant Snowflake Access to the Storage Locations
 DESC STORAGE INTEGRATION $STORAGE_INTEGRATION_NAME;
 
- - Step 3: validate the configuration for your storage integration
+// Step 3: validate the configuration for your storage integration
 
 SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION("$STORAGE_ACCOUNT_LOCATION", "$STORAGE_ACCOUNT_LOCATION", "$FILE_NAME", 'read');
 
-- Step 4: Create File Format to match the Sales Transactions CSV file structure.
+// Step 4: Create File Format to match the Sales Transactions CSV file structure.
 CREATE OR REPLACE FILE FORMAT CSV_With_Headers
   type = 'CSV'
   field_delimiter = ','
   skip_header = 1;
-
 {% endhighlight %}
 
-With that out of the way, lets creat the worflow components
+With that out of the way, lets define the worflow components
 
 {% highlight javascript %}
 apiVersion: argoproj.io/v1alpha1
