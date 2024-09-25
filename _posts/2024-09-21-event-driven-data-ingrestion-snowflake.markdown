@@ -119,7 +119,7 @@ This implementation will leverage a variety of cloud components, including Azure
 
 Apply the terraform configuration to provision the resources.
 
-{% highlight html %}
+{% highlight shell %}
 // Clone the git repository containing the terraform files for this project
 git clone https://github.com/musana-engineering/snowflake.git
 
@@ -167,7 +167,7 @@ Here’s a breakdown of what gets created:
 ### Create the Snowflake componets
 To establish the necessary infrastructure in Snowflake for GloboLatte’s data ingestion and analysis, let's execute our Terraform code for the same.
 
-{% highlight html %}
+{% highlight shell %}
 // Set the following Environment Variables
 export TF_VAR_account_name="your_snowflake_account_name"
 export TF_VAR_account_username="your_snowflake_username"
