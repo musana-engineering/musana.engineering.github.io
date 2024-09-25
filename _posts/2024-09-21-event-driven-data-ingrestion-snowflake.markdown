@@ -106,10 +106,11 @@ The image below illustrates the relationship between event publishers, event sub
   - **Workflow execution:** The BlobCreated event are routed to Argo Events, triggering an Argo workflow. Within this workflow, we load the files into a Snowflake internal stage. Finally, we execute a COPY command to transfer the data from the internal stage into Snowflake tables
 
 - ### Differences from Snowpipe
-While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
+While Snowpipe is a powerful tool for continuous data ingestion into Snowflake, our kubernetes based approach offers several advantages, particularly in terms of cost efficiency and resource utilization.
   - **Cost Considerations:** Snowpipe can be expensive at high data volumes due to its pricing model based on the amount of data processed and the frequency of loading.
   - **Kubernetes Integration:** By leveraging existing Kubernetes clusters, we take advantage of built-in mechanisms for cost savings. 
   - **Open-Source Flexibility:** Our solution employs Argo Events and Argo Workflows, both of which are open-source tools - hence eliminates ongoing licensing fees associated with Snowpipe, making our approach more budget-friendly for organizations with high ingestion needs.
+  - **Enhanced Control:** Unlike Snowpipe, which can feel like a black box, our Kubernetes-based solution provides greater control and allows for extensive customization of the data ingestion process.
 
 Now that we have an example scenario to work with and the benefits outlined above, let’s explore how we can implement this architecture for the GloboLatte data platform.
 
