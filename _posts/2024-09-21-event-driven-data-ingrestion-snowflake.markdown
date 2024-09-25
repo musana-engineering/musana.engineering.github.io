@@ -450,7 +450,7 @@ spec:
           
           echo "Dropping stage to cleanup..."
           snowsql -q "
-          DROP STAGE IF EXISTS GLOBO_LATTE_DB.SALES_DATA.SALES_DATA_STAGE;
+          DROP STAGE IF EXISTS GLOBO_LATTE_DB.SALES_DATA.SALES_TRANSACTIONS_STAGE;
           "
 {% endhighlight %}
 
