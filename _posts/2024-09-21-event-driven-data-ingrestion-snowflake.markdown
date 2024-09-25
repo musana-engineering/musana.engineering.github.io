@@ -466,7 +466,7 @@ kubectl apply -f workflow.yaml
 ### Putting it to Test
 Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. By checking the workflow logs, we can monitor the completion of each step and the responses from SnowSQL for each operation.
 
-- Step 1: Creating internal stage
+- Step 1: Creating the Internal Stage
 {% highlight shell %}
 +-------------------------------------------------+
 | status                                          |
@@ -487,7 +487,7 @@ Now that we have deployed and configured all components, it's time to test our e
 +---------------------------------------------------+
 {% endhighlight %}
 
-- Step 2: Loading data into table
+- Step 2: Loading Data into the Table
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
@@ -500,7 +500,7 @@ Type SQL statements or !help
 1 Row(s) produced. Time Elapsed: 0.385s
 {% endhighlight %}
 
-- Step 3: Validating that rows were successfully loaded....
+- Step 3: Validating Loaded Rows
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
@@ -516,7 +516,7 @@ Type SQL statements or !help
 5 Row(s) produced. Time Elapsed: 0.965s
 {% endhighlight %}
 
-- Step 4: Dropping stage to cleanup...
+- Step 4: Cleaning Up by Dropping the Stage
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
