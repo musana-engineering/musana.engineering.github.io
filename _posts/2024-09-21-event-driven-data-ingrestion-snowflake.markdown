@@ -116,7 +116,7 @@ Now that we have an example scenario to work with and the benefits outlined abov
 ### Create the Azure components
 This implementation will leverage a variety of cloud components, including Azure Storage and Azure Event Hub, alongside Snowflake resources such as databases, warehouses, and tables. All resources will be defined and provisioned using Terraform, ensuring a streamlined and efficient setup. To setup the foundation for our data ingestion platform, we'll start by deploying the necessary resources in Azure. 
 
-Next, Apply the terraform configuration to provision the resources.
+Apply the terraform configuration to provision the resources.
 
 {% highlight ruby %}
 // Login to Azure CLI and set the subscription to use
