@@ -325,8 +325,9 @@ kubectl get EventBus && kubectl get EventSource && kubectl get Sensor
 - **Setup Cloud Storage via External Stage**
 Before creating the Workflow component which is the final piece of our ingestion pipeline, we need to configure Snowflake with an external stage backed by Microsoft Azure Cloud Storage. We can achieve this in three simple steps
 
-{% highlight shell %}
+{% highlight sql %}
 snowsql -q "
+-- Step 1: Create a Cloud Storage Integration in Snowflake
 CREATE STORAGE INTEGRATION 'integration_name'
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'AZURE'
