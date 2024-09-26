@@ -32,7 +32,7 @@ comments:
 
 # Tracker
 analytics: G-64FMGRY5TN # Google Analytics
-#google_analytics: G-64FMGRY5TN
+#google_analytics: G-64FMGRY5TN#
 
 # Build Settings
 markdown: kramdown
