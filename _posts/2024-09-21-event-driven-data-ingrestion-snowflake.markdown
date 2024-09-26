@@ -478,7 +478,7 @@ namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEv
 Additionally, the log from the Argo Sensor indicates indicates that the workflow was successfully triggered:
 
 {% highlight shell %}
-namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
+namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21: msg=Successfully processed trigger 'snowflake-data-ingestion'
 {% endhighlight %}
 
 Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each step of the workflow execution from start to finish as you can see below.
