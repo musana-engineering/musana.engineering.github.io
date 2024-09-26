@@ -528,15 +528,15 @@ Type SQL statements or !help
 {% highlight shell %}
 * SnowSQL * v1.3.2
 Type SQL statements or !help
-+----------------+---------------+------------+-------------+----------+-------------+----------------+
-| TRANSACTION_ID | BUSINESS_UNIT | PRODUCT_ID | CUSTOMER_ID | QUANTITY | TOTAL_PRICE | PAYMENT_METHOD |
-|----------------+---------------+------------+-------------+----------+-------------+----------------|
-| T001           | BU_US         | P001       | C001        |        2 |         5   | credit_card    |
-| T002           | BU_CA         | P002       | C002        |        1 |         3.5 | debit_card     |
-| T003           | BU_MX         | P003       | C001        |        4 |        12   | cash           |
-| T004           | BU_BR         | P001       | C003        |        3 |         7.5 | credit_card    |
-| T005           | BU_US         | P002       | C002        |        5 |        17.5 | credit_card    |
-+----------------+---------------+------------+-------------+----------+-------------+----------------+
++----------------+---------------+------------+-------------+----------+-------------+
+| TRANSACTION_ID | BUSINESS_UNIT | PRODUCT_ID | CUSTOMER_ID | QUANTITY | TOTAL_PRICE |
+|----------------+---------------+------------+-------------+----------+-------------+
+| T001           | BU_US         | P001       | C001        |        2 |        5    |
+| T002           | BU_CA         | P002       | C002        |        1 |        3.5  |
+| T003           | BU_MX         | P003       | C001        |        4 |        12   |
+| T004           | BU_BR         | P001       | C003        |        3 |        7.5  |
+| T005           | BU_US         | P002       | C002        |        5 |        17.5 |
++----------------+---------------+------------+-------------+----------+-------------+
 5 Row(s) produced. Time Elapsed: 0.965s
 {% endhighlight %}
 ![image](https://github.com/user-attachments/assets/a9268d98-cf03-4ef8-b805-4489067b8a2e)
