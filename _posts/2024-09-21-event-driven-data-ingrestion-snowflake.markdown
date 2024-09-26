@@ -481,7 +481,7 @@ Additionally, the log from the Argo Sensor indicates indicates that the workflow
 namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
 {% endhighlight %}
 
-Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each step of the workflow execution as you can see below.
+Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each step of the workflow execution from start to finish as you can see below.
 
 ![image](https://github.com/user-attachments/assets/95af6649-6292-4d8c-ab23-8da6396052d3)
 - **Step 1: Creating the Internal Stage**
