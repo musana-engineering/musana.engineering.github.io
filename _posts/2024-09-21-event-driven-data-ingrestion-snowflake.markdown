@@ -471,8 +471,8 @@ Now that we have deployed and configured all components, it's time to test our e
 The following log entry from the Argo EventSource indicates an event was successfully published following our file upload.
 
 {% highlight shell %}
-namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=dispatching the event to eventbus...
-namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=Succeeded to publish an event
+namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=BlobCreated, level=info, time=2024-09-26T02:41:14Z, msg=dispatching the event to eventbus...
+namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=BlobCreated, level=info, time=2024-09-26T02:41:14Z, msg=Succeeded to publish an event
 {% endhighlight %}
 
 Additionally, the log from the Argo Sensor indicates indicates that the workflow was successfully triggered:
