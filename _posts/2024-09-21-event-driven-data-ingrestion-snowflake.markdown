@@ -474,6 +474,13 @@ The following log entry from the Argo events sensor indicates that the workflow 
 namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
 {% endhighlight %}
 
+Additionally, this log from the EventSource connected to our Azure Event Hubs confirms that an event was successfully published, validating that the our configuration is operating smoothly:
+
+{% highlight shell %}
+namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=dispatching the event to eventbus...
+namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=Succeeded to publish an event
+{% endhighlight %}
+
 This log confirms that the sensor detected the uploaded file and triggered the associated workflow, setting off the entire data ingestion process. Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each event's status as you can see below.
 
 ![image](https://github.com/user-attachments/assets/95af6649-6292-4d8c-ab23-8da6396052d3)
