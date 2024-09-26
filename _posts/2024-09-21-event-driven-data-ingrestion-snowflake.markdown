@@ -468,20 +468,20 @@ kubectl apply -f workflow.yaml
 ### Putting It to the Test
 Now that we have deployed and configured all components, it's time to test our event-driven data ingestion pipeline. For this test, we will upload a sales_transaction.csv file, which can be downloaded from the /snowflake/sample_data folder in the GitHub repository for this project. Once the file is uploaded, we should see our Argo workflow initiate and execute all defined steps. 
 
-The following log entry from the Argo events sensor indicates that the workflow was successfully triggered:
-
-{% highlight shell %}
-namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
-{% endhighlight %}
-
-Additionally, this log from the EventSource connected to our Azure Event Hubs confirms that an event was successfully published, validating that the our configuration is operating smoothly:
+The following log entry from the Argo EventSource indicates an event was successfully published following our file upload.
 
 {% highlight shell %}
 namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=dispatching the event to eventbus...
 namespace=argo-events, eventSourceName=azure-events-hub, eventSourceType=azureEventsHub, eventName=ceplatform, level=info, time=2024-09-26T02:41:14Z, msg=Succeeded to publish an event
 {% endhighlight %}
 
-This log confirms that the sensor detected the uploaded file and triggered the associated workflow, setting off the entire data ingestion process. Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each event's status as you can see below.
+Additionally, the log from the Argo Sensor indicates indicates that the workflow was successfully triggered:
+
+{% highlight shell %}
+namespace=argo-events, sensorName=snowflake-data-ingestion, triggerName=snowflake-data-ingestion, level=info, time=2024-09-25T22:21:27Z, msg=Successfully processed trigger 'snowflake-data-ingestion'
+{% endhighlight %}
+
+Monitoring these logs allows us to ensure that our pipeline is functioning as intended and provides visibility into each step of the workflow execution as you can see below.
 
 ![image](https://github.com/user-attachments/assets/95af6649-6292-4d8c-ab23-8da6396052d3)
 - **Step 1: Creating the Internal Stage**
