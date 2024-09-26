@@ -512,7 +512,7 @@ Type SQL statements or !help
 +-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
 | file                                                                          | status | rows_parsed | rows_loaded | error_limit | errors_seen | first_error | first_error_line | first_error_character | first_error_column_name |
 |-------------------------------------------------------------------------------+--------
-| azure://saceplatform.blob.core.windows.net/sfingestion/Sales_Transactions.csv | LOADED |           5 |           5 |           1 |           0 | NULL        |             NULL |                  NULL | NULL                    |
+| azure://sagloballatte.blob.core.windows.net/sfingestion/Sales_Transactions.csv | LOADED |           5 |           5 |           1 |           0 | NULL        |             NULL |                  NULL | NULL                    |
 +-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
 1 Row(s) produced. Time Elapsed: 2.649s
 1 Row(s) produced. Time Elapsed: 0.385s
