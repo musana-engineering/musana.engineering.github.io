@@ -214,8 +214,10 @@ SHOW DATABASES;
 # List Warehouses
 SHOW WAREHOUSES;
 # List Tables
+USE GLOBO_LATTE_DB.SALES_DATA;
 SHOW TABLES;
 # List Table formats
+USE GLOBO_LATTE_DB.SALES_DATA;
 SHOW FILE FORMATS;
 {% endhighlight %}
 
