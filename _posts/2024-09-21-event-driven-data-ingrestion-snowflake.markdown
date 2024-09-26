@@ -511,7 +511,7 @@ Monitoring these logs allows us to ensure that our pipeline is functioning as in
 Type SQL statements or !help
 +-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
 | file                                                                          | status | rows_parsed | rows_loaded | error_limit | errors_seen | first_error | first_error_line | first_error_character | first_error_column_name |
-|-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------|
+|-------------------------------------------------------------------------------+--------
 | azure://saceplatform.blob.core.windows.net/sfingestion/Sales_Transactions.csv | LOADED |           5 |           5 |           1 |           0 | NULL        |             NULL |                  NULL | NULL                    |
 +-------------------------------------------------------------------------------+--------+-------------+-------------+-------------+-------------+-------------+------------------+-----------------------+-------------------------+
 1 Row(s) produced. Time Elapsed: 2.649s
@@ -533,6 +533,7 @@ Type SQL statements or !help
 +----------------+---------------+------------+-------------+----------+-------------+-------------------------+----------------+
 5 Row(s) produced. Time Elapsed: 0.965s
 {% endhighlight %}
+![image](https://github.com/user-attachments/assets/a9268d98-cf03-4ef8-b805-4489067b8a2e)
 
 - **Step 4: Cleaning Up by Dropping the Stage**
 {% highlight shell %}
