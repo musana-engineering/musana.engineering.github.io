@@ -15,7 +15,7 @@ This is where DevOps, Machine Learning Operations (MLOps), and Platform Engineer
 
 In this blog post, I walk you through a hands-on implementation of DevOps, Data Engineering, and Platform Engineering to optimize MLOps. I’ll guide you step-by-step on how to design, deploy, and automate a secure and scalable end-to-end MLOps pipeline using Azure Machine Learning (Azure ML), Azure Kubernetes Service (AKS), Terraform, and Argo Workflows to address the critical AI/ML challenges organizations encounter
 
-![image](https://github.com/user-attachments/assets/c2c624ed-cb22-48d5-bc38-f8c6487b0f38)
+![MLOPS](https://github.com/user-attachments/assets/de0b67c7-08f0-48ae-9566-d25cb6921547)
 
 ### Table of Contents
 - [Prerequisites ](#prerequisites)
