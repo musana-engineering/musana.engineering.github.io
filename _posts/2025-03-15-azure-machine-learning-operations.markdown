@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Automated Machine Learning Operations on AzureML and Kubernetes
-date: 2024-09-23 13:32:20 +0300
+date: 2025-03-15 13:32:20 +0300
 description: A practical implementation of infrastructure, automation and governance for streamlined machine learning operations.
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
