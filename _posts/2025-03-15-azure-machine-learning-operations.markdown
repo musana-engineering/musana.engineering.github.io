@@ -26,8 +26,9 @@ In this blog post, we’ll explore MLOps on Azure, using a fictional company **G
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Introducing GloboLatte ](#introducing-globolatte)
-   - [Business Problem ](#problem-identification)
-   - [The ML Solution ](#the-machine-learning-solution)
+   - [Understanding the Business Problem ](#problem-identification)
+   - [Understanding the ML Challenges ](#problem-identification)
+   - [Defining the ML Solution ](#the-machine-learning-solution)
 - [End-to-End MLOps Pipeline](#end-to-end-mlops-pipeline)
    - [Create ML Workspace ](#create-ml-workspace)
    - [Create ML Datastore](#create-ml-datastore)
