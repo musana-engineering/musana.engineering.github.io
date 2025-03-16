@@ -29,7 +29,7 @@ In this blog post, I walk you through a hands-on implementation of DevOps, Data 
 - [End-to-End MLOps Pipeline](#end-to-end-mlops-pipeline)
    - [Create ML Workspace ](#create-ml-workspace)
    - [Create ML Datastore](#create-ml-datastore)
-   - [Create ML Data Connection ](#create-ml-data-connection)
+   - [Import Data ](#import-data)
    - [Create ML Dataset](#create-ml-dataset)
    - [Train ML Model](#create-ml-dataset)
    - [Serve ML Model](#create-ml-dataset)
@@ -62,7 +62,7 @@ To solve this problem, GloboLatte can use machine learning models that leverage 
 ### End-to-End MLOps Pipeline
 - ### Create ML Workspace
 - ### Create ML Datastore
-- ### Create ML Data Connection
+- ### Import Data
 - ### Create ML Dataset
 - ### Train ML Model
 - ### Server ML Model
