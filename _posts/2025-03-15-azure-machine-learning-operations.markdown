@@ -65,7 +65,7 @@ To solve this problem, GloboLatte can use machine learning models that leverage 
 - ### Import Data
 - ### Create Compute Target
 - ### Train ML Model
-- ### Server ML Model
+- ### Serve ML Model
 ### Putting It to the Test
 ### Summary
 
