@@ -31,7 +31,9 @@ In this blog post, I walk you through a hands-on implementation of DevOps, Data 
    - [Create ML Datastore](#create-ml-datastore)
    - [Create ML Data Connection ](#create-ml-data-connection)
    - [Create ML Dataset](#create-ml-dataset)
-   - [Putting It to the Test](#putting-it-to-the-test)
+   - [Train ML Model](#create-ml-dataset)
+   - [Serve ML Model](#create-ml-dataset)
+- [Putting It to the Test](#putting-it-to-the-test)
 - [Summary ](#summary)
 
 ### Prerequisites
@@ -62,8 +64,9 @@ To solve this problem, GloboLatte can use machine learning models that leverage 
 - ### Create ML Datastore
 - ### Create ML Data Connection
 - ### Create ML Dataset
-- ### Putting It to the Test
-
-### Conclusion
+- ### Train ML Model
+- ### Server ML Model
+### Putting It to the Test
+### Summary
 
 
