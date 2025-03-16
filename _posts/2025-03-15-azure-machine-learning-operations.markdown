@@ -39,12 +39,9 @@ In my latest blog post, I’ll take you on a deep dive into the world of MLOps o
 - [Summary ](#summary)
 
 ### Prerequisites
-This guide assumes you already have a solid understanding of **[core machine learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained):**, including model training, evaluation, and deployment. You should be familiar with common ML frameworks like **[Scikit-learn](https://scikit-learn.org/stable/):**, **[TensorFlow](https://www.tensorflow.org/):**,**[PyTorch](https://pytorch.org/):**
+This guide assumes you already have a solid understanding of **[core machine learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. You should be also be familiar with common ML frameworks like **[Scikit-learn](https://scikit-learn.org/stable/)**, **[TensorFlow](https://www.tensorflow.org/)**, **[PyTorch](https://pytorch.org/)**. 
 
-- **[Understanding of Azure Machine Learning (Azure ML)](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2):**
-- **[Understanding of Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks):**
-- **[Understanding of Workflow Automation with Argo)](https://argoproj.github.io/workflows/):**
-- **[Working Knowledge Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py):**
+Additionally, you are expected to be confortable working with the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py):**,  **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks):**, **[Workflow Automation with Argo)](https://argoproj.github.io/workflows/):** and Infrastructure-as-code using **[Terraform)](https://www.terraform.io/):**
 
 ### Introducing GloboLatte
 GloboLatte, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee, offering swift service regardless of when and where customers place their orders.
