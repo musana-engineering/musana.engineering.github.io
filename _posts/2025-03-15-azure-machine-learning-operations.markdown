@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Automated Machine Learning Operations (MLOps) on Azure ML and Kubernetes
+title: Automated Machine Learning Operations (MLOps) on Microsoft Azure
 date: 2025-03-15 13:32:20 +0300
-description: A practical implementation of infrastructure, automation and governance for streamlined machine learning operations.
+description: A practical implementation of infrastructure, automation and governance for streamlined machine learning operations on Microsoft Azure.
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [machine-learning, kubernetes, azure, azureml, ai]
@@ -18,12 +18,11 @@ In this blog post, I walk you through a hands-on implementation of DevOps, Data 
 ![MLOPS](https://github.com/user-attachments/assets/0b4c12c7-e309-4e5f-8529-e2f84628c2bd)
 
 ### Table of Contents
-- [Prerequisites ](#prerequisites)
-- [What is Machine Learning Operations (MLOps)? ](#what-is-machine-learning-operations-(MLOps)-?)
-   - [MLOps Challenges in Production](#mlops-challenges-in-production)
-   - [Solving MLOps Challenges with Platform Engineering](#solving-ml-challenges-with-platform-engineering)
-   - [Best Practices for Implementing MLOps ](#best-practices-for-implementing-mlops)
-- [What is Azure ML? ](#what-is-azure-ml)
+- [Prerequisites](#prerequisites)
+- [What is Machine Learning (ML)?](#what-is-machine-learning)
+   - [ML for Solving Business Challenges](#machine-learning-challenges)
+   - [ML Challenges in Production](#machine-learning-operations)
+   - [Azure ML](#azure-machine-learning)
 - [Introducing GloboLatte ](#introducing-globolatte)
    - [Business Problem ](#problem-identification)
    - [The ML Solution ](#the-machine-learning-solution)
