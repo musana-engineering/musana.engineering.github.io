@@ -30,7 +30,7 @@ In this blog post, I walk you through a hands-on implementation of DevOps, Data 
    - [Create ML Workspace ](#create-ml-workspace)
    - [Create ML Datastore](#create-ml-datastore)
    - [Import Data ](#import-data)
-   - [Create ML Dataset](#create-ml-dataset)
+   - [Create Compute Target](#create-compute-target)
    - [Train ML Model](#create-ml-dataset)
    - [Serve ML Model](#create-ml-dataset)
 - [Putting It to the Test](#putting-it-to-the-test)
@@ -63,7 +63,7 @@ To solve this problem, GloboLatte can use machine learning models that leverage 
 - ### Create ML Workspace
 - ### Create ML Datastore
 - ### Import Data
-- ### Create ML Dataset
+- ### Create Compute Target
 - ### Train ML Model
 - ### Server ML Model
 ### Putting It to the Test
