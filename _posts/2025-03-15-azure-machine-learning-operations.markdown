@@ -19,7 +19,7 @@ So, what’s the solution? Enter Machine Learning Operations (MLOps) a disciplin
 
 As platform engineers, we have a unique opportunity to empower our organizations by building robust MLOps pipelines that not only accelerate time-to-market but also ensure measurable ROI. By leveraging powerful Azure services such as Azure Machine Learning (Azure ML), Azure Kubernetes Service (AKS) and open-source solutions such as Terraform and Argo Workflows we can design, deploy, and automate secure, scalable, and end-to-end ML solutions that serve as the foundation for our business’s AI capabilities.
 
-In my latest blog post, I’ll take you on a deep dive into the world of MLOps on Azure. I’ll walk you through a hands-on implementation, step-by-step, showing you how to build a production-ready MLOps pipeline that’s tailored to your organization’s needs. Whether you’re just starting your AI journey or looking to optimize your existing ML workflows, this guide will equip you with the knowledge and tools to unlock the full potential of machine learning in your business.
+In this blog post, we’ll explore MLOps on Azure, using a fictional company **Global Latte** as our case study. I’ll demonstrate step-by-step how to design, build, and deploy a production-ready MLOps pipeline tailored to real-world business needs. Whether you're looking to streamline model deployment, ensure scalability, or integrate ML into your existing workflows, this walkthrough will equip you with the tools and knowledge to make it happen. Let’s dive in!
 
 ![MLOPS](https://github.com/user-attachments/assets/0b4c12c7-e309-4e5f-8529-e2f84628c2bd)
 
