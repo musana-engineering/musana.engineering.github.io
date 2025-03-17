@@ -26,7 +26,7 @@ In this blog post, we’ll explore MLOps on Azure, using a fictional company **G
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Introducing GloboLatte ](#introducing-globolatte)
-   - [Understanding the Business Problem ](#problem-identification)
+   - [Understanding the ML Problem ](#problem-identification)
    - [Understanding the ML Challenges ](#problem-identification)
    - [Defining the ML Solution ](#the-machine-learning-solution)
 - [End-to-End MLOps Pipeline](#end-to-end-mlops-pipeline)
@@ -42,14 +42,14 @@ In this blog post, we’ll explore MLOps on Azure, using a fictional company **G
 ### Prerequisites
 This guide assumes you already have a solid understanding of **[core machine learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. You should be also be familiar with common ML frameworks like **[Scikit-learn](https://scikit-learn.org/stable/)**, **[TensorFlow](https://www.tensorflow.org/)**, and **[PyTorch](https://pytorch.org/)**. 
 
-Additionally, you are expected to be comfortable working with the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py):**,  **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks):**, **[Workflow Automation with Argo)](https://argoproj.github.io/workflows/):** and Infrastructure-as-code using **[Terraform)](https://www.terraform.io/):**
+Additionally, you are expected to be comfortable working with the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, **[Workflow Automation with Argo)](https://argoproj.github.io/workflows/)** and Infrastructure-as-code using **[Terraform)](https://www.terraform.io/)**
 
 ### Introducing GloboLatte
 GloboLatte, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee, offering swift service regardless of when and where customers place their orders.
 
 GloboLatte operates business units in America, Canada, and Mexico. At the end of each day, the operations team at each business unit uploads sales data files to an Azure Blob Storage account. To improve operational efficiency, GloboLatte aims to implement an event-driven architecture for data ingestion into their Snowflake account. This system will allow them to react promptly to the new sales data uploaded by each business unit.
 
-- ### Business Problem
+- ### Understanding the ML Problem
 
 While GloboLatte has managed to automate some of their data ingestion processes, they still face a major challenge: how to effectively market to customers across different regions. Currently, they have little insight into their customers' purchasing behaviors, preferences, or seasonal patterns, making it difficult to tailor their marketing campaigns and promotions. The company needs a way to personalize their marketing efforts to increase customer retention and drive sales. By predicting customer preferences based on historical sales data, GloboLatte can recommend products, special promotions, or new beverages to customers based on their individual tastes and buying habits.
 
