@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Automated Machine Learning Operations (MLOps) on Microsoft Azure
+title: Machine Learning Operations (MLOps) on Microsoft Azure
 date: 2025-03-15 13:32:20 +0300
 description: A practical implementation of infrastructure, automation and governance for streamlined machine learning operations on Microsoft Azure.
 img: ml_cover.jpg # Add image post (optional)
