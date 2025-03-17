@@ -62,12 +62,23 @@ The Global Latte sales dataset contains two years (2022–2023) of historical sa
 
 - **Dataset Characteristics**
 {% highlight yaml %}
-Total Rows: 10,000 orders.
-Time Range: Two years (2022–2023).
-Regions: USA, Canada, Mexico.
-Products: 6 coffee-derived products.
-Customers: 1,000 unique customers.
+Total Rows: 10,000 orders
+Time Range: Two years (2022–2023)
+Regions: USA, Canada, Mexico
+Products: 6 coffee-derived products
+Customers: 1,000 unique customers
+Weather Conditions: 4 types (Sunny, Rainy, Snowy, Cloudy)
 {% endhighlight %}
+
+The dataset will help address GloboLatte’s problem of delivering personalized product recommendations. Below are the key use cases for the dataset in the context of this problem:
+
+- **Predict** which products a customer is most likely to purchase. ```Example: If a customer frequently buys Iced Latte during summer, recommend similar iced beverages in the future.```
+
+- **Recommend** seasonal and regional trends. ```Example: Suggest Hot Chocolate to customers in Canada during winter, while recommending Cold Brew to customers in Mexico during summer.```
+
+- **Upsell and Cross-Sell** opportunities to recommend complementary products. ```Example: If a customer frequently buys Espresso, suggest pairing it with a pastry or a Cappuccino.```
+
+- **Dynamic Marketing Campaigns** using insights from the dataset to create targeted marketing campaigns. Example: ```Send personalized offers for Iced Latte to customers who have previously purchased iced beverages during warm weather.```
 
 ### Implemeting the Pipeline for the Solution
 To design and implement an end-to-end ML pipeline for GloboLatte on Microsoft Azure, we will use Azure Machine Learning (Azure ML), Terraform, and the Azure ML Python SDK v2. The solution will include data ingestion from Snowflake, model training on Azure Kubernetes Service (AKS), and a scalable, reliable, and production-grade architecture. Below is the step-by-step plan
