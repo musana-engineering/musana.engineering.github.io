@@ -57,7 +57,7 @@ While GloboLatte has managed to automate some of their data ingestion processes,
 
 To solve this problem, GloboLatte can use machine learning models that leverage historical sales data to identify customer purchasing patterns. By clustering customers based on their purchasing behavior, and using supervised learning techniques to predict future preferences, the company can deliver more personalized recommendations. Additionally, by integrating weather patterns, holidays, and regional preferences into the model, GloboLatte can further refine their predictions. For example, customers in Mexico might have different preferences compared to those in Canada due to regional variations in taste or weather. A customer who frequently orders iced drinks in the summer could be targeted with special offers for similar beverages in future seasons.
 
-- ### The Dataset
+- ### Dataset
 The Global Latte sales dataset contains two years (2022–2023) of historical sales data, reflecting customer purchasing behavior across three regions: USA, Canada, and Mexico. The dataset is designed to simulate real-world sales patterns, including regional variations, seasonal trends, and customer preferences. Below is a detailed description of the dataset and its columns:
 
 - **Dataset Characteristics**
