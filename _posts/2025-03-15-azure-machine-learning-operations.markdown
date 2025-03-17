@@ -57,8 +57,40 @@ While GloboLatte has managed to automate some of their data ingestion processes,
 
 To solve this problem, GloboLatte can use machine learning models that leverage historical sales data to identify customer purchasing patterns. By clustering customers based on their purchasing behavior, and using supervised learning techniques to predict future preferences, the company can deliver more personalized recommendations. Additionally, by integrating weather patterns, holidays, and regional preferences into the model, GloboLatte can further refine their predictions. For example, customers in Mexico might have different preferences compared to those in Canada due to regional variations in taste or weather. A customer who frequently orders iced drinks in the summer could be targeted with special offers for similar beverages in future seasons.
 
-### End-to-End MLOps Pipeline
+- ### The Dataset
+The Global Latte sales dataset contains two years (2022–2023) of historical sales data, reflecting customer purchasing behavior across three regions: USA, Canada, and Mexico. The dataset is designed to simulate real-world sales patterns, including regional variations, seasonal trends, and customer preferences. Below is a detailed description of the dataset and its columns:
+
+- **Dataset Characteristics**
+{% highlight yaml %}
+Total Rows: 10,000 orders.
+Time Range: Two years (2022–2023).
+Regions: USA, Canada, Mexico.
+Products: 6 coffee-derived products.
+Customers: 1,000 unique customers.
+{% endhighlight %}
+
+### Implemeting the Pipeline for the Solution
+To design and implement an end-to-end ML pipeline for GloboLatte on Microsoft Azure, we will use Azure Machine Learning (Azure ML), Terraform, and the Azure ML Python SDK v2. The solution will include data ingestion from Snowflake, model training on Azure Kubernetes Service (AKS), and a scalable, reliable, and production-grade architecture. Below is the step-by-step plan
+
+- ### Architecture Overview
+The pipeline will consist of the following components:
+- Data Ingestion: Ingest data from Snowflake into Azure ML's blob datastore.
+- Data Preparation: Clean, preprocess, and transform the data.
+- Model Training: Train machine learning models using AKS as the compute target.
+- Model Deployment: Deploy the trained model to AKS for inference.
+- Monitoring and Retraining: Set up monitoring and retraining pipelines for continuous improvement.
+
+- ### Tools and Technologies
+- Azure ML for managing the ML lifecycle, including datasets, experiments, and deployments.
+- Terraform for infrastructure-as-code (IaC) to provision Azure resources.
+- Azure ML Python SDK v2 for defining and managing the ML pipeline.
+- Snowflake as the source of historical sales data.
+- Azure Blob Storage for storing ingested data and model artifacts.
+- AKS Compute target for scalable model training and inference.
+
+Event-Driven Architecture: Using Azure Event Grid to trigger data ingestion and pipeline execution.
 - ### Create ML Workspace
+
 - ### Create ML Datastore
 - ### Import Data
 - ### Create Compute Target
