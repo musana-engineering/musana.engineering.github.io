@@ -1,48 +1,60 @@
 ---
 layout: post
-title: Machine Learning Operations (MLOps) on Microsoft Azure
+title: Democratizing Machine Learning with Azure Machine Learning Service (AMLS)
 date: 2025-03-15 13:32:20 +0300
-description: A practical implementation of infrastructure, automation and governance for streamlined machine learning operations on Microsoft Azure.
+description: A hands-on approach to implementing infrastructure, automation, and governance for machine learning operations on Azure
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [machine-learning, kubernetes, azure, azureml, ai]
+tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
-In today’s fast-paced business environment, companies are increasingly turning to artificial intelligence (AI) to tackle complex challenges and drive innovation. However, while the flashy AI models from tech giants like OpenAI, Google, and Meta grab headlines, many organizations find themselves unable to leverage these solutions due to a variety of reasons.
+Machine learning has long been a challenging field to enter, requiring specialized knowledge in statistics, programming, and data engineering. This has often left many companies without the necessary in-house expertise or resources to embark on machine learning projects. However, with the advent of Automated Machine Learning (AutoML) and Machine Learning Operations (MLOps) on platforms like Microsoft Azure, the landscape has shifted dramatically.
 
-Regulatory requirements, data privacy concerns, and intellectual property considerations often force businesses to keep their data within secure, controlled environments. Additionally, the consumption models offered by these tech giants typically require data to traverse the public internet, which is a non-starter for companies operating in air-gapped or highly secure environments.
+Azure's comprehensive suite of cloud services is now empowering platform engineers, regardless of their background in data science or engineering, to build, deploy, and manage reliable, scalable machine learning models that meet production standards.
 
-As a result, many organizations are left with no choice but to develop custom machine learning (ML) models tailored to their specific needs. While this approach offers greater control and customization, it comes with its own set of challenges. Traditional ML projects are notoriously complex, requiring a rare blend of expertise from data scientists, data engineers, and AI engineers—talent that many companies simply don’t have in-house.
+In this blog post, we'll explore how Azure is democratizing machine learning by simplifying its development and deployment. To illustrate these concepts, we'll follow a fictional company, ```Global Latte```, as it designs and implements a production-ready machine learning workflow. Using ```Global Latte's``` historical sales data stored in Snowflake, we'll predict customer preferences and behaviors. Whether your goal is to streamline model deployment, enhance scalability, or integrate machine learning into your workflows, this guide will provide you with the insights and tools to get started.
 
-Even when organizations do have access to this elite talent, the journey from experimentation to production is fraught with obstacles. Data scientists often start by tinkering in Jupyter Notebooks, exploring algorithms and datasets to identify the best fit for the problem at hand. However, turning these experiments into scalable, reliable, and production-ready solutions is where many organizations stumble. Without the right infrastructure, automation tools, and governance frameworks, these models risk becoming isolated experiments interesting in theory but ultimately failing to deliver tangible business value.
-
-So, what’s the solution? Enter Machine Learning Operations (MLOps) a discipline that applies DevOps principles to the world of machine learning. MLOps provides the framework needed to bridge the gap between experimentation and production, ensuring that ML models are deployed efficiently, monitored effectively, and integrated seamlessly into existing business processes. For companies operating on Microsoft Azure, Azure Machine Learning Service is a game-changer, offering a comprehensive suite of tools to streamline the MLOps lifecycle.
-
-As platform engineers, we have a unique opportunity to empower our organizations by building robust MLOps pipelines that not only accelerate time-to-market but also ensure measurable ROI. By leveraging powerful Azure services such as Azure Machine Learning (Azure ML), Azure Kubernetes Service (AKS) and open-source solutions such as Terraform and Argo Workflows we can design, deploy, and automate secure, scalable, and end-to-end ML solutions that serve as the foundation for our business’s AI capabilities.
-
-In this blog post, we’ll explore MLOps on Azure, using a fictional company **Global Latte** as our case study. I’ll demonstrate step-by-step how to design, build, and deploy a production-ready MLOps pipeline tailored to real-world business needs. Whether you're looking to streamline model deployment, ensure scalability, or integrate ML into your existing workflows, this walkthrough will equip you with the tools and knowledge to make it happen. Let’s dive in!
+Loading data into AMLS for AutoML
+Creating an AutoML solution
+Interpreting your AutoML results
+Explaining your AutoML model
+Obtaining better AutoML performance
 
 ![MLOPS](https://github.com/user-attachments/assets/0b4c12c7-e309-4e5f-8529-e2f84628c2bd)
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
+- [What is Auto ML?](#what-is-auto-ml)
+- [Advantages of AutoML on Azure](#advantages-of-automl-on-azure)
 - [Introducing GloboLatte ](#introducing-globolatte)
-   - [Understanding the ML Problem ](#problem-identification)
-   - [Understanding the ML Challenges ](#problem-identification)
-   - [Designing the ML Solution ](#the-machine-learning-solution)
-- [Implemeting the ML Pipeline](#end-to-end-mlops-pipeline)
-   - [Create ML Workspace ](#create-ml-workspace)
-   - [Create ML Datastore](#create-ml-datastore)
-   - [Import Data ](#import-data)
-   - [Create Compute Target](#create-compute-target)
+   - [Understanding the Business Problem](#problem-identification)
+- [Implemeting the ML Solution](#end-to-end-mlops-pipeline)
+   - [Creating the Infrastructure ](#create-ml-workspace)
+   - [Collecting and Loading Data](#create-ml-workspace)
+   - [Transforming Data for ML](#create-ml-workspace)
+   - [Training the Model](#create-ml-workspace)
+   - [Serving the Model](#create-ml-workspace)
+
+      Delivering Results to End Users
+      Monitoring and preventing data drift
+   - [Create Workspace ](#create-ml-workspace)
+   - [Create Compute Cluster](#create-compute-target)
+   - [Create Inference Cluster](#create-compute-target)
+   - [Create Dataset](#create-dataset-target)
    - [Train ML Model](#create-ml-dataset)
    - [Serve ML Model](#create-ml-dataset)
-- [Putting It to the Test](#putting-it-to-the-test)
+- [Putting it all together](#putting-it-to-the-test)
 - [Summary ](#summary)
 
 ### Prerequisites
-This guide assumes you already have a solid understanding of **[core machine learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. You should be also be familiar with common ML frameworks like **[Scikit-learn](https://scikit-learn.org/stable/)**, **[TensorFlow](https://www.tensorflow.org/)**, and **[PyTorch](https://pytorch.org/)**. 
+Before diving in, this guide assumes the following;
+- You have a solid understanding of **[Core Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
+- You have a solid understanding of DevOps Concepts like CI/CD pipelines and Version Control
+- You are comfortable working with tools like **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, **[Argo Workflows)](https://argoproj.github.io/workflows/)** and **[Terraform)](https://www.terraform.io/)**
 
-Additionally, you are expected to be comfortable working with the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, **[Workflow Automation with Argo)](https://argoproj.github.io/workflows/)** and Infrastructure-as-code using **[Terraform)](https://www.terraform.io/)**
+For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
+
+### What is Auto ML?
+### Advantages of AutoML on Azure
 
 ### Introducing GloboLatte
 GloboLatte, is a fictitious company that specializes in selling coffee-derived products like beverages and pastries. Their goal is to provide the best coffee, offering swift service regardless of when and where customers place their orders.
@@ -111,3 +123,25 @@ Event-Driven Architecture: Using Azure Event Grid to trigger data ingestion and 
 ### Summary
 
 
+###############
+Advantages of AutoML on Azure
+Let's look at some of the advantages of AutoML:
+
+AutoML transforms data automatically: Once you have a cleansed, error-free dataset in an easy-to-understand format, you can simply load that data into AutoML. You do not need to fill in null values, one-hot encode categorical values, scale data, remove outliers, or worry about balancing datasets except in extreme cases. This is all done via AutoML's intelligent feature engineering. There are even data guardrails that automatically detect any problems in your dataset that may lead to a poorly built model.
+AutoML trains models with the best algorithms: After you load your data into AutoML, it will start training models using the most up-to-date algorithms. Depending on your settings and the size of your compute, AutoML will train these models in parallel using the Azure cloud. At the end of your run, AutoML will even build complex ensemble models combining the results of your highest performing models.
+AutoML tunes hyperparameters for you: As you use AutoML on Azure, you will notice that it will often create models using the same algorithms over and over again.
+You may notice that while early on in the run it was trying a wide range of algorithms, by the end of the run, it's focusing on only one or two. This is because it is testing out different hyperparameters. While it may not find the absolute best set of hyperparameters on any given run, it is likely to deliver a high-performing, well-tuned model.
+
+AutoML has super-fast development: Models built using AutoML on Azure can be deployed to a REST API endpoint in just a few clicks. The accompanying script details the data schema that you need to pass through to the endpoint. Once you have created the REST API, you can deploy it anywhere to easily score data and store results in a database of your choice.
+AutoML has in-built explainability: Recently, Microsoft has focused on responsible AI. A key element of responsible AI is being able to explain how your machine learning model is making decisions.
+AutoML-generated models come with a dashboard showing the importance of the different features used by your model. This is available for all of the models you train with AutoML unless you turn on the option to use black-box deep learning algorithms. Even individual data points can be explained, greatly helping your model to earn the trust and acceptance of business end users.   
+
+AutoML enables data scientists to iterate faster: Through intelligent feature engineering, parallel model training, and automatic hyperparameter tuning, AutoML lets data scientists fail faster and succeed faster. If you cannot get decent performance with AutoML, you know that you need to add more data.
+Conversely, if you do achieve great performance with AutoML, you can either choose to deploy the model as is or use AutoML as a baseline to compare against your hand-coded models. At this point in time, it's expected that the best data scientists will be able to manually build models that outperform AutoML in some cases.
+
+AutoML enables non-data scientists to do data science: Traditional machine learning has a high barrier to entry. You have to be an expert at statistics, computer programming, and data engineering to succeed in data science, and those are just the hard skills.
+AutoML, on the other hand, can be performed by anyone who knows how to shape data. With a bit of SQL and database knowledge, you can harness the power of AI and build and deploy machine learning models that deliver business value fast.
+
+AutoML is the wave of the future: Just as AI has evolved from a buzzword to a practice, the way that machine learning solutions get created needs to evolve from research projects to well-oiled machines. AutoML is a key piece of that well-oiled machine, and AutoML on Azure has many features that will empower you to fail and succeed faster. From data transformation to deployment to end user acceptance, AutoML makes machine learning easier and more accessible than ever before.
+AutoML is widely available: Microsoft's AutoML is not only available on Azure but can also be used inside Power BI, ML.NET, SQL Server, Synapse, and HDInsight. As it matures further, expect it to be incorporated into more and more Azure and non-Azure Microsoft services.
+###############
