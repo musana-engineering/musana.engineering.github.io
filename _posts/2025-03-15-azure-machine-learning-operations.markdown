@@ -54,32 +54,23 @@ GloboJava is a coffee-focused company specializing in high-quality beverages and
 A major challenge for GloboJava is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. By leveraging historical sales data, GloboJava can apply machine learning to forecast demand more precisely, optimizing inventory, reducing waste, and ensuring popular products are always available for customers.
 
 - ### Understanding the Data
-GloboJava collects sales data from its stores across the U.S., Mexico, and Canada, using Snowflake for database management and data warehousing. The structured dataset includes key attributes essential for demand forecasting:
+GloboJava collects sales data from its stores across the U.S., Mexico, and Canada, using Snowflake for database management and data warehousing. The dataset consists of 1,318,543 records with 15 columns, capturing key details about sales transactions, store locations, and external factors such as weather and promotions. Below is a breakdown of each column:
 
-{% highlight yaml %}
-- Unique identifier for each store.
-- The date of the sale, with separate columns for day, month, and year.
-- The country where the store is located (USA, Mexico, Canada).
-- The city where the store is located.
-- The category of the item (e.g., Coffee, Pastry, Beverage, Merchandise).
-- The specific product sold (e.g., "Caffè Latte," "Blueberry Muffin").
-- Number of units sold for that product.
-- The selling price per unit.
-- The total revenue for that product (Quantity Sold × Price).
-- Weather conditions at the store's location, categorized as "Hot," "Cold," or "Rainy."
-- Indicates whether a promotion was active at the time ("Yes" or "No").
-- Indicates whether the sale occurred on a holiday ("Yes" or "No").
-{% endhighlight %}
-
-- **Dataset Characteristics**
-{% highlight yaml %}
-Total Rows: 10,000 orders
-Time Range: Two years (2022–2023)
-Regions: USA, Canada, Mexico
-Products: 6 coffee-derived products
-Customers: 1,000 unique customers
-Weather Conditions: 4 types (Sunny, Rainy, Snowy, Cloudy)
-{% endhighlight %}
+- STOREID (object) – Unique identifier for each store.
+- DATE (object) – Full date of the transaction.
+- DAY (object) – Day of the month the transaction occurred.
+- MONTH (object) – Month of the transaction.
+- YEAR (object) – Year of the transaction.
+- COUNTRY (object) – Country where the store is located (USA, Mexico, Canada).
+- CITY (object) – City where the store is located.
+- PRODUCTCATEGORY (object) – Category of the sold item (e.g., Coffee, Pastry, Beverage, Merchandise).
+- PRODUCT (object) – Specific product sold (e.g., "Caffè Latte," "Blueberry Muffin").
+- QUANTITYSOLD (object) – Number of units sold for that product.
+- PRICE (object) – Price per unit of the product.
+- TOTALSALE (object) – Total revenue generated for that product (Quantity Sold × Price).
+- WEATHER (object, 1,252,616 non-null) – Weather conditions at the time of sale, categorized as "Hot," "Cold," or "Rainy." (Missing data in some entries).
+- PROMOTION (object, 1,252,616 non-null) – Indicates if a promotion was active ("Yes" or "No"). (Some missing values).
+- HOLIDAY (bool) – Boolean flag indicating whether the transaction occurred on a holiday.
 
 ### Implemeting the Pipeline for the Solution
 To design and implement an end-to-end ML pipeline for GloboJava on Microsoft Azure, we will use Azure Machine Learning (Azure ML), Terraform, and the Azure ML Python SDK v2. The solution will include data ingestion from Snowflake, model training on Azure Kubernetes Service (AKS), and a scalable, reliable, and production-grade architecture. Below is the step-by-step plan
