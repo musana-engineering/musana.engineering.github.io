@@ -54,20 +54,22 @@ GloboJava is a coffee-focused company specializing in high-quality beverages and
 A major challenge for GloboJava is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. By leveraging historical sales data, GloboJava can apply machine learning to forecast demand more precisely, optimizing inventory, reducing waste, and ensuring popular products are always available for customers.
 
 - ### Understanding the Data
-GloboJava collects sales data from their various stores located in America, Mexico and Canada, including:
+GloboJava collects sales data from its stores across the U.S., Mexico, and Canada, using Snowflake for database management and data warehousing. The structured dataset includes key attributes essential for demand forecasting:
 
-- Store ID: A unique identifier for each Starbucks store.
-- Date: The date of the sale.(Separate columns for Day, Month and Year)
-- Country: The country where the store is located (USA, Mexico, Canada).
-- City: The city where the store is located.
-- Product Category: The category of the item (e.g., Coffee, Pastry, Beverage, Merchandise).
-- Product: Specific product sold (e.g., "Caffe Latte", "Blueberry Muffin").
-- Quantity Sold: The number of units of that product sold.
-- Price: The price at which the product was sold.
-- Total Sale: The total amount for that product (Quantity Sold * Price).
-- Weather: Weather condition for the location (could be temperature, but for simplicity, we will categorize it as "Hot", "Cold", "Rainy").
-- Promotion: A flag indicating if there was a promotion during that time (e.g., "Yes" or "No").
-- Holiday: A flag to indicate if the day was a holiday (e.g., "Yes" or "No").
+{% highlight yaml %}
+- Unique identifier for each store.
+- The date of the sale, with separate columns for day, month, and year.
+- The country where the store is located (USA, Mexico, Canada).
+- The city where the store is located.
+- The category of the item (e.g., Coffee, Pastry, Beverage, Merchandise).
+- The specific product sold (e.g., "Caffè Latte," "Blueberry Muffin").
+- Number of units sold for that product.
+- The selling price per unit.
+- The total revenue for that product (Quantity Sold × Price).
+- Weather conditions at the store's location, categorized as "Hot," "Cold," or "Rainy."
+- Indicates whether a promotion was active at the time ("Yes" or "No").
+- Indicates whether the sale occurred on a holiday ("Yes" or "No").
+{% endhighlight %}
 
 - **Dataset Characteristics**
 {% highlight yaml %}
