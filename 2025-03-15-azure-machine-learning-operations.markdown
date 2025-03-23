@@ -26,7 +26,7 @@ In this series, I’ll explore how Platform Engineering teams can drive AI adopt
 Before diving in, this guide assumes the following;
 - You have a solid understanding of **[Core Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
 - You have a solid understanding of DevOps Concepts like CI/CD pipelines and Version Control
-- You are comfortable working with tools like **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, **[Argo Workflows)](https://argoproj.github.io/workflows/)** and **[Terraform)](https://www.terraform.io/)**
+- You are comfortable working with tools like **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, and **[Terraform)](https://www.terraform.io/)**
 
 For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
