@@ -11,7 +11,7 @@ Many organizations struggle with the skills and expertise needed to build, deplo
 
 In this series, I’ll explore how Platform Engineering teams can drive AI adoption and maximize the value of AI investments. We’ll follow the journey of ```GloboJava```, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Through their experience, we’ll dive into real-world strategies, tools, and best practices to streamline AI development and deployment.
 
-![MLOPS](https://github.com/user-attachments/assets/0b4c12c7-e309-4e5f-8529-e2f84628c2bd)
+![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
