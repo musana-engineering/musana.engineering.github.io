@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Platform Engineering for AI - Part 1
-date: 2025-03-15 13:32:20 +0300
+date: 2025-03-22 13:32:20 +0300
 description: A hands-on approach to implementing infrastructure, automation, and governance for AI/ML projects on Azure
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
