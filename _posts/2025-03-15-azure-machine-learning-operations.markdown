@@ -9,7 +9,7 @@ tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
 Many organizations struggle with the skills and expertise needed to build, deploy, and maintain AI solutions. This gap often leads to delays, inefficiencies, and failed initiatives. But with the rise of Automated Machine Learning (AutoML) and Machine Learning Operations (MLOps), Platform Engineers are in a unique position to bridge this gap. By applying DevOps principles like automation, CI/CD, infrastructure-as-code, and cross-team collaboration, they can help development and data science teams deliver scalable AI solutions faster and more reliably.
 
-In this series, I’ll explore how Platform Engineering teams can drive AI adoption and maximize the value of AI investments. We’ll follow the journey of ```GloboJava```, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Through their experience, we’ll dive into real-world strategies, tools, and best practices to streamline AI development and deployment.
+In this series, I’ll explore how Platform Engineering teams can drive AI adoption and maximize the value of AI investments. We’ll follow the journey of **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Through their experience, we’ll dive into real-world strategies, tools, and best practices to streamline AI development and deployment.
 
 ![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
