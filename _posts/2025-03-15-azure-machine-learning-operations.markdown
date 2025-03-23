@@ -48,13 +48,10 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 - Building scalable AI platforms that enable reliable and repeatable ML model deployment.
 
 ### Introducing GloboJava
-GloboJava is a coffee-focused company that sells beverages and pastries, aiming to deliver high-quality coffee with fast, reliable service. They operate in the U.S., Canada, and Mexico and plans to employ machine learning to predict demand for products at their various locations, optimizing inventory management and reducing food waste. They want to analyze their historical sales data, weather patterns, and local events and be able to forecast which items will be popular and adjust their inventory accordingly to improve operations, enhance customer experiences, and support better decision-making
+GloboJava is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
 
 - ### Understanding the problem
-One key challenge GloboJava faces is predicting customer demand accurately. With fluctuating sales patterns due to seasons, holidays, and regional preferences, they often struggle with inventory management—leading to either overstocking or shortages. By leveraging their historical sales data, GloboJava can use machine learning to forecast demand more precisely. This will help them optimize inventory levels, reduce waste, and ensure popular products are always available when customers need them.
-
-- ### Understanding the solution
-To address the demand forecasting challenge, GloboJava can build a machine learning model using their five years of sales data stored in Snowflake. By analyzing historical sales trends, seasonal patterns, and regional preferences, the model can predict future demand for each product. This solution will enable GloboJava to optimize inventory levels, reduce waste, and ensure popular items are always in stock. The result? Improved customer satisfaction, lower costs, and smarter decision-making across their operations
+A major challenge for GloboJava is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. By leveraging historical sales data, GloboJava can apply machine learning to forecast demand more precisely, optimizing inventory, reducing waste, and ensuring popular products are always available for customers.
 
 - ### Understanding the Data
 GloboJava collects sales data from their various stores located in America, Mexico and Canada, including:
