@@ -96,14 +96,6 @@ The pipeline will consist of the following components:
 - Azure Blob Storage for storing ingested data and model artifacts.
 - AKS Compute target for scalable model training and inference.
 
-Event-Driven Architecture: Using Azure Event Grid to trigger data ingestion and pipeline execution.
-- ### Create ML Workspace
-
-- ### Create ML Datastore
-- ### Import Data
-- ### Create Compute Target
-- ### Train ML Model
-- ### Serve ML Model
 ### Putting It to the Test
 ### Summary
 
