@@ -17,7 +17,8 @@ In this series, I’ll explore how Platform Engineering teams can drive AI adopt
 - [Role of Platform Engineering in AI Adoption](#role-of-platform-engineering-in-ai-adoption)
 - [Introducing GloboJava ](#introducing-GloboJava)
    - [Understanding the Problem](#understanding-the-problem)
-- [Implementing the Solution](#implementing-the-solution)
+   - [Understanding the Data](#understanding-the-data)
+- [Solution Architecture](#solution-architecture)
 - [Putting it all together](#putting-it-to-the-test)
 - [Summary ](#summary)
 
@@ -80,7 +81,6 @@ GloboJava collects sales data from its stores across the U.S., Mexico, and Canad
    - Split
    - Preprocess
 
-- ### Architecture Overview
 The pipeline will consist of the following components:
 - Data Ingestion: Ingest data from Snowflake into Azure ML's blob datastore.
 - Data Preparation: Clean, preprocess, and transform the data.
