@@ -70,7 +70,7 @@ GloboJava collects sales data from its stores across the U.S., Mexico, and Canad
    - PROMOTION (object, 1,252,616 non-null) – Indicates if a promotion was active ("Yes" or "No"). (Some missing values).
    - HOLIDAY (bool) – Boolean flag indicating whether the transaction occurred on a holiday.
 
-- ### Solution Architecture
+### Solution Architecture
 
 ![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
