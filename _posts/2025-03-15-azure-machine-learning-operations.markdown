@@ -11,8 +11,6 @@ Many organizations struggle with the skills and expertise needed to build, deplo
 
 In this series, I’ll explore how Platform Engineering teams can drive AI adoption and maximize the value of AI investments. We’ll follow the journey of **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Through their experience, we’ll dive into real-world strategies, tools, and best practices to streamline AI development and deployment.
 
-![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
-
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Why AI Projects Fail](#why-ai-projects-fail)
@@ -72,8 +70,15 @@ GloboJava collects sales data from its stores across the U.S., Mexico, and Canad
    - PROMOTION (object, 1,252,616 non-null) – Indicates if a promotion was active ("Yes" or "No"). (Some missing values).
    - HOLIDAY (bool) – Boolean flag indicating whether the transaction occurred on a holiday.
 
-### Implemeting the Pipeline for the Solution
-To design and implement an end-to-end ML pipeline for GloboJava on Microsoft Azure, we will use Azure Machine Learning (Azure ML), Terraform, and the Azure ML Python SDK v2. The solution will include data ingestion from Snowflake, model training on Azure Kubernetes Service (AKS), and a scalable, reliable, and production-grade architecture. Below is the step-by-step plan
+- ### Solution Architecture
+
+![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
+
+- ### Data Ingestion
+- ### Data Preparation
+   - Load
+   - Split
+   - Preprocess
 
 - ### Architecture Overview
 The pipeline will consist of the following components:
