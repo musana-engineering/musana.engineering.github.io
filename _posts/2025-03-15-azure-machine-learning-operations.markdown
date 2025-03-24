@@ -62,7 +62,7 @@ To enable machine learning in Azure Machine Learning (ML), a data ingestion proc
 - ### Exploring the Data
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
-{% highlight bash %}
+{% highlight css %}
 - StoreID:	       Unique identifier for the store
 - Country:	       Country where the store is located
 - City:	          City where the store is located
@@ -90,7 +90,7 @@ Since we're predicting total sales per month, the data is aggregated at the mont
 
 These are the final set of features used to train the model.
 
-{% highlight python %}
+{% highlight css %}
 - StoreID
 - Country
 - City
