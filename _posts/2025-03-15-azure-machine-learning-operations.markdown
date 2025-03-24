@@ -165,12 +165,12 @@ terraform apply
    - Application Insights: Monitors the performance and health of deployed models.
    - Azure Key Vault: Manages secrets, keys, and certificates securely.
 
-- ### Data Connections:** Snowflake connection and data import.
-- ### Data Preprocessing:** Aggregation and preprocessing pipeline.
-- ### Model Training:** Train and register the model.
-- ### Pipeline Creation:** Define and submit the pipeline.
-- ### Model Deployment:** Deploy to Kubernetes.
-- ### Automation:** CI/CD and monitoring (YAML pipelines).
-- ### Collaboration:** Azure Repos and documentation.
+- ### Data Connections: Snowflake connection and data import.
+- ### Data Preprocessing: Aggregation and preprocessing pipeline.
+- ### Model Training: Train and register the model.
+- ### Pipeline Creation: Define and submit the pipeline.
+- ### Model Deployment: Deploy to Kubernetes.
+- ### Automation: CI/CD and monitoring (YAML pipelines).
+- ### Collaboration: Azure Repos and documentation.
    
 ### Summary
