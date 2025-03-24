@@ -132,7 +132,7 @@ In this step, we'll create the foundational infrastructure in Azure including th
 {% endhighlight %}
 
 - **Steps to Deploy the Infrastructure**
- - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
+   - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
 
 {% highlight css %}
 // Sign in with Azure CLI
