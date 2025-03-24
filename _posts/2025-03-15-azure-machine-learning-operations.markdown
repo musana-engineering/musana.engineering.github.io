@@ -13,16 +13,14 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
-- [Why AI Projects Fail](#why-ai-projects-fail)
-- [Role of Platform Engineering in AI Adoption](#role-of-platform-engineering-in-ai-adoption)
+- [Why AI projects fail](#why-ai-projects-fail)
+- [Role of platform engineering in AI adoption](#role-of-platform-engineering-in-ai-adoption)
 - [Introducing GloboJava ](#introducing-GloboJava)
-   - [Framing the ML Problem](#understanding-the-problem)
-   - [Collecting the Data](#collecting-the-data)
-   - [Preprocessing the Data](#preprocessing-the-data)
-   - [Engineering the Data features](#engineering-the-data-features-the-data)
+   - [Framing the ML problem](#understanding-the-problem)
+   - [Collecting the data](#collecting-the-data)
+   - [Preprocessing the data](#preprocessing-the-data)
+   - [Engineering the data](#engineering-the-data-features-the-data)
    - [Selecting the algorithm](#selecting-the-algorithm)
-- [Solution Architecture](#solution-architecture)
-   - [Infrastructure](#solution-architecture)
 - [Solution Architecture](#solution-architecture)
 - [Putting it all together](#putting-it-to-the-test)
 - [Summary ](#summary)
@@ -36,7 +34,7 @@ Before diving in, this guide assumes the following;
 
 For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
-### Why AI Projects Fail
+### Why AI Projects fail
 
 Artificial Intelligence (AI) has the potential to drive innovation, improve decision-making, and unlock new business opportunities. However, many organizations struggle to move beyond the proof-of-concept stage due to challenges in developing, deploying, and maintaining AI solutions at scale.
 
@@ -58,16 +56,16 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 
 GloboJava is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
 
-- ### Framing the ML Problem
+- ### Framing the ML problem
 
 The first thing we need to do in any ML project is frame the problem and collect the corresponding data. At GloboJava, their major challenge is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. 
 
-- ### Collecting the Data
+- ### Collecting the data
 GloboJava's data is stored in Snowflake, a cloud-based data warehousing platform, where it is organized into tables within a database schema. The sales data is housed in the **GLOBOJAVA.SALES.TRANSACTIONS** table, containing detailed transaction records such as store information, product details, sales quantities, prices, and contextual factors like weather, promotions, and holidays.
 
 To enable machine learning in Azure Machine Learning (ML), a data ingestion process is implemented. First, a connection to Snowflake is established in Azure ML using credentials. Once connected, the data is imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
 
-- ### Exploring the Data
+- ### Exploring the data
 
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
@@ -83,11 +81,11 @@ For the demand forecasting model, features will be derived from raw sales data a
 - Holiday	Indicates if the day was a holiday (e.g., Yes, No).
 {% endhighlight %}
 
-- ### Preprocessing the Data
+- ### Preprocessing the data
 
 Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
 
-- ### Engineering the Data features
+- ### Engineering the data
 
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
