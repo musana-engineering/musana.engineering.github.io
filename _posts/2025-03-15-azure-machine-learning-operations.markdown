@@ -127,9 +127,9 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 - ### Infrastructure Setup
 In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 
-{% highlight css %}
-<Project>-<Environment>-<ResourceType>-<Region>-<Instance>
-{% endhighlight %}
+   - {% highlight css %}
+     <Project>-<Environment>-<ResourceType>-<Region>-<Instance>
+     {% endhighlight %}
 
 - **Steps to Deploy the Infrastructure**
    - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
