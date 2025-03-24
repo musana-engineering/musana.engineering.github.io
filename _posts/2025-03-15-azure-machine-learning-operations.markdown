@@ -114,10 +114,10 @@ The architecture is designed to streamline data ingestion, preprocessing, model 
 ![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
 - ### Key Components
-   - **Snowflake:** Data source.
-   - **Azure ML:** Data ingestion, preprocessing, model training, and deployment.
-   - **Kubernetes:** Scalable and reliable hosting for the deployed model.
-   - **REST API:** Endpoints for real-time predictions for downstream applications.
+   - **Snowflake:** External Data source.
+   - **Azure Machine Learning:** Data ingestion, preprocessing, model training, and deployment.
+   - **Azure Kubernetes Service (AKS):** Compute targets for the deployed model.
+   - **REST API:** Scalable HTTPS/REST endpoint for real-time inference.
   
 Azure Repos is used to maintain a single source of truth for ML scripts, models, and infrastructure code. This enables GloboJava's Data Scientists, Machine Learning Engineers, Platform Engineers, and DevOps teams to collaborate effectively ensuring consistency, reproducibility, and traceability
 
