@@ -81,8 +81,8 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight bash %}
-- MonthYear:  Month and year of the transaction (e.g., 2022-01 for January 2022).
-- IsWeekend:  Binary flag indicating if the transaction occurred on a weekend (1) or not (0).
+- MonthYear:  Month and year of the transaction.
+- IsWeekend:  Indicating if the transaction occurred on a weekend or not.
 - Season	:    Season of the year (e.g., Winter, Spring, Summer, Fall) based on the month.
 {% endhighlight %}
 
