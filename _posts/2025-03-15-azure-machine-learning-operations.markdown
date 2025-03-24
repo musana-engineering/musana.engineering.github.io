@@ -122,5 +122,6 @@ The architecture is designed to streamline data ingestion, preprocessing, model 
 Azure Repos is used to maintain a single source of truth for ML scripts, models, and infrastructure code. This enables GloboJava's Data Scientists, Machine Learning Engineers, Platform Engineers, and DevOps teams to collaborate effectively ensuring consistency, reproducibility, and traceability
 
 ### Putting it all together
-With a solid understanding of the problem, data, and tools, GloboJava is ready to implement its demand forecasting solution. The next steps involve setting up the MLOps pipeline, integrating automation, and ensuring a scalable infrastructure for reliable AI deployment.
+With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
+
 ### Summary
