@@ -26,7 +26,6 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 - [Summary ](#summary)
 
 ### Prerequisites
-
 Before diving in, this guide assumes the following;
 - You have a solid understanding of **[Core Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
 - You have a solid understanding of DevOps Concepts like CI/CD pipelines and Version Control
@@ -43,7 +42,6 @@ Many organizations struggle to move beyond the proof-of-concept stage due to cha
 - **Inconsistent workflows** – Without standardized processes, model deployment and monitoring become ad-hoc and unreliable.
 
 ### Role of Platform Engineering in AI Adoption
-
 Platform Engineers are uniquely positioned to solve these challenges by:
 
 - Bridging the gap between software engineering, data science, and IT operations.
@@ -51,11 +49,9 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 - Building scalable AI platforms that enable reliable and repeatable ML model deployment.
 
 ### Introducing GloboJava
-
 GloboJava is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
 
 - ### Framing the ML problem
-
 The first thing we need to do in any ML project is frame the problem and collect the corresponding data. At GloboJava, their major challenge is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. 
 
 - ### Collecting the data
@@ -64,33 +60,30 @@ GloboJava's data is stored in Snowflake, a cloud-based data warehousing platform
 To enable machine learning in Azure Machine Learning (ML), a data ingestion process is implemented. First, a connection to Snowflake is established in Azure ML using credentials. Once connected, the data is imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
 
 - ### Exploring the Data
-
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
 {% highlight bash %}
-- StoreID	Unique identifier for the store.
-- Country	Country where the store is located (e.g., USA, Canada, Mexico).
-- City	City where the store is located (e.g., New York, Toronto, Mexico City).
+- StoreID	      Unique identifier for the store.
+- Country	      Country where the store is located (e.g., USA, Canada, Mexico).
+- City	         City where the store is located (e.g., New York, Toronto, Mexico City).
 - ProductCategory	Category of the product (e.g., Coffee, Pastry, Beverage, Merchandise).
-- Product	Specific product sold (e.g., Latte, Blueberry Muffin, Iced Tea).
-- Price	Price per unit of the product.
-- Weather	Weather condition during the sale (e.g., Hot, Cold, Rainy).
-- Promotion	Indicates if a promotion was active during the sale (e.g., Yes, No).
-- Holiday	Indicates if the day was a holiday (e.g., Yes, No).
+- Product	      Specific product sold (e.g., Latte, Blueberry Muffin, Iced Tea).
+- Price	         Price per unit of the product.
+- Weather	      Weather condition during the sale (e.g., Hot, Cold, Rainy).
+- Promotion	      Indicates if a promotion was active during the sale (e.g., Yes, No).
+- Holiday	      Indicates if the day was a holiday (e.g., Yes, No).
 {% endhighlight %}
 
 - ### Preprocessing the Data
-
 Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
 
 - ### Engineering the Data
-
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight bash %}
-- MonthYear: The month and year of the transaction (e.g., 2022-01 for January 2022).
-- IsWeekend: A binary flag indicating if the transaction occurred on a weekend (1) or not (0).
-- Season	: he season of the year (e.g., Winter, Spring, Summer, Fall) based on the month.
+- MonthYear:  Month and year of the transaction (e.g., 2022-01 for January 2022).
+- IsWeekend:  Binary flag indicating if the transaction occurred on a weekend (1) or not (0).
+- Season	:    Season of the year (e.g., Winter, Spring, Summer, Fall) based on the month.
 {% endhighlight %}
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
