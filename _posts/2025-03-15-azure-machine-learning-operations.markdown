@@ -103,7 +103,6 @@ These are the final set of features used to train the model.
 {% endhighlight %}
 
 - ### Selecting the Algorithm
-
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
 
 ### Solution Architecture
@@ -112,7 +111,6 @@ The architecture is designed to streamline data ingestion, preprocessing, model 
 ![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
 - ### Key Components
-
    - **Snowflake:** Data source.
    - **Azure ML:** Data ingestion, preprocessing, model training, and deployment.
    - **Kubernetes:** Scalable and reliable hosting for the deployed model.
