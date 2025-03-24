@@ -63,15 +63,15 @@ To enable machine learning in Azure Machine Learning (ML), a data ingestion proc
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
 {% highlight bash %}
-- StoreID	      Unique identifier for the store.
-- Country	      Country where the store is located.
-- City	         City where the store is located.
-- ProductCategory	Category of the product
-- Product	      Specific product sold.
-- Price	         Price per unit of the product.
-- Weather	      Weather condition during the sale.
-- Promotion	      Indicates if a promotion was active during the sale.
-- Holiday	      Indicates if the day was a holiday.
+- StoreID:	       Unique identifier for the store
+- Country:	       Country where the store is located
+- City:	          City where the store is located
+- ProductCategory: Category of the product
+- Product:	       Specific product sold
+- Price:	          Price per unit of the product
+- Weather:	       Weather condition during the sale
+- Promotion:	    Indicates if a promotion was active during the sale
+- Holiday:	       Indicates if the day was a holiday
 {% endhighlight %}
 
 - ### Preprocessing the Data
@@ -81,9 +81,9 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight bash %}
-- MonthYear:  Month and year of the transaction.
-- IsWeekend:  Indicating if the transaction occurred on a weekend or not.
-- Season	:    Season of the year based on the month.
+- MonthYear:  Month and year of the transaction
+- IsWeekend:  Indicating if the transaction occurred on a weekend or not
+- Season:     Season of the year based on the month
 {% endhighlight %}
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
