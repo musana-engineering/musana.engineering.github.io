@@ -124,8 +124,46 @@ Azure Repos is used to maintain a single source of truth for ML scripts, models,
 ### Putting it all together
 With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
-- ### Order of Operations
-   - **Infrastructure Setup:** Compute cluster creation.
+- ### Infrastructure Setup:** 
+In this step, we'll create the foundational infrastructure for GloboJava's demand forecasting solution, including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning. The Terraform code for this setup can be downloaded from the project repository: https://musana-engineering@dev.azure.com/musana-engineering/mlops/_git/mlops.
+
+To ensure clarity and scalability, we'll use a consistent and descriptive naming convention for organizing resources in Azure. The naming convention follows this general structure:
+
+{% highlight yaml %}
+<Project>-<Environment>-<ResourceType>-<Region>-<Instance>
+{% endhighlight %}
+
+- **Steps to Deploy the Infrastructure**
+- Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
+
+{% highlight yaml %}
+// Login to Azure CLI and set the subscription to use
+az login
+az account set -s "your_subscription_id_here"
+
+// Set the following Environment Variables
+export ARM_CLIENT_ID="your_client_id_here"
+export ARM_CLIENT_SECRET="your_client_secret_here"
+export ARM_TENANT_ID="your_tenant_id_here"
+
+// Clone the project repository
+git clone https://musana-engineering@dev.azure.com/musana-engineering/mlops/_git/mlops
+
+// Navigate to the network directory
+cd infra/compute/
+terraform init && terraform plan
+
+// Provision the infrastructure.
+terraform apply
+{% endhighlight %}
+
+- **Key Resources to Be Created**
+   - Virtual Network: Provides secure communication between resources.
+   - Machine Learning Workspace: Central hub for ML experiments, models, and deployments.
+   - Blob Storage: Stores datasets, models, and other artifacts.
+   - Application Insights: Monitors the performance and health of deployed models.
+   - Azure Key Vault: Manages secrets, keys, and certificates securely.
+
    - **Data Connections:** Snowflake connection and data import.
    - **Data Preprocessing:** Aggregation and preprocessing pipeline.
    - **Model Training:** Train and register the model.
