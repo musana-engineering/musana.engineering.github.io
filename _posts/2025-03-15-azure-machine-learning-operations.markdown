@@ -51,7 +51,7 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 - Implementing DevOps principles to standardize and automate AI workflows.
 - Building scalable AI platforms that enable reliable and repeatable ML model deployment.
 
-In this context, GloboJava, is looking to leverage platform engineering principles to optimize their operations and enhance customer experience.
+In this context, GloboJava, is looking to leverage platform engineering principles to optimize their operations and enhance customer experience. After careful evaluation, their technology leadership team has determined that **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** is the best platform to drive this initiative forward
 
 ### Introducing GloboJava
 **GloboJava** is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
@@ -62,7 +62,7 @@ The first thing we need to do in any ML project is frame the problem and collect
 - ### Collecting the data
 GloboJava's data is stored in Snowflake, a cloud-based data warehousing platform, where it is organized into tables within a database schema. The sales data is housed in the **GLOBOJAVA.SALES.TRANSACTIONS** table, containing detailed transaction records such as store information, product details, sales quantities, prices, and contextual factors like weather, promotions, and holidays.
 
-To enable machine learning in Azure Machine Learning (ML), a data ingestion process is implemented. First, a connection to Snowflake is established in Azure ML using credentials. Once connected, the data is imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
+To enable machine learning in Azure ML, a data ingestion process will be implemented by establishing a connection to their Snowflake account. Once connected, the data will be imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
 
 - ### Exploring the Data
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
