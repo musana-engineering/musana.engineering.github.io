@@ -140,9 +140,9 @@ az login
 az account set -s "your_subscription_id_here"
 
 // Configure Terraform Authentication
-export ARM_CLIENT_ID="your_client_id_here"
-export ARM_CLIENT_SECRET="your_client_secret_here"
-export ARM_TENANT_ID="your_tenant_id_here"
+export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
+export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
+export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
 
 // Clone the project repository
 git clone https://musana-engineering@dev.azure.com/musana-engineering/mlops/_git/mlops
