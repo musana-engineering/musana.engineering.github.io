@@ -22,6 +22,8 @@ In this series, we will walk through a concrete example of solving a Machine Lea
    - [Engineering the Data features](#engineering-the-data-features-the-data)
    - [Selecting the algorithm](#selecting-the-algorithm)
 - [Solution Architecture](#solution-architecture)
+   - [Infrastructure](#solution-architecture)
+- [Solution Architecture](#solution-architecture)
 - [Putting it all together](#putting-it-to-the-test)
 - [Summary ](#summary)
 
@@ -116,50 +118,18 @@ These are the final set of features used to train the model.
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
 
 ### Solution Architecture
-The solution involves building a secure and scalable Machine Learning Operations (MLOps)pipeline using Azure technologies to support Globojava's end-to-end AI lifecycle.
+The architecture is designed to streamline data ingestion, preprocessing, model training, and deployment using Azure Machine Learning (ML) and Snowflake, while ensuring consistency, reproducibility, traceability, and collaboration across teams.
 
 ![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
 
-- ### Tools and Technologies
-   - **Azure Machine Learning Service (AMLS)** – For model training, deployment, and MLOps.
-   - **Terraform** – Infrastructure as Code (IaC) for automating cloud resource provisioning.
-   - **Azure ML Python SDK v2** – For defining and managing the ML pipeline.
-   - **Snowflake** – Primary data warehouse for historical sales data.
-   - **Azure Blob Storage** – For storing ingested data and model artifacts.
-   - **Azure Kubernetes Service (AKS)** – Compute target for scalable model training and inference.
-- ### Version Control
-To maintain consistency, reproducibility, traceability, and collaboration across multiple teams, we will use Azure Repos for centralized code and artifact management. This will ensure a single source of truth for ML scripts, models, and infrastructur code - enabling Globojava's Data scientists, machine learning engineers, platform engineers, and DevOps teams at contribute to different aspects of the AI lifecycle. 
+- ### Key Components
 
-- ### Infrastructure
-A robust infrastructure is key to deploying and managing AI solutions at scale. We will leverage Azure to ensure networking, storage, and compute resources for our AI projects are optimized for machine learning workloads. With network security, efficient storage, and scalable compute, GloboJava ensures high-performance AI deployments while maintaining cost efficiency and operational stabilit
-
-   - **Networking** 
-      - Azure Virtual Network (VNet): Secures communication between ML 
-      components.
-      - Private Endpoints: Restricts access to data sources like Snowflake and Azure Blob Storage.
-      - Load Balancers: Distributes traffic efficiently for model inference services.
-   - **Storage**
-      - Azure Blob Storage: Stores raw data, model artifacts, and logs.
-      - Azure Files: Provides shared storage for ML experiments and pipelines.
-      - Snowflake: Acts as the centralized data warehouse for historical sales data.
-   - **Compute**
-      - Azure Kubernetes Service (AKS): Scalable compute for training and inference.
-      - Azure Machine Learning Compute: Optimized clusters for distributed training.
-      - Auto-scaling VMs: Allocates resources dynamically based on workload demand.
-- ### Data Ingestion
-- ### Data Preparation
-   - Load
-   - Split
-   - Preprocess
-- ### CI/CD
-The MLOps pipeline will include:
-   - Data Ingestion – Extracting and storing raw data from Snowflake into Azure ML's blob datastore.
-   - Data Preparation – Cleaning, preprocessing, and transforming the data.
-   - Model Training – Training machine learning models using AKS.
-   - Model Deployment – Deploying the trained model to AKS for inference.
-   - Monitoring & Retraining – Continuous monitoring and retraining for model improvement.
-- ### Monitoring
-- ### Collaboration
+   - **Snowflake:** Data source.
+   - **Azure ML:** Data ingestion, preprocessing, model training, and deployment.
+   - **Kubernetes:** Scalable and reliable hosting for the deployed model.
+   - **REST API:** Endpoints for real-time predictions for downstream applications.
+  
+Azure Repos is used to maintain a single source of truth for ML scripts, models, and infrastructure code. This enables GloboJava's Data Scientists, Machine Learning Engineers, Platform Engineers, and DevOps teams to collaborate effectively ensuring consistency, reproducibility, and traceability
 
 ### Putting it all together
 With a solid understanding of the problem, data, and tools, GloboJava is ready to implement its demand forecasting solution. The next steps involve setting up the MLOps pipeline, integrating automation, and ensuring a scalable infrastructure for reliable AI deployment.
