@@ -14,7 +14,7 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Why AI projects fail](#why-ai-projects-fail)
-- [Role of Platform Engineering in AI adoption](#role-of-platform-engineering-in-ai-adoption)
+- [Role of Platform Engineering](#role-of-platform-engineering-in-ai-adoption)
 - [Introducing GloboJava ](#introducing-GloboJava)
    - [Framing the ML problem](#understanding-the-problem)
    - [Collecting the Data](#collecting-the-data)
@@ -37,14 +37,14 @@ Before diving in, this guide assumes you have a solid understanding and are comf
 For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
 ### Why AI Projects fail
-Many organizations struggle to move beyond the proof-of-concept stage due to challenges in developing, deploying, and maintaining AI solutions at scale. Despite heavy investment in AI, many projects fail to deliver value due to:
+Many organizations struggle to move beyond the proof-of-concept stage due to challenges in developing, deploying, and maintaining AI solutions at scale. Despite heavy investment, many of these projects fail to deliver value due to a variety of reasons such as:
 
-- **Lack of operational expertise** – Data scientists and ML engineers often focus on building models but lack the skills to deploy and maintain them in production.
-- **Siloed teams** – Development, data science, and operations teams often work independently, leading to misalignment and inefficiencies.
-- **Infrastructure complexity** – AI workloads require specialized infrastructure, which can be difficult to set up, scale, and manage.
-- **Inconsistent workflows** – Without standardized processes, model deployment and monitoring become ad-hoc and unreliable.
+- **Lack of operational expertise:** Data scientists and ML engineers often focus on building models but lack the skills to deploy and maintain them in production.
+- **Siloed teams:** Development, data science, and operations teams often work independently, leading to misalignment and inefficiencies.
+- **Infrastructure complexity:** AI workloads require specialized infrastructure, which can be difficult to set up, scale, and manage.
+- **Inconsistent workflows:** Without standardized processes, model deployment and monitoring become ad-hoc and unreliable.
 
-### Role of Platform Engineering in AI Adoption
+### Role of Platform Engineering
 Platform Engineers are uniquely positioned to solve these challenges by:
 
 - Bridging the gap between software engineering, data science, and IT operations.
