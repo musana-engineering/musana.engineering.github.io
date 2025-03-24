@@ -125,9 +125,7 @@ Azure Repos is used to maintain a single source of truth for ML scripts, models,
 With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
 - ### Infrastructure Setup
-In this step, we'll create the foundational infrastructure for GloboJava's demand forecasting solution, including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning.
-
-We'll use a consistent and descriptive naming convention for organizing the project resources in Azure following this structure:
+In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 
 {% highlight css %}
 <Project>-<Environment>-<ResourceType>-<Region>-<Instance>
@@ -153,7 +151,8 @@ git clone https://musana-engineering@dev.azure.com/musana-engineering/mlops/_git
 cd infra/
 
 // Create terraform execution plan
-terraform init && terraform plan
+terraform init
+terraform plan
 
 // Execute terraform plan.
 terraform apply
