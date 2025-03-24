@@ -64,14 +64,14 @@ For the demand forecasting model, features will be derived from raw sales data a
 
 {% highlight bash %}
 - StoreID	      Unique identifier for the store.
-- Country	      Country where the store is located (e.g., USA, Canada, Mexico).
-- City	         City where the store is located (e.g., New York, Toronto, Mexico City).
-- ProductCategory	Category of the product (e.g., Coffee, Pastry, Beverage, Merchandise).
-- Product	      Specific product sold (e.g., Latte, Blueberry Muffin, Iced Tea).
+- Country	      Country where the store is located.
+- City	         City where the store is located.
+- ProductCategory	Category of the product
+- Product	      Specific product sold.
 - Price	         Price per unit of the product.
-- Weather	      Weather condition during the sale (e.g., Hot, Cold, Rainy).
-- Promotion	      Indicates if a promotion was active during the sale (e.g., Yes, No).
-- Holiday	      Indicates if the day was a holiday (e.g., Yes, No).
+- Weather	      Weather condition during the sale.
+- Promotion	      Indicates if a promotion was active during the sale.
+- Holiday	      Indicates if the day was a holiday.
 {% endhighlight %}
 
 - ### Preprocessing the Data
@@ -83,7 +83,7 @@ These are the additional features we will create from the raw data to improve th
 {% highlight bash %}
 - MonthYear:  Month and year of the transaction.
 - IsWeekend:  Indicating if the transaction occurred on a weekend or not.
-- Season	:    Season of the year (e.g., Winter, Spring, Summer, Fall) based on the month.
+- Season	:    Season of the year based on the month.
 {% endhighlight %}
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
@@ -94,12 +94,12 @@ These are the final set of features used to train the model.
 - StoreID
 - Country
 - City
-- Price (average price for the month)
-- Weather (last recorded weather for the month)
+- Price     (average price for the month)
+- Weather   (last recorded weather for the month)
 - Promotion (last recorded promotion status for the month)
-- Holiday (last recorded holiday status for the month)
+- Holiday   (last recorded holiday status for the month)
 - IsWeekend (proportion of weekend days in the month)
-- Season (season of the month)
+- Season    (season of the month)
 {% endhighlight %}
 
 - ### Selecting the Algorithm
