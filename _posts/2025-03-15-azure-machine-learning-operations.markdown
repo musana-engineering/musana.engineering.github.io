@@ -124,4 +124,14 @@ Azure Repos is used to maintain a single source of truth for ML scripts, models,
 ### Putting it all together
 With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
+- ### Order of Operations
+   - **Infrastructure Setup:** Compute cluster creation.
+   - **Data Connections:** Snowflake connection and data import.
+   - **Data Preprocessing:** Aggregation and preprocessing pipeline.
+   - **Model Training:** Train and register the model.
+   - **Pipeline Creation:** Define and submit the pipeline.
+   - **Model Deployment:** Deploy to Kubernetes.
+   - **Automation:** CI/CD and monitoring (YAML pipelines).
+   - **Collaboration:** Azure Repos and documentation.
+   
 ### Summary
