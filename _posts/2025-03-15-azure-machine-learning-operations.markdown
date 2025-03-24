@@ -14,13 +14,13 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Why AI projects fail](#why-ai-projects-fail)
-- [Role of platform engineering in AI adoption](#role-of-platform-engineering-in-ai-adoption)
+- [Role of Platform Engineering in AI adoption](#role-of-platform-engineering-in-ai-adoption)
 - [Introducing GloboJava ](#introducing-GloboJava)
    - [Framing the ML problem](#understanding-the-problem)
-   - [Collecting the data](#collecting-the-data)
-   - [Preprocessing the data](#preprocessing-the-data)
-   - [Engineering the data](#engineering-the-data-features-the-data)
-   - [Selecting the algorithm](#selecting-the-algorithm)
+   - [Collecting the Data](#collecting-the-data)
+   - [Preprocessing the Data](#preprocessing-the-data)
+   - [Engineering the Data](#engineering-the-data-features-the-data)
+   - [Selecting the Algorithm](#selecting-the-algorithm)
 - [Solution Architecture](#solution-architecture)
 - [Putting it all together](#putting-it-to-the-test)
 - [Summary ](#summary)
@@ -65,7 +65,7 @@ GloboJava's data is stored in Snowflake, a cloud-based data warehousing platform
 
 To enable machine learning in Azure Machine Learning (ML), a data ingestion process is implemented. First, a connection to Snowflake is established in Azure ML using credentials. Once connected, the data is imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
 
-- ### Exploring the data
+- ### Exploring the Data
 
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
@@ -81,11 +81,11 @@ For the demand forecasting model, features will be derived from raw sales data a
 - Holiday	Indicates if the day was a holiday (e.g., Yes, No).
 {% endhighlight %}
 
-- ### Preprocessing the data
+- ### Preprocessing the Data
 
 Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
 
-- ### Engineering the data
+- ### Engineering the Data
 
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
@@ -111,7 +111,7 @@ These are the final set of features used to train the model.
 - Season (season of the month)
 {% endhighlight %}
 
-- ### Selecting the algorithm
+- ### Selecting the Algorithm
 
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
 
