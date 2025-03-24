@@ -80,7 +80,7 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 - ### Engineering the Data
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
-{% highlight bash %}
+{% highlight css %}
 - MonthYear:  Month and year of the transaction
 - IsWeekend:  Indicating if the transaction occurred on a weekend or not
 - Season:     Season of the year based on the month
@@ -90,7 +90,7 @@ Since we're predicting total sales per month, the data is aggregated at the mont
 
 These are the final set of features used to train the model.
 
-{% highlight bash %}
+{% highlight python %}
 - StoreID
 - Country
 - City
