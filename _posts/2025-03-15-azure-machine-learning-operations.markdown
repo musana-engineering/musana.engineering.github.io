@@ -134,18 +134,3 @@ Azure Repos is used to maintain a single source of truth for ML scripts, models,
 ### Putting it all together
 With a solid understanding of the problem, data, and tools, GloboJava is ready to implement its demand forecasting solution. The next steps involve setting up the MLOps pipeline, integrating automation, and ensuring a scalable infrastructure for reliable AI deployment.
 ### Summary
-
-###########
-An ML pipeline is a sequence of steps for conducting an ML project. Those steps follow:
-
-Problem framing and data collection—Frame the problem as an ML problem and collect the data you need.
-
-Data preprocessing and feature engineering—Process the data into a suitable format that can be input into the ML algorithms. Select or generate features that are related to the target output to improve the performance of the algorithms. This step is usually done by first exploring the dataset to get a sense of its characteristics. The operations should accommodate the specific ML algorithms you are considering.
-
-ML algorithm selection—Select ML algorithms appropriate for the task that you would like to test, based on your prior knowledge of the problem and your experience.
-
-Model training and evaluation—Apply the selected ML algorithm (or algorithms) to train an ML model with your training data, and evaluate its performance on the validation dataset.
-
-Hyperparameter tuning—Attempt to achieve better performance by iteratively tuning the model’s hyperparameters.
-
-Service deployment and model monitoring—Deploy the final ML solution, and monitor its performance so you can maintain and improve the pipeline continuously.
