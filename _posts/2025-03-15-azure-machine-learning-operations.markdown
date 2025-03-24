@@ -29,7 +29,10 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 Before diving in, this guide assumes the following;
 - You have a solid understanding of **[Core Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
 - You have a solid understanding of DevOps Concepts like CI/CD pipelines and Version Control
-- You are comfortable working with tools like **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**, **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**, and **[Terraform)](https://www.terraform.io/)**
+- You have a solid understanding of Platform Engineering Concepts
+- You have a solid understanding of Python and the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**
+- You are comfortable working with **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
+- You are comfortable working with **[Terraform)](https://www.terraform.io/)**
 
 For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
