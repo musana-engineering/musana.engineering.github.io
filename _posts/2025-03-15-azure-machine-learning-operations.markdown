@@ -27,12 +27,12 @@ In this series, we will walk through a concrete example of solving a Machine Lea
 
 ### Prerequisites
 Before diving in, this guide assumes you have a solid understanding and are comfortable working with the following;
-- **[Core Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
-- **[DevOps)](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
-- **[Platform Engineering)](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
-- **[Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)** programming and the **[Azure ML SDK for Python)](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**
-- **[Azure Kubernetes (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
-- Infrastructure as code using **[Terraform)](https://www.terraform.io/)**
+- **[Machine Learning (ML) concepts](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)**, including model training, evaluation, and deployment. 
+- **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
+- **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
+- **[Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)** programming and the **[Azure ML SDK for Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**
+- **[Azure Kubernetes](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
+- Infrastructure as code using **[Terraform](https://www.terraform.io/)**
 
 For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
