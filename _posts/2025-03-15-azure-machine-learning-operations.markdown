@@ -51,8 +51,10 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 - Implementing DevOps principles to standardize and automate AI workflows.
 - Building scalable AI platforms that enable reliable and repeatable ML model deployment.
 
+In this context, GloboJava, is looking to leverage platform engineering principles to optimize their operations and enhance customer experience.
+
 ### Introducing GloboJava
-GloboJava is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
+**GloboJava** is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making.
 
 - ### Framing the ML problem
 The first thing we need to do in any ML project is frame the problem and collect the corresponding data. At GloboJava, their major challenge is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. 
