@@ -22,7 +22,7 @@ In this series, we will walk through a concrete example of solving a Machine Lea
    - [Engineering the Data](#engineering-the-data-features-the-data)
    - [Selecting the Algorithm](#selecting-the-algorithm)
 - [Solution Architecture](#solution-architecture)
-- [Putting it all together](#putting-it-to-the-test)
+- [Putting it all together](#putting-it-all-together)
 - [Summary ](#summary)
 
 ### Prerequisites
