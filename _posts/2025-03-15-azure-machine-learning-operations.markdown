@@ -137,7 +137,7 @@ In this step, we'll create the foundational infrastructure in Azure including th
 {% highlight css %}
 // Sign in with Azure CLI
 az login
-az account set -s "your_subscription_id_here"
+az account set -s "0000-0000-0000-0000-000000000000"
 
 // Configure Terraform Authentication
 export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
