@@ -66,7 +66,7 @@ For the demand forecasting model, features will be derived from raw sales data a
 - StoreID:	       Unique identifier for the store
 - Country:	       Country where the store is located
 - City:	          City where the store is located
-- ProductCategory: Category of the product
+- Category:        Category of the product
 - Product:	       Specific product sold
 - Price:	          Price per unit of the product
 - Weather:	       Weather condition during the sale
