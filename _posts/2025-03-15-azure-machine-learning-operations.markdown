@@ -158,19 +158,19 @@ terraform plan
 terraform apply
 {% endhighlight %}
 
-- **Key Resources to Be Created**
+- **Key Infrastructure resources created**
    - Virtual Network: Provides secure communication between resources.
    - Machine Learning Workspace: Central hub for ML experiments, models, and deployments.
    - Blob Storage: Stores datasets, models, and other artifacts.
    - Application Insights: Monitors the performance and health of deployed models.
    - Azure Key Vault: Manages secrets, keys, and certificates securely.
 
-   - **Data Connections:** Snowflake connection and data import.
-   - **Data Preprocessing:** Aggregation and preprocessing pipeline.
-   - **Model Training:** Train and register the model.
-   - **Pipeline Creation:** Define and submit the pipeline.
-   - **Model Deployment:** Deploy to Kubernetes.
-   - **Automation:** CI/CD and monitoring (YAML pipelines).
-   - **Collaboration:** Azure Repos and documentation.
+- **Data Connections:** Snowflake connection and data import.
+- **Data Preprocessing:** Aggregation and preprocessing pipeline.
+- **Model Training:** Train and register the model.
+- **Pipeline Creation:** Define and submit the pipeline.
+- **Model Deployment:** Deploy to Kubernetes.
+- **Automation:** CI/CD and monitoring (YAML pipelines).
+- **Collaboration:** Azure Repos and documentation.
    
 ### Summary
