@@ -11,6 +11,8 @@ Many organizations struggle with the skills and expertise needed to build, deplo
 
 In this series, we will walk through a concrete example of solving a Machine Learning (ML) to demonstrate how Platform Engineering teams can help their organisations maximize the value of AI investments. We’ll follow the journey of a Platform Engineer at **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Step by step, we’ll design and implement real-world strategies, tools, and best practices to streamline AI development and deployment.
 
+![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
+
 ### Table of Contents
 - [Prerequisites](#prerequisites)
 - [Why AI projects fail](#why-ai-projects-fail)
@@ -111,7 +113,7 @@ For GloboJava's demand forecasting, we will select the Random Forest Regressor d
 ### Solution Architecture
 The architecture is designed to streamline data ingestion, preprocessing, model training, and deployment using Azure Machine Learning (ML) and Snowflake, while ensuring consistency, reproducibility, traceability, and collaboration across teams.
 
-![MLOPS](https://github.com/user-attachments/assets/125c7e43-5123-48d0-8835-e9ee98817513)
+![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
 
 - ### Key Components
    - **Snowflake:** External Data source.
