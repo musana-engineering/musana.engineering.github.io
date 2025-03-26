@@ -9,7 +9,9 @@ tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
 Many organizations struggle with the skills and expertise needed to build, deploy, and maintain AI solutions. This gap often leads to delays, inefficiencies, and failed initiatives. But with the rise of Automated Machine Learning (AutoML) and Machine Learning Operations (MLOps), Platform Engineers are in a unique position to bridge this gap. By applying DevOps principles like automation, CI/CD, infrastructure-as-code, and cross-team collaboration, they can help development and data science teams deliver scalable AI solutions faster and more reliably.
 
-In this series, we will walk through a concrete example of solving a Machine Learning (ML) to demonstrate how Platform Engineering teams can help their organisations maximize the value of AI investments. We’ll follow the journey of a Platform Engineer at **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. Step by step, we’ll design and implement real-world strategies, tools, and best practices to streamline AI development and deployment.
+In this series, we will walk through a concrete example of solving a Machine Learning (ML) to demonstrate how Platform Engineering teams can help their organisations maximize the value of AI investments. We’ll follow the journey of a Platform Engineer at **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. 
+
+The architecture is designed to streamline data ingestion, preprocessing, model training, and deployment using Azure Machine Learning (ML) and Snowflake, while ensuring consistency, reproducibility, traceability, and collaboration across teams.
 
 ![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
 
@@ -23,7 +25,6 @@ In this series, we will walk through a concrete example of solving a Machine Lea
    - [Preprocessing the Data](#preprocessing-the-data)
    - [Engineering the Data](#engineering-the-data-features-the-data)
    - [Selecting the Algorithm](#selecting-the-algorithm)
-- [Solution Architecture](#solution-architecture)
 - [Putting it all together](#putting-it-all-together)
 - [Summary ](#summary)
 
@@ -109,19 +110,6 @@ These are the final set of features used to train the model.
 
 - ### Selecting the Algorithm
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
-
-### Solution Architecture
-The architecture is designed to streamline data ingestion, preprocessing, model training, and deployment using Azure Machine Learning (ML) and Snowflake, while ensuring consistency, reproducibility, traceability, and collaboration across teams.
-
-![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
-
-- ### Key Components
-   - **Snowflake:** External Data source.
-   - **Azure Machine Learning:** Data ingestion, preprocessing, model training, and deployment.
-   - **Azure Kubernetes Service (AKS):** Compute targets for the deployed model.
-   - **REST API:** Scalable HTTPS/REST endpoint for real-time inference.
-  
-Azure Repos is used to maintain a single source of truth for ML scripts, models, and infrastructure code. This enables GloboJava's Data Scientists, Machine Learning Engineers, Platform Engineers, and DevOps teams to collaborate effectively ensuring consistency, reproducibility, and traceability
 
 ### Putting it all together
 With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
