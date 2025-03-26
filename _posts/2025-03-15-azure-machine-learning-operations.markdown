@@ -9,7 +9,7 @@ tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
 Platform Engineers play a key role in helping development and data science teams build and maintain AI solutions effectively. By bringing DevOps principles like automation, CI/CD, and infrastructure-as-code to machine learning projects, they can help organizations avoid the common pitfalls of AI initiatives - delays, inefficiencies, and failed deployments. With the growth of Automated Machine Learning (AutoML) and Machine Learning Operations (MLOps), we are uniquely positioned to bridge the gap between data science and production
 
-In this series, I'll walk you through a concrete example of solving a Machine Learning (ML) to demonstrate how Platform Engineering teams can help their organisations maximize the value of AI investments. We’ll follow the journey of a Platform Engineer at **GloboJava**, a fictional company implementing a demand forecasting ML solution on **[Microsoft Azure](https://azure.microsoft.com/)**. 
+In this series, we'll explore how Platform Engineers can unlock the full potential of AI through a real-world example. Follow along as we implement a demand forecasting solution for **GloboJava** (our fictional coffee retailer) using **[Microsoft Azure](https://azure.microsoft.com/)**.
 
 The architecture is designed to streamline data ingestion, preprocessing, model training, and deployment using Azure Machine Learning (ML) and Snowflake, while ensuring consistency, reproducibility, traceability, and collaboration across teams.
 
