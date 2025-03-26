@@ -116,7 +116,7 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 
 - ### Infrastructure Setup
 In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
-
+![mlop-network](https://github.com/user-attachments/assets/9e0e2595-624e-4e77-9f35-6db52bd19d46)
 {% highlight css %}
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
 {% endhighlight %}
@@ -135,7 +135,7 @@ export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
 export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
 
 // Clone the project repository
-git clone https://musana-engineering@dev.azure.com/musana-engineering/mlops/_git/mlops
+git clone git@github.com:musana-engineering/mlops.git
 
 // Change into the configuration directory
 cd infra/
