@@ -116,8 +116,7 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 
 - ### Infrastructure Setup
 In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
-![mlop-network](https://github.com/user-attachments/assets/9e0e2595-624e-4e77-9f35-6db52bd19d46)
-{% highlight css %}
+
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
 {% endhighlight %}
 
