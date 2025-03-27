@@ -7,11 +7,11 @@ img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
-Platform Engineers play a key role in helping development and data science teams build and maintain AI solutions effectively. By bringing DevOps principles like automation, CI/CD, and infrastructure-as-code to machine learning projects, they can help organizations avoid the common pitfalls of AI initiatives - delays, inefficiencies, and failed deployments. With the growth of Automated Machine Learning (AutoML) and Machine Learning Operations (MLOps), we are uniquely positioned to bridge the gap between data science and production
+Every AI project needs the big three: compute, storage, and networking - all scalable, reliable, and efficient. If you're just experimenting with AI, your provider handles most of this automatically. But for companies building real business solutions, things get complicated very fast. Many AI projects fail not because of bad models, but because nobody planned how to actually run them in production.
 
-In this series, we'll explore how Platform Engineers can transforms AI project prototypes into production-ready solutions through a real-world example. Follow along as we implement a demand forecasting solution for **GloboJava** (our fictional coffee retailer) using **[Microsoft Azure](https://azure.microsoft.com/)**.
+This is where Platform Engineers deliver the greatest value: turning fragile AI initiatives into production-ready solutions that deliver real ROI. By applying battle-tested DevOps principles including automation, CI/CD pipelines, Infrastructure as Code (IaC), self-service tooling, comprehensive observability, and cross-team collaboration - we bridge the gap between data scientists' Jupyter notebooks and production reality
 
-The solution leverages Azure Machine Learning for end-to-end ML workflows, Snowflake for centralized data management and MLOps best practices to ensure consistency, reproducibility, traceability, and collaboration across teams
+In this series, I'll show exactly how this works through a real-world example. Follow along as we implement a demand forecasting solution for **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on MLOps best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
 
 ![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
 
@@ -115,8 +115,10 @@ For GloboJava's demand forecasting, we will select the Random Forest Regressor d
 With a clear understanding of the problem, data, and tools, we are now ready to implement GloboJava's demand forecasting solution. The next steps involve setting up the MLOps infrastructure, including networking, compute, and storage resources. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
 - ### Infrastructure Setup
-In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
-
+In this step, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. 
+![gbj-ml](https://github.com/user-attachments/assets/fc5a6fc8-b158-499f-86dc-88760526c71c)
+Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
+{% highlight css %}
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
 {% endhighlight %}
 
