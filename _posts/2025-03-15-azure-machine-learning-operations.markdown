@@ -9,7 +9,7 @@ tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
 Every AI project needs the big three: compute, storage, and networking - all scalable, reliable, and efficient. If you're just experimenting with AI, your provider handles most of this automatically. But for companies building real business solutions, things get complicated very fast. Many AI projects fail not because of bad models, but because nobody planned how to actually run them in production.
 
-This is where Platform Engineers deliver the greatest value: turning fragile AI initiatives into production-ready solutions that deliver real ROI. By applying battle-tested DevOps principles including automation, CI/CD pipelines, Infrastructure as Code (IaC), self-service tooling, comprehensive observability, and cross-team collaboration - we bridge the gap between data scientists' Jupyter notebooks and production reality
+This is where Platform Engineers deliver the greatest value - turning fragile AI initiatives into production-ready solutions that deliver a real Return on Investment. By applying battle-tested DevOps principles including automation, CI/CD pipelines, Infrastructure as Code (IaC), self-service tooling, Observability, and cross-team collaboration - we bridge the gap between experimentation and production reality
 
 In this series, I'll show exactly how this works through a real-world example. Follow along as we implement a demand forecasting solution for **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on MLOps best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
 
@@ -29,7 +29,7 @@ In this series, I'll show exactly how this works through a real-world example. F
 - [Summary ](#summary)
 
 ### Prerequisites
-Before diving in, this guide assumes you have a solid understanding and are comfortable working with the following;
+Before diving in, I assume you have a solid understanding and are comfortable working with the following;
 - **[Machine Learning](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)** concepts including model training, evaluation, and deployment. 
 - **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
 - **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
