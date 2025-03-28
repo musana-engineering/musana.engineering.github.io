@@ -7,11 +7,13 @@ img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
-Every AI project needs the big three: compute, storage, and networking - all scalable, reliable, and efficient. If you're just experimenting with AI, your provider handles most of this automatically. But for companies building real business solutions, things get complicated very fast. Many AI projects fail not because of bad models, but because nobody planned how to actually run them in production.
+As AI demonstrates its potential to solve real-world problems, more companies are working to integrate it into their business applications. Yet many AI initiatives never move beyond experimentation into full production. Why?
 
-This is where Platform Engineers deliver the greatest value - turning fragile AI initiatives into production-ready solutions that deliver a real Return on Investment. By applying battle-tested DevOps principles including automation, CI/CD pipelines, Infrastructure as Code (IaC), self-service tooling, Observability, and cross-team collaboration - we bridge the gap between experimentation and production reality
+AI success depends on three core infrastructure components: compute, storage, and networking all of which must be scalable, reliable, and efficient. These critical needs are often overlooked until it’s too late. This is where Platform Engineers step in, ensuring the right foundation is in place for AI deployment.
 
-In this series, I'll show exactly how this works through a real-world example. Follow along as we implement a demand forecasting solution for **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on MLOps best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
+By applying proven DevOps principles—like CI/CD, automation, observability, and cross-team collaboration—Platform Engineers can help organizations maximize their AI investments. These practices simplify deployment, enhance model monitoring, and enable seamless updates.
+
+In this blog post,  I'll walk you through a real-world example, demonstrating exactly how this works. Follow along as we implement a Machine Learning (ML) solution for demand forecasting at **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on MLOps best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
 
 ![main](https://github.com/user-attachments/assets/ca076648-273c-4ac1-bb7a-8eac9a7cc741)
 
@@ -37,7 +39,7 @@ Before diving in, I assume you have a solid understanding and are comfortable wo
 - **[Azure Kubernetes](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
 - Infrastructure as code using **[Terraform](https://www.terraform.io/)**
 
-For more details, tutorials, and additional learning resources, click on the links above for each of the mentioned tools and technologies.
+For additional learning resources, click on the links above for each of the mentioned tools and technologies.
 
 ### Why AI Projects fail
 Many organizations struggle to move beyond the proof-of-concept stage due to challenges in developing, deploying, and maintaining AI solutions at scale. Despite heavy investment, many of these projects fail to deliver value due to a variety of reasons such as:
@@ -66,17 +68,17 @@ GloboJava's data is stored in **Snowflake**, a cloud-based data warehousing plat
 - ### Exploring the Data
 For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
 
-{% highlight css %}
-- StoreID:	       Unique identifier for the store
-- Country:	       Country where the store is located
-- City:	          City where the store is located
-- Category:        Category of the product
-- Product:	       Specific product sold
-- Price:	          Price per unit of the product
-- Weather:	       Weather condition during the sale
-- Promotion:	    Indicates if a promotion was active during the sale
-- Holiday:	       Indicates if the day was a holiday
-{% endhighlight %}
+| Field       | Description                                      |
+|-------------|--------------------------------------------------|
+| StoreID     | Unique identifier for the store                  |
+| Country     | Country where the store is located               |
+| City        | City where the store is located                  |
+| Category    | Category of the product                          |
+| Product     | Specific product sold                            |
+| Price       | Price per unit of the product                    |
+| Weather     | Weather condition during the sale                |
+| Promotion   | Indicates if a promotion was active during sale  |
+| Holiday     | Indicates if the day was a holiday               |
 
 - ### Preprocessing the Data
 Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
@@ -84,27 +86,27 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 - ### Engineering the Data
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
-{% highlight css %}
-- MonthYear:  Month and year of the transaction
-- IsWeekend:  Indicating if the transaction occurred on a weekend or not
-- Season:     Season of the year based on the month
-{% endhighlight %}
+| Field      | Description                                       | Example         |
+|------------|-------------------------------------------------- |-----------------|
+| MonthYear  | Month and year of the transaction                 | `2023-11`       |
+| IsWeekend  | Indicates if the transaction occurred on a weekend  `TRUE`/`FALSE`)  |
+| Season     | Season of the year based on the month             | `Winter`        |
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
 
 These are the final set of features used to train the model.
 
-{% highlight css %}
-- StoreID
-- Country
-- City
-- Price     (average price for the month)
-- Weather   (last recorded weather for the month)
-- Promotion (last recorded promotion status for the month)
-- Holiday   (last recorded holiday status for the month)
-- IsWeekend (proportion of weekend days in the month)
-- Season    (season of the month)
-{% endhighlight %}
+| Field      | Description                                      |
+|------------|--------------------------------------------------|
+| StoreID    | Unique store identifier                         |
+| Country    | Country where the store is located               |
+| City       | City where the store is located                  |
+| Price      | Average price for the month                      |
+| Weather    | Last recorded weather for the month              |
+| Promotion  | Last recorded promotion status for the month     |
+| Holiday    | Last recorded holiday status for the month       |
+| IsWeekend  | Proportion of weekend days in the month          |
+| Season     | Season of the month (e.g., Summer, Winter)       |
 
 - ### Selecting the Algorithm
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
