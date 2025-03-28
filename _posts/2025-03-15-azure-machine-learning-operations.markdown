@@ -96,14 +96,12 @@ These are the additional features we will create from the raw data to improve th
 | Season     | Season of the year based on the month              |
 {% endhighlight %}
 
-Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
-
-These are the final set of features used to train the model.
+Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. These are the final set of features used to train the model.
 
 {% highlight css %}
 | Field      | Description                                      |
 |------------|--------------------------------------------------|
-| StoreID    | Unique store identifier                         |
+| StoreID    | Unique store identifier                          |
 | Country    | Country where the store is located               |
 | City       | City where the store is located                  |
 | Price      | Average price for the month                      |
