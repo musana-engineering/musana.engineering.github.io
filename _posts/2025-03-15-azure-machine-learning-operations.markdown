@@ -112,9 +112,7 @@ For the demand forecasting model, features will be derived from raw sales data a
 {% endhighlight %}
 
 - ### Preprocessing the Data
-Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
-
-These are the additional features we will create from the raw data to improve the model's predictive accuracy.
+Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight css %}
 | Field      | Description                                        | 
