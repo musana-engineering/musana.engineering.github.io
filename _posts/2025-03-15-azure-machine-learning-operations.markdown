@@ -89,11 +89,11 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight css %}
-| Field      | Description                                       | Example         |
-|------------|-------------------------------------------------- |-----------------|
-| MonthYear  | Month and year of the transaction                 | `2023-11`       |
-| IsWeekend  | Indicates if the transaction occurred on a weekend  `TRUE`/`FALSE`)  |
-| Season     | Season of the year based on the month             | `Winter`        |
+| Field      | Description                                        | 
+|------------|--------------------------------------------------  |
+| MonthYear  | Month and year of the transaction                  | 
+| IsWeekend  | Indicates if the transaction occurred on a weekend |
+| Season     | Season of the year based on the month              |
 {% endhighlight %}
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
