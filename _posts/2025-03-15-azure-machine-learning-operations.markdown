@@ -88,16 +88,19 @@ Preprocessing is a critical step to prepare the data for machine learning. This 
 - ### Engineering the Data
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
+{% highlight css %}
 | Field      | Description                                       | Example         |
 |------------|-------------------------------------------------- |-----------------|
 | MonthYear  | Month and year of the transaction                 | `2023-11`       |
 | IsWeekend  | Indicates if the transaction occurred on a weekend  `TRUE`/`FALSE`)  |
 | Season     | Season of the year based on the month             | `Winter`        |
+{% endhighlight %}
 
 Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. 
 
 These are the final set of features used to train the model.
 
+{% highlight css %}
 | Field      | Description                                      |
 |------------|--------------------------------------------------|
 | StoreID    | Unique store identifier                         |
@@ -109,6 +112,7 @@ These are the final set of features used to train the model.
 | Holiday    | Last recorded holiday status for the month       |
 | IsWeekend  | Proportion of weekend days in the month          |
 | Season     | Season of the month (e.g., Summer, Winter)       |
+{% endhighlight %}
 
 - ### Selecting the Algorithm
 For GloboJava's demand forecasting, we will select the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
