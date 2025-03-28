@@ -25,8 +25,8 @@ In this first installment, I'll walk you through a real-world example to demonst
 - [Prerequisites](#prerequisites)
 - [Why AI projects fail](#why-ai-projects-fail)
 - [Role of Platform Engineering](#role-of-platform-engineering-in-ai-adoption)
-- [Introducing GloboJava ](#introducing-GloboJava)
-   - [Framing the ML problem](#understanding-the-problem)
+- [Introducing GloboJava ](#introducing-globojava)
+   - [Framing the AI problem](#framing-the-ai-problem)
    - [Collecting the Data](#collecting-the-data)
    - [Preprocessing the Data](#preprocessing-the-data)
    - [Engineering the Data](#engineering-the-data-features-the-data)
@@ -87,10 +87,12 @@ Platform Engineers are uniquely positioned to solve these challenges by:
 By focusing on automation, infrastructure as code, and robust CI/CD pipelines, Platform Engineers ensure that AI projects don’t just work in theory—they succeed in production.
 
 ### Introducing GloboJava
-**GloboJava** is a coffee-focused company specializing in high-quality beverages and pastries, committed to delivering fast and reliable service. Operating in the U.S., Canada, and Mexico, they aim to leverage machine learning to forecast product demand across their locations. By analyzing historical sales data, weather patterns, and local events, they seek to predict customer preferences, optimize inventory, enhance operations, and improve overall decision-making. After careful evaluation, their technology leadership team has determined that **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** is the best platform to drive this initiative forward
+**GloboJava** is a premium coffee company specializing in high-quality beverages and pastries. With a commitment to fast, reliable service, they operate across the U.S., Canada, and Mexico, serving millions of customers daily. By blending artisanal craftsmanship with modern convenience, GloboJava aims to create a seamless and delightful coffee experience whether in-store, online, or through their mobile app. 
 
-- ### Framing the ML problem
-The first thing we need to do in any ML project is frame the problem and collect the corresponding data. At GloboJava, their major challenge is accurately predicting customer demand. Seasonal changes, holidays, and regional preferences create fluctuations that make inventory management difficult, often resulting in overstocking or shortages. 
+- ### Framing the AI problem
+The first step in any AI project is to clearly define the problem and gather the necessary data. At GloboJava, the primary challenge is accurately predicting customer demand. By leveraging their sales data, they aim to gain insights into customer preferences, optimize inventory, streamline operations, and improve overall decision-making.
+
+After careful evaluation, GloboJava's technology leadership team has determined that this problem can be effectively addressed using machine learning. To power and deploy their solution, they have selected **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** as the preferred platform.
 
 - ### Collecting the data
 GloboJava's data is stored in **Snowflake**, a cloud-based data warehousing platform, where it is organized into tables within a database schema. To make this data available for machine learning in Azure ML, a data ingestion process will be implemented by establishing a connection to their Snowflake account. Once connected, the data will be imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
