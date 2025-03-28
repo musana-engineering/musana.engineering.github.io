@@ -29,7 +29,6 @@ In this first installment, I'll walk you through a real-world example to demonst
    - [Framing the AI problem](#framing-the-ai-problem)
    - [Collecting the Data](#collecting-the-data)
    - [Preprocessing the Data](#preprocessing-the-data)
-   - [Engineering the Data](#engineering-the-data-features-the-data)
    - [Selecting the Algorithm](#selecting-the-algorithm)
 - [Putting it all together](#putting-it-all-together)
 - [Summary ](#summary)
@@ -115,7 +114,6 @@ For the demand forecasting model, features will be derived from raw sales data a
 - ### Preprocessing the Data
 Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These preprocessing steps ensure the data is clean, consistent, and ready for training, enabling the model to learn effectively and make accurate predictions.
 
-- ### Engineering the Data
 These are the additional features we will create from the raw data to improve the model's predictive accuracy.
 
 {% highlight css %}
