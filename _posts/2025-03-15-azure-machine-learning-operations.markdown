@@ -155,7 +155,7 @@ Since this is primarily infrastructure setup, we'll use Terraform for provisioni
 - **Steps to Deploy the Infrastructure**
    - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
 
-{% highlight css %}
+{% highlight yaml %}
 // Clone the project repository
 git clone git@github.com:musana-engineering/mlops.git
 
