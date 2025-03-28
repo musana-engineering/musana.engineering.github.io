@@ -164,12 +164,12 @@ cd infra/
 
 // Sign in with Azure CLI
 az login
-az account set -s "0000-0000-0000-0000-000000000000"
+az account set -s "your subscription id"
 
 // Configure Terraform Authentication
-export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
-export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
-export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
+export ARM_CLIENT_ID="your service principal client id"
+export ARM_CLIENT_SECRET="your service principal client secret"
+export ARM_TENANT_ID="your service principal tenant id"
 
 // Create terraform execution plan
 terraform init
