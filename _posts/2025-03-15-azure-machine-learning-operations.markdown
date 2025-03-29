@@ -124,7 +124,7 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 ### Putting it all together
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
-- ### Infrastructure Setup
+ - ### Infrastructure Setup
 The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services.
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
@@ -133,8 +133,8 @@ Since this is primarily infrastructure setup, we'll use Terraform for provisioni
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
 {% endhighlight %}
 
-- **Steps to Deploy the Infrastructure**
-   - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
+ - **Steps to Deploy the Infrastructure**
+    - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
 
 {% highlight bash %}
 // Clone the project repository
