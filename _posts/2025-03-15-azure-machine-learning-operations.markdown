@@ -130,10 +130,10 @@ The first step in our pipeline will create the foundational infrastructure in Az
 
 The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources:
 
+{% highlight css %}
 **<Company_Prefix>-<Project_Prefix>-<Environment>-<Resource_Type>**
 
 Examples:
-{% highlight css %}
   - gbj-ml-qa-vnet   (qa virtual network)
   - gbj-ml-prod-vnet (production virtual network)
 {% endhighlight %}
