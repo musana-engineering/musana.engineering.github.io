@@ -137,6 +137,17 @@ Examples:
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
 
+Key resources created include: 
+   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.**Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
+   - **Key Vault:** Secures secrets, credentials, and encryption keys.
+   - **Container Registry:** Stores Docker images for training and inference environments.
+   - **Application Insights:** Monitors and logs ML experiment performance.
+   - **Virtual Network:** To provide network isolation for all project resources.
+   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
+   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
+   - **Private DNS Zones:** Provide name resolution for private endpoints.
+   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
+
 {% highlight css %}
   templates:
   - name: main
@@ -159,18 +170,6 @@ Examples:
         terraform apply -auto-approve
 
 {% endhighlight %}
-
-   **Key Resources Created**
-      - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
-      - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
-      - **Key Vault:** Secures secrets, credentials, and encryption keys.
-      - **Container Registry:** Stores Docker images for training and inference environments.
-      - **Application Insights:** Monitors and logs ML experiment performance.
-      - **Virtual Network:** To provide network isolation for all project resources.
-      - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
-      - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
-      - **Private DNS Zones:** Provide name resolution for private endpoints.
-      - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
 - ### Data Connections: Snowflake connection and data import.
 The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
