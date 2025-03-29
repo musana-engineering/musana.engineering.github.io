@@ -174,19 +174,27 @@ Key resources created include:
 - ### Data Connections: Snowflake connection and data import.
 The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
 
-- **Steps to create the connection**
+{% highlight css %}
+  templates:
+  - name: main
+    serviceAccountName: sa-argo-workflow
+    volumes:
+    - name: secrets
+      secret: 
+        secretName: deployment
+    script:
+      image: "musanaengineering/platformtools:terraform-v1.0.0"
+      command: ["/bin/bash"]
+      source: |
+        // Clone the repository
+        git clone git@github.com:musana-engineering/mlops.git
+        cd mlops/pipelines/data/connections
+        
+        // Execute Terraform
+        terraform init
+        terraform plan
+        terraform apply -auto-approve
 
-{% highlight bash %}
-
-// Change into the pipelines.data directory
-cd pipelines/data/connections/
-
-// Create terraform execution plan
-terraform init
-terraform plan
-
-// Execute terraform plan.
-terraform apply
 {% endhighlight %}
 
 - ### Data Preprocessing: Aggregation and preprocessing pipeline.
