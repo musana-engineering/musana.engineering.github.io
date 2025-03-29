@@ -19,7 +19,7 @@ This is where Platform Engineers step in, ensuring the right foundation is in pl
 
 In this first installment, I'll walk you through a real-world example to demonstrate exactly how this works. We will implement a machine learning (ML) project for demand forecasting at **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
 
-![MLOPS_v2](https://github.com/user-attachments/assets/4a936169-54a3-4605-8528-96fb25b3c09a)
+![MLOPS_v2](https://github.com/user-attachments/assets/4f5562b0-7ec5-4ea5-947d-e49a7b18a570)
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
