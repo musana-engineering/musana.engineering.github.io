@@ -125,9 +125,6 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
  - ### Infrastructure Setup
-The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services. We'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
-
-
 The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources:
 
 {% highlight javascript %}
