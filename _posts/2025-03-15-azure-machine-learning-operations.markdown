@@ -161,14 +161,11 @@ Examples:
 {% endhighlight %}
 
    - **Key Resources Created**
-      - Core Infrastructure
          - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
          - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
          - **Key Vault:** Secures secrets, credentials, and encryption keys.
          - **Container Registry:** Stores Docker images for training and inference environments.
          - **Application Insights:** Monitors and logs ML experiment performance.
-
-      - Networking & Security Components
          - **Virtual Network:** To provide network isolation for all project resources.
          - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
          - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
