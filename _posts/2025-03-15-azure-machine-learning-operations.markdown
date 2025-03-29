@@ -125,7 +125,7 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
 - ### Infrastructure Setup
-The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services.
+The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services.
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
 Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
@@ -161,14 +161,14 @@ terraform apply
 {% endhighlight %}
 
 **Key Resources Created**
-- **Core Infrastructure**
+- Core Infrastructure
    - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
    - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
    - **Key Vault:** Secures secrets, credentials, and encryption keys.
    - **Container Registry:** Stores Docker images for training and inference environments.
    - **Application Insights:** Monitors and logs ML experiment performance.
 
-- **Networking & Security Components**
+- Networking & Security Components
    - **Virtual Network:** To provide network isolation for all project resources.
    - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
    - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
