@@ -161,22 +161,6 @@ Examples:
         terraform plan
         terraform apply -auto-approve
 
-      env:
-      - name: CLIENT_ID
-         valueFrom:
-         secretKeyRef:
-            name: deployment
-            key: CLIENT_ID
-      - name: CLIENT_SECRET
-         valueFrom:
-         secretKeyRef:
-            name: deployment
-            key: CLIENT_SECRET
-      - name: TENANT_ID
-         valueFrom:
-         secretKeyRef:
-            name: deployment
-            key: TENANT_ID
 {% endhighlight %}
 
   - **Key Resources Created**
