@@ -135,7 +135,7 @@ Examples:
   - gbj-ml-prod-vnet (production virtual network)
 {% endhighlight %}
 
-![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
+![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
 Key resources created include: 
    - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.**Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
