@@ -138,7 +138,8 @@ Examples:
 ![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
 Key resources created include: 
-   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.**Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
+   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
+   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
    - **Key Vault:** Secures secrets, credentials, and encryption keys.
    - **Container Registry:** Stores Docker images for training and inference environments.
    - **Application Insights:** Monitors and logs ML experiment performance.
@@ -168,7 +169,6 @@ Key resources created include:
         terraform init
         terraform plan
         terraform apply -auto-approve
-
 {% endhighlight %}
 
 - ### Data Connections: Snowflake connection and data import.
@@ -194,7 +194,6 @@ The next step in the pipeline is to establish a connection between Azure ML and 
         terraform init
         terraform plan
         terraform apply -auto-approve
-
 {% endhighlight %}
 
 - ### Data Preprocessing: Aggregation and preprocessing pipeline.
