@@ -140,28 +140,30 @@ Examples:
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
 
-{% highlight bash %}
-// Clone the project repository
-git clone git@github.com:musana-engineering/mlops.git
-
-// Change into the pipelines.infra directory
-cd pipelines/infra/
-
-// Sign in with Azure CLI
-az login
-az account set -s "0000-0000-0000-0000-000000000000"
-
-// Configure Terraform Authentication
-export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
-export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
-export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
-
-// Create terraform execution plan
-terraform init
-terraform plan
-
-// Execute terraform plan.
-terraform apply
+{% highlight css %}
+  templates:
+  - name: main
+    script:
+      image: hashicorp/terraform
+      command: ["sh"]
+      source: |
+        # Clone the repository
+        git clone git@github.com:musana-engineering/mlops.git
+        cd mlops/pipelines/infra/
+        
+        # Sign in with Azure CLI
+        az login
+        az account set -s "0000-0000-0000-0000-000000000000"
+        
+        # Configure Terraform Authentication
+        export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
+        export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
+        export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
+        
+        # Execute Terraform
+        terraform init
+        terraform plan
+        terraform apply -auto-approve
 {% endhighlight %}
 
   - **Key Resources Created**
