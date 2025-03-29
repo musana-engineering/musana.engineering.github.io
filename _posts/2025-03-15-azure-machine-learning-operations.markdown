@@ -47,13 +47,7 @@ For additional learning resources, click on the links above for each of the ment
 ### Why AI Projects fail
 Many AI projects fail to progress from the proof-of-concept stage. Companies pour time and money, but when it comes to actually deploying and maintaining these solutions at scale, things fall apart. While the reasons for failure are varied, the most critical ones stem from fundamental oversights as discussed below.
 
-- **The Deployment Gap:** Data scientists do great work building models, but productionizing them is a different story. Many struggle with:
-
-   - Containerization skills for reproducible environments
-   - CI/CD pipelines for automated model promotion
-   - Kubernetes knowledge for scalable serving
-
-Without these, models often get stuck in notebooks, never making it into real-world applications.
+- **The Deployment Gap:** Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these, models often get stuck in notebooks, never making it into real-world applications.
 
 - **The Infrastructure Gap:** Many AI projects lack a solid infrastructure foundation, leading to:
    - Manually configured environments that are impossible to replicate
