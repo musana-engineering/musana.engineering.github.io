@@ -156,15 +156,6 @@ Examples:
         git clone git@github.com:musana-engineering/mlops.git
         cd mlops/pipelines/infra/
         
-        // Sign in with Azure CLI
-        az login
-        az account set -s "0000-0000-0000-0000-000000000000"
-        
-        // Configure Terraform Authentication
-        export ARM_CLIENT_ID=$CLIENT_ID
-        export ARM_CLIENT_SECRET=$CLIENT_SECRET
-        export ARM_TENANT_ID=$TENANT_ID
-        
         // Execute Terraform
         terraform init
         terraform plan
