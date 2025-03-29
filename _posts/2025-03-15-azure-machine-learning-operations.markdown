@@ -125,16 +125,12 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
  - ### Infrastructure Setup
-The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services.
-
-![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
-Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
+The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services. We'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 {% highlight css %}
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
 {% endhighlight %}
 
- - **Steps to Deploy the Infrastructure**
-    - Create an **[Azure service principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash)** and set up Environment Variables for Terraform provider authentication
+![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
 
 {% highlight bash %}
 // Clone the project repository
@@ -160,20 +156,20 @@ terraform plan
 terraform apply
 {% endhighlight %}
 
-**Key Resources Created**
-- Core Infrastructure
-   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
-   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
-   - **Key Vault:** Secures secrets, credentials, and encryption keys.
-   - **Container Registry:** Stores Docker images for training and inference environments.
-   - **Application Insights:** Monitors and logs ML experiment performance.
+  - **Key Resources Created**
+   - Core Infrastructure
+      - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
+      - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
+      - **Key Vault:** Secures secrets, credentials, and encryption keys.
+      - **Container Registry:** Stores Docker images for training and inference environments.
+      - **Application Insights:** Monitors and logs ML experiment performance.
 
-- Networking & Security Components
-   - **Virtual Network:** To provide network isolation for all project resources.
-   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
-   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
-   - **Private DNS Zones:** Provide name resolution for private endpoints.
-   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
+   - Networking & Security Components
+      - **Virtual Network:** To provide network isolation for all project resources.
+      - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
+      - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
+      - **Private DNS Zones:** Provide name resolution for private endpoints.
+      - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
 - ### Data Connections: Snowflake connection and data import.
 The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
