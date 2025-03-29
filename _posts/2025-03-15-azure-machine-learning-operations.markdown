@@ -146,7 +146,7 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 
 - ### Infrastructure Setup
 In this section, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. 
-![gbj-ml](https://github.com/user-attachments/assets/fc5a6fc8-b158-499f-86dc-88760526c71c)
+![gbl-ml-v2](https://github.com/user-attachments/assets/0c00bf7d-9f59-4344-9af0-8ae00fb3fbfd)
 Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 {% highlight css %}
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
