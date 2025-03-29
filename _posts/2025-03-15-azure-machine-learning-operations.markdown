@@ -42,7 +42,7 @@ Before diving in, I assume you have a solid understanding and are comfortable wo
 - **[Azure Kubernetes](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
 - Infrastructure as code using **[Terraform](https://www.terraform.io/)**
 
-For additional learning resources, click on the links above for each of the mentioned tools and technologies.
+Ensure that **[Argo Events](https://argoproj.github.io/argo-events/)** and **[Argo Workflows](https://argoproj.github.io/workflows/)** are installed on your Kubernetes cluster. Argo Events will handle event-driven triggers for the pipelines, while Argo Workflows will be used to author and execute them
 
 ### Why AI Projects fail
 Many AI projects fail to progress from the proof-of-concept stage. Companies pour time and money, but when it comes to actually deploying and maintaining these solutions at scale, things fall apart. While the reasons for failure are varied, the most critical ones stem from fundamental oversights as discussed below.
@@ -125,7 +125,8 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
 - ### Infrastructure Setup
-In this section, we'll create the foundational infrastructure in Azure including the virtual network, machine learning workspace, blob storage, application insights, and Azure Key Vault. 
+The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services.
+
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
 Since this is primarily infrastructure setup, we'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 {% highlight css %}
@@ -159,12 +160,20 @@ terraform plan
 terraform apply
 {% endhighlight %}
 
-- **Key Infrastructure resources created**
-   - Virtual Network: Provides secure communication between resources.
-   - Machine Learning Workspace: Central hub for ML experiments, models, and deployments.
-   - Blob Storage: Stores datasets, models, and other artifacts.
-   - Application Insights: Monitors the performance and health of deployed models.
-   - Azure Key Vault: Manages secrets, keys, and certificates securely.
+**Key Resources Created**
+- **Core Infrastructure**
+   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
+   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
+   - **Key Vault:** Secures secrets, credentials, and encryption keys.
+   - **Container Registry:** Stores Docker images for training and inference environments.
+   - **Application Insights:** Monitors and logs ML experiment performance.
+
+- **Networking & Security Components**
+   - **Virtual Network:** To provide network isolation for all project resources.
+   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
+   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
+   - **Private DNS Zones:** Provide name resolution for private endpoints.
+   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
 - ### Data Connections: Snowflake connection and data import.
 - ### Data Preprocessing: Aggregation and preprocessing pipeline.
