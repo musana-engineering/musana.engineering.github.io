@@ -34,7 +34,7 @@ In this first installment, I'll walk you through a real-world example to demonst
 - [Summary ](#summary)
 
 ### Prerequisites
-Before diving in, I assume you have a solid understanding and are comfortable working with the following;
+This is a complex technical implementation, so before we dive in, I assume you have a strong understanding and hands-on experience with the following
 - **[Machine Learning](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)** concepts including model training, evaluation, and deployment. 
 - **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
 - **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
@@ -144,7 +144,7 @@ Examples:
   templates:
   - name: main
     script:
-      image: musanaengineering/platformtools:terraform-v1.0.0
+      image: "musanaengineering/platformtools:terraform-v1.0.0"
       command: ["/bin/bash"]
       source: |
         // Clone the repository
@@ -156,9 +156,9 @@ Examples:
         az account set -s "0000-0000-0000-0000-000000000000"
         
         // Configure Terraform Authentication
-        export ARM_CLIENT_ID="0000-0000-0000-0000-000000000000"
-        export ARM_CLIENT_SECRET="0000-0000-0000-0000-000000000000"
-        export ARM_TENANT_ID="0000-0000-0000-0000-000000000000"
+        export ARM_CLIENT_ID=$CLIENT_ID
+        export ARM_CLIENT_SECRET=$CLIENT_SECRET
+        export ARM_TENANT_ID=$TENANT_ID
         
         // Execute Terraform
         terraform init
