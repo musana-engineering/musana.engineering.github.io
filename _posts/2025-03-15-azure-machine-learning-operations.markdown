@@ -48,7 +48,7 @@ For additional learning resources, click on the links above for each of the ment
 Many AI projects fail to progress from the proof-of-concept stage. Companies pour time and money, but when it comes to actually deploying and maintaining these solutions at scale, things fall apart. While the reasons for failure are varied, the most critical ones stem from fundamental oversights as discussed below.
 
 - **The Deployment Gap:** 
-Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these skills, models often get stuck in notebooks, never making it into real-world applications.
+ - Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these skills, models often get stuck in notebooks, never making it into real-world applications.
 
 - **The Infrastructure Gap:** Many AI projects lack a solid infrastructure foundation, leading to manually configured environments that are impossible to replicate, no version control for compute, storage, or networking setups and no disaster recovery plans (if they exist) that are never tested. Without a code-first approach, infrastructure becomes a brittle, unmanageable mess.
 
