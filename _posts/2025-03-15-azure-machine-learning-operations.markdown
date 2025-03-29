@@ -128,6 +128,10 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 The first step in our pipeline will create the foundational infrastructure in Azure. GloboJava information security team mandates a secure and compliant environment so the foundation will prioritize private network access to minimize exposure to the public internet while maintaining seamless integration with Azure services. We'll use Terraform for provisioning and apply a consistent and descriptive naming convention to organize the resources following this structure:
 {% highlight css %}
 <Company_Prefix>-<Project_Prefix>-<Environment_Prefix>-<Resource_prefix>
+
+For example: 
+  - gbj-ml-qa-vnet   (qa virtual network)
+  - gbj-ml-prod-vnet (production virtual network)
 {% endhighlight %}
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/0cd828ed-7288-48a8-b2ca-e43717d10eaa)
