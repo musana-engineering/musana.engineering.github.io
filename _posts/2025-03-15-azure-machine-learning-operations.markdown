@@ -140,8 +140,8 @@ Since this is primarily infrastructure setup, we'll use Terraform for provisioni
 // Clone the project repository
 git clone git@github.com:musana-engineering/mlops.git
 
-// Change into the infrastructure directory
-cd infra/
+// Change into the pipelines.infra directory
+cd pipelines/infra/
 
 // Sign in with Azure CLI
 az login
@@ -176,6 +176,23 @@ terraform apply
    - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
 - ### Data Connections: Snowflake connection and data import.
+The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
+
+- **Steps to create the connection**
+
+{% highlight bash %}
+
+// Change into the pipelines.data directory
+cd pipelines/data/connections/
+
+// Create terraform execution plan
+terraform init
+terraform plan
+
+// Execute terraform plan.
+terraform apply
+{% endhighlight %}
+
 - ### Data Preprocessing: Aggregation and preprocessing pipeline.
 - ### Model Training: Train and register the model.
 - ### Pipeline Creation: Define and submit the pipeline.
