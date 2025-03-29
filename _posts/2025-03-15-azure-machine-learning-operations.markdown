@@ -48,28 +48,13 @@ For additional learning resources, click on the links above for each of the ment
 Many AI projects fail to progress from the proof-of-concept stage. Companies pour time and money, but when it comes to actually deploying and maintaining these solutions at scale, things fall apart. While the reasons for failure are varied, the most critical ones stem from fundamental oversights as discussed below.
 
 - **The Deployment Gap:** 
-Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these, models often get stuck in notebooks, never making it into real-world applications.
+Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these skills, models often get stuck in notebooks, never making it into real-world applications.
 
-- **The Infrastructure Gap:** Many AI projects lack a solid infrastructure foundation, leading to:
-   - Manually configured environments that are impossible to replicate
-   - No version control for compute, storage, or networking setups
-   - Disaster recovery plans (if they exist) that are never tested
+- **The Infrastructure Gap:** Many AI projects lack a solid infrastructure foundation, leading to manually configured environments that are impossible to replicate, no version control for compute, storage, or networking setups and no disaster recovery plans (if they exist) that are never tested. Without a code-first approach, infrastructure becomes a brittle, unmanageable mess.
 
-Without a code-first approach, infrastructure becomes a brittle, unmanageable mess.
+- **The Collaboration Gap:** AI projects require teamwork, but different roles speak different languages - Data scientists work in local Jupyter notebooks, unaware of production needs while Engineers struggle to turn those notebooks into robust applications. On the other hand, Ops teams don’t have visibility into ML-specific resource demands. Without a shared workflow, handoffs between teams become painful, slowing everything down.
 
-- **The Collaboration Gap:** AI projects require teamwork, but different roles speak different languages:
-   - Data scientists work in local Jupyter notebooks, unaware of production needs
-   - Engineers struggle to turn those notebooks into robust applications
-   - Ops teams don’t have visibility into ML-specific resource demands
-
-Without a shared workflow, handoffs between teams become painful, slowing everything down.
-
-- **The Process Gap:** When AI projects rely on ad-hoc processes, things break down fast:
-   - Deployments are manual, inconsistent, and hard to debug
-   - Models and data aren’t versioned properly
-   - Monitoring is reactive (if it exists at all)
-
-AI needs the same rigor as software development—without it, projects stall or fail altogether.
+- **The Process Gap:** When AI projects rely on ad-hoc processes, things break down fast. Deployments are manual, inconsistent, and hard to debug, Models and data aren’t versioned properly and Monitoring is reactive (if it exists at all). AI needs the same rigor as software development—without it, projects stall or fail altogether.
 
 ### Role of Platform Engineering
 Platform Engineers are uniquely positioned to solve these challenges by:
