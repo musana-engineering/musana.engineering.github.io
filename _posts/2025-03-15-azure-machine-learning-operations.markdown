@@ -143,6 +143,11 @@ Examples:
 {% highlight css %}
   templates:
   - name: main
+    serviceAccountName: sa-argo-workflow
+    volumes:
+    - name: secrets
+      secret: 
+        secretName: deployment
     script:
       image: "musanaengineering/platformtools:terraform-v1.0.0"
       command: ["/bin/bash"]
@@ -164,6 +169,23 @@ Examples:
         terraform init
         terraform plan
         terraform apply -auto-approve
+
+      env:
+      - name: CLIENT_ID
+         valueFrom:
+         secretKeyRef:
+            name: deployment
+            key: CLIENT_ID
+      - name: CLIENT_SECRET
+         valueFrom:
+         secretKeyRef:
+            name: deployment
+            key: CLIENT_SECRET
+      - name: TENANT_ID
+         valueFrom:
+         secretKeyRef:
+            name: deployment
+            key: TENANT_ID
 {% endhighlight %}
 
   - **Key Resources Created**
