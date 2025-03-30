@@ -129,18 +129,6 @@ The pipeline begins by establishing a secure, compliant foundation in Azure, ali
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
-Key resources created include: 
-   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
-   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
-   - **Key Vault:** Secures secrets, credentials, and encryption keys.
-   - **Container Registry:** Stores Docker images for training and inference environments.
-   - **Application Insights:** Monitors and logs ML experiment performance.
-   - **Virtual Network:** To provide network isolation for all project resources.
-   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
-   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
-   - **Private DNS Zones:** Provide name resolution for private endpoints.
-   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
-
 {% highlight css %}
   templates:
   - name: main
@@ -162,6 +150,18 @@ Key resources created include:
         terraform plan
         terraform apply -auto-approve
 {% endhighlight %}
+
+Key resources created include: 
+   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
+   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
+   - **Key Vault:** Secures secrets, credentials, and encryption keys.
+   - **Container Registry:** Stores Docker images for training and inference environments.
+   - **Application Insights:** Monitors and logs ML experiment performance.
+   - **Virtual Network:** To provide network isolation for all project resources.
+   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
+   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
+   - **Private DNS Zones:** Provide name resolution for private endpoints.
+   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
