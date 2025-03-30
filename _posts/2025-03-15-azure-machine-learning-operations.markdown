@@ -125,15 +125,7 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
  - ### Infrastructure Provisioning
-The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources:
-
-{% highlight javascript %}
-<Company_Prefix>-<Project_Prefix>-<Environment>-<Resource_Type>
-
-Examples:
-  - gbj-ml-qa-vnet   (qa virtual network)
-  - gbj-ml-prod-vnet (production virtual network)
-{% endhighlight %}
+The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources
 
 ![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
@@ -148,8 +140,6 @@ Key resources created include:
    - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
    - **Private DNS Zones:** Provide name resolution for private endpoints.
    - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
-
-![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 {% highlight css %}
   templates:
@@ -172,6 +162,8 @@ Key resources created include:
         terraform plan
         terraform apply -auto-approve
 {% endhighlight %}
+
+![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 - ### Data Connections: Snowflake connection and data import.
 The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
