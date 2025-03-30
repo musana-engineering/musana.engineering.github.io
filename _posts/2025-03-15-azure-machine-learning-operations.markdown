@@ -149,7 +149,7 @@ Key resources created include:
    - **Private DNS Zones:** Provide name resolution for private endpoints.
    - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
 
-![image](https://github.com/user-attachments/assets/35de2e81-6fbf-497b-aff6-514d33b83306)
+![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 {% highlight css %}
   templates:
