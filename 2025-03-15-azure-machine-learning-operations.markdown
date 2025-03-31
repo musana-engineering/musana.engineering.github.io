@@ -226,27 +226,26 @@ The next step in the pipeline transforms our raw transactional sales data into m
 - Reviews financials (monthly closing)
 - Plans marketing (monthly campaigns)
 
-{% highlight python %}
-tbl = mltable.load(data_asset.path)
-#print(data_asset.path)
-
-df = tbl.to_pandas_dataframe()
-#df.info()
-#df.head(5)
-
-# Aggregate data at the monthly level
-df["DATE"] = pd.to_datetime(df["DATE"])
-df["MonthYear"] = df["DATE"].dt.to_period("M")
-monthly_data = df.groupby(["STOREID", "COUNTRY", "CITY", "MonthYear"]).agg({
-    "QUANTITYSOLD": "sum",
-    "PRICE": "mean",
-    "WEATHER": "last",  # Use the last recorded weather for the month
-    "PROMOTION": "last",  # Use the last recorded promotion for the month
-    "HOLIDAY": "last"  # Use the last recorded holiday for the month
-}).reset_index()
-
-# Split the data into 80% training and 20% testing
-train_data, test_data = train_test_split(monthly_data, test_size=0.2, random_state=42)
+{% highlight css %}
+  templates:
+  - name: main
+    serviceAccountName: sa-argo-workflow
+    volumes:
+    - name: secrets
+      secret: 
+        secretName: deployment
+    script:
+      image: "musanaengineering/platformtools:terraform-v1.0.0"
+      command: ["/bin/bash"]
+      source: |
+        // Clone the repository
+        git clone git@github.com:musana-engineering/mlops.git
+        cd mlops/pipelines/data/preprocessing
+        
+        // Execute Terraform
+        terraform init
+        terraform plan
+        terraform apply -auto-approve
 {% endhighlight %}
 
 The preprocessing pipeline outputs two new datasets and registers them in AML Workspace.
