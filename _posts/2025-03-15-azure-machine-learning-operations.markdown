@@ -166,10 +166,7 @@ Key resources created include:
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 - ### Data Connections: Snowflake connection and data import.
-The next step in the pipeline is to create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. Once the connection is established, a background job is triggered to extract data from the Snowflake table **GLOBOJAVA.SALES.TRANSACTIONS**. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
-  - Saved as an MLTable artifact in the designated storage path:
-  **azureml://datastores/gbjrawdata/paths/raw/GBJRawData**
-  - Registered in the Azure ML workspace as a versioned dataset (**GBJRawSalesData:1)**
+The next step in the pipeline is to create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
 
 {% highlight css %}
   templates:
@@ -192,6 +189,10 @@ The next step in the pipeline is to create a **[Data connection](https://learn.m
         terraform plan
         terraform apply -auto-approve
 {% endhighlight %}
+
+When the connection is established, a background job is triggered to extract data from the Snowflake table **GLOBOJAVA.SALES.TRANSACTIONS**. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
+  - Saved as an MLTable artifact in the ML workspace default datastore
+  - Registered in the ML workspace as a versioned dataset
 
 **Data Connection**
 ![image](https://github.com/user-attachments/assets/c6a16565-9af3-4fa2-b4e4-a7cb48b83334)
