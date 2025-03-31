@@ -124,7 +124,7 @@ For GloboJava's demand forecasting, we use the Random Forest Regressor due to it
 ### Putting it all together
 With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
 
- - ### Infrastructure Provisioning
+### Step 1: Infrastructure Provisioning
 The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources
 ![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
@@ -164,7 +164,7 @@ Key resources created include:
 
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
-- ### External Data Source Connection.
+### Step 2: Data Import
 The next step in the pipeline is to create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
 
 {% highlight css %}
@@ -200,8 +200,8 @@ When the connection is established, a background job is triggered to extract dat
 **Data Asset**
 ![image](https://github.com/user-attachments/assets/db7b484f-bbf1-4174-88e4-3fa76bb7bcba)
 
-- ### Data Preprocessing
-**Aggregation and preprocessing pipeline:**
+### Step 3: Data Preprocessing
+- ### Aggregation and preprocessing pipeline
 The next step in the pipeline transforms our raw transactional sales data into monthly aggregated records suitable for time-series forecasting by:
 
   - Converting dates to monthly periods (MonthYear)
@@ -212,8 +212,6 @@ The next step in the pipeline transforms our raw transactional sales data into m
   - Total monthly sales (sum of QUANTITYSOLD)
   - Average price (mean of PRICE)
   - Last observed conditions (last for WEATHER, PROMOTION, HOLIDAY)
-
-Why It Matters
 
 **Problem Fit:**
     - Demand forecasting requires temporal aggregation (daily → monthly aligns with business planning cycles)
