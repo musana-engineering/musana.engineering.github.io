@@ -201,7 +201,7 @@ When the connection is established, a background job is triggered to extract dat
 ![image](https://github.com/user-attachments/assets/db7b484f-bbf1-4174-88e4-3fa76bb7bcba)
 
 ### Step 3: Data Preprocessing
-- ### Aggregation and preprocessing pipeline
+- **Aggregation and preprocessing pipeline**
 The next step in the pipeline transforms our raw transactional sales data into monthly aggregated records suitable for time-series forecasting by:
 
   - Converting dates to monthly periods (MonthYear)
@@ -213,16 +213,16 @@ The next step in the pipeline transforms our raw transactional sales data into m
   - Average price (mean of PRICE)
   - Last observed conditions (last for WEATHER, PROMOTION, HOLIDAY)
 
-**Problem Fit:**
+- **Problem Fit:**
     - Demand forecasting requires temporal aggregation (daily → monthly aligns with business planning cycles)
     - Preserves key predictors like promotions/weather while reducing noise
 
-**Technical Advantages:**
+- **Technical Advantages:**
     - 100x data volume reduction vs. daily records (faster model training)
     - Clear seasonal patterns emerge at monthly granularity 
     - last() captures final state of dynamic features (e.g., whether a promotion was active at month-end)
 
-**Business Alignment:** Matches how GloboJava:
+- **Business Alignment:** Matches how GloboJava:
     - Orders inventory (monthly batches)
     - Reviews financials (monthly closing)
     - Plans marketing (monthly campaigns)
