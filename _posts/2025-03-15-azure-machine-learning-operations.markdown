@@ -190,7 +190,7 @@ The next step in the pipeline is to create a **[Data connection](https://learn.m
         terraform apply -auto-approve
 {% endhighlight %}
 
-When the connection is established, a background job is triggered to extract data from the Snowflake table **GLOBOJAVA.SALES.TRANSACTIONS**. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
+When the connection is established, a background job is triggered to extract data from the Snowflake database. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
   - Saved as an MLTable artifact in the ML workspace default datastore
   - Registered in the ML workspace as a versioned dataset
 
