@@ -126,7 +126,6 @@ With a clear understanding of the problem, data, and tools, we are now ready to 
 
  - ### Infrastructure Provisioning
 The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources
-
 ![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
 
 {% highlight css %}
