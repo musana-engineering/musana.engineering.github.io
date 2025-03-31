@@ -166,7 +166,7 @@ Key resources created include:
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 - ### Data Connections: Snowflake connection and data import.
-The next step in the pipeline is to establish a connection between Azure ML and GloboJava's data in Snowflake. A connection in Azure ML is a zero-trust bridge that stores credentials - in this case Snowflake (username/password) as Azure Key Vault secrets. We will use Terraform to create this connection. Why? Same reasons we standardized earlier: state tracking, reproducibility
+The next step in the pipeline is to establish a secure connection between Azure ML and GloboJava's Snowflake database. In Azure ML, a connection acts as a zero-trust bridge, ensuring secure data access. The Snowflake credentials (username/password) are securely stored in Azure Key Vault. We will use Terraform to create this connection for consistent state tracking, reproducibility, and automation.
 
 {% highlight css %}
   templates:
@@ -190,7 +190,22 @@ The next step in the pipeline is to establish a connection between Azure ML and 
         terraform apply -auto-approve
 {% endhighlight %}
 
+Once the connection is established, a background job is triggered to extract data from the Snowflake table GLOBOJAVA.SALES.TRANSACTIONS. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs.
+
+The extracted data is:
+- Saved as an MLTable artifact in the designated storage path:
+**azureml://datastores/gbjrawdata/paths/raw/GBJRawData**
+- Registered in the Azure ML workspace as a versioned dataset (**GBJRawSalesData:1)**. Future runs can reuse or update this dataset version.
+
+**Data Connection**
+![image](https://github.com/user-attachments/assets/5e651b22-732b-4a70-a3f5-73c929468f82)
+**Data import job run**
+![image](https://github.com/user-attachments/assets/7164b0b5-bb6b-42f5-876e-12606c0c252c)
+**Registered data asset**
+![image](https://github.com/user-attachments/assets/0dc1a961-5949-4ee3-a9a7-4cdb450dd0cb)
+
 - ### Data Preprocessing: Aggregation and preprocessing pipeline.
+
 - ### Model Training: Train and register the model.
 - ### Pipeline Creation: Define and submit the pipeline.
 - ### Model Deployment: Deploy to Kubernetes.
