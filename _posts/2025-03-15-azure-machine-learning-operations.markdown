@@ -165,7 +165,7 @@ Key resources created include:
 
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
-- ### Data Connections: Snowflake connection and data import.
+- ### External Data Source Connection.
 The next step in the pipeline is to create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
 
 {% highlight css %}
