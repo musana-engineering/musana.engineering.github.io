@@ -226,7 +226,32 @@ The next step in the pipeline transforms our raw transactional sales data into m
 - Reviews financials (monthly closing)
 - Plans marketing (monthly campaigns)
 
-### Model Training: Train and register the model.
+{% highlight python %}
+tbl = mltable.load(data_asset.path)
+#print(data_asset.path)
+
+df = tbl.to_pandas_dataframe()
+#df.info()
+#df.head(5)
+
+# Aggregate data at the monthly level
+df["DATE"] = pd.to_datetime(df["DATE"])
+df["MonthYear"] = df["DATE"].dt.to_period("M")
+monthly_data = df.groupby(["STOREID", "COUNTRY", "CITY", "MonthYear"]).agg({
+    "QUANTITYSOLD": "sum",
+    "PRICE": "mean",
+    "WEATHER": "last",  # Use the last recorded weather for the month
+    "PROMOTION": "last",  # Use the last recorded promotion for the month
+    "HOLIDAY": "last"  # Use the last recorded holiday for the month
+}).reset_index()
+
+# Split the data into 80% training and 20% testing
+train_data, test_data = train_test_split(monthly_data, test_size=0.2, random_state=42)
+{% endhighlight %}
+
+The preprocessing pipeline outputs two new datasets and registers them in AML Workspace.
+
+### Step 4: Model Training:
 ### Pipeline Creation: Define and submit the pipeline.
 ### Model Deployment: Deploy to Kubernetes.
 ### Automation: CI/CD and monitoring (YAML pipelines).
