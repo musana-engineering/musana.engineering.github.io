@@ -1,25 +1,27 @@
 ---
 layout: post
-title: The DevOps Playbook for AI on Azure – From Experiment to Production
-date: 2025-03-22 13:32:20 +0300
+title: The DevOps Playbook for Machine Learning on Azure
+date: 2025-06-22 13:32:20 +0300
 description: A hands-on approach to implementing infrastructure, automation, and governance for AI/ML projects on Azure
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
 ---
-As AI promises to solve real-world problems, many companies are working to integrate it into their business applications. This integration typically takes two forms: consuming ready-made models from tech giants like OpenAI, Microsoft and Google or developing custom in-house models using traditional machine learning techniques. Yet regardless of the approach, many of these initiatives fail to progress from experimentation to full production.
 
-Why? Because teams focus on the model while neglecting the system. Whether you're calling APIs or training models, successful AI projects require:
+Traditional machine learning (ML), is a subfield of AI that has proven to deliver value across industries from product recommendattion to demand forecasting but deploying it requires ML and Data engineers with deep expertise. Many companies with ML problems dont have ML expertise in-house making their AI adoption slow, expensive or even impossible. 
 
-- **Infrastructure** that scales (compute, storage, networking)
-- **Operational discipline** (versioning, monitoring, rollbacks)
-- **Data governance** (especially when using proprietary business data)
+In cases where such expertise exists, these companies struggle to move models from experimentation to production. Why? Because operationalizing ML projects ensuring reliability, scalability, and maintainability demands DevOps and engineering rigor that these ML Engineers often lack. The result? Endless prototyping, stalled deployments, and untapped business potential.
 
-This is where Platform Engineers step in, ensuring the right foundation is in place for AI deployment. Platform Engineers apply DevOps principles like CI/CD, automation, observability, and cross-team collaboration to AI projects, which transforms these initiatives from fragile prototypes to production-grade systems that drive measurable ROI
+With the advent of MLOps and AutoML platforms, businesses can now operationalize machine learning regardless of whether they have in-house ML expertise. For companies with such expertise, AutoML and DevOps bridges the collaboration gap and it lets data scientists focus on high-value problems while developers handle deployment, monitoring, and scaling using familiar CI/CD and infrastructure automation.
 
-In this first installment, I'll walk you through a real-world example to demonstrate exactly how this works. We will implement a machine learning (ML) project for demand forecasting at **GloboJava** ( our fictional coffee chain) using **[Microsoft Azure](https://azure.microsoft.com/)**. The solution combines **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** for end-to-end workflows with **[Snowflake](https://www.snowflake.com/en/)** for centralized data management, all built on best practices to ensure consistency, reproducibility, traceability, and seamless collaboration across teams
+For companies without ML teams, these platforms empower DevOps and engineering teams to step in. AutoML handles the heavy lifting of model development (feature engineering, algorithm selection, etc.), while MLOps ensures the result is production-ready—not just a prototype.
 
-![MLOPS](https://github.com/user-attachments/assets/6183e4a5-211b-4b08-9dec-725d9e782f4a)
+In both cases, the outcome is the same: ML models that move faster from experimentation to real-world impact.
+
+In my latest blog post, I’ll walk through how this all comes together using a practical example with Azure Machine Learning. Whether your org has a team of ML experts or is just starting its AI journey, you’ll see how your existing engineering talent can help turn AI from hype into something real—and operational.
+
+We will build a Machine Learning project for GloboJava, our fictional coffee chain. We’ll use **[Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)** and **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** to manage the end-to-end workflow and Snowflake as the centralized data platform. We'll implement all of this using best practices for consistency, reproducibility, traceability, and cross-team collaboration.
+![image](https://github.com/user-attachments/assets/7dd8efd8-a0a0-4757-ac3d-3042b1bf8107)
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
@@ -32,6 +34,30 @@ In this first installment, I'll walk you through a real-world example to demonst
    - [Selecting the Algorithm](#selecting-the-algorithm)
 - [Putting it all together](#putting-it-all-together)
 - [Summary ](#summary)
+
+The Case for DevOps in ML
+
+Architecture Overview
+
+Tools and Technologies
+
+Infrastructure as Code with Terraform
+
+ML Workflow Orchestration with Argo Workflows
+
+Triggering ML Pipelines with Azure DevOps
+
+Data Ingestion from Snowflake
+
+Model Training and Validation in Azure ML
+
+Model Deployment to QA and Production
+
+Monitoring and Observability
+
+Summary and Takeaways
+
+
 
 ### Prerequisites
 This is a complex technical implementation, so before we dive in, I assume you have a strong understanding and hands-on experience with the following
@@ -165,34 +191,64 @@ Key resources created include:
 ![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
 
 ### Step 2: Data Import
-The next step in the pipeline is to create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
+The next step in the pipeline is;
+- Create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
 
 {% highlight css %}
-  templates:
-  - name: main
-    serviceAccountName: sa-argo-workflow
-    volumes:
-    - name: secrets
-      secret: 
-        secretName: deployment
-    script:
-      image: "musanaengineering/platformtools:terraform-v1.0.0"
-      command: ["/bin/bash"]
-      source: |
-        // Clone the repository
-        git clone git@github.com:musana-engineering/mlops.git
-        cd mlops/pipelines/data/connections
-        
-        // Execute Terraform
-        terraform init
-        terraform plan
-        terraform apply -auto-approve
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import MLClient, DataImport, WorkspaceConnection, UsernamePasswordConfiguration
+
+ml_client = MLClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=subscription_id,
+    resource_group_name=resource_group,
+    workspace_name=workspace
+    )
+
+import urllib.parse
+sf_username = urllib.parse.quote("${var.snowflake_username}", safe="")
+sf_password = urllib.parse.quote("${var.snowflake_password}", safe="")
+
+target = f"jdbc:snowflake://${var.snowflake_account}.snowflakecomputing.com/?db=${var.snowflake_database}&warehouse=${var.snowflake_warehouse}&role=${var.snowflake_role}"
+
+wps_connection = WorkspaceConnection(
+    name="Snowflake",
+    type="snowflake",
+    target=target,
+    credentials=UsernamePasswordConfiguration(username=sf_username, password=sf_password)
+)
+ml_client.connections.create_or_update(workspace_connection=wps_connection)
 {% endhighlight %}
 
-When the connection is established, a background job is triggered to extract data from the Snowflake database. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
+- Once the connection is established, we submit the job to extract data from the Snowflake database. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
   - Saved as an MLTable artifact in the ML workspace default datastore
   - Registered in the ML workspace as a versioned dataset
+  
+{% highlight css %}
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml.entities import MLClient, DataImport, WorkspaceConnection, UsernamePasswordConfiguration
 
+ml_client = MLClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=subscription_id,
+    resource_group_name=resource_group,
+    workspace_name=workspace
+    )
+
+import urllib.parse
+sf_username = urllib.parse.quote("${var.snowflake_username}", safe="")
+sf_password = urllib.parse.quote("${var.snowflake_password}", safe="")
+
+target = f"jdbc:snowflake://${var.snowflake_account}.snowflakecomputing.com/?db=${var.snowflake_database}&warehouse=${var.snowflake_warehouse}&role=${var.snowflake_role}"
+
+wps_connection = WorkspaceConnection(
+    name="Snowflake",
+    type="snowflake",
+    target=target,
+    credentials=UsernamePasswordConfiguration(username=sf_username, password=sf_password)
+)
+ml_client.connections.create_or_update(workspace_connection=wps_connection)
+{% endhighlight %}
 **Data Connection**
 ![image](https://github.com/user-attachments/assets/c6a16565-9af3-4fa2-b4e4-a7cb48b83334)
 **Data Import**
