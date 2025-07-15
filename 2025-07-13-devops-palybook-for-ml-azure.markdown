@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The DevOps Playbook for Machine Learning on Azure
-date: 2025-06-22 13:32:20 +0300
+date: 2025-07-12 13:32:20 +0300
 description: A hands-on approach to implementing infrastructure, automation, and governance for AI/ML projects on Azure
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
@@ -34,30 +34,6 @@ We will build a Machine Learning project for GloboJava, our fictional coffee cha
    - [Selecting the Algorithm](#selecting-the-algorithm)
 - [Putting it all together](#putting-it-all-together)
 - [Summary ](#summary)
-
-The Case for DevOps in ML
-
-Architecture Overview
-
-Tools and Technologies
-
-Infrastructure as Code with Terraform
-
-ML Workflow Orchestration with Argo Workflows
-
-Triggering ML Pipelines with Azure DevOps
-
-Data Ingestion from Snowflake
-
-Model Training and Validation in Azure ML
-
-Model Deployment to QA and Production
-
-Monitoring and Observability
-
-Summary and Takeaways
-
-
 
 ### Prerequisites
 This is a complex technical implementation, so before we dive in, I assume you have a strong understanding and hands-on experience with the following
