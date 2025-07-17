@@ -11,7 +11,7 @@ For most organizations, marketing analysts rely on dashboards, spreadsheets, or 
 
 That’s the goal of conversational analytics: enabling business teams to work directly with raw data using natural language, without writing SQL or waiting on data teams.
 
-In this blog post, I’ll walk you through how to build a production-grade conversational analytics backend using Azure OpenAI, SQL Server, and FastAPI. This solution is designed for engineering teams that want to embed natural language querying into existing internal tools.
+In this blog post, I’ll walk you through how to build a conversational analytics backend using Azure OpenAI, SQL Server, and FastAPI. This solution is designed for engineering teams that want to embed natural language querying into existing internal tools.
 
 - The architecture follows DevOps best practices
 - Version-controlled code in GitHub
