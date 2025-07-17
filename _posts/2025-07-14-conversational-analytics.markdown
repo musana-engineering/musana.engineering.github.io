@@ -7,7 +7,7 @@ img: ml_cover.jpg
 fig-caption: # Add figcaption (optional)
 tags: [analytics, openai, analytics, ai, agentic, text-to-sql, azure-openai]
 ---
-For most organizations, marketing analysts rely on dashboards, spreadsheets, or SQL-savvy colleagues to access insights about campaign performance, customer segmentation, or regional trends. But what if your internal tools could let them simply ask a question in plain English — like “How many new customers signed up last month from California?” — and get an accurate, live answer in seconds?
+For most organizations, marketing analysts rely on dashboards, spreadsheets, or SQL-savvy colleagues to access insights about campaign performance, customer segmentation, or regional trends. But what if your internal tools could let them simply ask a question in plain English like “How many new customers signed up last month from California?” and get an accurate, live answer in seconds?
 
 That’s the goal of conversational analytics: enabling business teams to work directly with raw data using natural language, without writing SQL or waiting on data teams.
 
