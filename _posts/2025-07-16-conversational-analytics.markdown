@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Conversational Analytics on SQL Server with Azure OpenAI
-date: 2025-07-14 13:32:20 +0300
+date: 2025-07-16 13:32:20 +0300
 description: Enabling natural language queries from a Structured Database
 img: ml_cover.jpg 
 fig-caption: # Add figcaption (optional)
