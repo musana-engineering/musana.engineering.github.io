@@ -13,8 +13,8 @@ That’s the goal of conversational analytics: enabling business teams to work d
 
 In this blog post, I’ll walk you through how to build a production-grade conversational analytics backend using Azure OpenAI, SQL Server, and FastAPI. This solution is designed for engineering teams that want to embed natural language querying into existing internal tools.
 
-- The architecture follows DevOps best practices:
-- Version-controlled code in Azure Repos
+- The architecture follows DevOps best practices
+- Version-controlled code in GitHub
 - Infrastructure as code (IaC) using Terraform
 - Secret management using Azure Key Vault
 - Containerized backend deployed via Azure Container Apps
