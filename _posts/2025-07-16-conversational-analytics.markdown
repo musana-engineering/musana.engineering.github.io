@@ -130,14 +130,14 @@ With that out of the way, it's time to walk through deploying and running the so
 
 To get started quickly, clone the project repository which contains all the code and Terraform configuration needed to deploy the full solution.
 
-{% highlight yaml %}
+{% highlight shell %}
 git clone https://github.com/musana-engineering/sqlCopilot.git
 cd sqlCopilot
 {% endhighlight %}
 
 The repository uses the following structure:
 
-{% highlight yaml %}
+{% highlight shell %}
 sqlCopilot
 ├── README.md                     # Project overview
 ├── app/                          # FastAPI application with Azure OpenAI integration
