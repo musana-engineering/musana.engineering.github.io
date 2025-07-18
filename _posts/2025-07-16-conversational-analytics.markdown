@@ -40,13 +40,9 @@ Before getting started, make sure you have the following tools and access in pla
 
 - **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):** For defining and deploying Azure infrastructure as code.
 
-- **[Azure Service Principal](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?tabs=bash):** For authenticating Terraform when provisioning the Azure resources. 
-
 - **[Python](https://www.python.org/):** For building the FastAPI application backend. 
 
 - **[Docker](https://www.docker.com/):** For containerizing the FastAPI app before deploying it to Azure Container Apps.
-
-- **[Azure DevOps Project](https://www.docker.com/):** For version control using Git and CI/CD pipelines support.
 
 ### What is Conversational Analytics
 
