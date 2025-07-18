@@ -58,14 +58,14 @@ At a high level, our solution enables business users (e.g. marketing analysts) t
 
 **User Interaction:** 
 
-- Users send natural language questions (e.g. "How many customers placed orders last month?") to the /chat endpoint exposed by the FastAPI service.
+- Users send natural language questions (e.g. "How many customers placed orders last month?") to the **/chat** endpoint exposed by the FastAPI service.
 
 **Backend Logic**
 
 - The incoming question is passed to an Azure OpenAI powered GPT-4 assistant. 
 - The assistant uses a schema aware system prompt to translate the natural language into a valid SQL query.
 - The query is executed against the Azure SQL Server (which hosts the AdventureWorks database). 
-- Results are returned, along with: the original SQL query, the structured data result (in JSON) and a plain English explanation of what the query did. The /chat endpoint responds with all 3 elements: query, results, and explanation. This empowers users to learn SQL over time while getting fast answers.
+- Results are returned, along with: the original SQL query, the structured data result (in JSON) and a plain English explanation of what the query did. The **/chat** endpoint responds with all 3 elements: query, results, and explanation. This empowers users to learn SQL over time while getting fast answers.
 
 ### Database Overview
 
@@ -166,7 +166,7 @@ Terraform will create:
 - Networking and firewall configuration
 
 ### OpenAI Setup
-Once the infrastructure is up, update your app to pull secrets (like the database connection string and OpenAI credentials) directly from Azure Key Vault. This is handled in secrets.py, which authenticates using Azure’s DefaultCredential chain and retrieves secrets securely.
+Once the infrastructure is up, update your app to pull secrets (like the database connection string and OpenAI credentials) directly from Azure Key Vault. This is handled in **secrets.py**, which authenticates using Azure’s DefaultCredential chain and retrieves secrets securely.
 
 {% highlight shell %}
 from azure.identity import DefaultAzureCredential
