@@ -175,7 +175,7 @@ Terraform will create:
 ### OpenAI Setup
 Once the infrastructure is up, update your app to pull secrets (like the database connection string and OpenAI credentials) directly from Azure Key Vault. This is handled in secrets.py, which authenticates using Azure’s DefaultCredential chain and retrieves secrets securely.
 
-{% highlight python %}
+{% highlight shell %}
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 
