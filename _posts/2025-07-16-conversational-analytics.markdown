@@ -20,7 +20,7 @@ In this blog post, I’ll walk you through how to build a conversational analyti
 - Containerized backend deployed via Azure Container Apps
 
 ### Table of Contents
-- [What is Conversational Analytics?](#what-is-conversational-analytics?)
+- [Conversational Analytics](#conversational-analytics)
 - [Architecture Overview](#architecture-overview)
 - [Database Overview](#database-overview)
 - [Step-by-Step Implementation](#step-by-step-implementation)
@@ -44,7 +44,7 @@ Before getting started, make sure you have the following tools and access in pla
 
 - **[Docker](https://www.docker.com/):** For containerizing the FastAPI app before deploying it to Azure Container Apps.
 
-### What is Conversational Analytics
+### Conversational Analytics
 
 In the context of the solution we are going to build, conversational analytics means enabling users (e.g., business analysts, marketing teams) to interact directly with live data in Azure SQL just by typing questions into a simple text box or REST client. Users simply ask questions like:
 
