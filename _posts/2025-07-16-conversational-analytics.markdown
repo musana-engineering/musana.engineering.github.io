@@ -128,18 +128,16 @@ This ensures our assistant:
 
 With that out of the way, it's time to walk through deploying and running the solution in your own Azure environment. I will guide you through cloning the repo, provisioning cloud infrastructure with Terraform, and deploying the containerized application to Azure Container Apps. Let’s get started
 
-- ### Set Up the Project Locally
-
 To get started quickly, clone the project repository which contains all the code and Terraform configuration needed to deploy the full solution.
 
-{% highlight javascript %}
+{% highlight yaml %}
 git clone https://github.com/musana-engineering/sqlCopilot.git
 cd sqlCopilot
 {% endhighlight %}
 
 The repository uses the following structure:
 
-{% highlight javascript %}
+{% highlight yaml %}
 sqlCopilot
 ├── README.md                     # Project overview
 ├── app/                          # FastAPI application with Azure OpenAI integration
@@ -154,7 +152,7 @@ sqlCopilot
 │   ├── openai/                   # Azure OpenAI and Key Vault setup
 {% endhighlight %}
 
-- ### Provision the Azure Infrastructure
+### Provision the Azure Infrastructure
 
 Before you run any Terraform commands, make sure the following are set up:
 
@@ -162,7 +160,7 @@ Before you run any Terraform commands, make sure the following are set up:
 - A service principal with Contributor access to the target subscription.
 - Terraform installed on your machine.
 
-{% highlight javascript %}
+{% highlight yaml %}
 Navigate to the infra/ folder
 cd infra
 terraform init && terraform apply
@@ -174,7 +172,7 @@ Terraform will create:
 - Azure Key Vault with secret entries
 - Networking and firewall configuration
 
-- ### Configure the FastAPI App
+### Configure the FastAPI App
 Once the infrastructure is up, update your app to pull secrets (like the database connection string and OpenAI credentials) directly from Azure Key Vault. This is handled in secrets.py, which authenticates using Azure’s DefaultCredential chain and retrieves secrets securely.
 
 {% highlight python %}
