@@ -24,11 +24,11 @@ In this blog post, I’ll walk you through how to build a conversational analyti
 - [Architecture Overview](#introduction)
 - [Database Overview](#database-overview)
 - [Step-by-Step Implementation](#step-by-step-implementation)
-     - [Set Up the Project Locally](#set-up-the-project-locally)
-     - [Provision Azure Infrastructure](#provision-azure-infrastructure)
-     - [Configure the FastAPI App](#configure-the-fastapi-app)
-     - [Dockerize the App ](#dockerize-the-app)
-     - [Deploy to Azure Container Apps](#deploy-to-azure-container-apps)
+     - [Project Setup](#project-setup)
+     - [Infrastructure Setup](#infrastructure-setup)
+     - [OpenAI Setup](#openai-setup)
+     - [Project Packaging ](#dockerize-the-app)
+     - [Project Deployment](#deploy-to-azure-container-apps)
 - [Harden for Production](#harden-for-production)
 - [Conclusion](#conclusion)
 
@@ -152,7 +152,7 @@ sqlCopilot
 │   ├── openai/                   # Azure OpenAI and Key Vault setup
 {% endhighlight %}
 
-### Provision the Azure Infrastructure
+### Infrastructure Setup
 
 Before you run any Terraform commands, make sure the following are set up:
 
@@ -172,7 +172,7 @@ Terraform will create:
 - Azure Key Vault with secret entries
 - Networking and firewall configuration
 
-### Configure the FastAPI App
+### OpenAI Setup
 Once the infrastructure is up, update your app to pull secrets (like the database connection string and OpenAI credentials) directly from Azure Key Vault. This is handled in secrets.py, which authenticates using Azure’s DefaultCredential chain and retrieves secrets securely.
 
 {% highlight python %}
@@ -193,8 +193,8 @@ open_api_key = key_vault_client.get_secret(open_api_key_secret).value
 
 Replace sql-connection-string and openai-api-key with the actual secret names defined in your Azure Key Vault. These are provisioned automatically by Terraform in the infra/openai and infra/database modules.
 
-- ### Dockerize the App
-- ### Deploy to Azure Container Apps
+- ### Project Packaging
+- ### Project Deployment
 
 ### Conclusion
 
