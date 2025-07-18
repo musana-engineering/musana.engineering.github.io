@@ -37,11 +37,8 @@ In this blog post, I’ll walk you through how to build a conversational analyti
 Before getting started, make sure you have the following tools and access in place:
 
 - **[Microsoft Azure Subscription](https://azure.microsoft.com/en-gb/pricing/offers/ms-azr-0044p/):** In which to provision the cloud infrastructure (SQL Server, OpenAI, Key Vault, ACR, and Container Apps).
-
 - **[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):** For defining and deploying Azure infrastructure as code.
-
 - **[Python](https://www.python.org/):** For building the FastAPI application backend. 
-
 - **[Docker](https://www.docker.com/):** For containerizing the FastAPI app before deploying it to Azure Container Apps.
 
 ### Conversational Analytics
