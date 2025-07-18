@@ -21,7 +21,7 @@ In this blog post, I’ll walk you through how to build a conversational analyti
 
 ### Table of Contents
 - [What is Conversational Analytics?](#what-is-conversational-analytics?)
-- [Architecture Overview](#introduction)
+- [Architecture Overview](#architecture-overview)
 - [Database Overview](#database-overview)
 - [Step-by-Step Implementation](#step-by-step-implementation)
      - [Project Setup](#project-setup)
