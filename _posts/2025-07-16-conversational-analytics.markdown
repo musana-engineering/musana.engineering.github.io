@@ -98,7 +98,7 @@ To make our solution reliable and avoid the risk of guesses and hallucination, t
 
 To achieve this, we will use schema based prompting to help the GPT-4 model generate accurate SQL queries. This means we explicitly provide the model with a structured description of the database including table names, column names, and their relationships along with the user’s natural language question. It looks something like:
 
-{% highlight javascript %}
+{% highlight shell %}
 SCHEMA = """
 Tables:
 - Customer(CustomerID, FirstName, LastName, EmailAddress)
@@ -160,7 +160,7 @@ Before you run any Terraform commands, make sure the following are set up:
 - A service principal with Contributor access to the target subscription.
 - Terraform installed on your machine.
 
-{% highlight yaml %}
+{% highlight shell %}
 Navigate to the infra/ folder
 cd infra
 terraform init && terraform apply
