@@ -61,7 +61,7 @@ This bridges the gap between technical data systems and non technical users, rem
 
 At a high level, our solution enables business users (e.g. marketing analysts) to query live data using natural language via a secure REST API:
 
-![image](https://rpgcdnfiles.blob.core.windows.net/devops/copilotImage.png)
+![image](https://cdn.redpointglobal.com/devops/SqlCopilot.png)
 
 **User Interaction:** 
 
