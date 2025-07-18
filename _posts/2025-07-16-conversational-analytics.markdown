@@ -124,7 +124,7 @@ This ensures our assistant:
 - Generates valid SQL queries that follow the correct join paths and column references.
 - Users don’t need to know SQL or how the schema is designed, they just ask questions in plain English.
 
-### Step-by-Step Implementation
+### Project Setup
 
 With that out of the way, it's time to walk through deploying and running the solution in your own Azure environment. I will guide you through cloning the repo, provisioning cloud infrastructure with Terraform, and deploying the containerized application to Azure Container Apps. Let’s get started
 
