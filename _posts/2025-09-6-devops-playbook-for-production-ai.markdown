@@ -48,7 +48,6 @@ To bring this vision to life, GloboRealty is building on Azure Machine Learning 
 
 In Part 1, we’ll focus on data acquisition: setting up a secure connection to Snowflake and ingesting data into Blob Storage as a raw dataset, ready for preprocessing
 
----
-img: pipeline1.svg.jpg
---- 
+![Data Pipeline](https://sacoreinfrastate.blob.core.windows.net/assets/data_pipeline_1.jpeg)
+
 ### Summary
