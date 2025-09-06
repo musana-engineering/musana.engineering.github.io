@@ -31,7 +31,7 @@ In this multi-part blog series, I’ll show you what that effort looks like with
 ### Prerequisites
 This is a complex technical implementation so before we dive in I assume you have a strong understanding and hands-on experience with the following
 - **[Machine Learning](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)** concepts including model training, evaluation, and deployment. 
-- **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
+- **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and version control
 - **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
 - **[Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)** programming and the **[Azure ML SDK for Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**
 - **[Snowflake](https://www.snowflake.com/en/)** data platform.
@@ -44,7 +44,7 @@ Ensure that **[Argo Events](https://argoproj.github.io/argo-events/)** and **[Ar
 
 **GloboRealty** is a fictitious real-estate company specializing in residential properties across urban, suburban, rural, and waterfront markets. Over the years, they’ve collected extensive sales records along with property details such as square footage, bedrooms, bathrooms, year built, and condition ratings. They see predictive AI as a way to give buyers, sellers, and investors instant, data-driven insights into property values.
 
-To bring this vision to life, GloboRealty is building on Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training-ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines—ensuring every version is traceable, tested, and monitored in production.
+To bring this vision to life, GloboRealty is building on Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training-ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines ensuring every version is traceable, tested, and monitored in production.
 
 In Part 1, we’ll focus on data acquisition: setting up a secure connection to Snowflake and ingesting data into Blob Storage as a raw dataset, ready for preprocessing
 
