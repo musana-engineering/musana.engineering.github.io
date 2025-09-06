@@ -50,9 +50,9 @@ In Part 1, we’ll focus on data acquisition: setting up a secure connection to 
 
 ### Infrastructure Setup
 
-![Infra](https://sacoreinfrastate.blob.core.windows.net/assets/aml_infra.jpeg)
-
 Before we can begin acquiring and preparing the raw data, we need a secure and reliable infrastructure foundation in Azure. At the center of the setup is the Azure Machine Learning (AML) workspace. This is where data scientists, engineers, and architects collaborate. It provides experiment tracking, dataset management, and integration with pipelines for automation
+
+![Infra](https://sacoreinfrastate.blob.core.windows.net/assets/aml_infra.jpeg)
 
 Alongside the workspace, several supporting Azure services are provisioned:
 
