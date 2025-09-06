@@ -16,7 +16,7 @@ Running AI in production whether generative or predictive, demands a serving pla
 
 This is where DevOps and Platform Engineering brings value. By applying battle tested practices from modern software delivery such as automation, CI/CD pipelines, monitoring, and infrastructure-as-code (IAC), DevOps/Platform engineering teams are uniquely equipped to help organizations move from endless experimentation to production AI deployments that generate measurable ROI.
 
-In this multi-part blog series, I’ll show you what that effort looks like with a practical, end-to-end implementation of a Predictive AI project on Microsoft Azure.
+In this multi-part blog series, I’ll show you what that effort looks like with a practical, end-to-end implementation for a Predictive AI project on Microsoft Azure.
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
