@@ -62,8 +62,17 @@ Alongside the workspace, several supporting Azure services are provisioned:
 - **Azure Storage Account:** For storing datasets at different stages, separating raw ingested data from cleaned, feature engineered datasets.
 - **Azure Key Vault:** For storing secrets, connection strings and other sensitive information
 - **Managed Identity:** For secure, role-based access to resources like Storage and Key Vault without embedding credentials.
+- **Azure Container Registry (ACR):** For hosting custom Docker images with specific dependencies for training and inference
 
-To make the setup repeatable and version controlled, we'll use Terraform to define and provision the infrastructure. 
+To make the setup repeatable and version-controlled, we’ll define all resources as infrastructure as code using Terraform. Follow the steps below to provision the environment.
+
+{% highlight shell %}
+// First, clone the project repository that contains the Terraform files
+// Authenticate with Azure
+// Initialize Terraform and Review the plan
+// Apply the configuration
+{% endhighlight %}
+
 
 ### Data Acquistion
 ![Data Pipeline](https://sacoreinfrastate.blob.core.windows.net/assets/data_pipeline_1.jpeg)
