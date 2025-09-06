@@ -29,7 +29,7 @@ In this multi-part blog series, I’ll show you what that effort looks like with
 - [Summary ](#summary)
 
 ### Prerequisites
-This is a complex technical implementation, so before we dive in, I assume you have a strong understanding and hands-on experience with the following
+This is a complex technical implementation so before we dive in I assume you have a strong understanding and hands-on experience with the following
 - **[Machine Learning](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)** concepts including model training, evaluation, and deployment. 
 - **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
 - **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
