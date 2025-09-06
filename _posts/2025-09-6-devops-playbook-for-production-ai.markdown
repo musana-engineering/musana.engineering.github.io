@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The DevOps Playbook for Production-Ready AI on Azure – Part 1
+title: The DevOps Playbook for Production Ready AI – Part 1
 date: 2025-09-6 13:32:20 +0300
 description: A practical guide to building infrastructure and automation for predictive and generative AI projects on Azure.
 img: ml_cover.jpg # Add image post (optional)
