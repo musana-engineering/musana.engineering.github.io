@@ -46,7 +46,10 @@ Ensure that **[Argo Events](https://argoproj.github.io/argo-events/)** and **[Ar
 
 To bring this vision to life, GloboRealty is building on Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training-ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines ensuring every version is traceable, tested, and monitored in production.
 
-In Part 1, we’ll focus on data acquisition: setting up a secure connection to Snowflake and ingesting data into Blob Storage as a raw dataset, ready for preprocessing
+In Part 1, we’ll focus on two key steps:
+
+- **Infrastructure Setup:** Provision the Azure Machine Learning (AML) workspace and configure supporting services such as Blob Storage, Key Vault, and Managed Identity.
+- **Data Acquisition:** Establish a secure connection between the AML workspace and Snowflake and Ingest historical property data into Azure Blob Storage as a raw (bronze) dataset, ready for preprocessing in Part 2.
 
 ### Infrastructure Setup
 
