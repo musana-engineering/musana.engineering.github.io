@@ -163,6 +163,7 @@ print("\nConnection details:")
 for connection in verify_connection_creation:
     print(json.dumps(connection._to_dict(), indent=4))
 {% endhighlight %}
+
 <img src="../assets/img/dataconn.jpg"/>
 
 - **Create a datastore to define the link to the Azure Storage account, the destination where raw data from Snowflake will be ingested**
@@ -202,6 +203,7 @@ print("\nDatastore details:")
 for datastore in verify_datastore_creation:
     print(json.dumps(datastore._to_dict(), indent=4))
 {% endhighlight %}
+
 <img src="../assets/img/datastore.jpg"/>
 
 - **Create a data asset to register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.**
@@ -240,6 +242,7 @@ print("\nDatastore details:")
 for dataset in verify_dataset_creation:
     print(json.dumps(dataset._to_dict(), indent=4))
 {% endhighlight %}
+
 <img src="../assets/img/dataset.jpg"/>
 
 - **Verify data import to confirm that the raw data has been successfully ingested into Blob Storage and is available for preprocessing in the next stage.**
@@ -258,6 +261,7 @@ df
 print(df.head(10))
 print(df.describe())
 {% endhighlight %}
+
 <img src="../assets/img/dataprofile.jpg"/>
 
 ### Summary
