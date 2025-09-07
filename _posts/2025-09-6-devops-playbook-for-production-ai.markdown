@@ -49,11 +49,11 @@ To bring this vision to life, their platform is leveraging Azure Machine Learnin
 In Part 1, we’ll focus on two key steps:
 
 - **Infrastructure Setup:** Provision the Azure Machine Learning (AML) workspace and configure supporting services such as Blob Storage, Key Vault, and Managed Identity.
-- **Data Acquisition:** Establish a secure connection between the AML workspace and Snowflake and Ingest historical property data into Azure Blob Storage as a raw (bronze) dataset, ready for preprocessing in Part 2.
+- **Data Acquisition:** Establish a secure connection between the AML workspace and Snowflake and ingest historical data into Azure Blob Storage as a raw (bronze) dataset, ready for preprocessing in Part 2.
 
 ### Infrastructure Setup
 
-Before we can begin acquiring and preparing the raw data, we need a secure and reliable infrastructure foundation in Azure. At the center of the setup is the Azure Machine Learning (AML) workspace. This is where data scientists, engineers, and architects collaborate. It provides experiment tracking, dataset management, and integration with pipelines for automation
+Before we can begin acquiring and preparing the raw data, we need a secure and reliable infrastructure foundation in Azure. We've chosen Azure Machine Learning (AML) as it provides experiment tracking, dataset management, and integration with pipelines for automation. This foundation is illustrated in the diagram below:
 
 <img src="../assets/img/infra_setup.jpeg"/>
 
