@@ -102,9 +102,7 @@ With the Azure ML infrastructure in place, the next step is to bring data into t
 
 To achieve this, we’ll complete the following tasks:
 
-- **Create a data connection:** 
-
-Store the credentials needed to securely connect to the Snowflake account, which is the source of the raw dataset.
+- **Create a data connection to store the credentials needed to securely connect to the Snowflake account, which is the source of the raw dataset.**
 
 {% highlight python %}
 from azure.ai.ml import MLClient
@@ -167,9 +165,7 @@ for connection in verify_connection_creation:
 {% endhighlight %}
 <img src="../assets/img/dataconn.jpg"/>
 
-- **Create a datastore:** 
-
-Define the link to the Azure Storage account, the destination where raw data from Snowflake will be ingested.
+- **Create a datastore to define the link to the Azure Storage account, the destination where raw data from Snowflake will be ingested**
 
 {% highlight python %}
 from azure.ai.ml.data_transfer import Database
@@ -208,9 +204,7 @@ for datastore in verify_datastore_creation:
 {% endhighlight %}
 <img src="../assets/img/datastore.jpg"/>
 
-- **Create a data asset:** 
-
-Register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.
+- **Create a data asset to register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.**
 
 {% highlight python %}
 from azure.ai.ml.data_transfer import Database
@@ -248,9 +242,7 @@ for dataset in verify_dataset_creation:
 {% endhighlight %}
 <img src="../assets/img/dataset.jpg"/>
 
-- **Verify data import:** 
-
-Confirm that the raw data has been successfully ingested into Blob Storage and is available for preprocessing in the next stage.
+- **Verify data import to confirm that the raw data has been successfully ingested into Blob Storage and is available for preprocessing in the next stage.**
 
 {% highlight python %}
 import pandas, mltable
