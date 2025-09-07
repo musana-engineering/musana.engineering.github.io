@@ -91,7 +91,8 @@ Once terraform deployment finishes, log in to the Azure Portal and confirm:
 - You can access the workspace in Azure AI Studio.
 
 <img src="../assets/img/resources.jpg"/>
-At this point, GloboRealty has a secure and production ready Azure ML environment. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
+
+At this point, you have a foundational ML platform. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
 
 ### Data Acquistion
 
