@@ -109,7 +109,6 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import WorkspaceConnection
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
-import os, json
 
 load_dotenv()
 
