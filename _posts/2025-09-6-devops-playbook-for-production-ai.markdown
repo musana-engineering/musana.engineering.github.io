@@ -278,10 +278,7 @@ In **Part 2**, we’ll shift focus to data preprocessing. Specifically, we will:
 
 By the end of Part 2, we will be ready to launch our first model training experiments on Azure ML using clean, curated data.
 
-If you found this article useful, please share it with your team, network, or community. And don’t forget to check back soon for Part 2.
+If you found this article useful, please share it with your team, network, or community. And don’t forget to check back soon for **Part 2.**
 
-{% highlight css %}
-[Part 1: Infra & Acquisition ✅] → [Part 2: Preprocessing & Compute 🔜] → [Part 3: Training & Evaluation] → [Part 4: Deployment] → [Part 5: Monitoring & Retraining]
-{% endhighlight %}
 
 
