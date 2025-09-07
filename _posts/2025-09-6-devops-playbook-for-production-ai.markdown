@@ -8,11 +8,9 @@ fig-caption: # Add figcaption (optional)
 tags: [ai, mlops, devops, kubernetes, azure-machine-learning, platform-engineering]
 ---
 
-Our camera rolls are digital graveyards of forgotten photos. While taking a picture is effortless, creating one worthy of sharing requires a keen eye and thoughtful editing. Similarly, in AI, the initial thrill of a working prototype is like that quick snapshot. But the journey to production where it must perform reliably for users is where the real work begins. Production is less about discovery and more about engineering a platform that is secure, scalable, and maintainable.
+Our camera rolls are digital graveyards of forgotten photos. While taking a picture is effortless, creating one worthy of sharing requires a keen eye and thoughtful editing. Similarly, in AI, the initial thrill of a working prototype is like that quick snapshot. But the journey to production where it must perform reliably for users is where the real work begins. Production is less about discovery and more about engineering an AI serving platform that is secure, scalable, and maintainable. **This is not trivial work.**
 
-**You can't just filter your way to a stable production system. A prototype built on vibes will collapse under real-world load**
-
-Moving AI from a promising experiment to a business critical asset be it generative or predictive, demands a serving platform engineered for continuous deployment, resilient security, and the ability to scale effortlessly with demand. **This is not trivial work.**
+**You can't just filter your way to a stable production system. A prototype built on vibes will collapse under real world load**
 
 This is precisely where a mature DevOps and Platform Engineering culture becomes your greatest advantage. These teams bring the battle tested disciplines of modern software delivery such as automation, CI/CD, observability, and infrastructure-as-code (IAC) to AI projects and help organizations graduate their AI initiatives from endless experimentation to production deployments that generate measurable ROI.
 
