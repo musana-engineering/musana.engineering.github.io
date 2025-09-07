@@ -264,6 +264,8 @@ print(df.describe())
 
 <img src="../assets/img/dataprofile.jpg"/>
 
+### Pipeline Setup
+
 ### Summary
 
 In this first part, we've laid the foundation for production ready AI on Azure. We provisioned an Azure Machine Learning workspace as our core infrastructure along with supporting services like Blob Storage, Key Vault and Container Registry
