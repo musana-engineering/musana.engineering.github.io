@@ -123,9 +123,6 @@ ml_client = MLClient(
     resource_group_name=resource_group_name,
     workspace_name=workspace_name
 )
-
-workspace_details = ml_client.workspaces.get(name=workspace_name)
-print(json.dumps(workspace_details._to_dict(), indent=4))
 {% endhighlight %}
 
 {% highlight python %}
