@@ -1,291 +1,258 @@
 ---
 layout: post
-title: The DevOps Playbook for Machine Learning on Azure
-date: 2025-07-12 13:32:20 +0300
-description: A hands-on approach to implementing infrastructure, automation, and governance for AI/ML projects on Azure
+title: The DevOps Playbook for Production Ready AI – Part 1
+date: 2025-09-6 13:32:20 +0300
+description: A practical guide to building infrastructure and automation for predictive and generative AI projects on Azure.
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [machine-learning, kubernetes, azure, azureml, ai, mlops]
+tags: [ai, machine-learning, predictive-ai, generative-ai, mlops, devops, kubernetes, azure, azure-machine-learning, cloud-infrastructure, model-deployment, platform-engineering]
 ---
 
-Traditional machine learning (ML), is a subfield of AI that has proven to deliver value across industries from product recommendattion to demand forecasting but deploying it requires ML and Data engineers with deep expertise. Many companies with ML problems dont have ML expertise in-house making their AI adoption slow, expensive or even impossible. 
+Many of us have hundreds of photos sitting in our phone galleries that never see the light of day. Snapping a picture is effortless, but capturing one good enough to share takes more effort. The same is true for AI projects. Building a prototype can be quick and exciting, but turning that prototype into something reliable, scalable, and secure in production requires a very different kind of effort.
 
-In cases where such expertise exists, these companies struggle to move models from experimentation to production. Why? Because operationalizing ML projects ensuring reliability, scalability, and maintainability demands DevOps and engineering rigor that these ML Engineers often lack. The result? Endless prototyping, stalled deployments, and untapped business potential.
+**You can try to vibe code your way into production but it never ends well**
 
-With the advent of MLOps and AutoML platforms, businesses can now operationalize machine learning regardless of whether they have in-house ML expertise. For companies with such expertise, AutoML and DevOps bridges the collaboration gap and it lets data scientists focus on high-value problems while developers handle deployment, monitoring, and scaling using familiar CI/CD and infrastructure automation.
+Running AI in production whether generative or predictive, demands a serving platform that supports continuous deployment, resilient security, and the ability to scale seamlessly as workloads grow. This is not trivial work.
 
-For companies without ML teams, these platforms empower DevOps and engineering teams to step in. AutoML handles the heavy lifting of model development (feature engineering, algorithm selection, etc.), while MLOps ensures the result is production-ready—not just a prototype.
+This is where DevOps and Platform Engineering brings value. By applying battle tested practices from modern software delivery such as automation, CI/CD pipelines, monitoring, and infrastructure-as-code (IAC), DevOps/Platform engineering teams are uniquely equipped to help organizations move from endless experimentation to production AI deployments that generate measurable ROI.
 
-In both cases, the outcome is the same: ML models that move faster from experimentation to real-world impact.
-
-In my latest blog post, I’ll walk through how this all comes together using a practical example with Azure Machine Learning. Whether your org has a team of ML experts or is just starting its AI journey, you’ll see how your existing engineering talent can help turn AI from hype into something real—and operational.
-
-We will build a Machine Learning project for GloboJava, our fictional coffee chain. We’ll use **[Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)** and **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** to manage the end-to-end workflow and Snowflake as the centralized data platform. We'll implement all of this using best practices for consistency, reproducibility, traceability, and cross-team collaboration.
-![image](https://github.com/user-attachments/assets/7dd8efd8-a0a0-4757-ac3d-3042b1bf8107)
+In this multi-part blog series, I’ll show you what that effort looks like with a practical, end-to-end implementation for a Predictive AI project on Microsoft Azure.
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
-- [Why AI projects fail](#why-ai-projects-fail)
-- [Role of Platform Engineering](#role-of-platform-engineering-in-ai-adoption)
-- [Introducing GloboJava ](#introducing-globojava)
-   - [Framing the AI problem](#framing-the-ai-problem)
-   - [Collecting the Data](#collecting-the-data)
-   - [Preprocessing the Data](#preprocessing-the-data)
-   - [Selecting the Algorithm](#selecting-the-algorithm)
-- [Putting it all together](#putting-it-all-together)
+- [Introduction](#introduction)
+- [Infrastructure Setup ](#infrastructure-setup)
+- [Data Acquistion ](#data-acquistion)
+   - [Data connection](#data-connection)
+   - [Data import](#data-import)
+- [Pipeline Setup](#pipeline-setup)
 - [Summary ](#summary)
 
 ### Prerequisites
-This is a complex technical implementation, so before we dive in, I assume you have a strong understanding and hands-on experience with the following
+This is a complex technical implementation so before we dive in I assume you have a strong understanding and hands-on experience with the following
 - **[Machine Learning](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)** concepts including model training, evaluation, and deployment. 
-- **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and Version Control
+- **[DevOps](https://platformengineering.org/blog/what-is-platform-engineering)** concepts like CI/CD pipelines and version control
 - **[Platform Engineering](https://platformengineering.org/blog/what-is-platform-engineering)** concepts and principles
 - **[Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)** programming and the **[Azure ML SDK for Python](https://learn.microsoft.com/en-us/python/api/overview/azure/ml/?view=azure-ml-py)**
+- **[Snowflake](https://www.snowflake.com/en/)** data platform.
 - **[Azure Kubernetes](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)**
 - Infrastructure as code using **[Terraform](https://www.terraform.io/)**
 
 Ensure that **[Argo Events](https://argoproj.github.io/argo-events/)** and **[Argo Workflows](https://argoproj.github.io/workflows/)** are installed on your Kubernetes cluster. Argo Events will handle event-driven triggers for the pipelines, while Argo Workflows will be used to author and execute them
 
-### Why AI Projects fail
-Many AI projects fail to progress from the proof-of-concept stage. Companies pour time and money, but when it comes to actually deploying and maintaining these solutions at scale, things fall apart. While the reasons for failure are varied, the most critical ones stem from fundamental oversights as discussed below.
+### Introduction
 
-- **The Deployment Gap:** 
-Data scientists do great work building models, but productionizing them is a different story. Many struggle with Containerization skills for reproducible environments, CI/CD pipelines for automated model promotion and Kubernetes knowledge for scalable serving. Without these skills, models often get stuck in notebooks, never making it into real-world applications.
+**GloboRealty** is a fictitious real-estate company specializing in residential properties across urban, suburban, rural, and waterfront markets. Over the years, they’ve collected extensive sales records along with property details such as square footage, bedrooms, bathrooms, year built, and condition ratings. They see predictive AI as a way to give buyers, sellers, and investors instant, data-driven insights into property values.
 
-- **The Infrastructure Gap:** Many AI projects lack a solid infrastructure foundation, leading to manually configured environments that are impossible to replicate, no version control for compute, storage, or networking setups and no disaster recovery plans (if they exist) that are never tested. Without a code-first approach, infrastructure becomes a brittle, unmanageable mess.
+To bring this vision to life, GloboRealty is building on Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training-ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines ensuring every version is traceable, tested, and monitored in production.
 
-- **The Collaboration Gap:** AI projects require teamwork, but different roles speak different languages - Data scientists work in local Jupyter notebooks, unaware of production needs while Engineers struggle to turn those notebooks into robust applications. On the other hand, Ops teams don’t have visibility into ML-specific resource demands. Without a shared workflow, handoffs between teams become painful, slowing everything down.
+In Part 1, we’ll focus on two key steps:
 
-- **The Process Gap:** When AI projects rely on ad-hoc processes, things break down fast. Deployments are manual, inconsistent, and hard to debug, Models and data aren’t versioned properly and Monitoring is reactive (if it exists at all). AI needs the same rigor as software development—without it, projects stall or fail altogether.
+- **Infrastructure Setup:** Provision the Azure Machine Learning (AML) workspace and configure supporting services such as Blob Storage, Key Vault, and Managed Identity.
+- **Data Acquisition:** Establish a secure connection between the AML workspace and Snowflake and Ingest historical property data into Azure Blob Storage as a raw (bronze) dataset, ready for preprocessing in Part 2.
 
-### Role of Platform Engineering
-Platform Engineers are uniquely positioned to solve these challenges by:
+### Infrastructure Setup
 
-   - Bridging the gap between software engineering, data science, and IT operations
-   - Implementing DevOps principles to standardize and automate AI workflows
-   - Building scalable AI platforms that enable reliable, repeatable ML model deployment
+Before we can begin acquiring and preparing the raw data, we need a secure and reliable infrastructure foundation in Azure. At the center of the setup is the Azure Machine Learning (AML) workspace. This is where data scientists, engineers, and architects collaborate. It provides experiment tracking, dataset management, and integration with pipelines for automation
 
-By focusing on automation, infrastructure as code, and robust CI/CD pipelines, Platform Engineers ensure that AI projects don’t just work in theory—they succeed in production.
+<img src="./assets/img/infra_setup.jpeg"/>
 
-### Introducing GloboJava
-**GloboJava** is a premium coffee company specializing in high-quality beverages and pastries. With a commitment to fast, reliable service, they operate across the U.S., Canada, and Mexico, serving millions of customers daily. By blending artisanal craftsmanship with modern convenience, GloboJava aims to create a seamless and delightful coffee experience whether in-store, online, or through their mobile app. 
+Alongside the workspace, several supporting Azure services are provisioned:
 
-- ### Framing the AI problem
-The first step in any AI project is to clearly define the problem and gather the necessary data. At GloboJava, the primary challenge is accurately predicting customer demand. By leveraging their sales data, they aim to gain insights into customer preferences, optimize inventory, streamline operations, and improve overall decision-making. After careful evaluation, GloboJava's technology leadership team has determined that this problem can be effectively addressed using machine learning. To power and deploy their solution, they have selected **[Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-machine-learning?view=azureml-api-2)** as the preferred platform.
+- **Azure Storage Account:** For storing datasets at different stages, separating raw ingested data from cleaned, feature engineered datasets.
+- **Azure Key Vault:** For storing secrets, connection strings and other sensitive information
+- **Managed Identity:** For secure, role-based access to resources like Storage and Key Vault without embedding credentials.
+- **Azure Container Registry (ACR):** For hosting custom Docker images with specific dependencies for training and inference
 
-- ### Collecting the data
-GloboJava's data is stored in **Snowflake**, a cloud-based data warehousing platform, where it is organized into tables within a database schema. To make this data available for machine learning in Azure ML, a data ingestion process will be implemented by establishing a connection to their Snowflake account. Once connected, the data will be imported into Azure ML via a DataImport job, which executes a SQL query to extract the required data. This data is then registered as a dataset in the Azure ML workspace and stored in the workspace's default datastore (e.g., blob storage). From there, it is readily accessible for preprocessing, training, and deployment within the ML workflow. This seamless integration ensures the data remains up-to-date and easily accessible for building and deploying machine learning models.
+To make the setup repeatable and version-controlled, we’ll define all resources as infrastructure as code using Terraform. Follow the steps below to provision the environment.
 
-- ### Exploring the Data
-For the demand forecasting model, features will be derived from raw sales data and additional features will be engineered. These are the features directly available in the raw sales data:
-
-{% highlight css %}
-| Field       | Description                                      |
-|-------------|--------------------------------------------------|
-| StoreID     | Unique identifier for the store                  |
-| Country     | Country where the store is located               |
-| City        | City where the store is located                  |
-| Category    | Category of the product                          |
-| Product     | Specific product sold                            |
-| Price       | Price per unit of the product                    |
-| Weather     | Weather condition during the sale                |
-| Promotion   | Indicates if a promotion was active during sale  |
-| Holiday     | Indicates if the day was a holiday               |
+{% highlight shell %}
+// First, clone the project repository that contains the Terraform files
+https://github.com/musana-engineering/globorealty.git
+// Authenticate with Azure
+export ARM_CLIENT_ID=$"your_azure_sp_client_id"$
+export ARM_CLIENT_SECRET="your_azure_sp_client_secret"
+export ARM_TENANT_ID="your_azure_tenant_id"
+export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
+// Initialize Terraform and Review the plan
+terraform init && terraform plan
+// Apply the configuration
+terraform apply
 {% endhighlight %}
 
-- ### Preprocessing the Data
-Preprocessing is a critical step to prepare the data for machine learning. This involves transforming the raw data into a format suitable for model training. For GloboJava's sales data, preprocessing will include handling missing values, encoding categorical variables, and scaling numerical features. Missing values in columns like Weather and Promotion will be filled with the most frequent values, while categorical variables such as StoreID, Country, City, and ProductCategory are one-hot encoded to convert them into numerical format. Numerical features like Price will be scaled using standardization to ensure they are on a similar scale, to improve model performance. These are the additional features we will create from the raw data to improve the model's predictive accuracy.
+Once terraform deployment finishes, log in to the Azure Portal and confirm:
+- The AML Workspace is active.
+- Linked resources (Storage, Key Vault, ACR, Managed Identity) are available.
+- You can access the workspace in Azure AI Studio.
 
-{% highlight css %}
-| Field      | Description                                        | 
-|------------|--------------------------------------------------  |
-| MonthYear  | Month and year of the transaction                  | 
-| IsWeekend  | Indicates if the transaction occurred on a weekend |
-| Season     | Season of the year based on the month              |
-{% endhighlight %}
+<img src="./assets/img/infra_verify.jpg"/>
 
-Since we're predicting total sales per month, the data is aggregated at the monthly level. The features for the model are derived from the aggregated data. These are the final set of features used to train the model.
+At this point, GloboRealty has a secure and production ready Azure ML environment. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
 
-{% highlight css %}
-| Field      | Description                                      |
-|------------|--------------------------------------------------|
-| StoreID    | Unique store identifier                          |
-| Country    | Country where the store is located               |
-| City       | City where the store is located                  |
-| Price      | Average price for the month                      |
-| Weather    | Last recorded weather for the month              |
-| Promotion  | Last recorded promotion status for the month     |
-| Holiday    | Last recorded holiday status for the month       |
-| IsWeekend  | Proportion of weekend days in the month          |
-| Season     | Season of the month (e.g., Summer, Winter)       |
-{% endhighlight %}
+### Data Acquistion
 
-- ### Selecting the Algorithm
-For GloboJava's demand forecasting, we use the Random Forest Regressor due to its ability to handle non-linear relationships, mixed data types (categorical and numerical), and robustness to outliers. It also provides feature importance, helping identify key drivers of sales like promotions and weather. While time-series models like ARIMA or Prophet are common for forecasting, Random Forest is better suited here as it incorporates both temporal and contextual features effectively. Alternatives like XGBoost or LSTM could be explored for further optimization if needed.
+With the Azure ML infrastructure in place, the next step is to bring data into the Azure environment. GloboRealty’s historical house price dataset resides in Snowflake, so we need to establish a secure pipeline that moves this data into Azure Machine Learning for further processing. The flow is illustrated in the diagram below:
 
-### Putting it all together
-With a clear understanding of the problem, data, and tools, we are now ready to implement our solution. In the next sections, we'll set up the infrastructure, including networking, compute, and storage. Once the infrastructure is in place, we will create the end-to-end pipeline and integrate automation to ensure seamless data ingestion, preprocessing, model training, and deployment.
+<img src="./assets/img/data_acquisition.jpeg"/>
 
-### Step 1: Infrastructure Provisioning
-The pipeline begins by establishing a secure, compliant foundation in Azure, aligning with GloboJava's information security requirements. Using Terraform for infrastructure-as-code provisioning, we'll deploy a private network architecture to restrict public internet access while ensuring seamless Azure service integration and apply a consistent naming convention for all resources
-![gbl-ml-v2](https://github.com/user-attachments/assets/9b3095ca-e2ff-4660-9267-4f7e241b799a)
+To achieve this, we’ll complete the following tasks:
 
-{% highlight css %}
-  templates:
-  - name: main
-    serviceAccountName: sa-argo-workflow
-    volumes:
-    - name: secrets
-      secret: 
-        secretName: deployment
-    script:
-      image: "musanaengineering/platformtools:terraform-v1.0.0"
-      command: ["/bin/bash"]
-      source: |
-        // Clone the repository
-        git clone git@github.com:musana-engineering/mlops.git
-        cd mlops/pipelines/infra/
-        
-        // Execute Terraform
-        terraform init
-        terraform plan
-        terraform apply -auto-approve
-{% endhighlight %}
+- **Create a data connection:** Store the credentials needed to securely connect to the Snowflake account, which is the source of the raw dataset.
 
-Key resources created include: 
-   - **ML Workspace:**The central hub for managing ML experiments, models, and deployments.
-   - **Storage Account:** Stores datasets, logs, model artifacts, and experiment outputs.
-   - **Key Vault:** Secures secrets, credentials, and encryption keys.
-   - **Container Registry:** Stores Docker images for training and inference environments.
-   - **Application Insights:** Monitors and logs ML experiment performance.
-   - **Virtual Network:** To provide network isolation for all project resources.
-   - **Private Endpoints:** To secure access to services using Azure Private Link, avoiding public internet exposure.
-   - **Network Security Groups:** Restricts inbound and outbound traffic, enforcing security policies.
-   - **Private DNS Zones:** Provide name resolution for private endpoints.
-   - **Azure Bastion:** Provide secure remote access to internal resources without internet exposure.
-
-![image](https://github.com/user-attachments/assets/09670a58-e93e-4c6e-b6a3-bf8c92136c1f)
-
-### Step 2: Data Import
-The next step in the pipeline is;
-- Create a **[Data connection](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-connection?view=azureml-api-2&tabs=azure-studio)**. This will connect to our extenal data sources in Snowflake and make that data available to our Azure ML Workspace. 
-
-{% highlight css %}
+{% highlight python %}
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import WorkspaceConnection
 from azure.identity import DefaultAzureCredential
-from azure.ai.ml.entities import MLClient, DataImport, WorkspaceConnection, UsernamePasswordConfiguration
+from dotenv import load_dotenv
+import os, json
+
+load_dotenv()
+
+subscription_id = os.getenv("SUBSCRIPTION_ID")
+resource_group_name = os.getenv("RESOURCE_GROUP_NAME")
+workspace_name = os.getenv("WORKSPACE_NAME")
 
 ml_client = MLClient(
-    credential=DefaultAzureCredential(),
+    DefaultAzureCredential(),
     subscription_id=subscription_id,
-    resource_group_name=resource_group,
-    workspace_name=workspace
-    )
+    resource_group_name=resource_group_name,
+    workspace_name=workspace_name
+)
+
+workspace_details = ml_client.workspaces.get(name=workspace_name)
+print(json.dumps(workspace_details._to_dict(), indent=4))
+{% endhighlight %}
+
+{% highlight python %}
+from azure.ai.ml import MLClient, command, Input
+from azure.ai.ml.entities import WorkspaceConnection
+from azure.ai.ml.entities import UsernamePasswordConfiguration
+from dotenv import load_dotenv
+import os, json
+from create_client import ml_client, workspace_name
+
+load_dotenv()
 
 import urllib.parse
-sf_username = urllib.parse.quote("${var.snowflake_username}", safe="")
-sf_password = urllib.parse.quote("${var.snowflake_password}", safe="")
+snowflake_account = os.getenv("SNOWFLAKE_ACCOUNT")
+snowflake_database = os.getenv("SNOWFLAKE_DATABASE")
+snowflake_warehouse = os.getenv("SNOWFLAKE_WAREHOUSE")
+snowflake_role = os.getenv("SNOWFLAKE_ROLE")
+snowflake_db_username = os.getenv("SNOWFLAKEDB_USERNAME")
+snowflake_db_password = os.getenv("SNOWFLAKEDB_PASSWORD")
 
-target = f"jdbc:snowflake://${var.snowflake_account}.snowflakecomputing.com/?db=${var.snowflake_database}&warehouse=${var.snowflake_warehouse}&role=${var.snowflake_role}"
+snowflake_connection_string = f"jdbc:snowflake://{snowflake_account}.snowflakecomputing.com/?db={snowflake_database}&warehouse={snowflake_warehouse}&role={snowflake_role}"
+connection_name = "Snowflake" 
 
-wps_connection = WorkspaceConnection(
-    name="Snowflake",
-    type="snowflake",
-    target=target,
-    credentials=UsernamePasswordConfiguration(username=sf_username, password=sf_password)
-)
-ml_client.connections.create_or_update(workspace_connection=wps_connection)
-{% endhighlight %}
-
-- Once the connection is established, we submit the job to extract data from the Snowflake database. This job runs asynchronously and can be monitored in the Azure ML portal under Jobs. The extracted data is:
-  - Saved as an MLTable artifact in the ML workspace default datastore
-  - Registered in the ML workspace as a versioned dataset
-  
-{% highlight css %}
-from azure.identity import DefaultAzureCredential
-from azure.ai.ml.entities import MLClient, DataImport, WorkspaceConnection, UsernamePasswordConfiguration
-
-ml_client = MLClient(
-    credential=DefaultAzureCredential(),
-    subscription_id=subscription_id,
-    resource_group_name=resource_group,
-    workspace_name=workspace
+try:
+    ml_client.connections.get(name=connection_name)
+    print("Connection with the same name already exists")
+except:
+    wps_connection = WorkspaceConnection(
+        name=connection_name,
+        type="snowflake",
+        target=snowflake_connection_string,
+        credentials=UsernamePasswordConfiguration(username=snowflake_db_username, password=snowflake_db_password)
     )
+    ml_client.connections.create_or_update(workspace_connection=wps_connection)
+    print("Workspace connection created.")
 
-import urllib.parse
-sf_username = urllib.parse.quote("${var.snowflake_username}", safe="")
-sf_password = urllib.parse.quote("${var.snowflake_password}", safe="")
+verify_connection_creation = ml_client.connections.list(connection_type="snowflake")
+print("\nConnection details:")
+for connection in verify_connection_creation:
+    print(json.dumps(connection._to_dict(), indent=4))
+{% endhighlight %}
 
-target = f"jdbc:snowflake://${var.snowflake_account}.snowflakecomputing.com/?db=${var.snowflake_database}&warehouse=${var.snowflake_warehouse}&role=${var.snowflake_role}"
+- **Create a datastore:** Define the link to the Azure Storage account, the destination where raw data from Snowflake will be ingested.
 
-wps_connection = WorkspaceConnection(
-    name="Snowflake",
-    type="snowflake",
-    target=target,
-    credentials=UsernamePasswordConfiguration(username=sf_username, password=sf_password)
+{% highlight python %}
+from azure.ai.ml.data_transfer import Database
+from azure.ai.ml.entities import DataImport, Data, DataAsset, Datastore
+from azure.ai.ml.entities import AzureBlobDatastore, AccountKeyConfiguration
+from dotenv import load_dotenv
+import os, json
+from azure.core.exceptions import ResourceNotFoundError
+from create_client import ml_client, workspace_name
+
+dataset_name = os.getenv("DATASET_NAME")
+raw_datastore_name = "rawdata"
+datastore_name = ml_client.datastores.get_default()
+storage_account_name = os.getenv("STORAGE_ACCOUNT_NAME")
+storage_account_key = os.getenv("STORAGE_ACCOUNT_ACCESS_KEY")
+
+create_datastore = AzureBlobDatastore(
+    name=raw_datastore_name,                      
+    account_name=storage_account_name,    
+    container_name=raw_datastore_name,           
+    credentials=AccountKeyConfiguration(account_key=storage_account_key),
 )
-ml_client.connections.create_or_update(workspace_connection=wps_connection)
-{% endhighlight %}
-**Data Connection**
-![image](https://github.com/user-attachments/assets/c6a16565-9af3-4fa2-b4e4-a7cb48b83334)
-**Data Import**
-![image](https://github.com/user-attachments/assets/fdb76ccf-743a-4b12-9db2-e42c594eb795)
-**Data Asset**
-![image](https://github.com/user-attachments/assets/db7b484f-bbf1-4174-88e4-3fa76bb7bcba)
 
-### Step 3: Data Preprocessing
-The next step in the pipeline transforms our raw transactional sales data into monthly aggregated records suitable for time-series forecasting by:
+try:
+    ml_client.datastores.get(name=datastore_name)
+    print("Datastore '{datastore_name}' already exists")
+except ResourceNotFoundError:
+    ml_client.datastores.create_or_update(create_datastore)
+    print(f"Datastore '{raw_datastore_name}' created")
 
-- Converting dates to monthly periods (MonthYear)
-- Grouping sales by unique combinations of:
-- Store location (STOREID, COUNTRY, CITY)
-- Calendar month (MonthYear)
-- Calculating:
-- Total monthly sales (sum of QUANTITYSOLD)
-- Average price (mean of PRICE)
-- Last observed conditions (last for WEATHER, PROMOTION, HOLIDAY)
+verify_datastore_creation = ml_client.datastores.list(include_secrets=False)
 
-**Problem Fit:**
-- Demand forecasting requires temporal aggregation (daily → monthly aligns with business planning cycles)
-- Preserves key predictors like promotions/weather while reducing noise
-
-**Technical Advantages:**
-- 100x data volume reduction vs. daily records (faster model training)
-- Clear seasonal patterns emerge at monthly granularity 
-- last() captures final state of dynamic features (e.g., whether a promotion was active at month-end)
-
-**Business Alignment:** Matches how GloboJava:
-- Orders inventory (monthly batches)
-- Reviews financials (monthly closing)
-- Plans marketing (monthly campaigns)
-
-{% highlight css %}
-  templates:
-  - name: main
-    serviceAccountName: sa-argo-workflow
-    volumes:
-    - name: secrets
-      secret: 
-        secretName: deployment
-    script:
-      image: "musanaengineering/platformtools:terraform-v1.0.0"
-      command: ["/bin/bash"]
-      source: |
-        // Clone the repository
-        git clone git@github.com:musana-engineering/mlops.git
-        cd mlops/pipelines/data/preprocessing
-        
-        // Execute Terraform
-        terraform init
-        terraform plan
-        terraform apply -auto-approve
+print("\nDatastore details:")
+for datastore in verify_datastore_creation:
+    print(json.dumps(datastore._to_dict(), indent=4))
 {% endhighlight %}
 
-The preprocessing pipeline outputs two new datasets and registers them in AML Workspace.
+- **Create a data asset:** Register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.
 
-### Step 4: Model Training:
-### Pipeline Creation: Define and submit the pipeline.
-### Model Deployment: Deploy to Kubernetes.
-### Automation: CI/CD and monitoring (YAML pipelines).
-### Collaboration: Azure Repos and documentation.
-   
+{% highlight python %}
+from azure.ai.ml.data_transfer import Database
+from azure.ai.ml.entities import DataImport, Data, DataAsset, Datastore
+from dotenv import load_dotenv
+import os, json, mltable, pandas
+from azure.core.exceptions import ResourceNotFoundError
+from create_client import ml_client, workspace_name
+from create_connection import connection_name
+from create_datastore import raw_datastore_name
+
+dataset_name = "raw_house_data"
+
+try:
+    ml_client.data.get(name=dataset_name, version="1")
+    print("Dataset '{dataset_name}' already exists")
+except ResourceNotFoundError:
+    print("Registering dataset")
+    data_import = DataImport(
+        name=dataset_name,
+        source=Database(
+            connection=connection_name,
+            query=f"SELECT * FROM GLOBOREALTY.REAL_ESTATE.RAW"
+        ),
+        path=f"azureml://datastores/{raw_datastore_name}/paths/{dataset_name}",
+        version="1"
+    )
+    ml_client.data.import_data(data_import=data_import)
+
+verify_dataset_creation = ml_client.datastores.list(include_secrets=False)
+
+print("\nDatastore details:")
+for dataset in verify_dataset_creation:
+    print(json.dumps(dataset._to_dict(), indent=4))
+{% endhighlight %}
+
+- **Verify data import:** Confirm that the raw data has been successfully ingested into Blob Storage and is available for preprocessing in the next stage.
+
+{% highlight python %}
+import pandas, mltable
+from create_connection import ml_client
+from create_dataset import dataset_name
+from create_connection import ml_client
+
+data_asset = ml_client.data.get(dataset_name, version="1")
+tbl = mltable.load(data_asset.path)
+df = tbl.to_pandas_dataframe()
+df
+
+print(df.head(10))
+print(df.describe())
+{% endhighlight %}
+
 ### Summary
