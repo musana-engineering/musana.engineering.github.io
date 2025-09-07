@@ -55,7 +55,7 @@ In Part 1, we’ll focus on two key steps:
 
 Before we can begin acquiring and preparing the raw data, we need a secure and reliable infrastructure foundation in Azure. At the center of the setup is the Azure Machine Learning (AML) workspace. This is where data scientists, engineers, and architects collaborate. It provides experiment tracking, dataset management, and integration with pipelines for automation
 
-<img src="./assets/img/infra_setup.jpeg"/>
+<img src="../assets/img/infra_setup.jpeg"/>
 
 Alongside the workspace, several supporting Azure services are provisioned:
 
@@ -85,7 +85,7 @@ Once terraform deployment finishes, log in to the Azure Portal and confirm:
 - Linked resources (Storage, Key Vault, ACR, Managed Identity) are available.
 - You can access the workspace in Azure AI Studio.
 
-<img src="./assets/img/infra_verify.jpg"/>
+<img src="../assets/img/infra_verify.jpg"/>
 
 At this point, GloboRealty has a secure and production ready Azure ML environment. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
 
@@ -93,7 +93,7 @@ At this point, GloboRealty has a secure and production ready Azure ML environmen
 
 With the Azure ML infrastructure in place, the next step is to bring data into the Azure environment. GloboRealty’s historical house price dataset resides in Snowflake, so we need to establish a secure pipeline that moves this data into Azure Machine Learning for further processing. The flow is illustrated in the diagram below:
 
-<img src="./assets/img/data_acquisition.jpeg"/>
+<img src="../assets/img/data_acquisition.jpeg"/>
 
 To achieve this, we’ll complete the following tasks:
 
