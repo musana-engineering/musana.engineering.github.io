@@ -5,7 +5,7 @@ date: 2025-09-6 13:32:20 +0300
 description: A practical guide to building infrastructure and automation for predictive and generative AI projects on Azure.
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [ai, machine-learning, predictive-ai, generative-ai, mlops, devops, kubernetes, azure, azure-machine-learning, cloud-infrastructure, model-deployment, platform-engineering]
+tags: [ai, mlops, devops, kubernetes, azure, azure-machine-learning, platform-engineering]
 ---
 
 Many of us have hundreds of photos sitting in our phone galleries that never see the light of day. Snapping a picture is effortless but capturing one good enough to share takes more effort. The same is true for AI projects. Building a prototype can be quick and exciting, but turning that prototype into something reliable, scalable, and secure in production requires a very different kind of effort.
@@ -280,4 +280,8 @@ By the end of Part 2, we will be ready to launch our first model training experi
 
 If you found this article useful, please share it with your team, network, or community. And don’t forget to check back soon for Part 2.
 
+{% highlight css %}
 [Part 1: Infra & Acquisition ✅] → [Part 2: Preprocessing & Compute 🔜] → [Part 3: Training & Evaluation] → [Part 4: Deployment] → [Part 5: Monitoring & Retraining]
+{% endhighlight %}
+
+
