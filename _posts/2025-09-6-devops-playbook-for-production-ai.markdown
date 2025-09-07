@@ -258,5 +258,6 @@ df
 print(df.head(10))
 print(df.describe())
 {% endhighlight %}
+<img src="../assets/img/dataprofile.jpg"/>
 
 ### Summary
