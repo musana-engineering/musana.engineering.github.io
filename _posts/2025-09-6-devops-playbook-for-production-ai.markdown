@@ -44,7 +44,7 @@ Ensure that **[Argo Events](https://argoproj.github.io/argo-events/)** and **[Ar
 
 **GloboRealty** is a fictitious real estate company specializing in residential properties across urban, suburban, and waterfront markets. They are looking to build machine learning models that can estimate the value of a property based on various feature such as location, square footage, number of bedrooms and year built.
 
-To bring this vision to life, their Cloud platform team is leveraging Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines ensuring every version is traceable, tested, and monitored in production.
+To bring this vision to life, their platform engineering team is leveraging Azure Machine Learning (AML) with strong DevOps and MLOps practices. Their workflow starts with data stored in Snowflake, securely connected to their AML workspace. Pipelines ingest this data into Azure Blob Storage as raw datasets, which are then preprocessed into curated, training ready datasets. From there, models are trained, evaluated, and deployed through automated CI/CD pipelines ensuring every version is traceable, tested, and monitored in production.
 
 In Part 1, we’ll focus on two key steps:
 
