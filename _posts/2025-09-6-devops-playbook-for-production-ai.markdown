@@ -172,6 +172,8 @@ for connection in verify_connection_creation:
 
 <img src="../assets/img/dataconn.jpg"/>
 
+**Note:** creating a Snowflake connection doesn’t pull data by itself. The DataImport call we make to create a data asset is what executes the query against Snowflake and writes the results to Blob. The finished files are then registered as a reusable, versioned data asset.
+
 - **Create a datastore to define the link to the Azure Storage account, the destination where raw data from Snowflake will be ingested**
 
 {% highlight python %}
@@ -213,6 +215,8 @@ for datastore in verify_datastore_creation:
 <img src="../assets/img/datastore.jpg"/>
 
 - **Create a data asset to register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.**
+
+This step uses the Azure ML DataImport API to run the import job from Snowflake into Blob Storage and register the resulting raw dataset as a versioned data asset.
 
 {% highlight python %}
 from azure.ai.ml.data_transfer import Database
