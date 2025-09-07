@@ -10,7 +10,7 @@ tags: [ai, mlops, devops, kubernetes, azure-machine-learning, platform-engineeri
 
 Our camera rolls are digital graveyards of forgotten photos. While taking a picture is effortless, creating one worthy of sharing requires a keen eye and thoughtful editing. Similarly, in AI, the initial thrill of a working prototype is like that quick snapshot. But the journey to production where it must perform reliably for users is where the real work begins. 
 
-Production is less about discovery and more about engineering an AI serving platform that is secure, scalable, resilient, observable, cost-efficient, and maintainable. **This is not trivial work.**
+Production is less about experimentation and more about engineering an AI serving platform that is secure, scalable, resilient, observable, cost-efficient, and maintainable. **This is not trivial work.**
 
 **You can't just filter your way to a stable production system. A prototype built on vibes will collapse under real world load**
 
