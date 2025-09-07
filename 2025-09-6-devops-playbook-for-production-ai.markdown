@@ -92,9 +92,11 @@ Once terraform deployment finishes, log in to the Azure Portal and confirm:
 
 <img src="../assets/img/resources.jpg"/>
 
-For enhanced security, the AML workspace is deployed inside GloboRealty’s private Virtual Network. All communication between the workspace, the Storage Account, and Key Vault is routed through Private Endpoints, keeping traffic entirely on Microsoft’s backbone network and off the public internet.
-
-Access control between the workspace and its dependent services is handled via Managed Identity, ensuring role-based access without storing credentials in code. All secrets and sensitive credentials are centrally managed in Azure Key Vault, where they are securely stored, versioned, and retrieved on demand by pipelines and workloads.
+**Security Considerations**
+- VNET integration for the AML Workspace to keep workloads isolated.
+- Private Endpoints for Storage and Key Vault to keep traffic on the Microsoft backbone.
+- Managed Identity handles RBAC securely between AML and dependent services.
+- Key Vault stores secrets and sensitive credentials, retrieved securely on demand.
 
 At this point, we have a secure foundation for our AI platform. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
 
@@ -272,14 +274,29 @@ print(df.describe())
 
 To make everything we've done so far repeatable end-to-end, we need to orchestrate everything with Argo Workflows running on AKS. For a deeper introduction to Argo Workflows, see my series on Platform Engineering with Kubernetes here **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)** and **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part2/)**
 
-We will define and submit two pipelines.
+To keep things modular, maintainable, and aligned with team responsibilities, we’ll split our automation into two distinct pipelines. This separation allows platform engineers to focus on infrastructure while data and ML engineers manage data ingestion and AML connections. It also means infrastructure changes don’t slow down the more frequent data refresh cycles.
 
-- **Infrastructure Provisioning:** Responsible for provisioning and mantaining the Azure resources
-- **Data Setup:** Responsible for establishing and mantaining the AML connections (datastore/data asset) and ingesting data to storage
+We’ll define and submit two pipelines, each with a clear responsibility:
+
+- **Infrastructure Provisioning:** 
+
+Handles the creation and ongoing maintenance of Azure resources such as the AML workspace, Storage Account, Key Vault, and Container Registry.
+
+- **Data Setup:** 
+
+Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
 
 {% highlight shell %}
 
 {% endhighlight %}
+
+**Pipeline Security Considerations**
+- Pipelines run on private AKS cluster keeping all operations private.
+- Uses Azure Workload Identity for the Terraform AzureRM provider
+- Enforce least-privilege RBAC for the workflow’s service account
+- Sources secrets from Azure Key Vault via External Secrets Operator
+- Writes Terraform outputs that are sensitive directly to Key Vault
+- Pipelines executes using a hardened, internally maintained image.
 
 ### Summary
 
