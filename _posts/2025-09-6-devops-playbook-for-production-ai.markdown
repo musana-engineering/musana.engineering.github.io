@@ -265,3 +265,19 @@ print(df.describe())
 <img src="../assets/img/dataprofile.jpg"/>
 
 ### Summary
+
+In this first part, we've laid the foundation for production ready AI on Azure. We provisioned an Azure Machine Learning workspace as our core infrastructure along with supporting services like Blob Storage, Key Vault and Container Registry
+
+On top of that foundation, we established a secure pipeline from Snowflake into Azure, successfully ingesting GloboRealty’s house price dataset into Blob Storage as the raw/bronze layer. This ensures GloboRealty now has a traceable, governed, and production aligned environment where data can flow securely from source systems into Azure ML.
+
+In **Part 2**, we’ll shift focus to data preprocessing. Specifically, we will:
+
+- Clean and transform the raw dataset into a curated silver dataset.
+- Create and register a training ready data asset inside Azure ML.
+- Provision and configure Azure ML Compute clusters, which will serve as the backbone for model training and evaluation.
+
+By the end of Part 2, we will be ready to launch our first model training experiments on Azure ML using clean, curated data.
+
+If you found this article useful, please share it with your team, network, or community. And don’t forget to check back soon for Part 2.
+
+[Part 1: Infra & Acquisition ✅] → [Part 2: Preprocessing & Compute 🔜] → [Part 3: Training & Evaluation] → [Part 4: Deployment] → [Part 5: Monitoring & Retraining]
