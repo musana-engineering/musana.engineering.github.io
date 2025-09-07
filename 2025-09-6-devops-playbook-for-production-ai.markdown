@@ -316,15 +316,16 @@ spec:
         image: "{{workflow.parameters.docker-image}}"
         command: ["sh"]
         source: |
-          cp /home/terraform/*.tf /home/argo/
-
+    
           export ARM_CLIENT_ID="your_azure_sp_client_id"
           export ARM_CLIENT_SECRET="$CLIENT_SECRET"
           export ARM_TENANT_ID="your_azure_tenant_id"
           export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
 
-          /bin/terraform init -input=false /home/argo
-          /bin/terraform plan -parallelism=2 -input=false -no-color -out=/home/argo/tfclientsplan /home/argo >> /tmp/terraform-change.log
+          cd /home/terraform/globorealty/infrastructure
+
+          terraform init -input=false
+          terraform plan -parallelism=2 -input=false -no-color -out=/home/terraform/artifacts/Infrastructure.tfplan /home/argo >> /tmp/terraform-change.log
         env:
         - name: CLIENT_SECRET
           valueFrom:
@@ -334,7 +335,7 @@ spec:
       outputs:
         artifacts:
           - name: terraform-plan
-            path: /home/argo/
+            path: /home/terraform/home/terraform/artifacts/
             archive:
               none: {}
           - name: terraform-log
@@ -358,11 +359,11 @@ spec:
         source: |
 
           export ARM_CLIENT_ID="your_azure_sp_client_id"
-          export ARM_CLIENT_SECRET="your_azure_sp_client_secret"
+          export ARM_CLIENT_SECRET="$CLIENT_SECRET"
           export ARM_TENANT_ID="your_azure_tenant_id"
           export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
 
-          /bin/terraform apply -input=false -parallelism=2 -no-color /home/terraform/tfclientsplan
+          /bin/terraform apply -input=false -parallelism=2 -no-color /home/terraform/artifacts/Infrastructure.tfplan
 
         env:
         - name: CLIENT_SECRET
@@ -393,11 +394,145 @@ spec:
 
 - **Data Setup:** 
 
-{% highlight yaml %}
-
-{% endhighlight %}
-
 Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
+
+{% highlight yaml %}
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: data-0fec8a
+  namespace: argo
+spec:
+  entrypoint: pipeline
+  podGC:
+    strategy: OnWorkflowSuccess
+  arguments:
+    parameters:
+    - name: docker-image
+      value: musanaengineering/platformtools:python:1.0.0
+    - name: infrastructure-repository
+      value: https://github.com/musana-engineering/globorealty.git
+  templates:
+    - name: create-connection
+      inputs:
+        artifacts:
+        - name: scripts
+          path: /home/scripts
+          git:
+            repo: "{{workflow.parameters.infrastructure-repository}}"
+            depth: 1
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: data-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+
+          export SUBSCRIPTION_ID=my_azure_ml_subscription_id
+          export RESOURCE_GROUP_NAME=my_azure_ml_subscription_id
+          export WORKSPACE_NAME=my_azure_ml_workspace_name
+
+          export SNOWFLAKE_ACCOUNT=my_snowflake_account_name
+          export SNOWFLAKEDB_USERNAME=my_snowflake_db_username
+          export SNOWFLAKEDB_PASSWORD=$SNOWFLAKEDB_PASSWORD
+          export SNOWFLAKE_DATABASE=my_snowflake_database
+          export SNOWFLAKE_WAREHOUSE=my_snowflake_warehouse
+          export SNOWFLAKE_ROLE=my_snowflake_role
+
+          cd /home/scripts/globorealty/scripts
+
+          python create_connection.py
+
+        env:
+        - name: SNOWFLAKEDB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-secrets
+              key: SNOWFLAKEDB_PASSWORD  
+
+    - name: create-datastore
+      inputs:
+        artifacts:
+        - name: scripts-plan
+          path: /home/scripts
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: data-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+
+          export STORAGE_ACCOUNT_NAME=my_azure_ml_storage_account_name
+          export STORAGE_ACCOUNT_ACCESS_KEY=$STORAGE_ACCOUNT_ACCESS_KEY
+
+          cd /home/scripts/globorealty/scripts
+
+          python create_datastore.py
+
+        env:
+        - name: STORAGE_ACCOUNT_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-secrets
+              key: STORAGE_ACCOUNT_ACCESS_KEY  
+
+    - name: create-dataset
+      inputs:
+        artifacts:
+        - name: scripts-plan
+          path: /home/scripts
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: data-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+         
+         cd /home/scripts/globorealty/scripts
+         python create_dataset.py
+
+    - name: preview-data
+      inputs:
+        artifacts:
+        - name: scripts-plan
+          path: /home/scripts
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: data-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+
+         cd /home/scripts/globorealty/scripts
+         python create_dataframe.py
+
+    - name: pipeline
+      dag:
+        tasks:
+          - name: create-connection
+            template: create-connection
+          - name: create-datastore
+            template: create-datastore
+            dependencies: [create-connection]
+          - name: create-dataset
+            template: create-dataset
+            dependencies: [create-connection, create-datastore]
+          - name: preview-data
+            template: preview-data
+            dependencies: [create-connection, create-datastore, create-dataset]
+{% endhighlight %}
 
 **Pipeline Security Considerations**
 - Pipelines run on private AKS cluster keeping all operations private.
