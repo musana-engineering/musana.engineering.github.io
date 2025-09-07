@@ -61,22 +61,25 @@ Alongside the workspace, several supporting Azure services are provisioned:
 
 - **Azure Storage Account:** For storing and separation of datasets at different stages.
 - **Azure Key Vault:** For storing secrets, connection strings and other sensitive information
-- **Managed Identity:** For secure, role-based access to resources like Storage and Key Vault without embedding credentials.
+- **Managed Identity:** For secure role-based access to resources like Storage and Key Vault without embedding credentials.
 - **Azure Container Registry (ACR):** For hosting custom Docker images with specific dependencies for training and inference
 
-To make the setup repeatable and version-controlled, we’ll define all resources as infrastructure as code using Terraform. Follow the steps below to provision the environment.
+To make the setup repeatable and version-controlled, we define all resources as infrastructure as code using Terraform. Follow the steps below to provision the environment.
 
 {% highlight shell %}
-// First, clone the project repository that contains the Terraform files
+# First, clone the project repository that contains the Terraform files
 https://github.com/musana-engineering/globorealty.git
-// Authenticate with Azure
+
+# Authenticate with Azure
 export ARM_CLIENT_ID="your_azure_sp_client_id"
 export ARM_CLIENT_SECRET="your_azure_sp_client_secret"
 export ARM_TENANT_ID="your_azure_tenant_id"
 export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
-// Initialize Terraform and Review the plan
+
+# Initialize Terraform and Review the plan
 terraform init && terraform plan
-// Apply the configuration
+
+# Apply the configuration
 terraform apply
 {% endhighlight %}
 
