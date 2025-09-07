@@ -92,7 +92,11 @@ Once terraform deployment finishes, log in to the Azure Portal and confirm:
 
 <img src="../assets/img/resources.jpg"/>
 
-At this point, you have a foundational ML platform. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
+For enhanced security, the AML workspace is deployed inside GloboRealty’s private Virtual Network. All communication between the workspace, the Storage Account, and Key Vault is routed through Private Endpoints, keeping traffic entirely on Microsoft’s backbone network and off the public internet.
+
+Access control between the workspace and its dependent services is handled via Managed Identity, ensuring role-based access without storing credentials in code. All secrets and sensitive credentials are centrally managed in Azure Key Vault, where they are securely stored, versioned, and retrieved on demand by pipelines and workloads.
+
+At this point, we have a secure foundation for our AI platform. Next, we’ll move to data acquisition, where we’ll connect to Snowflake and ingest house price data into Blob Storage as the raw/bronze dataset.
 
 ### Data Acquistion
 
