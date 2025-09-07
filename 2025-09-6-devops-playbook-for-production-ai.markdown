@@ -266,6 +266,17 @@ print(df.describe())
 
 ### Pipeline Setup
 
+To make everything we've done so far repeatable end-to-end, we need to orchestrate everything with Argo Workflows running on AKS. For a deeper introduction to Argo Workflows, see my series on Platform Engineering with Kubernetes here **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part1/)** and **[Part 1](https://musana.engineering/platform-engineering-on-k8s-part2/)**
+
+We will define and submit two pipelines.
+
+- **Infrastructure Provisioning:** Responsible for provisioning and mantaining the Azure resources
+- **Data Setup:** Responsible for establishing and mantaining the AML connections (datastore/data asset) and ingesting data to storage
+
+{% highlight shell %}
+
+{% endhighlight %}
+
 ### Summary
 
 In this first part, we've laid the foundation for production ready AI on Azure. We provisioned an Azure Machine Learning workspace as our core infrastructure along with supporting services like Blob Storage, Key Vault and Container Registry
