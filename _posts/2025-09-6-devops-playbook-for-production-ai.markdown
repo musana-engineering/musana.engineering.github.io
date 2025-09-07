@@ -106,7 +106,7 @@ With the Azure ML infrastructure in place, the next step is to bring data into t
 
 <img src="../assets/img/data_acquisition.jpeg"/>
 
-To achieve this, we’ll complete the following tasks:
+To achieve this, we’ll use the Azure ML SDK for Python to author scripts that automate each step of the process. Specifically, we’ll complete the following tasks:
 
 - **Create a data connection to store the credentials needed to securely connect to the Snowflake account, which is the source of the raw dataset.**
 
