@@ -282,13 +282,122 @@ We’ll define and submit two pipelines, each with a clear responsibility:
 
 Handles the creation and ongoing maintenance of Azure resources such as the AML workspace, Storage Account, Key Vault, and Container Registry.
 
+{% highlight yaml %}
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: infra-0fec8a
+  namespace: argo
+spec:
+  entrypoint: update
+  podGC:
+    strategy: OnWorkflowSuccess
+  arguments:
+    parameters:
+    - name: docker-image
+      value: musanaengineering/platformtools:terraform:1.0.0
+    - name: infrastructure-repository
+      value: https://github.com/musana-engineering/globorealty.git
+  templates:
+    - name: plan
+      inputs:
+        artifacts:
+        - name: terraform
+          path: /home/terraform
+          git:
+            repo: "{{workflow.parameters.infrastructure-repository}}"
+            depth: 1
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: infra-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+          cp /home/terraform/*.tf /home/argo/
+
+          export ARM_CLIENT_ID="your_azure_sp_client_id"
+          export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+          export ARM_TENANT_ID="your_azure_tenant_id"
+          export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
+
+          /bin/terraform init -input=false /home/argo
+          /bin/terraform plan -parallelism=2 -input=false -no-color -out=/home/argo/tfclientsplan /home/argo >> /tmp/terraform-change.log
+        env:
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-secrets
+              key: CLIENT_SECRET  
+      outputs:
+        artifacts:
+          - name: terraform-plan
+            path: /home/argo/
+            archive:
+              none: {}
+          - name: terraform-log
+            path: /tmp/terraform-change.log
+            archive:
+              none: {}
+
+    - name: apply
+      inputs:
+        artifacts:
+        - name: terraform-plan
+          path: /home/terraform
+        volumes:
+        - name: pipeline-secrets
+          secret: 
+            secretName: infra-0fec8a
+      script:
+        imagePullPolicy: "Always"
+        image: "{{workflow.parameters.docker-image}}"
+        command: ["sh"]
+        source: |
+
+          export ARM_CLIENT_ID="your_azure_sp_client_id"
+          export ARM_CLIENT_SECRET="your_azure_sp_client_secret"
+          export ARM_TENANT_ID="your_azure_tenant_id"
+          export ARM_SUBSCRIPTION_ID="your_azure_subscription_id"
+
+          /bin/terraform apply -input=false -parallelism=2 -no-color /home/terraform/tfclientsplan
+
+        env:
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-secrets
+              key: CLIENT_SECRET  
+
+    - name: approve
+      suspend: {}
+
+    - name: update
+      dag:
+        tasks:
+          - name: plan
+            template: plan
+          - name: approve
+            dependencies: [plan]
+            template: approve
+          - name: apply
+            template: apply
+            dependencies: [plan, approve]
+            arguments:
+              artifacts:
+              - name: terraform-plan
+                from: "{{tasks.plan.outputs.artifacts.terraform-plan}}"
+{% endhighlight %}
+
 - **Data Setup:** 
 
-Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
-
-{% highlight shell %}
+{% highlight yaml %}
 
 {% endhighlight %}
+
+Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
 
 **Pipeline Security Considerations**
 - Pipelines run on private AKS cluster keeping all operations private.
