@@ -154,7 +154,7 @@ connection_name = "Snowflake"
 
 try:
     ml_client.connections.get(name=connection_name)
-    print("Connection with the same name already exists")
+    print(f"Connection '{connection_name}' already exists")
 except:
     wps_connection = WorkspaceConnection(
         name=connection_name,
@@ -163,7 +163,7 @@ except:
         credentials=UsernamePasswordConfiguration(username=snowflake_db_username, password=snowflake_db_password)
     )
     ml_client.connections.create_or_update(workspace_connection=wps_connection)
-    print("Workspace connection created.")
+    print(f"Workspace connection '{connection_name}' created.")
 
 verify_connection_creation = ml_client.connections.list(connection_type="snowflake")
 print("\nConnection details:")
