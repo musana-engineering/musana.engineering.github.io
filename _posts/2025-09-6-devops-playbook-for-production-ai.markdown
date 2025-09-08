@@ -320,7 +320,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
     
           export ARM_CLIENT_ID="your_azure_sp_client_id"
@@ -361,7 +361,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
 
           export ARM_CLIENT_ID="your_azure_sp_client_id"
@@ -434,7 +434,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
 
           export SUBSCRIPTION_ID=my_azure_ml_subscription_id
@@ -471,7 +471,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
 
           export STORAGE_ACCOUNT_NAME=my_azure_ml_storage_account_name
@@ -500,7 +500,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
          
          cd /home/scripts/globorealty/scripts
@@ -518,7 +518,7 @@ spec:
       script:
         imagePullPolicy: "Always"
         image: "{{workflow.parameters.docker-image}}"
-        command: ["sh"]
+        command: [/bin/bash]
         source: |
 
          cd /home/scripts/globorealty/scripts
