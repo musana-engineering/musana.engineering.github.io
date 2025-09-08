@@ -5,7 +5,7 @@ date: 2025-09-6 13:32:20 +0300
 description: A practical guide to building infrastructure and automation for predictive and generative AI projects on Azure.
 img: ml_cover.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [ai, mlops, devops, kubernetes, azure-machine-learning, platform-engineering]
+tags: [ai, mlops, devops, kubernetes, azureml, snowflake, argo]
 ---
 
 Our camera rolls are digital graveyards of forgotten photos. While taking a picture is effortless, creating one worthy of sharing requires a keen eye and thoughtful editing. Similarly, in AI, the initial thrill of a working prototype is like that quick snapshot. But the journey to production where it must perform reliably for users is where the real work begins. 
