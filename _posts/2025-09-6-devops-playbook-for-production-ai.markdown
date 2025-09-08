@@ -402,7 +402,7 @@ spec:
 
 Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
 
-{% highlight shell %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
