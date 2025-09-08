@@ -234,9 +234,9 @@ dataset_name = "raw_house_data"
 
 try:
     ml_client.data.get(name=dataset_name, version="1")
-    print("Dataset '{dataset_name}' already exists")
+    print(f"Dataset '{dataset_name}' already exists")
 except ResourceNotFoundError:
-    print("Registering dataset")
+    print(f"Registering '{dataset_name}' dataset")
     data_import = DataImport(
         name=dataset_name,
         source=Database(
