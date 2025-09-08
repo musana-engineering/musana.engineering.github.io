@@ -25,6 +25,7 @@ In this multi-part blog series, I’ll show you what that effort looks like thro
 - [Data Acquistion ](#data-acquistion)
    - [Data connection](#data-connection)
    - [Data import](#data-import)
+   - [Data Asset](#data-asset)
 - [Pipeline Setup](#pipeline-setup)
 - [Summary ](#summary)
 
