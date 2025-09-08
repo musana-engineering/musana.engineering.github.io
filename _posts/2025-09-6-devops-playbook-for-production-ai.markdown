@@ -16,7 +16,7 @@ Production is less about ideation and more about engineering an AI serving platf
 
 This is precisely where a mature DevOps and Platform Engineering culture becomes a powerful advantage. These teams bring the battle tested disciplines of modern software delivery such as automation, CI/CD, observability, and infrastructure-as-code (IaC) into AI initiatives. By applying these practices, they help organizations move beyond endless experimentation and deliver production grade deployments that generate measurable ROI
 
-In this multi-part blog series, I’ll show you what that effort looks like through a practical, end-to-end blueprint for deploying a Predictive AI project on Microsoft Azure starting from concept all the way to production.
+In this multi-part blog series, I’ll show you what that effort looks like through a practical, end-to-end deployement of a Predictive AI project on Microsoft Azure starting from concept all the way to production.
 
 ### Table of Contents
 - [Prerequisites](#prerequisites)
