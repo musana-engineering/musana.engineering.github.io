@@ -215,6 +215,7 @@ for datastore in verify_datastore_creation:
 
 <img src="../assets/img/datastore.jpg"/>
 
+
 - **Create a data asset to register a reference to the ingested raw dataset so it can be tracked, versioned, and reused across pipelines.**
 
 This step uses the Azure ML DataImport API to run the import job from Snowflake into Blob Storage and register the resulting raw dataset as a versioned data asset.
