@@ -311,7 +311,7 @@ spec:
         - name: terraform
           path: /home/terraform
           git:
-            repo: "{{workflow.parameters.infrastructure-repository}}"
+            repo: {{workflow.parameters.infrastructure-repository}}
             depth: 1
         volumes:
         - name: pipeline-secrets
@@ -319,7 +319,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
     
@@ -360,7 +360,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
 
@@ -425,7 +425,7 @@ spec:
         - name: scripts
           path: /home/scripts
           git:
-            repo: "{{workflow.parameters.infrastructure-repository}}"
+            repo: {{workflow.parameters.infrastructure-repository}}
             depth: 1
         volumes:
         - name: pipeline-secrets
@@ -433,7 +433,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
 
@@ -470,7 +470,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
 
@@ -499,7 +499,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
          
@@ -517,7 +517,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{workflow.parameters.docker-image}}
         command: [/bin/bash]
         source: |
 
