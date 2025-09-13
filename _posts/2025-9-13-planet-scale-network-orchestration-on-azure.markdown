@@ -8,11 +8,9 @@ fig-caption: # Add figcaption (optional)
 tags: [ai, mlops, devops, kubernetes, azureml, snowflake, argo]
 ---
 
-Microsoft Azure’s network is massivev60+ regions, 220+ datacenters, 170+ edge sites, and 165,000 miles of fiber. For platform engineers, it’s a unique canvas to build planet-scale architectures for globally available applications.
+Microsoft Azure’s network is massive with 60+ regions, 220+ datacenters, 170+ edge sites, and 165,000 miles of fiber. For platform engineers, it’s a unique canvas to build planet scale network architectures for globally available applications. The challenge? Orchestration at scale. Manually wiring regions, enforcing security policies worldwide, and ensuring resilience isn’t practical.
 
-The challenge? Orchestration at scale. Manually wiring regions, enforcing security policies worldwide, and ensuring resilience isn’t practical.
-
-The answer is automation and intent-based management. At the center of this approach is Azure Virtual Network Manager (AVNM), which unifies regional VNets into a cohesive, intelligent global fabric.
+The answer is automation and intent based management. At the center of this approach is Azure Virtual Network Manager (AVNM), which unifies regional VNets into a cohesive, intelligent global fabric.
 
 This post shows how to use AVNM and Infrastructure as Code (IaC) to design, automate, and manage a secure, scalable, and resilient global network on Azure.
 
