@@ -12,7 +12,7 @@ Microsoft Azure’s network is massive with 60+ regions, 220+ datacenters, 170+ 
 
 The answer is automation and intent based management. At the center of this approach is Azure Virtual Network Manager (AVNM), which unifies regional VNets into a cohesive, intelligent global fabric.
 
-This post shows how to use AVNM and Infrastructure as Code (IaC) to design, automate, and manage a secure, scalable, and resilient global network on Azure.
+This post shows how to use AVNM and Infrastructure as Code (IaC) to design, automate, and manage a secure, scalable, and resilient global network on Azure through the lense of a fictious company looking to expand and establish it's presence globally.
 
 ### Table of Contents
 - [Introduction](#prerequisites)
