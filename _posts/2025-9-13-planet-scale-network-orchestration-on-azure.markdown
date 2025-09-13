@@ -3,7 +3,7 @@ layout: post
 title: Planet Scale Network Orchestration on Azure
 date: 2025-09-12 13:32:20 +0300
 description: A practical guide to designing, automating, and orchestrating global networks for highly available applications on Microsoft Azure
-img: main1.jpg # Add image post (optional)
+img: main1.jpeg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [ai, mlops, devops, kubernetes, azureml, snowflake, argo]
 ---
