@@ -19,6 +19,7 @@ This guide demonstrates how to use AVNM and Infrastructure as Code (IaC) to desi
 ### Table of Contents
 - [Introduction](#introduction)
 - [Architecture ](#architecture)
+- [IP Address Management (IPAM) ](#ip-address-management-ipam)
 - [Orchestration](#orchestration)
    - [Dynamic Group Management](#dynamic-group-management)
    - [Connectivity Configuration](#connectivity-configuration)
@@ -61,6 +62,39 @@ At a high level, the network design includes regional hubs as follows:
 - **Africa:** hub-southafricanorth
 
 Each hub hosts an Azure Firewall and connects to two spokes (**prod** and **nonprod**). Local traffic remains within a region for lowest latency, while hubs provide secure inter-region routing.
+
+### IP Address Management (IPAM)
+
+One of the most overlooked yet critical aspects of designing a planet-scale network is IP Address Management (IPAM). Poor IP planning leads to overlapping ranges, routing conflicts, and painful rework when onboarding new regions. A disciplined, hierarchical scheme prevents these issues and ensures long-term scalability.
+
+**Design Principles**
+
+- Global Uniqueness: Every VNet must have a globally unique address space to avoid overlaps.
+- Predictable Hierarchy: IP ranges should follow a structured pattern so engineers can instantly identify the region, environment, and role of a network from its CIDR.
+- Room to Grow: Each region must have space for future spokes and services without needing a redesign.
+- Separation of Concerns: Production, non-production, and shared services VNets must be clearly isolated.
+
+Global IPAM Table
+
+- Master Block: 10.0.0.0/8 reserved for the entire enterprise Azure estate.
+- Regional Allocation: Each Azure region gets a /12 slice, providing ~1 million IPs per region.
+- Hub Allocation: Each hub VNet uses a /16 block carved from the regional /12.
+- Spoke Allocation: Each spoke VNet (prod or nonprod) uses a /20 block within the region.
+- Subnets: Each VNet is internally segmented into /24s for workloads, gateways, and firewalls.
+
+{% highlight ruby %}
+
+| Region            | Regional /12  | Hub VNet /16   | Prod Spoke /20   | Nonprod Spoke /20 | Reserved Spoke1 /20 | Reserved Spoke2 /20 |
+|-------------------|---------------|----------------|------------------|-------------------|---------------------|---------------------|
+| eastus            | 10.0.0.0/12   | 10.0.0.0/16    | 10.0.16.0/20     | 10.0.32.0/20      | 10.0.48.0/20        | 10.0.64.0/20        |
+| westus            | 10.16.0.0/12  | 10.16.0.0/16   | 10.16.16.0/20    | 10.16.32.0/20     | 10.16.48.0/20       | 10.16.64.0/20       |
+| northeurope       | 10.32.0.0/12  | 10.32.0.0/16   | 10.32.16.0/20    | 10.32.32.0/20     | 10.32.48.0/20       | 10.32.64.0/20       |
+| westeurope        | 10.48.0.0/12  | 10.48.0.0/16   | 10.48.16.0/20    | 10.48.32.0/20     | 10.48.48.0/20       | 10.48.64.0/20       |
+| southeastasia     | 10.64.0.0/12  | 10.64.0.0/16   | 10.64.16.0/20    | 10.64.32.0/20     | 10.64.48.0/20       | 10.64.64.0/20       |
+| australiaeast     | 10.80.0.0/12  | 10.80.0.0/16   | 10.80.16.0/20    | 10.80.32.0/20     | 10.80.48.0/20       | 10.80.64.0/20       |
+| southafricanorth  | 10.96.0.0/12  | 10.96.0.0/16   | 10.96.16.0/20    | 10.96.32.0/20     | 10.96.48.0/20       | 10.96.64.0/20       |
+
+{% endhighlight %}
 
 ### Orchestration
 
