@@ -12,7 +12,7 @@ Microsoft Azure’s **[global network](https://learn.microsoft.com/en-us/azure/n
 
 But with this immense power comes complexity. How do we orchestrate networks that meet the performance envelope of globally available applications at scale? Manually wiring hubs and regions, enforcing security policies worldwide, and ensuring resilience is neither practical nor sustainable.
 
-The solution lies in automation and intent-based management. At the core of this approach is Azure Virtual Network Manager (AVNM), which provides centralized connectivity management and enforces security at scale.
+The solution lies in network automation and intent-based management. At the core of this approach is the Azure Virtual Network Manager (AVNM), which provides centralized network connectivity, security and management at scale.
 
 This guide demonstrates how to use AVNM and Infrastructure as Code (IaC) to design, automate, and operate a secure, resilient, and scalable global network illustrated through the lens of a fictitious company expanding its global footprint.
 
