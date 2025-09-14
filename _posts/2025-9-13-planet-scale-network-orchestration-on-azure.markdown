@@ -127,9 +127,9 @@ AVNM enforces intent-based security rules globally, creating a protective layer 
 
 - ### Routing and DNS
 
-**Firewall Manager:** A single global Firewall Policy is attached to all regional firewalls. Changes propagate worldwide in minutes, ensuring consistent enforcement.
+A single global Firewall Policy is attached to all regional firewalls. Changes propagate worldwide in minutes, ensuring consistent enforcement.
 
-**Unified DNS:** A global Azure Private DNS Zone (e.g., globojava.com) links to all VNets. Developers can use intuitive service names like database.westeurope.globojava.com, with DNS resolving seamlessly to the correct regional private IP.
+A global Azure Private DNS Zone (e.g., globojava.com) links to all VNets. Developers can use intuitive service names like database.westeurope.globojava.com, with DNS resolving seamlessly to the correct regional private IP.
 
 ### Pipeline Setup
 
