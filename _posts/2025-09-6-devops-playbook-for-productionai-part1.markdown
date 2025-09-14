@@ -288,7 +288,7 @@ We’ll define and submit two pipelines, each with a clear responsibility:
 
 Handles the creation and ongoing maintenance of Azure resources such as the AML workspace, Storage Account, Key Vault, and Container Registry.
 
-{% highlight yaml %}
+{% highlight shell %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
@@ -402,7 +402,7 @@ spec:
 
 Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
 
-{% highlight yaml %}
+{% highlight shell %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
