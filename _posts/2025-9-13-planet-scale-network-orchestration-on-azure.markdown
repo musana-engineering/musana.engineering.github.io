@@ -8,7 +8,7 @@ fig-caption: # Add figcaption (optional)
 tags: [ai, mlops, devops, kubernetes, azureml, snowflake, argo]
 ---
 
-Microsoft Azure’s global network is immense connecting datacenters across 61 Azure regions and spanning more than 165,000 miles of fiber. For platform engineers, this is a unique canvas for building planet scale network architectures.
+Microsoft Azure’s **[global network](https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network):** is immense, connecting datacenters across 61 Azure regions and spanning more than 165,000 miles of fiber. For platform engineers, this is a unique canvas for building planet scale network architectures.
 
 But with this immense power comes complexity. How do we orchestrate networks at scale that meet the performance envelope of globally available applications? Manually wiring regions, enforcing security policies worldwide, and ensuring resilience is neither practical nor sustainable.
 
