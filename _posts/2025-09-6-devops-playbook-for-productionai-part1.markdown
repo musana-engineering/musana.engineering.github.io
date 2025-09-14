@@ -288,7 +288,7 @@ We’ll define and submit two pipelines, each with a clear responsibility:
 
 Handles the creation and ongoing maintenance of Azure resources such as the AML workspace, Storage Account, Key Vault, and Container Registry.
 
-{% highlight shell %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
@@ -311,7 +311,7 @@ spec:
         - name: terraform
           path: /home/terraform
           git:
-            repo: "{{workflow.parameters.infrastructure-repository}}"
+            repo: {{ workflow.parameters.infrastructure-repository }}
             depth: 1
         volumes:
         - name: pipeline-secrets
@@ -319,7 +319,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ workflow.parameters.docker-image }}
         command: [/bin/bash]
         source: |
     
@@ -360,7 +360,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ workflow.parameters.docker-image }}
         command: [/bin/bash]
         source: |
 
@@ -402,7 +402,7 @@ spec:
 
 Establishes and manages AML connections (datastores and data assets) and orchestrates the ingestion of raw data from Snowflake into Azure Blob Storage.
 
-{% highlight shell %}
+{% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
