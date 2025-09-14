@@ -319,7 +319,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: {{ workflow.parameters.docker-image }}
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
     
@@ -360,7 +360,7 @@ spec:
             secretName: infra-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: {{ workflow.parameters.docker-image }}
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
 
@@ -395,7 +395,7 @@ spec:
             arguments:
               artifacts:
               - name: terraform-plan
-                from: "{{tasks.plan.outputs.artifacts.terraform-plan}}"
+                from: {{ '{{' }} tasks.plan.outputs.artifacts.terraform {{ '}}' }}   
 {% endhighlight %}
 
 - **Data Pipeline:** 
@@ -416,7 +416,7 @@ spec:
     parameters:
     - name: docker-image
       value: musanaengineering/platformtools:python:1.0.0
-    - name: infrastructure-repository
+    - name: data-repository
       value: https://github.com/musana-engineering/globorealty.git
   templates:
     - name: create-connection
@@ -425,7 +425,7 @@ spec:
         - name: scripts
           path: /home/scripts
           git:
-            repo: "{{workflow.parameters.infrastructure-repository}}"
+            repo: {{ '{{' }} workflow.parameters.data-repository {{ '}}' }}
             depth: 1
         volumes:
         - name: pipeline-secrets
@@ -433,7 +433,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
 
@@ -470,7 +470,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
 
@@ -499,7 +499,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
          
@@ -517,7 +517,7 @@ spec:
             secretName: data-0fec8a
       script:
         imagePullPolicy: "Always"
-        image: "{{workflow.parameters.docker-image}}"
+        image: {{ '{{' }} workflow.parameters.docker-image {{ '}}' }}
         command: [/bin/bash]
         source: |
 
