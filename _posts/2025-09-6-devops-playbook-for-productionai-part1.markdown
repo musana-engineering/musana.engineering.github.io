@@ -288,6 +288,7 @@ We’ll define and submit two pipelines, each with a clear responsibility:
 
 Handles the creation and ongoing maintenance of Azure resources such as the AML workspace, Storage Account, Key Vault, and Container Registry.
 
+{% raw %}
 {% highlight yaml %}
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
@@ -397,6 +398,7 @@ spec:
               - name: terraform-plan
                 from: "{{tasks.plan.outputs.artifacts.terraform-plan}}"
 {% endhighlight %}
+{% endraw %}
 
 - **Data Pipeline:** 
 
