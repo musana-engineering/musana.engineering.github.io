@@ -76,14 +76,13 @@ One of the most overlooked yet critical aspects of designing a planet-scale netw
 
 Global IPAM Table
 
-- Master Block: 10.0.0.0/8 reserved for the entire enterprise Azure estate.
-- Regional Allocation: Each Azure region gets a /12 slice, providing ~1 million IPs per region.
-- Hub Allocation: Each hub VNet uses a /16 block carved from the regional /12.
-- Spoke Allocation: Each spoke VNet (prod or nonprod) uses a /20 block within the region.
-- Subnets: Each VNet is internally segmented into /24s for workloads, gateways, and firewalls.
+- 10.0.0.0/8 reserved for the entire enterprise Azure estate.
+- Each Azure region gets a /12 slice providing over a million IPs per region.
+- Each hub VNet uses a /16 block carved from the regional /12.
+- Each spoke VNet (prod or nonprod) uses a /20 block within the region.
+- Each VNet is internally segmented into /24s for workloads, gateways, and firewalls.
 
 {% highlight ruby %}
-
 | Region            | Regional /12  | Hub VNet /16   | Prod Spoke /20   | Nonprod Spoke /20 |
 |-------------------|---------------|----------------|------------------|-------------------|
 | eastus            | 10.0.0.0/12   | 10.0.0.0/16    | 10.0.16.0/20     | 10.0.32.0/20      |
@@ -93,7 +92,6 @@ Global IPAM Table
 | southeastasia     | 10.64.0.0/12  | 10.64.0.0/16   | 10.64.16.0/20    | 10.64.32.0/20     |
 | australiaeast     | 10.80.0.0/12  | 10.80.0.0/16   | 10.80.16.0/20    | 10.80.32.0/20     |
 | southafricanorth  | 10.96.0.0/12  | 10.96.0.0/16   | 10.96.16.0/20    | 10.96.32.0/20     |
-
 {% endhighlight %}
 
 ### Orchestration
