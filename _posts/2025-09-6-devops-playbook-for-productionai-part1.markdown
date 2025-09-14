@@ -311,7 +311,7 @@ spec:
         - name: terraform
           path: /home/terraform
           git:
-            repo: '{{' workflow.parameters.infrastructure-repository '}}'
+            repo: {{ '{{' }} workflow.parameters.infrastructure-repository {{ '}}' }}
             depth: 1
         volumes:
         - name: pipeline-secrets
